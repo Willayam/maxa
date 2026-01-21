@@ -21,136 +21,195 @@ This allows faster iteration on UX without backend dependencies.
 
 ---
 
-## User Flow Diagram
+## User Flow Overview
+
+```mermaid
+flowchart LR
+    A[App Launch] --> B{Has account?}
+    B -->|No| C[Onboarding]
+    C --> D[Baseline Test]
+    D --> E[First Mission]
+    E --> F[Create Account]
+    F --> G[Main App]
+    B -->|Yes| G
+    G --> H[Quiz Flow]
+    H --> G
+    G --> I[Paywall - inline]
+    N[Notifications] -.->|Re-engage| A
+```
+
+**Activation:** Set exam date + goal score → complete baseline → finish first mission → create account.
+
+---
+
+### Authentication Flow
+
+Account creation delayed until after first mission (reduces friction).
 
 ```mermaid
 flowchart TD
-    subgraph AUTH ["Authentication"]
-        A[App Launch] --> B{Logged in?}
-        B -->|No| C[Welcome Screen]
-        C --> D[Sign Up]
-        C --> E[Sign In]
-        D --> F[Clerk Auth]
-        E --> F
-        F --> G{Onboarding done?}
-    end
+    A[App Launch] --> B{Has account?}
+    B -->|No| C[Start Onboarding]
+    B -->|Yes| D{Logged in?}
+    D -->|No| E[Sign In]
+    D -->|Yes| F[Dashboard]
+    E --> F
+    C --> G[Onboarding + Baseline + First Mission]
+    G --> H[Create Account]
+    H --> F
+```
 
-    subgraph ONBOARDING ["Onboarding"]
-        G -->|No| H[Dream Screen]
-        H --> I["Vad är din dröm?"]
-        I --> J[Education Screen]
-        J --> K[Search & Select Program]
-        K --> L[City Screen]
-        L --> M[Select Preferred City]
-        M --> N[HP Target Display]
-        N --> O[Meet Max Screen]
-        O --> P[Animated Max Intro]
-        P --> Q[Choose Max Style]
-        Q --> R["Hype / Lugn / Strikt"]
-        R --> S[Onboarding Complete]
-    end
+---
 
-    subgraph MAIN ["Main App"]
-        G -->|Yes| T[Dashboard]
-        S --> T
+### Onboarding Flow
 
-        subgraph TABS ["Bottom Navigation"]
-            T --> U["Hem"]
-            T --> V["Träna"]
-            T --> W["Statistik"]
-            T --> X["Profil"]
-        end
+Goal: Get to activation fast. No fluff.
 
-        subgraph HOME ["Home Tab"]
-            U --> U1[Streak Widget]
-            U --> U2[Daily Goal Progress]
-            U --> U3[Quick Actions]
-            U --> U4[Friends Activity]
-            U --> U5[Max Message]
-        end
+```mermaid
+flowchart TD
+    A["1. Welcome & Avatar"] --> B["Name (optional) + Persona"]
+    B --> C["2. Dream Outcome"]
+    C --> D["Program search + City"]
+    D --> E["3. Required Score"]
+    E --> F["Slider: Målscore → program"]
+    F --> G["4. Test Date"]
+    G --> H["'87 dagar kvar till HP'"]
+    H --> I["5. Time Commitment"]
+    I --> J["10 / 15 / 25 min per dag"]
+    J --> K["6. Your Plan"]
+    K --> L["'Starta baseline-testet'"]
+    L --> M["7. Baseline Test"]
+    M --> N["10-20 mixed questions"]
+    N --> O["8. Results & First Mission"]
+    O --> P["Show level + gap + weakest"]
+    P --> Q["'Kör dagens pass nu'"]
+    Q --> R["First mission complete"]
+    R --> S["9. Account Creation"]
+    S --> T["Apple / Google / Email"]
+    T --> U[Dashboard]
+```
 
-        subgraph PRACTICE ["Practice Tab"]
-            V --> V1[Section Grid]
-            V1 --> V2["ORD/LÄS/MEK/XYZ/NOG/DTK/ELF/KVA"]
-            V --> V3[Daily Challenge]
-            V --> V4[Quick Practice]
-            V --> V5[Mock Test]
-            V --> V6[Review Mistakes]
-        end
+**Removed from onboarding:**
+- Meet Max / Choose coach style → moved to Jag tab
+- Paywall → triggers on daily limit, not during onboarding
 
-        subgraph PROGRESS ["Progress Tab"]
-            W --> W1[HP Score Estimate]
-            W --> W2[Section Mastery]
-            W --> W3[Time Studied]
-            W --> W4[Accuracy Charts]
-            W --> W5[Achievements]
-        end
+---
 
-        subgraph PROFILE ["Profile Tab"]
-            X --> X1[Avatar & Name]
-            X --> X2[Subscription Status]
-            X --> X3[Invite Friends]
-            X --> X4[Friends List]
-            X --> X5[Settings]
-            X --> X6[Edit Dream]
-        end
-    end
+### Main App Navigation (3 Tabs)
 
-    subgraph QUIZ ["Quiz Flow"]
-        V2 --> Y[Start Lesson/Quiz]
-        V3 --> Y
-        V4 --> Y
-        Y --> Z[Question Card]
-        Z --> AA[Select Answer]
-        AA --> AB{Correct?}
-        AB -->|Yes| AC[Success Animation]
-        AB -->|No| AD[Wrong + Explanation]
-        AC --> AE[+XP Animation]
-        AD --> AE
-        AE --> AF{More questions?}
-        AF -->|Yes| Z
-        AF -->|No| AG[Session Summary]
-        AG --> AH[Max Celebration]
-        AH --> T
-    end
+```mermaid
+flowchart LR
+    T[App] --> U["📅 Idag"]
+    T --> V["📚 Träna"]
+    T --> W["👤 Jag"]
+```
 
-    subgraph PAYWALL ["Paywall"]
-        X2 -->|Free user| BA[Subscribe Screen]
-        BA --> BB[49kr/vecka]
-        BA --> BC[499kr/år]
-        BA --> BD[999kr lifetime]
-        BB --> BE[RevenueCat]
-        BC --> BE
-        BD --> BE
-        BE --> BF[Premium Unlocked]
-        BF --> T
-    end
+#### Idag Tab (Home)
 
-    subgraph SOCIAL ["Social"]
-        X3 --> CA[Invite Screen]
-        CA --> CB[Share Referral Link]
-        CB --> CC[Friend Signs Up]
-        CC --> CD[+1 Month Free]
+Drives daily usage and triggers paywall.
 
-        X4 --> CE[Friends List]
-        CE --> CF[View Friend Profile]
-        CF --> CG[See Streak/Stats]
+```mermaid
+flowchart TD
+    U["📅 Idag"] --> U1["Countdown: X dagar kvar till HP"]
+    U --> U2["Goal: Målscore → program, stad"]
+    U --> U3["Dagens mål: 40 frågor"]
+    U --> U4["Starta dagens pass"]
+    U --> U5["Streak + XP chip"]
+    U3 --> U6{Limit reached?}
+    U6 -->|Yes| U7[Paywall inline]
+```
 
-        U4 --> CH[Leaderboard]
-        CH --> CI[Friends Ranking]
-    end
+#### Träna Tab (Power Users)
 
-    subgraph NOTIFICATIONS ["Engagement"]
-        DA[8 PM Check] --> DB{Practiced today?}
-        DB -->|No| DC[Push: Streak Reminder]
-        DC --> A
+Manual control for engaged users.
 
-        DD[Streak Milestone] --> DE[Push: Celebration]
-        DE --> A
+```mermaid
+flowchart TD
+    V["📚 Träna"] --> V1["Svagaste först (default)"]
+    V --> V2["Delprov-träning"]
+    V --> V3["Simulera prov (Pro)"]
+    V1 --> Q[Quiz Flow]
+    V2 --> Q
+    V3 --> Q
+```
 
-        DF[Friend Activity] --> DG[Push: X just practiced!]
-        DG --> A
-    end
+#### Jag Tab (Progress + Coach)
+
+Progress tracking and AI coach combined.
+
+```mermaid
+flowchart TD
+    W["👤 Jag"] --> W1["Progress Card"]
+    W --> W2["Weakness List"]
+    W --> W3["AI Coach Box"]
+    W1 --> W1a["Predicted HP vs Goal"]
+    W1 --> W1b["Chans till programlista"]
+    W2 --> W2a["Concept tiles (röd/gul/grön)"]
+    W3 --> W3a["Fråga din HP-coach..."]
+    W3 --> W3b["Quick actions"]
+```
+
+---
+
+### Quiz Flow
+
+```mermaid
+flowchart TD
+    A[Start Lesson/Quiz] --> B[Question Card]
+    B --> C[Select Answer]
+    C --> D{Correct?}
+    D -->|Yes| E[Success Animation]
+    D -->|No| F[Wrong + Explanation]
+    E --> G[+XP Animation]
+    F --> G
+    G --> H{More questions?}
+    H -->|Yes| B
+    H -->|No| I[Session Summary]
+    I --> J[Max Celebration]
+    J --> K[Return to Dashboard]
+```
+
+---
+
+### Paywall Flow (Inline on Idag Tab)
+
+Shown when daily limit reached. One core offer, then downsell.
+
+```mermaid
+flowchart TD
+    A[Daily limit reached] --> B["Inline on Idag tab"]
+    B --> C["Maxa HP Pro – 99 kr/mån"]
+    B --> D["Founders Lifetime – 899 kr"]
+    C --> E[RevenueCat]
+    D --> E
+    E --> F[Premium Unlocked]
+    F --> G[Continue training]
+```
+
+---
+
+### Social Flow (Post-v1)
+
+Cut for v1 to focus on activation. Add once churn data shows where unlockables help.
+
+```mermaid
+flowchart TD
+    A[Leaderboards] --> B[Post-v1]
+    C[Friends] --> B
+    D[Badges] --> B
+```
+
+---
+
+### Notifications Flow
+
+```mermaid
+flowchart TD
+    A[8 PM Check] --> B{Practiced today?}
+    B -->|No| C[Push: Streak Reminder]
+    C --> D[Open App]
+    E[Streak Milestone] --> F[Push: Celebration]
+    F --> D
 ```
 
 ---
@@ -219,41 +278,33 @@ flowchart TD
 
 ## Screen Inventory
 
-### Auth Flow (3 screens)
+### Auth Flow (1 screen)
 | Screen | File | Key Components |
 |--------|------|----------------|
-| Welcome | `(auth)/welcome.tsx` | Hero, value prop, CTAs |
-| Sign In | `(auth)/sign-in.tsx` | Google/Apple/Email buttons |
-| Sign Up | `(auth)/sign-up.tsx` | Same + terms, referral input |
+| Sign In | `(auth)/sign-in.tsx` | Apple/Google/Email (returning users) |
 
-### Onboarding (5 screens)
+### Onboarding (8 screens)
 | Screen | File | Key Components |
 |--------|------|----------------|
-| Dream | `(onboarding)/dream.tsx` | Text input, suggestions |
-| Education | `(onboarding)/education.tsx` | Search, autocomplete |
-| City | `(onboarding)/city.tsx` | City picker |
-| Meet Max | `(onboarding)/meet-max.tsx` | Animated intro |
-| Choose Style | `(onboarding)/choose-max-style.tsx` | 3 style cards |
+| Welcome | `(onboarding)/welcome.tsx` | Name, persona picker |
+| Dream | `(onboarding)/dream.tsx` | Program search, city picker |
+| Score | `(onboarding)/score.tsx` | Target HP slider |
+| Date | `(onboarding)/date.tsx` | Exam date, countdown |
+| Time | `(onboarding)/time.tsx` | Daily commitment (10/15/25 min) |
+| Plan | `(onboarding)/plan.tsx` | Your path summary, baseline CTA |
+| Baseline | `(onboarding)/baseline.tsx` | 10-20 question test |
+| Results | `(onboarding)/results.tsx` | Level, gap, first mission CTA |
 
-### Main App (4 tabs + 5 screens)
+### Main App (3 tabs + 2 screens)
 | Screen | File | Key Components |
 |--------|------|----------------|
-| Dashboard | `(app)/(tabs)/index.tsx` | Streak, goals, actions |
-| Practice | `(app)/(tabs)/practice.tsx` | Section grid, challenges |
-| Progress | `(app)/(tabs)/progress.tsx` | Stats, charts, badges |
-| Profile | `(app)/(tabs)/profile.tsx` | Avatar, settings, invite |
-| Lesson | `(app)/lesson/[id].tsx` | Content, exercises |
-| Quiz | `(app)/quiz/[id].tsx` | Questions, timer |
-| Review | `(app)/review.tsx` | Wrong answers |
-| Leaderboard | `(app)/leaderboard.tsx` | Friends ranking |
-| Invite | `(app)/invite.tsx` | Share, track |
+| Idag | `(app)/(tabs)/index.tsx` | Countdown, goal, daily mission, streak |
+| Träna | `(app)/(tabs)/trana.tsx` | Svagaste först, delprov, simulera |
+| Jag | `(app)/(tabs)/jag.tsx` | Progress, weaknesses, AI coach |
+| Quiz | `(app)/quiz/[id].tsx` | Questions, timer, feedback |
+| Review | `(app)/review.tsx` | Wrong answers explanation |
 
-### Paywall (1 screen)
-| Screen | File | Key Components |
-|--------|------|----------------|
-| Subscribe | `(paywall)/subscribe.tsx` | Plans, features, CTA |
-
-**Total: 18 screens**
+**Total: 14 screens**
 
 ---
 
@@ -307,16 +358,11 @@ flowchart TD
 
 ## Pricing
 
-| Plan | Price | Billing | Features |
-|------|-------|---------|----------|
-| Free | 0 kr | - | 5 questions/day, basic stats |
-| Weekly | 49 kr | Weekly | Unlimited, all sections, no ads |
-| Yearly | 499 kr | Yearly | Same as weekly, best value |
-| Lifetime | 999 kr | One-time | Forever access |
-
-### Referral Rewards
-- Referrer: +1 free month per converted friend
-- Referred: +7 days extended trial
+| Plan | Price | Features |
+|------|-------|----------|
+| Free | 0 kr | ~30 questions/day, 3 AI asks/day |
+| Pro | 99 kr/mån | Unlimited questions, unlimited AI coach, full HP sim |
+| Founders Lifetime | 899 kr | Forever access (limited offer) |
 
 ---
 
