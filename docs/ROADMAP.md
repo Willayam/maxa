@@ -67,26 +67,16 @@ Goal: Get to activation fast. No fluff.
 
 ```mermaid
 flowchart TD
-    A["1. Welcome & Avatar"] --> B["Name (optional) + Persona"]
-    B --> C["2. Dream Outcome"]
-    C --> D["Program search + City"]
-    D --> E["3. Required Score"]
-    E --> F["Slider: Målscore → program"]
-    F --> G["4. Test Date"]
-    G --> H["'87 dagar kvar till HP'"]
-    H --> I["5. Time Commitment"]
-    I --> J["10 / 15 / 25 min per dag"]
-    J --> K["6. Your Plan"]
-    K --> L["'Starta baseline-testet'"]
-    L --> M["7. Baseline Test"]
-    M --> N["10-20 mixed questions"]
-    N --> O["8. Results & First Mission"]
-    O --> P["Show level + gap + weakest"]
-    P --> Q["'Kör dagens pass nu'"]
-    Q --> R["First mission complete"]
-    R --> S["9. Account Creation"]
-    S --> T["Apple / Google / Email"]
-    T --> U[Dashboard]
+    A["<b>1. Welcome</b><br/>• Name (optional)<br/>• Persona: Gymnasieelev / Omtagare / Förälder"]
+    A --> B["<b>2. Dream</b><br/>• Program search<br/>• City picker"]
+    B --> C["<b>3. Score</b><br/>• HP target slider<br/>• Shows required score for program"]
+    C --> D["<b>4. Date</b><br/>• Exam date picker<br/>• '87 dagar kvar till HP'"]
+    D --> E["<b>5. Time</b><br/>• Daily commitment<br/>• 10 / 15 / 25 min options"]
+    E --> F["<b>6. Plan</b><br/>• Your path summary<br/>• CTA: 'Starta baseline-testet'"]
+    F --> G["<b>7. Baseline</b><br/>• 10-20 mixed questions<br/>• Real timing, no paywall"]
+    G --> H["<b>8. Results</b><br/>• Current level vs goal<br/>• Weakest section<br/>• CTA: 'Kör dagens pass nu'"]
+    H --> I["<b>9. Account</b><br/>• Apple / Google / Email<br/>• After first mission complete"]
+    I --> J[Dashboard]
 ```
 
 **Removed from onboarding:**
@@ -99,54 +89,9 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    T[App] --> U["📅 Idag"]
-    T --> V["📚 Träna"]
-    T --> W["👤 Jag"]
-```
-
-#### Idag Tab (Home)
-
-Drives daily usage and triggers paywall.
-
-```mermaid
-flowchart TD
-    U["📅 Idag"] --> U1["Countdown: X dagar kvar till HP"]
-    U --> U2["Goal: Målscore → program, stad"]
-    U --> U3["Dagens mål: 40 frågor"]
-    U --> U4["Starta dagens pass"]
-    U --> U5["Streak + XP chip"]
-    U3 --> U6{Limit reached?}
-    U6 -->|Yes| U7[Paywall inline]
-```
-
-#### Träna Tab (Power Users)
-
-Manual control for engaged users.
-
-```mermaid
-flowchart TD
-    V["📚 Träna"] --> V1["Svagaste först (default)"]
-    V --> V2["Delprov-träning"]
-    V --> V3["Simulera prov (Pro)"]
-    V1 --> Q[Quiz Flow]
-    V2 --> Q
-    V3 --> Q
-```
-
-#### Jag Tab (Progress + Coach)
-
-Progress tracking and AI coach combined.
-
-```mermaid
-flowchart TD
-    W["👤 Jag"] --> W1["Progress Card"]
-    W --> W2["Weakness List"]
-    W --> W3["AI Coach Box"]
-    W1 --> W1a["Predicted HP vs Goal"]
-    W1 --> W1b["Chans till programlista"]
-    W2 --> W2a["Concept tiles (röd/gul/grön)"]
-    W3 --> W3a["Fråga din HP-coach..."]
-    W3 --> W3b["Quick actions"]
+    A["<b>📅 Idag</b><br/>• Countdown till HP<br/>• Målscore → program<br/>• Dagens mål: ~25 frågor<br/>• 'Starta dagens pass'<br/>• Streak + XP chip<br/>• Paywall when limit hit"]
+    B["<b>📚 Träna</b><br/>• Svagaste först (default)<br/>• Delprov-träning<br/>• Simulera prov (Pro)"]
+    C["<b>👤 Jag</b><br/>• Progress: HP vs Goal<br/>• Weakness tiles (röd/gul/grön)<br/>• AI Coach box<br/>• Coach style settings"]
 ```
 
 ---
@@ -155,35 +100,24 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[Start Lesson/Quiz] --> B[Question Card]
-    B --> C[Select Answer]
-    C --> D{Correct?}
-    D -->|Yes| E[Success Animation]
-    D -->|No| F[Wrong + Explanation]
-    E --> G[+XP Animation]
-    F --> G
-    G --> H{More questions?}
-    H -->|Yes| B
-    H -->|No| I[Session Summary]
-    I --> J[Max Celebration]
-    J --> K[Return to Dashboard]
+    A["<b>Question Card</b><br/>• Question + options<br/>• Timer (optional)"]
+    A --> B["<b>Answer Feedback</b><br/>• Correct: success animation<br/>• Wrong: explanation shown<br/>• +XP animation"]
+    B --> C{More?}
+    C -->|Yes| A
+    C -->|No| D["<b>Session Summary</b><br/>• Score + XP earned<br/>• Max celebration<br/>• Return to Idag"]
 ```
 
 ---
 
 ### Paywall Flow (Inline on Idag Tab)
 
-Shown when daily limit reached. One core offer, then downsell.
+Shown when daily limit (~25 questions) reached. One core offer.
 
 ```mermaid
-flowchart TD
-    A[Daily limit reached] --> B["Inline on Idag tab"]
-    B --> C["Maxa HP Pro – 99 kr/mån"]
-    B --> D["Founders Lifetime – 899 kr"]
-    C --> E[RevenueCat]
-    D --> E
-    E --> F[Premium Unlocked]
-    F --> G[Continue training]
+flowchart LR
+    A["<b>Limit Reached</b><br/>• Inline on Idag tab<br/>• 'Du har gjort dagens gratispass'"]
+    A --> B["<b>Offer</b><br/>• Pro: 99 kr/mån<br/>• Founders Lifetime: 899 kr"]
+    B --> C["<b>RevenueCat</b><br/>• Process payment<br/>• Unlock premium"]
 ```
 
 ---
@@ -193,10 +127,8 @@ flowchart TD
 Cut for v1 to focus on activation. Add once churn data shows where unlockables help.
 
 ```mermaid
-flowchart TD
-    A[Leaderboards] --> B[Post-v1]
-    C[Friends] --> B
-    D[Badges] --> B
+flowchart LR
+    A["<b>Post-v1 Features</b><br/>• Leaderboards<br/>• Friends<br/>• Badges beyond streak"]
 ```
 
 ---
@@ -204,12 +136,9 @@ flowchart TD
 ### Notifications Flow
 
 ```mermaid
-flowchart TD
-    A[8 PM Check] --> B{Practiced today?}
-    B -->|No| C[Push: Streak Reminder]
-    C --> D[Open App]
-    E[Streak Milestone] --> F[Push: Celebration]
-    F --> D
+flowchart LR
+    A["<b>Streak Reminder</b><br/>• 8 PM check<br/>• Push if not practiced"]
+    B["<b>Milestone</b><br/>• Streak celebration<br/>• Level up notification"]
 ```
 
 ---
@@ -222,14 +151,13 @@ flowchart TD
 | Task | Description |
 |------|-------------|
 | NativeWind setup | Configure Tailwind for React Native |
-| Base UI components | Button, Card, Input, ProgressBar, etc. |
-| Auth screens (UI only) | Welcome, Sign In, Sign Up |
-| Onboarding screens | Dream, Education, City, Meet Max, Choose Style |
-| Tab navigation | Set up 4-tab layout |
-| Dashboard UI | Streak widget, goal tracker, quick actions |
-| Practice UI | Section grid, quiz flow screens |
-| Progress UI | Stats, charts, achievements |
-| Profile UI | Settings, invite, friends |
+| Base UI components | Button, Card, Input, ProgressBar, Slider |
+| Onboarding screens | Welcome, Dream, Score, Date, Time, Plan, Baseline, Results |
+| Tab navigation | Set up 3-tab layout (Idag, Träna, Jag) |
+| Idag UI | Countdown, goal, daily mission, streak chip |
+| Träna UI | Mode selector, quiz flow |
+| Jag UI | Progress card, weakness tiles, coach box |
+| Quiz UI | Question card, feedback, session summary |
 
 ### Phase 2: Animations & Polish
 **Focus:** Make it feel premium and fast
@@ -360,7 +288,7 @@ flowchart TD
 
 | Plan | Price | Features |
 |------|-------|----------|
-| Free | 0 kr | ~30 questions/day, 3 AI asks/day |
+| Free | 0 kr | ~25 questions/day, 3 AI asks/day |
 | Pro | 99 kr/mån | Unlimited questions, unlimited AI coach, full HP sim |
 | Founders Lifetime | 899 kr | Forever access (limited offer) |
 
