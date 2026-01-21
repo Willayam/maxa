@@ -1,50 +1,56 @@
-# Welcome to your Expo app 👋
+# Maxa
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Expo app with file-based routing. Uses **bun** as package manager.
 
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Quick Start
 
 ```bash
-npm run reset-project
+# Install dependencies
+bun install
+
+# Start dev server
+bun start
+
+# Platform-specific
+bun run ios      # iOS simulator
+bun run android  # Android emulator
+bun run web      # Web browser
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Project Structure
 
-## Learn more
+```
+app/           # Routes (file-based routing via expo-router)
+  (tabs)/      # Tab navigation group
+  _layout.tsx  # Root layout
+components/    # Reusable UI components
+constants/     # Theme, colors
+hooks/         # Custom React hooks
+assets/        # Images, fonts
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Scripts
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+| Command | Description |
+|---------|-------------|
+| `bun start` | Start Expo dev server |
+| `bun run ios` | Run on iOS simulator |
+| `bun run android` | Run on Android emulator |
+| `bun run web` | Run in web browser |
+| `bun run lint` | Run ESLint |
+| `bun run reset-project` | Reset to blank app directory |
 
-## Join the community
+## Tech Stack
 
-Join our community of developers creating universal apps.
+- **Expo SDK 54** - React Native framework
+- **expo-router** - File-based routing with typed routes
+- **React 19** - UI library
+- **React Native 0.81** - New Architecture enabled
+- **TypeScript** - Type safety
+- **bun** - Package manager
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Docs
+
+- [Architecture](./docs/ARCHITECTURE.md) - Project architecture details
+- [Expo docs](https://docs.expo.dev/)
+- [expo-router docs](https://docs.expo.dev/router/introduction/)
