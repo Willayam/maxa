@@ -2,7 +2,7 @@
 
 ## Overview
 
-Maxa is a gamified Högskoleprovet prep app built with Expo (React Native). The app follows a "Duolingo-style" approach with streaks, XP, levels, and an AI coach named Max.
+Maxa is a gamified Högskoleprovet prep app built with Expo (React Native). The app follows a "Duolingo-style" approach with streaks and an AI coach named Max.
 
 ## Tech Stack
 
@@ -207,7 +207,7 @@ const updateStreak = useMutation(api.streaks.increment);
 ```
 
 ### 3. Server-side Validation
-All gamification logic (streaks, XP, levels) is validated server-side in Convex to prevent cheating.
+All gamification logic (streaks, progress) is validated server-side in Convex to prevent cheating.
 
 ### 4. AI Rate Limiting
 Max AI coach calls are rate-limited per user tier:
