@@ -89,7 +89,7 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    A["<b>📅 Idag</b><br/>• Countdown till HP<br/>• Målscore → program<br/>• Dagens mål: ~25 frågor<br/>• 'Starta dagens pass'<br/>• Streak + XP chip<br/>• Paywall when limit hit"]
+    A["<b>📅 Idag</b><br/>• Countdown till HP<br/>• Målscore → program<br/>• Dagens mål: ~25 frågor<br/>• 'Starta dagens pass'<br/>• Streak chip<br/>• Paywall when limit hit"]
     B["<b>📚 Träna</b><br/>• Svagaste först (default)<br/>• Delprov-träning<br/>• Simulera prov (Pro)"]
     C["<b>👤 Jag</b><br/>• Progress: HP vs Goal<br/>• Weakness tiles (röd/gul/grön)<br/>• AI Coach box<br/>• Coach style settings"]
 ```
@@ -101,10 +101,10 @@ flowchart LR
 ```mermaid
 flowchart TD
     A["<b>Question Card</b><br/>• Question + options<br/>• Timer (optional)"]
-    A --> B["<b>Answer Feedback</b><br/>• Correct: success animation<br/>• Wrong: explanation shown<br/>• +XP animation"]
+    A --> B["<b>Answer Feedback</b><br/>• Correct: success animation<br/>• Wrong: explanation shown"]
     B --> C{More?}
     C -->|Yes| A
-    C -->|No| D["<b>Session Summary</b><br/>• Score + XP earned<br/>• Max celebration<br/>• Return to Idag"]
+    C -->|No| D["<b>Session Summary</b><br/>• Score summary<br/>• Max celebration<br/>• Return to Idag"]
 ```
 
 ---
@@ -138,7 +138,7 @@ flowchart LR
 ```mermaid
 flowchart LR
     A["<b>Streak Reminder</b><br/>• 8 PM check<br/>• Push if not practiced"]
-    B["<b>Milestone</b><br/>• Streak celebration<br/>• Level up notification"]
+    B["<b>Milestone</b><br/>• Streak celebration<br/>• Progress notification"]
 ```
 
 ---
@@ -166,7 +166,6 @@ flowchart LR
 |------|-------------|
 | Micro-interactions | Button presses, card transitions |
 | Quiz feedback | Correct/wrong animations |
-| XP animations | Flying numbers, level-up celebration |
 | Max animations | Avatar expressions, celebration |
 | Loading states | Skeletons, shimmer effects |
 | Haptic feedback | Success/error vibrations |
@@ -221,7 +220,7 @@ flowchart LR
 | Time | `(onboarding)/time.tsx` | Daily commitment (10/15/25 min) |
 | Plan | `(onboarding)/plan.tsx` | Your path summary, baseline CTA |
 | Baseline | `(onboarding)/baseline.tsx` | 10-20 question test |
-| Results | `(onboarding)/results.tsx` | Level, gap, first mission CTA |
+| Results | `(onboarding)/results.tsx` | Score, gap, first mission CTA |
 
 ### Main App (3 tabs + 2 screens)
 | Screen | File | Key Components |
@@ -246,19 +245,6 @@ flowchart LR
 | 100 days | Gold flame badge |
 | 365 days | Diamond flame badge |
 
-### XP System
-| Action | Base XP | Bonus |
-|--------|---------|-------|
-| Correct answer | 10 | +5 (fast), +10 (streak) |
-| Complete lesson | 50 | - |
-| Daily challenge | 100 | - |
-| Invite friend | 200 | - |
-
-### Levels
-- 100 levels total
-- Exponential XP curve
-- Level-up triggers Max celebration
-
 ---
 
 ## Max AI Coach
@@ -274,7 +260,6 @@ flowchart LR
 ### Trigger Events
 - Streak milestone reached
 - Wrong answer (offer explanation)
-- Level up
 - Inactivity (24h+)
 - Daily challenge completed
 

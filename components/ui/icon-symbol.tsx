@@ -6,7 +6,6 @@ import { ComponentProps } from 'react';
 import { OpaqueColorValue, type StyleProp, type TextStyle } from 'react-native';
 
 type IconMapping = Record<SymbolViewProps['name'], ComponentProps<typeof MaterialIcons>['name']>;
-type IconSymbolName = keyof typeof MAPPING;
 
 /**
  * Add your SF Symbols to Material Icons mappings here.
@@ -14,11 +13,44 @@ type IconSymbolName = keyof typeof MAPPING;
  * - see SF Symbols in the [SF Symbols](https://developer.apple.com/sf-symbols/) app.
  */
 const MAPPING = {
+  // Navigation
   'house.fill': 'home',
   'paperplane.fill': 'send',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+
+  // Tabs - Maxa app
+  'calendar': 'today',
+  'book.fill': 'menu-book',
+  'person.fill': 'person',
+
+  // Common
+  'xmark': 'close',
+  'checkmark': 'check',
+  'plus': 'add',
+  'minus': 'remove',
+  'gear': 'settings',
+  'bell.fill': 'notifications',
+  'star.fill': 'star',
+  'heart.fill': 'favorite',
+  'arrow.left': 'arrow-back',
+  'arrow.right': 'arrow-forward',
+  'questionmark.circle': 'help-outline',
+  'info.circle': 'info-outline',
+  'exclamationmark.triangle': 'warning',
+
+  // Quiz/Practice
+  'play.fill': 'play-arrow',
+  'pause.fill': 'pause',
+  'stop.fill': 'stop',
+  'clock': 'access-time',
+  'flame.fill': 'local-fire-department',
+  'bolt.fill': 'bolt',
+  'trophy.fill': 'emoji-events',
+  'chart.bar.fill': 'bar-chart',
 } as IconMapping;
+
+export type IconSymbolName = keyof typeof MAPPING;
 
 /**
  * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.

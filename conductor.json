@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "setup": "bun install && cp \\\"$CONDUCTOR_ROOT_PATH/.env.local\\\" .env.local",
+        "setup": "bun install",
         "run": "bun expo start --clear"
     },
     "runScriptMode": "nonconcurrent"
