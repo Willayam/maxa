@@ -1,86 +1,145 @@
-# Maxa HP: Strategic SEO Roadmap and Content Architecture
+# Maxa HP: The 80/20 SEO & Content Strategy
 
-> [!NOTE]
-> This document establishes the definitive strategy for 'Maxa HP' organic acquisition. It prioritizes data-backed authority (E-E-A-T) combined with a tone that resonates with the Swedish student demographic (16-25 year olds).
+## 1. Executive Summary & Audience Persona
 
-## 1. Tactical Positioning: The 80/20 Rule
-Our strategy relies on the Pareto Principle. 80% of high-converting organic traffic is driven by:
-- **Admission Statistics**: For elite programs (Medicine, Law, Engineering).
-- **Practice Material**: Stable links and explanations for old exams.
-- **ROI Data**: Connecting study effort to future salary and career impact.
+**The Goal:** Dominate the search results for Högskoleprovet by focusing on the 20% of topics that drive 80% of the value: Admission Stats, Old Exams, Score Calculation, and Career ROI.
 
-## 2. Tone & Voice Architecture
-To effectively reach our **16-25 target audience**, all content must follow these guidelines:
-- **Approachable Authority**: Be the "smart older sibling" who knows the shortcuts.
-- **Data over Fluff**: Use hard numbers (admission cutoffs, salary stats) to prove points.
-- **Empathetic Engagement**: Acknowledge the high-stakes anxiety without being alarmist.
-- **Modern Swedish**: Avoid bureaucratic "UHR-speak." Use clear, contemporary Swedish (e.g., "HP-kvoten" instead of "urvalsgruppen för högskoleprovet" when appropriate).
+### The Target Audience (16–25 Years Old)
+*   **The "Gymnasieelev" (17–19):** Anxious about grades. Views HP as a "lifeline" to save their future. Needs structure and reassurance.
+*   **The "Gap Year" Student (19–23):** Has taken the test once, got a 0.9, needs a 1.4 for Law/Psychology. Motivated by specific admission limits.
+*   **The "Career Switcher" (23–25):** Looking at the ROI of 5 years of study vs. working. Motivated by salary data.
 
----
+### Tone of Voice
+*   **Direct & No-Fluff:** "Here is exactly what you need to score 1.6."
+*   **Empathetic but Authoritative:** "It's normal to fail the first time. Here is the math on how to fix it."
+*   **Mobile-First:** Short paragraphs, clear headers, "TL;DR" summaries.
 
-## 3. Technical SEO & Semantic Architecture
-The URL structure is strictly hierarchical to build cumulative topical authority.
+## 2. Technical SEO & URL Architecture
 
-| Page Type | Recommended URL Pattern | Strategic Rationale |
+We will avoid a flat site structure. Instead, we build **Topic Silos** to establish authority. Google rewards sites that cover a topic in depth (vertical depth) rather than breadth.
+
+### Optimal URL Structure
+
+| Page Type | URL Structure | User Intent |
 | :--- | :--- | :--- |
-| **Stats Hub** | `/antagningsstatistik/` | Parent for all data/program pages. |
-| **Program Specific**| `/antagningsstatistik/[program]/` | Targets high-volume intent (e.g., `/lakarprogrammet/`). |
-| **Exam Hub** | `/gamla-hogskoleprov/` | Optimized for "download" and "practice" intent. |
-| **Norming** | `/normeringstabeller/` | The calculation utility hub; high dwell time potential. |
-| **Career ROI** | `/lonestatistik/` | The motivation hub; converts "dreamers" into "doers." |
+| **Homepage** | `maxahp.se/` | Brand & App Download ("The Hub") |
+| **Stats Hub** | `/antagningsstatistik/` | "What score do I need?" |
+| **Program Page** | `/antagningsstatistik/[program]/` | Specific goal setting (e.g., `/lakarprogrammet`) |
+| **Uni Page** | `/antagningsstatistik/[universitet]/[program]/` | Granular local search (e.g., `/lund/jurist`) |
+| **Study Plan** | `/studieplan/` | **NEW:** "How do I prepare?" |
+| **Timeline** | `/studieplan/[tidsram]/` | e.g., `/3-manader`, `/sista-veckan` |
+| **Exams** | `/gamla-prov/` | "I need to practice now." |
+| **Norming** | `/normering/` | "What is my score?" |
+| **ROI/Salary** | `/lonestatistik/` | "Is it worth it?" |
 
-### Hub-and-Spoke Internal Linking
-- **The Motivation Loop**: Salary stats link to Admission stats. ("Is this degree worth the effort?")
-- **The Authority Loop**: Admission stats link to Exam & Tips. ("How do I get the score for this degree?")
+## 3. Core Page Content Strategy
 
----
+### Core Page 1: Antagningsstatistik (The Dream)
+**Target:** The High-Achiever & The Anxious Applicant
+**Why:** This is the highest volume entry point. Students obsess over cut-offs.
+**Data Strategy:** Do not just show a number. Contextualize it.
 
-## 4. The Five "Power Pages" (Content Pillars)
+**Key Content Blocks:**
+*   **The "Big 4" Table:** Focus on Medicine, Law, Psychology, and Engineering (Indek/Fysik).
+    *   **Medicine:** Lund is consistently the hardest (1.70–1.75). Umeå is often the "easiest" entry point (1.55–1.60), but rejection rates are still ~87%.[1]
+    *   **Engineering (Indek):** KTH (1.70) vs Lund (1.75). Highlight that Lund actually required a higher HP score recently.[3]
+    *   **Law:** Stockholm has the highest volume of applicants (almost 5,000), but Lund has the highest rejection rate (89%).[1]
+*   **"Chance Calculator" (Static):** A simple lookup table: "If you have 1.4, here is what you can get into."
+*   **Trend Analysis:** Explain that Spring (VT) scores are usually lower than Autumn (HT) scores.
+*   **Strategic Advice:** "If you are on the borderline (e.g., 1.60 for Medicine), applying in the Spring gives you a statistically better chance".[2]
 
-### Pillar 1: Antagningsstatistik (The Traffic Magnet)
-Focus on the "Big Four" degrees: **Medicine, Law, Engineering (Civilingenjör), and Psychology**.
+### Core Page 2: The Study Plan (The Roadmap) [NEW]
+**Target:** The Planner & The Procrastinator
+**Why:** Users search for "hur pluggar man" or "tips dagen innan." We capture them at every stage of their panic.
 
-- **Deep Dives**: Provide historical context (HT vs VT variance) and "rejection volume" stats.
-- **Insight Example**: Highlight that Lund's Indek (1.75) is often harder than KTH (1.70), building trust through counter-intuitive data.
+#### Sub-Page A: The 3-Month Plan ("The Marathon")
+*   **Phase 1 (Wk 1-2):** Diagnostic test. Do not waste actual 2024/2025 exams yet. Use an older one (2018-2019) to set a baseline.
+*   **Phase 2 (Wk 3-8):** Weakness targeting.
+    *   **Math (XYZ/KVA):** Focus on Math 1b/2b formulas. Speed is the enemy (60 sec/question).[6]
+    *   **Vocab (ORD):** Delete social media apps; install Anki. Learn prefixes/suffixes (e.g., bio-, geo-) rather than random words.[7]
+*   **Phase 3 (Wk 9-12):** Simulation. Full exams every Saturday at 09:00 to simulate biorhythm.[8]
 
-### Pillar 2: Gamla Högskoleprov (The Utility Magnet)
-- **Problem**: Official sources often have broken links or dry PDFs.
-- **Solution**: Curated, stable links + **The Value Gap**.
-- **Value Gap**: Provide *detailed solutions* (explanations), not just the answer key. This is a massive lead generation opportunity.
+#### Sub-Page B: The "Last Week" Panic ("The Taper")
+*   **7 Days Out:** Stop learning new math concepts. Review cheat sheets.
+*   **Sleep Discipline:** Wake up at 07:00 every day this week to reset circadian rhythm for exam day.[8]
+*   **Logistics:** Check ID validity (Passport/Licence). Digital IDs (BankID) are **NOT** accepted.[9]
 
-### Pillar 3: Normeringstabeller & Calculator
-- **Mechanism**: Explain the difference between raw points and normed scores (0.00–2.00).
-- **Calculator**: Use a visual tool or comparison table for recent years (HT2025, VT2025) to manage user expectations.
+#### Sub-Page C: Game Day Protocol
+*   **08:00:** Arrive.
+*   **Snack Strategy:** Avoid sugar crashes. Bring nuts, bananas, and water (but not too much, bathroom breaks eat time).[9]
+*   **The "Utprövningspass":** Warn them that one section is fake/unscored, but they won't know which one. Treat all 5 blocks as real.[10]
 
-### Pillar 4: Strategic Study Hub (Tips & Strategier)
-Break down the 8 sub-tests (XYZ, KVA, NOG, DTK, ORD, LÄS, ELF, MEK).
-- **Quick Gains**: Focus on Math (XYZ/KVA) where rapid score jumps are possible.
-- **Long-term Habit**: Frame Verbal (ORD/LÄS) as a reading volume game.
+### Core Page 3: Gamla Prov (The Utility)
+**Target:** The Active Student
+**Strategy:** Clean, direct downloads. No sign-up walls for the PDFs (use sign-up for the answers/explanations).
+**File Naming:** `hogskoleprovet-ht2025-kvantitativ.pdf` (SEO optimized).
+**The Hook:** "Don't just check the Facit (Answer Key). Understand why D was right. Download the Maxa HP app for step-by-step explanations of this specific exam."
 
-### Pillar 5: Career & ROI Guide (The "Why?")
-Connect the pain of studying to the pleasure of future earnings.
-- **Academic Premium**: Showcase the ~17% lifetime salary gap between academics and non-academics.
-- **Gender Gap Insights**: Position the HP as a tool for financial empowerment and transparent pay scales (especially in Medicine).
+### Core Page 4: Normering & Calculator (The Logic)
+**Target:** The Analytical User
 
----
+**Content:**
+*   **The Bell Curve:** Explain that 2.0 is the top 0.1%. Average is ~0.9.
+*   **Tactical Spiking:** You don't need to be perfect. A 2.0 in Math and 1.0 in Verbal averages to 1.5. Play to your strengths.[12]
+*   **Live Updates:** "Normeringstabeller HT2025" – This page must be updated the minute UHR releases data.
 
-## 5. Execution Roadmap
+### Core Page 5: Career ROI & Salary (The Motivation)
+**Target:** The Doubter (or their Parents)
+**Why:** Connect the pain of studying to the reward of lifestyle.
 
-### Phase 1: Foundation (Days 1–30)
-- Deploy `/antagningsstatistik/` for the Big Four programs.
-- Upload/Link last 5 years of exams in `/gamla-hogskoleprov/`.
+**Key Data Points:**
+*   **Lifetime Value:** Academic degrees yield ~17% higher lifetime earnings than high school diplomas.[14]
+*   **The 3-Million Kronor Gap:** Women with degrees earn ~3.9M SEK less than men with degrees over a lifetime, but the gap between a high-school educated woman and a university-educated woman is massive. Education is the equalizer.[15]
+*   **Specific Salaries:**
+    *   **Civilingenjör (Indek):** Entry 38k, 10-year avg 62k/mo.[17]
+    *   **Läkare:** Lifetime earning 32.3M SEK.[18]
+    *   **Jurist:** Lifetime earning 29.4M SEK.[18]
+*   **The Pitch:** "Studying for 3 months now is worth 5 million kronor later. Maxa HP is your investment."
 
-### Phase 2: Authority (Days 30–60)
-- Publish the `/lonestatistik/` (ROI) guide with shareable infographics.
-- Internal link optimization: "Salary -> Admission -> Practice".
+## 4. Execution Roadmap (First 6 Weeks)
 
-### Phase 3: Interactive (Days 60–90)
-- Deploy the Norming Calculator.
-- Weekly blog articles targeting long-tail queries (e.g., "Best food for exam day").
+### Week 1: The "Stats" Sprint
+*   **Action:** Scrape/Compile admission data for the top 20 programs (Medicine, Law, Psych, Indek, Architecture) for the last 5 terms.
+*   **Output:** Publish `/antagningsstatistik/` and the top 5 program pages.
+*   **SEO:** Target keywords "Antagningspoäng läkare 2025", "Svåraste utbildningarna".
 
----
+### Week 2: The "Timeline" Guide
+*   **Action:** Write the "3-Month Plan" and "Last Week" guides.
+*   **Output:** Publish `/studieplan/` hub.
+*   **SEO:** Target "Hur pluggar man till högskoleprovet", "Tips inför högskoleprovet".
 
-## 6. Traffic Drivers & Off-Page
-- **Forum Engagement**: Reddit (r/sweden) and Flashback. Provide value/data, don't just spam.
-- **Cyclical Content**: Align with UHR registration windows (Jan 7-14, Aug 11-18) and exam days.
-- **Competitor Gaps**: Offer better free data than the paywalled incumbents (Allakando, HP-portalen).
+### Week 3: The "Utility" Upload
+*   **Action:** Upload PDFs of exams 2018–2025.
+*   **Output:** Publish `/gamla-prov/`.
+*   **Conversion:** Add "Download App for Explanations" CTA on every PDF download button.
+
+### Week 4: The "ROI" Analysis
+*   **Action:** Synthesize SACO/SCB salary data into infographics.
+*   **Output:** Publish `/lonestatistik/`.
+*   **Social:** Share these graphs on TikTok/Instagram ("Did you know a 1.6 score is worth 32 million SEK?").
+
+### Week 5 & 6: Interlinking & Optimization
+*   **Action:** Link Stats pages to Study Plans ("Need 1.7 for Medicine? Here is the plan").
+*   **Action:** Ensure all pages load under 2 seconds (Mobile speed is critical for this demographic).
+
+## Works Cited
+
+1.  Antagningspoäng och statistik till utbildningar i Sverige, accessed January 22, 2026, [https://xn--antagningspong-hib.nu/](https://xn--antagningspong-hib.nu/)
+2.  Läkarprogrammet Antagningspoäng 2026 - Ednia, accessed January 22, 2026, [https://ednia.se/hogskolor/lakarprogrammet](https://ednia.se/hogskolor/lakarprogrammet)
+3.  Antagningspoäng för Civilingenjörsutbildning i industriell ekonomi vid Lunds universitet, accessed January 22, 2026, [https://antagningspoang.se/lunds-universitet/civilingenjorsutbildning-i-industriell-ekonomi](https://antagningspoang.se/lunds-universitet/civilingenjorsutbildning-i-industriell-ekonomi)
+4.  Topp 20 program med högst antagningspoäng (BI) - Universitets- och högskolerådet (UHR), accessed January 22, 2026, [https://www.uhr.se/studier-och-antagning/antagningsstatistik/topp-20-program-med-hogst-antagningspoang-bi/](https://www.uhr.se/studier-och-antagning/antagningsstatistik/topp-20-program-med-hogst-antagningspoang-bi/)
+5.  Intensivkurs inför högskoleprovet som lär dig allt på två dagar - Allakando, accessed January 22, 2026, [https://www.allakando.se/kurser/hogskoleprovet/alla_aldrar/intensivkurs/intensivkurs-hogskoleprovet/](https://www.allakando.se/kurser/hogskoleprovet/alla_aldrar/intensivkurs/intensivkurs-hogskoleprovet/)
+6.  Så får du alla rätt på mattedelen - AllaStudier.se, accessed January 22, 2026, [https://allastudier.se/tips-o-fakta/s%C3%A5-f%C3%A5r-du-alla-r%C3%A4tt-p%C3%A5-mattedelen-16983](https://allastudier.se/tips-o-fakta/s%C3%A5-f%C3%A5r-du-alla-r%C3%A4tt-p%C3%A5-mattedelen-16983)
+7.  Strategier för att bli bättre på ORD-delen - HPPortalen, accessed January 22, 2026, [https://www.hpportalen.se/blogg/strategier-for-orddelen](https://www.hpportalen.se/blogg/strategier-for-orddelen)
+8.  Bästa fyra tipsen för att förbättra sig med en vecka kvar till högskoleprovet! - HPAkademin, accessed January 22, 2026, [https://hpakademin.se/basta-fyra-tipsen-for-att-forbattra-sig-med-en-vecka-kvar-till-hogskoleprovet/](https://hpakademin.se/basta-fyra-tipsen-for-att-forbattra-sig-med-en-vecka-kvar-till-hogskoleprovet/)
+9.  Högskoleprovet: Test och checklista - AllaStudier.se, accessed January 22, 2026, [https://allastudier.se/tips-o-fakta/h%C3%B6gskoleprovet-test-och-checklista-15992](https://allastudier.se/tips-o-fakta/h%C3%B6gskoleprovet-test-och-checklista-15992)
+10. Prov i åtta delar - Universitets- och högskolerådet (UHR), accessed January 22, 2026, [https://www.uhr.se/studier-och-antagning/Hogskoleprovet/Prov-i-atta-delar/](https://www.uhr.se/studier-och-antagning/Hogskoleprovet/Prov-i-atta-delar/)
+11. Om Högskoleprovet, accessed January 22, 2026, [https://www.hogskoleporten.se/hogskoleprovet](https://www.hogskoleporten.se/hogskoleprovet)
+12. Hur funkar normeringen på Högskoleprovet? - HP-appen, accessed January 22, 2026, [https://www.hpappen.se/blog/hur-funkar-normeringen-pa-hogskoleprovet](https://www.hpappen.se/blog/hur-funkar-normeringen-pa-hogskoleprovet)
+13. Högskoleprovet - Wikipedia, accessed January 22, 2026, [https://sv.wikipedia.org/wiki/H%C3%B6gskoleprovet](https://sv.wikipedia.org/wiki/H%C3%B6gskoleprovet)
+14. Livslöner för akademiker | Sveriges akademikers centralorganisation - Saco, accessed January 22, 2026, [https://www.saco.se/yrkesliv/lon/livsloner-for-akademiker/](https://www.saco.se/yrkesliv/lon/livsloner-for-akademiker/)
+15. Skillnad i livslön mellan kvinnor och män | Sveriges akademikers centralorganisation - Saco, accessed January 22, 2026, [https://www.saco.se/yrkesliv/lon/livsloner-for-akademiker/skillnader-i-livslon-mellan-kvinnor-och-man/](https://www.saco.se/yrkesliv/lon/livsloner-for-akademiker/skillnader-i-livslon-mellan-kvinnor-och-man/)
+16. Miljoner i livslön skiljer kvinnliga och manliga akademiker, accessed January 22, 2026, [https://akademikern.se/miljoner-i-livslon-skiljer-kvinnliga-och-manliga-akademiker/](https://akademikern.se/miljoner-i-livslon-skiljer-kvinnliga-och-manliga-akademiker/)
+17. Hur mycket tjänar en civilingenjör? - Se lönestatistik - Sveriges Ingenjörer, accessed January 22, 2026, [https://www.sverigesingenjorer.se/lon/civilingenjor-lon/](https://www.sverigesingenjorer.se/lon/civilingenjor-lon/)
+18. Utbildningarna som lönar sig mest - AllaStudier.se, accessed January 22, 2026, [https://allastudier.se/tips-o-fakta/utbildningarna-som-lonar-sig-mest-16947](https://allastudier.se/tips-o-fakta/utbildningarna-som-lonar-sig-mest-16947)
+
