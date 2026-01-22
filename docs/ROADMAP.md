@@ -203,6 +203,18 @@ flowchart LR
 
 ---
 
+### Phase 6: SEO & Organic Acquisition
+**Focus:** Growth and Authority
+
+| Task | Description |
+|------|-------------|
+| SEO Plan Implementation | Deploy 5 Power Pages (Stats, Exams, ROI, etc.) |
+| Technical SEO | Hierarchical URL structure and internal linking |
+| Content Production | "Big Four" program deep dives and study tips |
+| Growth Loops | Forum engagement and cyclical event marketing |
+
+---
+
 ## Screen Inventory
 
 ### Auth Flow (1 screen)

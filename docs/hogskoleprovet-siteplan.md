@@ -1,5 +1,8 @@
 # Maxa HP — siteplan och research (22 jan 2026)
 
+> [!CAUTION]
+> This document is **superseded** by the updated [SEO Plan](file:///Users/williamlarsten/conductor/repos/maxa/docs/SEO_PLAN.md). Refer to that document for the current acquisition strategy and content architecture.
+
 Syfte: en enkel 5-sidors struktur som rankar för HP-sök och driver appnedladdningar. All trafik ska landa på en sida som direkt matchar sökintentionen och leder till CTA: **"Hämta Maxa HP gratis"**.
 
 ## 1) Sitemap (första 90 dagar)
