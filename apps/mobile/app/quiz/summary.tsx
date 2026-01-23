@@ -49,20 +49,6 @@ function getPaceStatus(pacePercentOver: number): { label: string; icon: string }
   return PACE_STATUS.tooSlow;
 }
 
-/**
- * Get section display name
- */
-const SECTION_NAMES: Record<SectionCode, string> = {
-  ORD: 'Ordförståelse',
-  LÄS: 'Läsförståelse',
-  MEK: 'Meningskomplettering',
-  ELF: 'Engelsk läsförståelse',
-  XYZ: 'Matematisk problemlösning',
-  KVA: 'Kvantitativa jämförelser',
-  NOG: 'Kvantitativa resonemang',
-  DTK: 'Diagram, tabeller, kartor',
-};
-
 export default function SummaryScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{
@@ -76,8 +62,13 @@ export default function SummaryScreen() {
 
   // Parse params
   const section = params.section || 'XYZ';
-  const answers: AnswerRecord[] = JSON.parse(params.answers || '[]');
-  const totalTime = parseInt(params.totalTime || '0', 10);
+  let answers: AnswerRecord[] = [];
+  try {
+    answers = JSON.parse(params.answers || '[]');
+  } catch {
+    answers = [];
+  }
+  const totalTime = parseInt(params.totalTime, 10) || 0;
 
   // Calculate stats
   const correctCount = answers.filter((a) => a.correct).length;
