@@ -17,6 +17,19 @@ bun run android  # Android emulator
 bun run web      # Web browser
 ```
 
+## Web (Next.js)
+
+The web app lives in `apps/web`.
+
+```bash
+bun run dev --filter=@maxa/web
+```
+
+## Deploy (Vercel)
+
+This repo is a monorepo, so deploy from the repo root. The `vercel.json` in the root
+defines the install and build commands for the web app.
+
 ## Project Structure
 
 ```
