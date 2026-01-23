@@ -2,6 +2,6 @@
   "version": 2,
   "framework": "nextjs",
   "installCommand": "bun install",
-  "buildCommand": "bun run build --filter=@maxa/web",
-  "devCommand": "bun run dev --filter=@maxa/web"
+  "buildCommand": "bunx turbo build --filter=@maxa/web",
+  "outputDirectory": "apps/web/.next"
 }
