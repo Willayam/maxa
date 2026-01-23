@@ -1,3 +1,4 @@
+// NativeWind removed - using StyleSheet for all styling
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -15,14 +16,10 @@ import {
   Nunito_900Black,
 } from '@expo-google-fonts/nunito';
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useColorScheme } from '@maxa/shared/hooks';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -49,8 +46,8 @@ export default function RootLayout() {
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(tabs)" />
           <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
         </Stack>
         <StatusBar style="auto" />

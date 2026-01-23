@@ -1,0 +1,30 @@
+{
+  "name": "@maxa/shared",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./theme": "./src/constants/theme.ts",
+    "./components": "./src/components/index.ts",
+    "./hooks": "./src/hooks/index.ts",
+    "./utils": "./src/utils/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "react-native-reanimated": "~4.1.1"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-native": ">=0.72",
+    "expo-haptics": ">=14.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "typescript": "^5.3.0"
+  }
+}

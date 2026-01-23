@@ -230,77 +230,77 @@ export const Colors = {
   },
 
   dark: {
-    // Backgrounds
-    background: Primitives.neutral[900],
-    backgroundSecondary: Primitives.neutral[800],
-    backgroundTertiary: Primitives.neutral[700],
-    cardBackground: Primitives.neutral[800],
+    // Backgrounds - Rich deep indigo/navy
+    background: '#0F0D1A', // Deep indigo-black
+    backgroundSecondary: '#1A1625', // Slightly lighter indigo
+    backgroundTertiary: '#252136', // Card/elevated surfaces
+    cardBackground: '#1E1A2D', // Rich card background
 
-    // Text
-    text: Primitives.neutral[0],
-    textSecondary: '#B3B3B3',
-    textTertiary: Primitives.neutral[500],
-    textInverse: Primitives.neutral[900],
+    // Text - High contrast
+    text: '#FFFFFF',
+    textSecondary: '#A8A3B8', // Soft lavender-gray
+    textTertiary: '#6B6580', // Muted purple-gray
+    textInverse: '#0F0D1A',
     textOnPrimary: Primitives.neutral[800],
 
-    // Brand
-    primary: Primitives.yellow[500],
-    primaryLight: Primitives.yellow[900],
-    primaryDark: Primitives.yellow[600],
-    primaryHover: Primitives.yellow[400],
-    primaryPressed: Primitives.yellow[600],
+    // Brand - Vibrant yellow with glow potential
+    primary: '#FFD60A', // Slightly warmer, more vibrant yellow
+    primaryLight: '#3D3520', // Subtle warm tint for backgrounds
+    primaryDark: '#E5B800', // Deeper gold
+    primaryHover: '#FFE44D', // Brighter on hover
+    primaryPressed: '#E5B800',
 
-    // Blue accent
-    blue: Primitives.blue[500],
-    blueDark: Primitives.blue[600],
+    // Blue accent - Cyan for energy
+    blue: '#00E5FF',
+    blueDark: '#00B8D4',
 
-    // Secondary
-    secondary: Primitives.neutral[700],
-    secondaryHover: Primitives.neutral[600],
+    // Secondary - Subtle glass-like
+    secondary: '#2A2541', // Frosted dark purple
+    secondaryHover: '#363050', // Lift on hover
 
     // Accent
-    accent: Primitives.yellow[500],
-    accentLight: Primitives.yellow[900],
-    accentDark: Primitives.yellow[400],
+    accent: '#FFD60A',
+    accentLight: '#3D3520',
+    accentDark: '#FFE44D',
 
-    // Semantic
-    success: Primitives.success[400],
-    successLight: Primitives.success[600],
-    warning: Primitives.warning[400],
-    warningLight: Primitives.warning[600],
-    error: Primitives.error[400],
-    errorLight: Primitives.error[600],
+    // Semantic - Vibrant but balanced
+    success: '#4ADE80', // Fresh green
+    successLight: '#1A3D2E', // Dark green tint
+    warning: '#FBBF24', // Warm amber
+    warningLight: '#3D3520', // Dark amber tint
+    error: '#FF6B9D', // Soft pink-red
+    errorLight: '#3D1A2E', // Dark pink tint
 
-    // Borders
-    border: Primitives.neutral[700],
-    borderSubtle: Primitives.neutral[800],
-    borderFocus: Primitives.yellow[500],
-    divider: Primitives.neutral[800],
+    // Borders - Subtle purple tint
+    border: '#3A3550', // Visible but not harsh
+    borderSubtle: '#2A2541', // Very subtle
+    borderFocus: '#FFD60A',
+    divider: '#2A2541',
 
     // Components
-    cardBorder: Primitives.neutral[700],
-    inputBackground: Primitives.neutral[800],
-    inputBorder: Primitives.neutral[600],
+    cardBorder: '#3A3550',
+    inputBackground: '#1E1A2D',
+    inputBorder: '#3A3550',
 
     // Tab bar
-    tabIconDefault: Primitives.neutral[500],
-    tabIconSelected: Primitives.yellow[500],
-    tint: Primitives.yellow[500],
-    icon: Primitives.neutral[400],
+    tabIconDefault: '#6B6580',
+    tabIconSelected: '#FFD60A',
+    tint: '#FFD60A',
+    icon: '#A8A3B8',
 
     // Gamification
-    streak: Primitives.streak,
-    star: Primitives.yellow[500],
+    streak: '#FF8C42', // Warm orange
+    star: '#FFD60A',
 
     // Progress
-    progressTrack: Primitives.neutral[700],
-    progressFill: Primitives.yellow[500],
-    progressWeak: Primitives.error[400],
-    progressMedium: Primitives.warning[400],
-    progressStrong: Primitives.success[400],
+    progressTrack: '#2A2541',
+    progressFill: '#FFD60A',
+    progressWeak: '#FF6B9D',
+    progressMedium: '#FBBF24',
+    progressStrong: '#4ADE80',
 
     // Overlay
-    overlay: 'rgba(0,0,0,0.7)',
+    overlay: 'rgba(15, 13, 26, 0.85)',
   },
 };
 
