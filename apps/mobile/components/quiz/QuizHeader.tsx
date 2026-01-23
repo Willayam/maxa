@@ -57,7 +57,7 @@ export function QuizHeader({
   };
 
   // Calculate progress percentage
-  const progress = (currentQuestion / totalQuestions) * 100;
+  const progress = totalQuestions > 0 ? (currentQuestion / totalQuestions) * 100 : 0;
 
   return (
     <View style={styles.container}>
@@ -68,6 +68,8 @@ export function QuizHeader({
         onPressOut={handleClosePressOut}
         onPress={handleClosePress}
         hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+        accessibilityRole="button"
+        accessibilityLabel="Close quiz"
       >
         <Text style={[styles.closeText, { color: colors.textSecondary }]}>✕</Text>
       </AnimatedPressable>
