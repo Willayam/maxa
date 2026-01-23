@@ -36,7 +36,7 @@ export function ExitModal({ visible, onCancel, onConfirm }: ExitModalProps) {
         <AnimatedPressable
           entering={FadeIn.duration(200)}
           exiting={FadeOut.duration(200)}
-          style={styles.backdrop}
+          style={[styles.backdrop, { backgroundColor: colors.overlay }]}
           onPress={onCancel}
         />
 
@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
   },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   modalCard: {
     borderRadius: BorderRadius['2xl'],
@@ -114,7 +113,5 @@ const styles = StyleSheet.create({
   buttons: {
     gap: Spacing.sm,
   },
-  continueButton: {
-    marginBottom: Spacing.xs,
-  },
+  continueButton: {},
 });
