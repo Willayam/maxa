@@ -11,12 +11,12 @@ export function SiteFooter() {
           </p>
         </div>
         <div>
-          <h4 className="font-bold mb-4">Hogskoleprovet</h4>
+          <h4 className="font-bold mb-4">Resurser</h4>
           <ul className="space-y-2 text-sm text-text-muted">
-            <li><Link href="/hogskoleprovet/guide">Guide</Link></li>
-            <li><Link href="/hogskoleprovet/provdatum-2026">Provdatum 2026</Link></li>
-            <li><Link href="/hogskoleprovet/poang-antagning">Poang & antagning</Link></li>
-            <li><Link href="/hogskoleprovet/ovningsprov">Ovningsprov</Link></li>
+            <li><Link href="/antagningsstatistik">Antagningsstatistik</Link></li>
+            <li><Link href="/studieplan">Studieplan</Link></li>
+            <li><Link href="/gamla-prov">Gamla prov</Link></li>
+            <li><Link href="/normering">Normering</Link></li>
           </ul>
         </div>
         <div>
