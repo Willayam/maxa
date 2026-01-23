@@ -4,7 +4,7 @@ import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from 'react-nati
 
 import { Text } from '@/components/ui/text';
 import { Button } from '@/components/ui/button';
-import { Colors, BorderRadius, Spacing } from '@/constants/theme';
+import { Colors, BorderRadius, Spacing, Primitives } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
 interface ExitModalProps {
@@ -65,24 +65,29 @@ export function ExitModal({ visible, onCancel, onConfirm }: ExitModalProps) {
 
           {/* Buttons */}
           <View style={styles.buttons}>
+            {/* Primary action: Continue practicing (brand yellow) */}
             <Button
-              variant="secondary"
+              variant="primary"
               size="lg"
               fullWidth
               onPress={onCancel}
-              style={styles.continueButton}
             >
               Fortsätt öva
             </Button>
 
-            <Button
-              variant="ghost"
-              size="lg"
-              fullWidth
+            {/* Destructive action: Quit (red/coral text) */}
+            <Pressable
+              style={styles.destructiveButton}
               onPress={onConfirm}
             >
-              Avsluta
-            </Button>
+              <Text
+                variant="body"
+                weight="bold"
+                style={{ color: Primitives.error[500] }}
+              >
+                Avsluta
+              </Text>
+            </Pressable>
           </View>
         </Animated.View>
       </View>
@@ -111,7 +116,11 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.xl,
   },
   buttons: {
-    gap: Spacing.sm,
+    gap: Spacing.md,
   },
-  continueButton: {},
+  destructiveButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: Spacing.md,
+  },
 });
