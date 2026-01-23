@@ -6,6 +6,7 @@ import {
   Pressable,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 import Animated, {
   FadeInDown,
   FadeInRight,
@@ -246,15 +247,31 @@ export default function TranaScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
   const [selectedMode, setSelectedMode] = useState<TrainingMode>('smart');
+  const router = useRouter();
 
   const handleStartTraining = () => {
     triggerImpact(Haptics.ImpactFeedbackStyle.Medium);
-    console.log('Start training:', selectedMode);
+    if (selectedMode === 'smart') {
+      // For smart mode, pick a weak section (NOG for now as mock)
+      router.push({
+        pathname: '/quiz',
+        params: { section: 'NOG' },
+      });
+    } else if (selectedMode === 'section') {
+      // Section mode requires selecting a section first
+      console.log('Please select a section');
+    } else {
+      // Simulate mode - not implemented yet
+      console.log('Simulate mode coming soon');
+    }
   };
 
   const handleSectionPress = (sectionCode: string) => {
     triggerImpact(Haptics.ImpactFeedbackStyle.Light);
-    console.log('Section selected:', sectionCode);
+    router.push({
+      pathname: '/quiz',
+      params: { section: sectionCode },
+    });
   };
 
   return (
