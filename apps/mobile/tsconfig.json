@@ -3,9 +3,9 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"],
+      "@maxa/shared": ["../../packages/shared/src"],
+      "@maxa/shared/*": ["../../packages/shared/src/*"]
     }
   },
   "include": [
