@@ -16,7 +16,7 @@ import {
   Nunito_900Black,
 } from '@expo-google-fonts/nunito';
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useColorScheme } from '@maxa/shared/hooks';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
