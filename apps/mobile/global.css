@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 248 249 250;
+    --foreground: 44 62 80;
+    --muted: 108 122 137;
+    --muted-foreground: 108 122 137;
+    --card: 255 255 255;
+    --card-border: 224 230 235;
+  }
+
+  .dark {
+    --background: 15 13 26;
+    --foreground: 255 255 255;
+    --muted: 107 101 128;
+    --muted-foreground: 168 163 184;
+    --card: 30 26 45;
+    --card-border: 58 53 80;
+  }
+}
+
+/* Web-only utilities (NativeWind passes these through on web) */
+@layer utilities {
+  .backdrop-blur-site {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .shadow-glow-primary {
+    box-shadow: 0 0 20px rgba(255, 214, 10, 0.3);
+  }
+
+  .shadow-glow-primary-dark {
+    box-shadow: 0 0 20px rgba(255, 214, 10, 0.25);
+  }
+
+  .gradient-cta {
+    background: linear-gradient(135deg, rgba(255, 214, 10, 0.12) 0%, rgba(255, 214, 10, 0.04) 100%);
+  }
+
+  .gradient-cta-light {
+    background: linear-gradient(135deg, #FFFBEB 0%, #FFF8E1 100%);
+  }
+
+  .gradient-section {
+    background: linear-gradient(135deg, rgba(255, 200, 0, 0.1) 0%, rgba(255, 200, 0, 0.02) 100%);
+  }
+
+  .gradient-section-dark {
+    background: linear-gradient(135deg, rgba(255, 214, 10, 0.08) 0%, rgba(255, 214, 10, 0.02) 100%);
+  }
+
+  .transition-colors-fast {
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+}

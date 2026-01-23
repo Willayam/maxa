@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   ViewProps,
@@ -6,26 +6,22 @@ import {
   ViewStyle,
   StyleProp,
   Pressable,
-} from 'react-native';
+} from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
-} from 'react-native-reanimated';
-import * as Haptics from 'expo-haptics';
+} from "react-native-reanimated";
+import * as Haptics from "expo-haptics";
 
-import {
-  Colors,
-  BorderRadius,
-  Spacing,
-} from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-import { triggerImpact } from '@/utils/haptics';
+import { Colors, BorderRadius, Spacing } from "@/constants/theme";
+import { useColorScheme } from "@/hooks/use-color-scheme";
+import { triggerImpact } from "@/utils/haptics";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
-type CardVariant = 'default' | 'ghost';
-type CardPadding = 'none' | 'sm' | 'md' | 'lg';
+type CardVariant = "default" | "ghost";
+type CardPadding = "none" | "sm" | "md" | "lg";
 
 interface CardProps extends ViewProps {
   children: React.ReactNode;
@@ -44,14 +40,14 @@ interface CardProps extends ViewProps {
  */
 export function Card({
   children,
-  variant = 'default',
-  padding = 'md',
+  variant = "default",
+  padding = "md",
   onPress,
   disabled = false,
   style,
   ...props
 }: CardProps) {
-  const colorScheme = useColorScheme() ?? 'light';
+  const colorScheme = useColorScheme() ?? "light";
   const colors = Colors[colorScheme];
 
   const scale = useSharedValue(1);
@@ -79,28 +75,28 @@ export function Card({
 
   const getVariantStyles = (): ViewStyle => {
     switch (variant) {
-      case 'default':
+      case "default":
         return {
           backgroundColor: colors.cardBackground,
           borderWidth: 2,
           borderColor: colors.cardBorder,
         };
-      case 'ghost':
+      case "ghost":
         return {
-          backgroundColor: 'transparent',
+          backgroundColor: "transparent",
         };
     }
   };
 
   const getPaddingValue = (): number => {
     switch (padding) {
-      case 'none':
+      case "none":
         return 0;
-      case 'sm':
+      case "sm":
         return Spacing.md; // 12
-      case 'md':
+      case "md":
         return Spacing.lg; // 20
-      case 'lg':
+      case "lg":
         return Spacing.xl; // 24
     }
   };
@@ -147,8 +143,8 @@ export function Card({
 
 const styles = StyleSheet.create({
   base: {
-    borderRadius: BorderRadius['2xl'], // 20px - Duolingo rounded-2xl
-    overflow: 'hidden',
+    borderRadius: BorderRadius["2xl"], // 20px - Duolingo rounded-2xl
+    overflow: "hidden",
   },
   disabled: {
     opacity: 0.6,
