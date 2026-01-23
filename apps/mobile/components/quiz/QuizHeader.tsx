@@ -44,11 +44,11 @@ export function QuizHeader({
   }));
 
   const handleClosePressIn = () => {
-    closeButtonScale.value = withSpring(0.9, { damping: 15, stiffness: 400 });
+    closeButtonScale.value = withSpring(0.9, { damping: 20, stiffness: 300 });
   };
 
   const handleClosePressOut = () => {
-    closeButtonScale.value = withSpring(1, { damping: 15, stiffness: 400 });
+    closeButtonScale.value = withSpring(1, { damping: 20, stiffness: 300 });
   };
 
   const handleClosePress = () => {
@@ -83,11 +83,12 @@ export function QuizHeader({
         />
       </View>
 
-      {/* Section pill */}
+      {/* Section pill - inverted style */}
       <SectionPill
         section={section}
         bgColor={sectionColors.light}
         textColor={sectionColors.text}
+        inverted={true}
       />
     </View>
   );
