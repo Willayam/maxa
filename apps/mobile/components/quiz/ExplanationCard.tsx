@@ -25,13 +25,18 @@ export function ExplanationCard({
     ? Primitives.success[500]
     : Primitives.error[500];
 
+  // Determine border color based on correct/incorrect state
+  const borderColor = isCorrect
+    ? Primitives.success[500]
+    : Primitives.error[500];
+
   return (
     <Animated.View
-      entering={SlideInDown.duration(300).springify().damping(15)}
+      entering={SlideInDown.duration(300).springify().damping(20).stiffness(100)}
       style={[
         styles.container,
         {
-          borderColor: colors.cardBorder,
+          borderColor: borderColor, // Use semantic color instead of cardBorder
           backgroundColor: colors.cardBackground,
         },
       ]}
