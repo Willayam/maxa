@@ -1,7 +1,7 @@
 // apps/mobile/components/quiz/FeedbackFooter.tsx
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Animated, { SlideInDown } from 'react-native-reanimated';
+import Animated, { FadeIn } from 'react-native-reanimated';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -52,7 +52,7 @@ export function FeedbackFooter({
 
   return (
     <Animated.View
-      entering={SlideInDown.duration(300).springify().damping(20).stiffness(100)}
+      entering={FadeIn.duration(200)}
       style={[
         styles.container,
         {
