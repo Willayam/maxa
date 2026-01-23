@@ -9,8 +9,8 @@ import * as Haptics from 'expo-haptics';
 import {
   QuizHeader,
   OptionButton,
-  ExplanationCard,
   ExitModal,
+  FeedbackFooter,
   type OptionState,
 } from '@/components/quiz';
 import { Text } from '@/components/ui/text';
@@ -195,29 +195,27 @@ export default function QuizScreen() {
           ))}
         </View>
 
-        {/* Explanation card (feedback phase) */}
-        {phase === 'feedback' && selectedOption && (
-          <View style={styles.explanationContainer}>
-            <ExplanationCard
-              isCorrect={selectedOption === currentQuestion.correctAnswer}
-              correctAnswer={currentQuestion.correctAnswer}
-              explanation={currentQuestion.explanation}
-            />
-          </View>
-        )}
       </ScrollView>
 
-      {/* Bottom bar */}
-      <View
-        style={[
-          styles.bottomBar,
-          {
-            backgroundColor: colors.background,
-            borderTopColor: colors.border,
-          },
-        ]}
-      >
-        {phase === 'answering' ? (
+      {/* Bottom section */}
+      {phase === 'feedback' && selectedOption ? (
+        <FeedbackFooter
+          isCorrect={selectedOption === currentQuestion.correctAnswer}
+          correctAnswer={currentQuestion.correctAnswer}
+          explanation={currentQuestion.explanation}
+          onContinue={handleContinue}
+          isLastQuestion={isLastQuestion}
+        />
+      ) : (
+        <View
+          style={[
+            styles.bottomBar,
+            {
+              backgroundColor: colors.background,
+              borderTopColor: colors.border,
+            },
+          ]}
+        >
           <Button
             variant="primary"
             size="lg"
@@ -227,17 +225,8 @@ export default function QuizScreen() {
           >
             Kontrollera
           </Button>
-        ) : (
-          <Button
-            variant="primary"
-            size="lg"
-            fullWidth
-            onPress={handleContinue}
-          >
-            {isLastQuestion ? 'Se resultat' : 'Fortsätt'}
-          </Button>
-        )}
-      </View>
+        </View>
+      )}
 
       {/* Exit modal */}
       <ExitModal
@@ -275,9 +264,6 @@ const styles = StyleSheet.create({
   },
   optionsContainer: {
     gap: Spacing.md,
-  },
-  explanationContainer: {
-    marginTop: Spacing.xl,
   },
   bottomBar: {
     paddingHorizontal: Spacing.lg,
