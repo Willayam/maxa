@@ -216,6 +216,37 @@ flowchart LR
 
 ---
 
+## Web Waitlist Landing Page
+
+**Status:** UI complete, backend pending
+
+The waitlist landing page (`apps/web`) is built with Next.js 15, Tailwind CSS, and Framer Motion. It follows the Duolingo-style design system with dark/light mode support.
+
+### Completed
+- [x] Theme system with CSS variables (dark/light mode)
+- [x] UI components (Button, Input, Card with 3D effects)
+- [x] Landing page with hero, features, app preview, CTA sections
+- [x] WaitlistForm component with validation and loading states
+- [x] Header with theme toggle
+- [x] Responsive design
+
+### TODO (separate branch: `feature/convex-waitlist`)
+| Task | Description |
+|------|-------------|
+| Initialize Convex | Run `bunx convex dev` to generate `_generated/` directory |
+| Connect WaitlistForm | Replace mock setTimeout with real Convex mutation |
+| Add ConvexProvider | Wrap Next.js app with ConvexProvider |
+| Environment variables | Set up `NEXT_PUBLIC_CONVEX_URL` |
+| App screenshots | Export from iOS Simulator to `/apps/web/public/screenshots/` |
+| Waitlist count display | Show "X people on the waitlist" using `getCount()` query |
+| Email confirmation | Integrate Resend for welcome emails |
+
+### Files Ready for Convex
+- `convex/schema.ts` - Waitlist table with email index
+- `convex/waitlist.ts` - `join` mutation (deduplicates) and `getCount` query
+
+---
+
 ## Screen Inventory
 
 ### Auth Flow (1 screen)

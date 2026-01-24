@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
-import { Nunito } from 'next/font/google';
+import { ThemeProvider } from '@/components/theme-provider';
 import './globals.css';
-
-const nunito = Nunito({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-  variable: '--font-nunito',
-});
 
 export const metadata: Metadata = {
   title: 'Maxa - Högskoleprovet Prep',
-  description: 'Plugga smart för Högskoleprovet med Maxa',
+  description: 'Plugga smart för Högskoleprovet med Maxa. Gamifierad träning och AI-coach.',
+  keywords: ['högskoleprovet', 'HP', 'plugga', 'träning', 'AI', 'studier'],
+  openGraph: {
+    title: 'Maxa - Högskoleprovet Prep',
+    description: 'Plugga smart för Högskoleprovet med Maxa',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
@@ -19,8 +19,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="sv" className={nunito.variable}>
-      <body className="font-sans antialiased">{children}</body>
+    <html lang="sv" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="font-sans antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

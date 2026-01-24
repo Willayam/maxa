@@ -2,17 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-primary: #FFC800;
-  --color-primary-dark: #E5A400;
-  --color-background: #F8F9FA;
-  --color-text: #2C3E50;
-  --color-text-muted: #6C7A89;
-  --color-border: #E0E6EB;
+@layer base {
+  :root {
+    /* Light mode colors */
+    --color-background: #F8F9FA;
+    --color-background-secondary: #FFFFFF;
+    --color-card-background: #FFFFFF;
+    --color-foreground: #2C3E50;
+    --color-foreground-muted: #6C7A89;
+    --color-border: #E0E6EB;
+
+    --color-primary: #FFC800;
+    --color-primary-dark: #E5A400;
+    --color-primary-light: #FFF8E1;
+  }
+
+  .dark {
+    /* Dark mode colors (matching app theme.ts) */
+    --color-background: #0F0D1A;
+    --color-background-secondary: #1A1625;
+    --color-card-background: #1E1A2D;
+    --color-foreground: #FFFFFF;
+    --color-foreground-muted: #A8A3B8;
+    --color-border: #3A3550;
+
+    --color-primary: #FFD60A;
+    --color-primary-dark: #E5B800;
+    --color-primary-light: #3D3520;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-nunito), system-ui, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
 }
 
-body {
-  font-family: var(--font-nunito), system-ui, sans-serif;
-  background-color: var(--color-background);
-  color: var(--color-text);
+@layer components {
+  /* 3D Button base styles */
+  .btn-3d {
+    @apply relative font-bold rounded-2xl transition-all duration-150;
+    @apply border-b-[4px] border-primary-dark;
+    @apply hover:translate-y-[2px] hover:border-b-[2px];
+    @apply active:translate-y-[4px] active:border-b-0;
+  }
 }
