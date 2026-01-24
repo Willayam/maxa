@@ -8,19 +8,34 @@ export function SiteHeader() {
           Maxa
         </Link>
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="/hogskoleprovet/guide" className="text-text-muted hover:text-text-primary">
-            Om provet
+          <Link
+            href="/antagningsstatistik"
+            className="text-text-muted hover:text-text-primary transition-colors"
+          >
+            Antagning
           </Link>
-          <Link href="/hogskoleprovet/provdatum-2026" className="text-text-muted hover:text-text-primary">
-            Provdatum
+          <Link
+            href="/studieplan"
+            className="text-text-muted hover:text-text-primary transition-colors"
+          >
+            Studieplan
           </Link>
-          <Link href="/hogskoleprovet/poang-antagning" className="text-text-muted hover:text-text-primary">
-            Poang & antagning
+          <Link
+            href="/gamla-prov"
+            className="text-text-muted hover:text-text-primary transition-colors"
+          >
+            Gamla prov
+          </Link>
+          <Link
+            href="/normering"
+            className="text-text-muted hover:text-text-primary transition-colors"
+          >
+            Normering
           </Link>
         </nav>
         <a
           href="#"
-          className="bg-primary text-text-primary font-bold uppercase text-sm px-4 py-2 rounded-xl border-b-[4px] border-primary-dark"
+          className="bg-primary text-text-primary font-bold uppercase text-sm px-4 py-2 rounded-xl border-b-[4px] border-primary-dark hover:translate-y-[2px] hover:border-b-[2px] transition-all"
         >
           Ladda ner
         </a>
