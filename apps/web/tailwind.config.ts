@@ -43,7 +43,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-nunito)', 'system-ui', 'sans-serif'],
+        sans: ['Nunito', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         '2xl': '20px',
