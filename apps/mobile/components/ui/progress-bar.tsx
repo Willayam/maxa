@@ -9,6 +9,7 @@ import Animated, {
 import {
   Colors,
   BorderRadius,
+  Primitives,
 } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
@@ -24,10 +25,9 @@ interface ProgressBarProps {
 }
 
 /**
- * Duolingo-style Progress Bar
- * - Gray track (#E0E6EB)
- * - Yellow fill (#FFC800)
- * - Fully rounded (rounded-full)
+ * Duolingo-style Progress Bar with 3D effect
+ * - Gray track with inner shadow
+ * - Yellow fill with highlight/shadow for depth
  */
 export function ProgressBar({
   progress,
@@ -57,17 +57,20 @@ export function ProgressBar({
   const getHeight = (): number => {
     switch (size) {
       case 'sm':
-        return 8;
+        return 10;
       case 'md':
-        return 12;
+        return 14;
       case 'lg':
-        return 16; // h-4 in Duolingo
+        return 18;
     }
   };
 
-  // Use progressTrack and progressFill from theme
+  // Use brand yellow as default fill
+  const fillColor = color || Primitives.yellow[500]; // #FFC800
+  const fillColorDark = color ? color : Primitives.yellow[600]; // #E5A400 - shadow
+  const fillColorLight = color ? color : Primitives.yellow[400]; // #FFD54F - highlight
+
   const bgTrackColor = trackColor || colors.progressTrack;
-  const fillColor = color || colors.progressFill;
 
   const animatedFillStyle = useAnimatedStyle(() => {
     return {
@@ -76,6 +79,8 @@ export function ProgressBar({
   });
 
   const height = getHeight();
+  const highlightHeight = Math.max(2, height * 0.25); // Top highlight
+  const shadowHeight = Math.max(2, height * 0.2); // Bottom shadow
 
   return (
     <View
@@ -88,6 +93,10 @@ export function ProgressBar({
         style,
       ]}
     >
+      {/* Track inner shadow for depth */}
+      <View style={[styles.trackInnerShadow, { height: 2 }]} />
+
+      {/* Fill with 3D layers */}
       <Animated.View
         style={[
           styles.fill,
@@ -97,7 +106,28 @@ export function ProgressBar({
           },
           animatedFillStyle,
         ]}
-      />
+      >
+        {/* Top highlight */}
+        <View
+          style={[
+            styles.fillHighlight,
+            {
+              height: highlightHeight,
+              backgroundColor: fillColorLight,
+            }
+          ]}
+        />
+        {/* Bottom shadow */}
+        <View
+          style={[
+            styles.fillShadow,
+            {
+              height: shadowHeight,
+              backgroundColor: fillColorDark,
+            }
+          ]}
+        />
+      </Animated.View>
     </View>
   );
 }
@@ -105,10 +135,39 @@ export function ProgressBar({
 const styles = StyleSheet.create({
   track: {
     width: '100%',
-    borderRadius: BorderRadius.full, // rounded-full
+    borderRadius: BorderRadius.full,
     overflow: 'hidden',
+    position: 'relative',
+  },
+  trackInnerShadow: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    borderTopLeftRadius: BorderRadius.full,
+    borderTopRightRadius: BorderRadius.full,
   },
   fill: {
-    borderRadius: BorderRadius.full, // rounded-full
+    borderRadius: BorderRadius.full,
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  fillHighlight: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    borderTopLeftRadius: BorderRadius.full,
+    borderTopRightRadius: BorderRadius.full,
+    opacity: 0.6,
+  },
+  fillShadow: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    borderBottomLeftRadius: BorderRadius.full,
+    borderBottomRightRadius: BorderRadius.full,
   },
 });
