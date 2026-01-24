@@ -199,12 +199,17 @@ interface SectionPillProps {
   section: string;
   bgColor: string;
   textColor: string;
+  inverted?: boolean; // NEW: swap bg/text colors
 }
 
-export function SectionPill({ section, bgColor, textColor }: SectionPillProps) {
+export function SectionPill({ section, bgColor, textColor, inverted = false }: SectionPillProps) {
+  // When inverted, use textColor as background and white as text
+  const finalBgColor = inverted ? textColor : bgColor;
+  const finalTextColor = inverted ? '#FFFFFF' : textColor;
+
   return (
-    <View style={[styles.sectionPill, { backgroundColor: bgColor }]}>
-      <Text style={[styles.sectionPillText, { color: textColor }]}>
+    <View style={[styles.sectionPill, { backgroundColor: finalBgColor }]}>
+      <Text style={[styles.sectionPillText, { color: finalTextColor }]}>
         {section}
       </Text>
     </View>

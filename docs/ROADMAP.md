@@ -158,6 +158,7 @@ flowchart LR
 | Träna UI | Mode selector, quiz flow |
 | Jag UI | Progress card, weakness tiles, coach box |
 | Quiz UI | Question card, feedback, session summary |
+| Review Errors UI | Post-quiz review of wrong answers with explanations |
 
 ### Phase 2: Animations & Polish
 **Focus:** Make it feel premium and fast
