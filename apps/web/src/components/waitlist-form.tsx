@@ -45,7 +45,7 @@ export function WaitlistForm({ className }: WaitlistFormProps) {
             className="flex items-center gap-3 text-success"
           >
             <CheckCircle className="w-6 h-6" />
-            <span className="font-semibold">Du ar pa listan! Vi hor av oss snart.</span>
+            <span className="font-semibold">Du är på listan! Vi hör av oss snart.</span>
           </motion.div>
         ) : (
           <motion.form
@@ -80,7 +80,7 @@ export function WaitlistForm({ className }: WaitlistFormProps) {
               {status === 'loading' ? (
                 <Loader2 className="w-5 h-5 animate-spin" />
               ) : (
-                'Fa tidig tillgang'
+                'Få tidig tillgång'
               )}
             </Button>
           </motion.form>
