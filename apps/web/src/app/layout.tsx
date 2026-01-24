@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
+import { ThemeProvider } from '@/components/theme-provider';
 import './globals.css';
 
 const nunito = Nunito({
@@ -10,7 +11,13 @@ const nunito = Nunito({
 
 export const metadata: Metadata = {
   title: 'Maxa - Högskoleprovet Prep',
-  description: 'Plugga smart för Högskoleprovet med Maxa',
+  description: 'Plugga smart för Högskoleprovet med Maxa. Gamifierad träning och AI-coach.',
+  keywords: ['högskoleprovet', 'HP', 'plugga', 'träning', 'AI', 'studier'],
+  openGraph: {
+    title: 'Maxa - Högskoleprovet Prep',
+    description: 'Plugga smart för Högskoleprovet med Maxa',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
@@ -19,8 +26,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="sv" className={nunito.variable}>
-      <body className="font-sans antialiased">{children}</body>
+    <html lang="sv" className={nunito.variable} suppressHydrationWarning>
+      <body className="font-sans antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }
