@@ -286,9 +286,20 @@ export default function TranaScreen() {
           entering={FadeInDown.duration(500).delay(100)}
           style={styles.header}
         >
-          <Text variant="hero" style={styles.heroTitle}>
-            Träna
-          </Text>
+          <View style={styles.headerRow}>
+            <Text variant="hero" style={styles.heroTitle}>
+              Träna
+            </Text>
+            {/* DEV: Animation playground link */}
+            {__DEV__ && (
+              <Pressable
+                onPress={() => router.push('/quiz/playground')}
+                style={[styles.devButton, { backgroundColor: colors.backgroundTertiary }]}
+              >
+                <Text variant="caption" color="secondary">🎛️ Dev</Text>
+              </Pressable>
+            )}
+          </View>
           <Text variant="bodyLg" color="secondary">
             Välj hur du vill öva idag
           </Text>
@@ -475,9 +486,19 @@ const styles = StyleSheet.create({
   header: {
     marginBottom: Spacing['2xl'],
   },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
   heroTitle: {
     letterSpacing: -1.5,
     marginBottom: Spacing.xs,
+  },
+  devButton: {
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm,
+    borderRadius: BorderRadius.lg,
   },
   modesSection: {
     gap: Spacing.md,

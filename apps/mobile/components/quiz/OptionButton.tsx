@@ -49,19 +49,16 @@ export function OptionButton({
   const scale = useSharedValue(1);
   const translateX = useSharedValue(0);
 
-  // Shake animation when incorrect
+  // Shake animation when incorrect - tune values in /quiz/playground
   useEffect(() => {
     if (state === 'incorrect') {
-      // Trigger shake animation
       translateX.value = withSequence(
-        withTiming(-10, { duration: 50 }),
-        withTiming(10, { duration: 50 }),
-        withTiming(-10, { duration: 50 }),
-        withTiming(10, { duration: 50 }),
+        withTiming(-6, { duration: 50 }),
+        withTiming(6, { duration: 50 }),
+        withTiming(-4, { duration: 50 }),
         withTiming(0, { duration: 50 })
       );
-      // Haptic feedback for wrong answer
-      triggerImpact(Haptics.ImpactFeedbackStyle.Heavy);
+      triggerImpact(Haptics.ImpactFeedbackStyle.Medium);
     }
   }, [state, translateX]);
 
@@ -70,11 +67,11 @@ export function OptionButton({
   }));
 
   const handlePressIn = () => {
-    scale.value = withSpring(0.98, { damping: 15, stiffness: 400 });
+    scale.value = withSpring(0.98, { damping: 20, stiffness: 300 });
   };
 
   const handlePressOut = () => {
-    scale.value = withSpring(1, { damping: 15, stiffness: 400 });
+    scale.value = withSpring(1, { damping: 20, stiffness: 300 });
   };
 
   const handlePress = () => {

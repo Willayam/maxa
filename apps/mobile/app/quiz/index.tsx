@@ -1,9 +1,10 @@
 // apps/mobile/app/quiz/index.tsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
 
 import {
@@ -43,6 +44,7 @@ export default function QuizScreen() {
   const [selectedOption, setSelectedOption] = useState<OptionLabel | null>(null);
   const [phase, setPhase] = useState<QuizPhase>('answering');
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
+  const answersRef = useRef<AnswerRecord[]>([]);
   const [questionStartTime, setQuestionStartTime] = useState(Date.now());
   const [sessionStartTime] = useState(Date.now());
   const [showExitModal, setShowExitModal] = useState(false);
@@ -90,7 +92,9 @@ export default function QuizScreen() {
       timeSpent,
     };
 
-    setAnswers((prev) => [...prev, newAnswer]);
+    const updatedAnswers = [...answers, newAnswer];
+    setAnswers(updatedAnswers);
+    answersRef.current = updatedAnswers;
 
     // Haptic feedback
     if (isCorrect) {
@@ -105,13 +109,13 @@ export default function QuizScreen() {
   // Handle continue to next question
   const handleContinue = () => {
     if (isLastQuestion) {
-      // Navigate to summary
+      // Navigate to summary - use ref to ensure we have all answers including the last one
       const totalTime = Math.round((Date.now() - sessionStartTime) / 1000);
       router.replace({
         pathname: '/quiz/summary',
         params: {
           section,
-          answers: JSON.stringify(answers),
+          answers: JSON.stringify(answersRef.current),
           totalTime: String(totalTime),
         },
       });
@@ -174,26 +178,32 @@ export default function QuizScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Question text */}
-        <View style={styles.questionContainer}>
-          <Text variant="h3" style={{ color: colors.text }}>
-            {currentQuestion.text}
-          </Text>
-        </View>
+        {/* Question content - keyed for animation on transition */}
+        <Animated.View
+          key={currentQuestion.id}
+          entering={FadeInDown.duration(300)}
+        >
+          {/* Question text */}
+          <View style={styles.questionContainer}>
+            <Text variant="h3" style={{ color: colors.text }}>
+              {currentIndex + 1}. {currentQuestion.text}
+            </Text>
+          </View>
 
-        {/* Options */}
-        <View style={styles.optionsContainer}>
-          {currentQuestion.options.map((option) => (
-            <OptionButton
-              key={option.label}
-              label={option.label}
-              text={option.text}
-              state={getOptionState(option.label)}
-              onPress={() => handleOptionSelect(option.label)}
-              disabled={phase === 'feedback'}
-            />
-          ))}
-        </View>
+          {/* Options */}
+          <View style={styles.optionsContainer}>
+            {currentQuestion.options.map((option) => (
+              <OptionButton
+                key={option.label}
+                label={option.label}
+                text={option.text}
+                state={getOptionState(option.label)}
+                onPress={() => handleOptionSelect(option.label)}
+                disabled={phase === 'feedback'}
+              />
+            ))}
+          </View>
+        </Animated.View>
 
       </ScrollView>
 
