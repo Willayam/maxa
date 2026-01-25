@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ThemeToggle } from '../ui/theme-toggle';
 
 export function SiteHeader() {
   return (
@@ -15,10 +14,6 @@ export function SiteHeader() {
         <Link href="/" className="flex items-center gap-2">
           <span className="text-2xl font-black text-primary">Maxa</span>
         </Link>
-
-        <div className="flex items-center gap-4">
-          <ThemeToggle />
-        </div>
       </div>
     </motion.header>
   );
