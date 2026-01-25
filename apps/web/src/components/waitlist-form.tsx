@@ -2,18 +2,23 @@
 
 import { useState, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, Loader2 } from 'lucide-react';
+import { Mail, Loader2 } from 'lucide-react';
+import { useMutation } from 'convex/react';
+import { api } from '../../../../convex/_generated/api';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 
 export interface WaitlistFormProps {
   className?: string;
+  source?: string;
 }
 
-export function WaitlistForm({ className }: WaitlistFormProps) {
+export function WaitlistForm({ className, source }: WaitlistFormProps) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+
+  const joinWaitlist = useMutation(api.waitlist.join);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -26,12 +31,14 @@ export function WaitlistForm({ className }: WaitlistFormProps) {
 
     setStatus('loading');
 
-    // TODO: Replace with Convex mutation
-    // Simulate API call for now
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    setStatus('success');
-    setEmail('');
+    try {
+      await joinWaitlist({ email, source });
+      setStatus('success');
+      setEmail('');
+    } catch {
+      setStatus('error');
+      setErrorMessage('Något gick fel. Försök igen.');
+    }
   };
 
   return (
@@ -44,8 +51,10 @@ export function WaitlistForm({ className }: WaitlistFormProps) {
             animate={{ opacity: 1, scale: 1 }}
             className="flex items-center gap-3 text-success"
           >
-            <CheckCircle className="w-6 h-6" />
-            <span className="font-semibold">Du är på listan! Vi hör av oss snart.</span>
+            <Mail className="w-6 h-6" />
+            <span className="font-semibold">
+              Kolla din inkorg! Vi har skickat en bekräftelselänk.
+            </span>
           </motion.div>
         ) : (
           <motion.form
