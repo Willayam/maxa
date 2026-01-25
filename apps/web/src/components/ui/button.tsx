@@ -19,7 +19,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
           // Variant styles
           variant === 'primary' && [
-            'bg-primary text-[#1a1625]',
+            'bg-primary text-primary-foreground',
             'border-b-[4px] border-primary-dark',
             'hover:translate-y-[2px] hover:border-b-[2px]',
             'active:translate-y-[4px] active:border-b-0',

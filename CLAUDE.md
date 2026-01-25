@@ -32,6 +32,38 @@
 - Fonts: Nunito is loaded in `app/_layout.tsx`. Avoid rendering UI before fonts are loaded.
 - Icons: `components/ui/icon-symbol` uses SF Symbols on iOS and Material Icons elsewhere.
 
+## Web app design tokens (apps/web)
+The web app uses CSS custom properties (variables) mapped through Tailwind for theming. **Always use semantic tokens instead of hardcoded hex values.**
+
+### Color token structure
+Defined in `apps/web/src/app/globals.css` with light/dark mode variants:
+- `--color-background`, `--color-foreground`: base page colors
+- `--color-card-background`, `--color-border`: container colors
+- `--color-primary`, `--color-primary-dark`, `--color-primary-light`: brand accent (amber-gold)
+- `--color-primary-foreground`: text color on primary backgrounds (for contrast)
+- `--color-foreground-muted`: secondary/muted text
+
+### Using tokens in components
+Tailwind maps these via `tailwind.config.ts`. Use semantic class names:
+```tsx
+// CORRECT: Uses semantic tokens that adapt to theme
+<button className="bg-primary text-primary-foreground">
+<div className="bg-card-background text-foreground border-border">
+
+// WRONG: Hardcoded colors break theming
+<button className="bg-primary text-[#1a1625]">
+<div className="bg-[#1E1A2D] text-white border-[#3A3550]">
+```
+
+### Adding new tokens
+1. Add CSS variable to both `:root` (light) and `.dark` in `globals.css`
+2. Map to Tailwind in `tailwind.config.ts` under `theme.extend.colors`
+3. Use the Tailwind class (e.g., `text-primary-foreground`) in components
+
+### Theme behavior
+- Uses `next-themes` with `defaultTheme="system"` - respects OS preference automatically
+- No manual toggle needed; theme follows computer settings
+
 ## Data and state
 - Screens use local mock objects (e.g., `MOCK_USER`). No API, auth, or storage wiring yet.
 - If you add data, keep it local/stateful or plan an integration layer; avoid mixing mock and real data silently.

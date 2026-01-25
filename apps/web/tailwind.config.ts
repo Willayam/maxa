@@ -17,11 +17,12 @@ const config: Config = {
         'foreground-muted': 'var(--color-foreground-muted)',
         border: 'var(--color-border)',
 
-        // Primary (yellow)
+        // Primary (yellow/amber-gold)
         primary: {
           DEFAULT: 'var(--color-primary)',
           dark: 'var(--color-primary-dark)',
           light: 'var(--color-primary-light)',
+          foreground: 'var(--color-primary-foreground)',
         },
 
         // Semantic colors

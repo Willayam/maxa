@@ -15,6 +15,7 @@
     --color-primary: #FFC800;
     --color-primary-dark: #E5A400;
     --color-primary-light: #FFF8E1;
+    --color-primary-foreground: #1a1625;
   }
 
   .dark {
@@ -30,6 +31,7 @@
     --color-primary: #F7C948;
     --color-primary-dark: #D4A528;
     --color-primary-light: #2D2815;
+    --color-primary-foreground: #1a1625;
   }
 
   body {
