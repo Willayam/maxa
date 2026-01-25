@@ -6,11 +6,13 @@ import { ReactNode, useState, useEffect } from "react";
 // Create client lazily to avoid SSG/SSR issues
 let convexClient: ConvexReactClient | null = null;
 
-function getConvexClient(): ConvexReactClient {
+function getConvexClient(): ConvexReactClient | null {
   if (!convexClient) {
     const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
     if (!convexUrl) {
-      throw new Error("NEXT_PUBLIC_CONVEX_URL environment variable is required");
+      // Allow pages that don't need Convex to work without the URL
+      console.warn("NEXT_PUBLIC_CONVEX_URL not set - Convex features disabled");
+      return null;
     }
     convexClient = new ConvexReactClient(convexUrl);
   }

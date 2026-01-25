@@ -1,7 +1,0 @@
-$ eslint src/
-
-/Users/williamlarsten/conductor/workspaces/maxa/kiev/packages/shared/src/constants/theme.ts
-  11:31  warning  'ViewStyle' is defined but never used  @typescript-eslint/no-unused-vars
-
-✖ 1 problem (0 errors, 1 warning)
-

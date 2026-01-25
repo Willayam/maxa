@@ -10,31 +10,31 @@ import {
 import { SiteHeader } from '@/components/site/site-header';
 import { WaitlistForm } from '@/components/waitlist-form';
 import { FeatureCard } from '@/components/feature-card';
-import { PhoneMockup } from '@/components/phone-mockup';
+import { AppPreviewMockup } from '@/components/app-preview-mockup';
 
 const features = [
   {
-    icon: <BookOpen className="w-6 h-6" />,
-    title: 'Träna alla HP-delar',
-    description: 'ORD, LÄS, MEK, ELF, XYZ, KVA, NOG och DTK - allt på ett ställe.',
+    icon: <Target className="w-6 h-6" />,
+    title: 'Personlig daglig plan',
+    description: 'Slipp fundera på vad du ska plugga. Appen ger dig dagens uppgifter baserat på din nivå.',
     accentColor: 'ord' as const,
   },
   {
-    icon: <Target className="w-6 h-6" />,
-    title: 'Dagliga mål & streaks',
-    description: 'Bygg studievanor som varar med dagliga utmaningar och streaks.',
+    icon: <TrendingUp className="w-6 h-6" />,
+    title: 'Fokus på svagheterna',
+    description: 'Algoritmen hittar var du tappar poäng och tränar dig där det gör störst skillnad.',
     accentColor: 'xyz' as const,
   },
   {
-    icon: <TrendingUp className="w-6 h-6" />,
-    title: 'Följ din utveckling',
-    description: 'Se dina framsteg i realtid och fokusera på dina svaga områden.',
+    icon: <BookOpen className="w-6 h-6" />,
+    title: 'Riktiga HP-frågor',
+    description: 'Träna på frågor i samma format som provet. Inga överraskningar på provdagen.',
     accentColor: 'mek' as const,
   },
   {
     icon: <Sparkles className="w-6 h-6" />,
-    title: 'Max - din AI-coach',
-    description: 'Få personlig hjälp och förklaringar från din AI-studiekompis.',
+    title: 'AI som förklarar',
+    description: 'Fastnar du? Max förklarar steg för steg tills du verkligen förstår.',
     accentColor: 'kva' as const,
   },
 ];
@@ -55,15 +55,15 @@ export default function HomePage() {
               transition={{ duration: 0.6 }}
             >
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground leading-tight mb-6">
-                Maxa ditt{' '}
-                <span className="text-primary">HP-resultat</span>
+                Kom in på{' '}
+                <span className="text-primary">drömutbildningen</span>
               </h1>
               <p className="text-xl text-foreground-muted mb-8 max-w-lg">
-                Plugga smart för Högskoleprovet med gamifierad träning och din personliga AI-coach Max.
+                Din personliga HP-coach i mobilen. Få en daglig plan som tar dig från där du är nu till poängen du behöver – på bara 15 min om dagen.
               </p>
               <WaitlistForm className="max-w-md" source="hero" />
               <p className="mt-4 text-sm text-foreground-muted">
-                Bli en av de första att testa Maxa. Appen lanseras snart!
+                Bli en av de första att få tillgång – vi lanserar inför vårens HP.
               </p>
             </motion.div>
 
@@ -74,10 +74,7 @@ export default function HomePage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex justify-center lg:justify-end"
             >
-              <PhoneMockup
-                src="/screenshots/dashboard.png"
-                alt="Maxa app dashboard"
-              />
+              <AppPreviewMockup variant="dashboard" animate={false} />
             </motion.div>
           </div>
         </div>
@@ -93,10 +90,10 @@ export default function HomePage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
-              Allt du behöver för att lyckas
+              Så hjälper Maxa dig höja poängen
             </h2>
             <p className="text-lg text-foreground-muted max-w-2xl mx-auto">
-              Maxa kombinerar beprövade studietekniker med modern AI för att hjälpa dig nå dina mål.
+              Ingen fluff – bara det som faktiskt fungerar för att förbättra ditt HP-resultat.
             </p>
           </motion.div>
 
@@ -122,15 +119,15 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="flex justify-center gap-4"
             >
-              <PhoneMockup
-                src="/screenshots/practice.png"
-                alt="Maxa träningsläge"
+              <AppPreviewMockup
+                variant="practice"
                 className="-rotate-6"
+                animate={false}
               />
-              <PhoneMockup
-                src="/screenshots/progress.png"
-                alt="Maxa framsteg"
+              <AppPreviewMockup
+                variant="progress"
                 className="rotate-6 mt-12"
+                animate={false}
               />
             </motion.div>
 
@@ -140,17 +137,17 @@ export default function HomePage() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
-                Designad för att du ska lyckas
+                Sluta gissa vad du ska plugga
               </h2>
               <p className="text-lg text-foreground-muted mb-6">
-                Maxa gör pluggandet roligt med dagliga utmaningar, streaks och en AI-coach som hjälper dig när du kör fast.
+                Maxa ger dig en personlig plan baserad på din nivå, dina svagheter och hur många dagar du har kvar till provet.
               </p>
               <ul className="space-y-3">
                 {[
-                  'Anpassad till Högskoleprovets format',
-                  'Spaced repetition för bättre inlärning',
-                  'Detaljerad statistik över dina framsteg',
-                  'Fungerar offline - plugga var som helst',
+                  'Vet exakt vad du ska göra varje dag',
+                  'Hittar och tränar dina svagheter automatiskt',
+                  '15 minuter om dagen räcker',
+                  'AI-coach som förklarar tills du fattar',
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3">
                     <span className="w-2 h-2 rounded-full bg-primary" />
@@ -172,10 +169,10 @@ export default function HomePage() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">
-              Redo att maxa ditt HP?
+              Redo att ta dig in på drömutbildningen?
             </h2>
             <p className="text-lg text-foreground-muted mb-8">
-              Gå med i väntelistan och bli en av de första att testa Maxa.
+              Gå med i väntelistan och få tidig tillgång innan vårens HP.
             </p>
             <WaitlistForm className="max-w-md mx-auto" source="footer-cta" />
           </motion.div>

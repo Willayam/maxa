@@ -15,6 +15,7 @@
     --color-primary: #FFC800;
     --color-primary-dark: #E5A400;
     --color-primary-light: #FFF8E1;
+    --color-primary-foreground: #1a1625;
   }
 
   .dark {
@@ -26,9 +27,11 @@
     --color-foreground-muted: #A8A3B8;
     --color-border: #3A3550;
 
-    --color-primary: #FFD60A;
-    --color-primary-dark: #E5B800;
-    --color-primary-light: #3D3520;
+    /* Softened amber-gold: warm and inviting without eye strain */
+    --color-primary: #F7C948;
+    --color-primary-dark: #D4A528;
+    --color-primary-light: #2D2815;
+    --color-primary-foreground: #1a1625;
   }
 
   body {

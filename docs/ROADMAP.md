@@ -199,12 +199,13 @@ flowchart LR
 ### Phase 5: Monetization
 **Focus:** Revenue
 
-| Task | Description |
-|------|-------------|
-| RevenueCat setup | Products, entitlements |
-| Paywall screen | Connect to purchases |
-| Referral system | Deep links, rewards |
-| PostHog analytics | Funnel tracking |
+| Task | Description | Status |
+|------|-------------|--------|
+| PostHog analytics | Screen/pageview tracking | ✅ Done |
+| RevenueCat setup | Products, entitlements | |
+| Paywall screen | Connect to purchases | |
+| Referral system | Deep links, rewards | |
+| PostHog funnels | Conversion tracking | |
 
 ---
 

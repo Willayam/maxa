@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ConvexClientProvider } from '@/components/convex-provider';
+import { PostHogProvider } from '@/providers/posthog-provider';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -30,9 +32,13 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        <ConvexClientProvider>
-          <ThemeProvider>{children}</ThemeProvider>
-        </ConvexClientProvider>
+        <Suspense fallback={null}>
+          <PostHogProvider>
+            <ConvexClientProvider>
+              <ThemeProvider>{children}</ThemeProvider>
+            </ConvexClientProvider>
+          </PostHogProvider>
+        </Suspense>
       </body>
     </html>
   );
