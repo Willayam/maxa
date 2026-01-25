@@ -42,3 +42,6 @@ app-example
 /ios
 /android
 .turbo
+
+# Large binary files
+*.pdf
