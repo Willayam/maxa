@@ -4,18 +4,32 @@
 
 Maxa is a gamified Högskoleprovet prep app with a mobile app (Expo) and web app (Next.js). The project uses a Turborepo monorepo structure with shared Convex backend.
 
+## Monorepo Structure
+
+```
+asuncion/
+├── apps/
+│   ├── mobile/     # Expo app (iOS, Android)
+│   └── web/        # Next.js app
+├── packages/
+│   └── shared/     # Shared code (hooks, utils)
+└── content/        # Static content (HP test PDFs)
+```
+
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Monorepo | Turborepo with bun workspaces |
-| Mobile | Expo SDK 54 (React Native 0.81, New Architecture) |
-| Web | Next.js 15 (App Router) |
-| Styling | NativeWind v4 (mobile), Tailwind CSS v4 (web) |
-| Backend | Convex (real-time DB, serverless functions, file storage) |
-| Auth | Clerk (planned) |
-| Payments | RevenueCat (planned) |
-| AI | Vercel AI SDK → Google Gemini (planned) |
+| Layer | Technology | Status |
+|-------|------------|--------|
+| Monorepo | Turborepo with bun workspaces | ✅ |
+| Mobile | Expo SDK 54 (React Native 0.81, New Architecture) | ✅ |
+| Web | Next.js 15 (App Router) | ✅ |
+| Routing | Expo Router 6 / Next.js App Router | ✅ |
+| Styling | NativeWind v4 (mobile), Tailwind CSS v4 (web) | ✅ |
+| Analytics | PostHog | ✅ |
+| Backend | Convex (real-time DB, serverless functions, file storage) | ✅ |
+| Auth | Clerk (planned) | Planned |
+| Payments | RevenueCat (planned) | Planned |
+| AI | Vercel AI SDK → Google Gemini (planned) | Planned |
 
 ## Package Manager
 
@@ -26,23 +40,30 @@ Maxa is a gamified Högskoleprovet prep app with a mobile app (Expo) and web app
 - `bun dev:web` - Start Next.js dev server only
 - `bunx convex dev` - Start Convex dev server
 
-## Project Structure
+## Project Structure (Current)
 
 ```
 maxa/
 ├── apps/
 │   ├── mobile/                   # Expo app (React Native)
 │   │   ├── app/                  # Routes (Expo Router)
+│   │   │   ├── _layout.tsx       # Root: PostHogProvider + theme
+│   │   │   └── (tabs)/           # Tab navigation
 │   │   ├── components/           # Mobile components
-│   │   └── constants/            # Theme tokens
+│   │   ├── constants/            # Theme tokens
+│   │   └── providers/
+│   │       └── posthog-provider.tsx  # Analytics provider
 │   └── web/                      # Next.js app
 │       └── src/
 │           ├── app/              # Routes (App Router)
 │           │   ├── gamla-prov/   # Historical HP tests browser
-│           │   └── layout.tsx
-│           └── components/       # Web components
+│           │   └── layout.tsx    # Root: PostHogProvider + Convex + Theme
+│           ├── components/       # Web components
+│           └── providers/
+│               └── posthog-provider.tsx
 ├── packages/
-│   └── shared/                   # Shared code (planned)
+│   └── shared/                   # Shared code
+│       └── hooks/                # Shared hooks
 ├── convex/                       # Convex backend (shared)
 │   ├── schema.ts                 # Database schema
 │   ├── tests.ts                  # Test queries/mutations
@@ -209,17 +230,39 @@ Max AI coach calls are rate-limited per user tier:
 ## Environment Variables
 
 ```env
+# PostHog Analytics (see .env.example)
+# Mobile (Expo)
+EXPO_PUBLIC_POSTHOG_KEY=phc_xxx
+EXPO_PUBLIC_POSTHOG_HOST=https://eu.i.posthog.com
+
+# Web (Next.js)
+NEXT_PUBLIC_POSTHOG_KEY=phc_xxx
+NEXT_PUBLIC_POSTHOG_HOST=https://eu.i.posthog.com
+
 # Convex
-CONVEX_DEPLOYMENT=
-EXPO_PUBLIC_CONVEX_URL=
+CONVEX_DEPLOYMENT=xxx
+NEXT_PUBLIC_CONVEX_URL=https://xxx.convex.cloud
 
-# Clerk
-EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=
-
-# PostHog
-EXPO_PUBLIC_POSTHOG_API_KEY=
-
-# AI (server-side only, in Convex)
-GEMINI_API_KEY=
-# OPENAI_API_KEY=  # Ready for hot-swap
+# Planned - not yet implemented
+# EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=
+# GEMINI_API_KEY=
 ```
+
+## Analytics (PostHog)
+
+PostHog is integrated in both mobile and web apps:
+
+**Mobile (`apps/mobile/providers/posthog-provider.tsx`):**
+- Uses `posthog-react-native`
+- Auto-tracks screen views via Expo Router
+- Captures app lifecycle events and deep links
+- Session recording disabled by default
+- Opt-out via `posthog.optOut()`
+
+**Web (`apps/web/src/providers/posthog-provider.tsx`):**
+- Uses `posthog-js`
+- Manual pageview tracking for Next.js App Router
+- Respects browser Do Not Track setting
+- Session recording disabled by default
+
+Both default to EU host (`eu.i.posthog.com`) for GDPR compliance. Analytics disabled gracefully if no API key is set.
