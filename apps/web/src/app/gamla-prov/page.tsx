@@ -1,14 +1,9 @@
-"use client";
-
-import { useQuery } from "convex/react";
-import { api } from "../../../../../convex/_generated/api";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
+import { tests } from "@/data/tests";
 
 export default function GamlaProvPage() {
-  const tests = useQuery(api.tests.list);
-
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
@@ -22,15 +17,13 @@ export default function GamlaProvPage() {
             normeringstabeller från 2013 till idag.
           </p>
 
-          {tests === undefined ? (
-            <div className="text-text-muted">Laddar prov...</div>
-          ) : tests.length === 0 ? (
-            <div className="text-text-muted">Inga prov hittades.</div>
+          {tests.length === 0 ? (
+            <div className="text-text-muted">Inga prov tillgängliga ännu.</div>
           ) : (
             <div className="grid gap-4">
               {tests.map((test) => (
                 <Link
-                  key={test._id}
+                  key={test.id}
                   href={`/gamla-prov/${test.slug}`}
                   className="block p-6 bg-white rounded-2xl border-2 border-border hover:border-primary transition-colors group"
                 >

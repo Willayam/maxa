@@ -1,61 +1,39 @@
-"use client";
-
-import { useQuery } from "convex/react";
-import { api } from "../../../../../../convex/_generated/api";
-import { useParams } from "next/navigation";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
-import { Id } from "../../../../../../convex/_generated/dataModel";
+import {
+  tests,
+  getTestBySlug,
+  getPdfUrl,
+  type Test,
+  type TestFile,
+} from "@/data/tests";
 
-export default function TestPage() {
-  const params = useParams();
-  const slug = params.slug as string;
+// Generate static pages for all tests at build time
+export function generateStaticParams() {
+  return tests.map((test) => ({
+    slug: test.slug,
+  }));
+}
 
-  const test = useQuery(api.tests.getBySlug, { slug });
-  const files = useQuery(
-    api.files.getByTest,
-    test ? { testId: test._id } : "skip"
-  );
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
 
-  if (test === undefined) {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <SiteHeader />
-        <main className="flex-1 py-12 px-6">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-text-muted">Laddar prov...</p>
-          </div>
-        </main>
-        <SiteFooter />
-      </div>
-    );
-  }
+export default async function TestPage({ params }: PageProps) {
+  const { slug } = await params;
+  const test = getTestBySlug(slug);
 
-  if (test === null) {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <SiteHeader />
-        <main className="flex-1 py-12 px-6">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl font-extrabold text-text-primary mb-4">
-              Prov hittades inte
-            </h1>
-            <Link href="/gamla-prov" className="text-primary hover:underline">
-              ← Tillbaka till alla prov
-            </Link>
-          </div>
-        </main>
-        <SiteFooter />
-      </div>
-    );
+  if (!test) {
+    notFound();
   }
 
   const seasonLabel = test.season === "vår" ? "våren" : "hösten";
   const title = `Högskoleprovet ${seasonLabel} ${test.year}`;
 
   // Group files by type
-  const grouped = groupFiles(files || []);
+  const grouped = groupFiles(test.files);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -78,10 +56,10 @@ export default function TestPage() {
             </p>
           )}
 
-          {files === undefined ? (
-            <p className="text-text-muted">Laddar filer...</p>
-          ) : files.length === 0 ? (
-            <p className="text-text-muted">Inga filer hittades för detta prov.</p>
+          {test.files.length === 0 ? (
+            <p className="text-text-muted">
+              Inga filer tillgängliga för detta prov ännu.
+            </p>
           ) : (
             <div className="space-y-8">
               {grouped.provpass.length > 0 && (
@@ -89,6 +67,7 @@ export default function TestPage() {
                   title="Provpass"
                   description="Ladda ner provfrågorna"
                   files={grouped.provpass}
+                  test={test}
                 />
               )}
 
@@ -97,6 +76,7 @@ export default function TestPage() {
                   title="Facit"
                   description="Rätta svar"
                   files={grouped.facit}
+                  test={test}
                 />
               )}
 
@@ -105,14 +85,16 @@ export default function TestPage() {
                   title="Normering"
                   description="Normeringstabeller"
                   files={grouped.normering}
+                  test={test}
                 />
               )}
 
               {grouped.kallhanvisning.length > 0 && (
                 <FileSection
-                  title="Källhänvisningar"
+                  title="Kallhanvisningar"
                   description="Referenser och källor"
                   files={grouped.kallhanvisning}
+                  test={test}
                 />
               )}
             </div>
@@ -124,24 +106,16 @@ export default function TestPage() {
   );
 }
 
-interface TestFile {
-  _id: Id<"testFiles">;
-  storageId: Id<"_storage">;
-  fileType: "provpass" | "facit" | "kallhanvisning" | "normering";
-  section?: "verbal" | "kvantitativ";
-  passNumber?: number;
-  originalFilename: string;
-  sizeBytes: number;
-}
-
 function FileSection({
   title,
   description,
   files,
+  test,
 }: {
   title: string;
   description: string;
   files: TestFile[];
+  test: Test;
 }) {
   return (
     <div>
@@ -149,27 +123,25 @@ function FileSection({
       <p className="text-text-muted mb-4">{description}</p>
       <div className="grid gap-3">
         {files.map((file) => (
-          <FileCard key={file._id} file={file} />
+          <FileCard key={file.id} file={file} test={test} />
         ))}
       </div>
     </div>
   );
 }
 
-function FileCard({ file }: { file: TestFile }) {
-  const url = useQuery(api.files.getUrl, { storageId: file.storageId });
-
+function FileCard({ file, test }: { file: TestFile; test: Test }) {
+  const url = getPdfUrl(test, file);
   const label = getFileLabel(file);
   const sizeLabel = formatFileSize(file.sizeBytes);
 
   return (
     <a
-      href={url || "#"}
+      href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className={`flex items-center justify-between p-4 bg-white rounded-xl border-2 border-border hover:border-primary transition-colors ${
-        !url ? "opacity-50 pointer-events-none" : ""
-      }`}
+      download
+      className="flex items-center justify-between p-4 bg-white rounded-xl border-2 border-border hover:border-primary transition-colors"
     >
       <div className="flex items-center gap-3">
         <span className="text-2xl">📄</span>
@@ -200,12 +172,11 @@ function getFileLabel(file: TestFile): string {
       parts.push(`(${file.section === "verbal" ? "Verbal" : "Kvantitativ"})`);
     }
   } else if (file.fileType === "kallhanvisning") {
-    parts.push("Källhänvisning");
+    parts.push("Kallhanvisning");
   }
 
-  // If no meaningful label, use filename
-  if (parts.length === 0 || (parts.length === 1 && parts[0] === "Provpass")) {
-    return file.originalFilename;
+  if (parts.length === 0) {
+    return file.filename;
   }
 
   return parts.join(" ");
