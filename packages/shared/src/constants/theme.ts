@@ -243,12 +243,12 @@ export const Colors = {
     textInverse: '#0F0D1A',
     textOnPrimary: Primitives.neutral[800],
 
-    // Brand - Vibrant yellow with glow potential
-    primary: '#FFD60A', // Slightly warmer, more vibrant yellow
-    primaryLight: '#3D3520', // Subtle warm tint for backgrounds
-    primaryDark: '#E5B800', // Deeper gold
-    primaryHover: '#FFE44D', // Brighter on hover
-    primaryPressed: '#E5B800',
+    // Brand - Softened amber-gold (warm and inviting without eye strain)
+    primary: '#F7C948',
+    primaryLight: '#2D2815',
+    primaryDark: '#D4A528',
+    primaryHover: '#FFDA6A',
+    primaryPressed: '#D4A528',
 
     // Blue accent - Cyan for energy
     blue: '#00E5FF',
@@ -259,9 +259,9 @@ export const Colors = {
     secondaryHover: '#363050', // Lift on hover
 
     // Accent
-    accent: '#FFD60A',
-    accentLight: '#3D3520',
-    accentDark: '#FFE44D',
+    accent: '#F7C948',
+    accentLight: '#2D2815',
+    accentDark: '#FFDA6A',
 
     // Semantic - Vibrant but balanced
     success: '#4ADE80', // Fresh green
@@ -274,7 +274,7 @@ export const Colors = {
     // Borders - Subtle purple tint
     border: '#3A3550', // Visible but not harsh
     borderSubtle: '#2A2541', // Very subtle
-    borderFocus: '#FFD60A',
+    borderFocus: '#F7C948',
     divider: '#2A2541',
 
     // Components
@@ -284,17 +284,17 @@ export const Colors = {
 
     // Tab bar
     tabIconDefault: '#6B6580',
-    tabIconSelected: '#FFD60A',
-    tint: '#FFD60A',
+    tabIconSelected: '#F7C948',
+    tint: '#F7C948',
     icon: '#A8A3B8',
 
     // Gamification
     streak: '#FF8C42', // Warm orange
-    star: '#FFD60A',
+    star: '#F7C948',
 
     // Progress
     progressTrack: '#2A2541',
-    progressFill: '#FFD60A',
+    progressFill: '#F7C948',
     progressWeak: '#FF6B9D',
     progressMedium: '#FBBF24',
     progressStrong: '#4ADE80',
