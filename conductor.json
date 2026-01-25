@@ -1,7 +1,7 @@
 {
     "scripts": {
         "setup": "bun install",
-        "run": "bun expo start --clear"
+        "run": "bun run dev:mobile"
     },
     "runScriptMode": "nonconcurrent"
 }

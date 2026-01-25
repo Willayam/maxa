@@ -6,6 +6,7 @@ import {
   Pressable,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 import Animated, {
   FadeInDown,
   FadeInRight,
@@ -246,15 +247,31 @@ export default function TranaScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
   const [selectedMode, setSelectedMode] = useState<TrainingMode>('smart');
+  const router = useRouter();
 
   const handleStartTraining = () => {
     triggerImpact(Haptics.ImpactFeedbackStyle.Medium);
-    console.log('Start training:', selectedMode);
+    if (selectedMode === 'smart') {
+      // For smart mode, pick a weak section (NOG for now as mock)
+      router.push({
+        pathname: '/quiz',
+        params: { section: 'NOG' },
+      });
+    } else if (selectedMode === 'section') {
+      // Section mode requires selecting a section first
+      console.log('Please select a section');
+    } else {
+      // Simulate mode - not implemented yet
+      console.log('Simulate mode coming soon');
+    }
   };
 
   const handleSectionPress = (sectionCode: string) => {
     triggerImpact(Haptics.ImpactFeedbackStyle.Light);
-    console.log('Section selected:', sectionCode);
+    router.push({
+      pathname: '/quiz',
+      params: { section: sectionCode },
+    });
   };
 
   return (
@@ -269,9 +286,20 @@ export default function TranaScreen() {
           entering={FadeInDown.duration(500).delay(100)}
           style={styles.header}
         >
-          <Text variant="hero" style={styles.heroTitle}>
-            Träna
-          </Text>
+          <View style={styles.headerRow}>
+            <Text variant="hero" style={styles.heroTitle}>
+              Träna
+            </Text>
+            {/* DEV: Animation playground link */}
+            {__DEV__ && (
+              <Pressable
+                onPress={() => router.push('/quiz/playground')}
+                style={[styles.devButton, { backgroundColor: colors.backgroundTertiary }]}
+              >
+                <Text variant="caption" color="secondary">🎛️ Dev</Text>
+              </Pressable>
+            )}
+          </View>
           <Text variant="bodyLg" color="secondary">
             Välj hur du vill öva idag
           </Text>
@@ -458,9 +486,19 @@ const styles = StyleSheet.create({
   header: {
     marginBottom: Spacing['2xl'],
   },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
   heroTitle: {
     letterSpacing: -1.5,
     marginBottom: Spacing.xs,
+  },
+  devButton: {
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm,
+    borderRadius: BorderRadius.lg,
   },
   modesSection: {
     gap: Spacing.md,

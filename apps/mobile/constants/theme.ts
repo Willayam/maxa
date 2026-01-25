@@ -77,13 +77,13 @@ export const Primitives = {
     600: '#D97706',
   },
 
-  // Error - Pink/Red
+  // Error - Warm Coral/Tomato (Duolingo-inspired)
   error: {
-    50: '#FFF1F5',
-    100: '#FFE4EC',
-    400: '#FF2B8F', // ← Duolingo pink
-    500: '#FF2B8F',
-    600: '#E0257D',
+    50: '#FFF5F5',
+    100: '#FFE5E5',
+    400: '#FF4B4B', // ← Warm coral (was #FF2B8F pink)
+    500: '#FF4B4B',
+    600: '#E53E3E',
   },
 
   // Streak Orange (Duolingo)
@@ -268,8 +268,8 @@ export const Colors = {
     successLight: '#1A3D2E', // Dark green tint
     warning: '#FBBF24', // Warm amber
     warningLight: '#3D3520', // Dark amber tint
-    error: '#FF6B9D', // Soft pink-red
-    errorLight: '#3D1A2E', // Dark pink tint
+    error: '#FF6B6B', // Softer coral for dark mode (was #FF6B9D)
+    errorLight: '#3D2020', // Dark coral tint (was #3D1A2E)
 
     // Borders - Subtle purple tint
     border: '#3A3550', // Visible but not harsh
