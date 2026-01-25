@@ -1,14 +1,33 @@
 "use client";
 
 import { ConvexProvider, ConvexReactClient } from "convex/react";
-import { ReactNode } from "react";
+import { ReactNode, useState, useEffect } from "react";
 
-const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
-if (!convexUrl) {
-  throw new Error("NEXT_PUBLIC_CONVEX_URL environment variable is required");
+// Create client lazily to avoid SSG/SSR issues
+let convexClient: ConvexReactClient | null = null;
+
+function getConvexClient(): ConvexReactClient {
+  if (!convexClient) {
+    const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
+    if (!convexUrl) {
+      throw new Error("NEXT_PUBLIC_CONVEX_URL environment variable is required");
+    }
+    convexClient = new ConvexReactClient(convexUrl);
+  }
+  return convexClient;
 }
-const convex = new ConvexReactClient(convexUrl);
 
 export function ConvexClientProvider({ children }: { children: ReactNode }) {
-  return <ConvexProvider client={convex}>{children}</ConvexProvider>;
+  const [client, setClient] = useState<ConvexReactClient | null>(null);
+
+  useEffect(() => {
+    setClient(getConvexClient());
+  }, []);
+
+  // During SSR/SSG, render children without Convex provider
+  if (!client) {
+    return <>{children}</>;
+  }
+
+  return <ConvexProvider client={client}>{children}</ConvexProvider>;
 }
