@@ -31,10 +31,16 @@ export default defineSchema({
     sizeBytes: v.number(),
   }).index("by_test", ["testId"]),
 
-  // Waitlist signups
+  // Waitlist signups with double opt-in
   waitlist: defineTable({
     email: v.string(),
     createdAt: v.number(),
     source: v.optional(v.string()),
-  }).index("by_email", ["email"]),
+    status: v.union(v.literal("pending"), v.literal("confirmed")),
+    confirmationToken: v.string(),
+    confirmationSentAt: v.optional(v.number()),
+    confirmedAt: v.optional(v.number()),
+  })
+    .index("by_email", ["email"])
+    .index("by_token", ["confirmationToken"]),
 });
