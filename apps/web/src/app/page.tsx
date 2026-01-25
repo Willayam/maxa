@@ -61,7 +61,7 @@ export default function HomePage() {
               <p className="text-xl text-foreground-muted mb-8 max-w-lg">
                 Plugga smart för Högskoleprovet med gamifierad träning och din personliga AI-coach Max.
               </p>
-              <WaitlistForm className="max-w-md" />
+              <WaitlistForm className="max-w-md" source="hero" />
               <p className="mt-4 text-sm text-foreground-muted">
                 Bli en av de första att testa Maxa. Appen lanseras snart!
               </p>
@@ -177,7 +177,7 @@ export default function HomePage() {
             <p className="text-lg text-foreground-muted mb-8">
               Gå med i väntelistan och bli en av de första att testa Maxa.
             </p>
-            <WaitlistForm className="max-w-md mx-auto" />
+            <WaitlistForm className="max-w-md mx-auto" source="footer-cta" />
           </motion.div>
         </div>
       </section>
