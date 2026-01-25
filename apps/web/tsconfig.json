@@ -17,7 +17,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@maxa/shared": ["../../packages/shared/src"],
-      "@maxa/shared/*": ["../../packages/shared/src/*"]
+      "@maxa/shared/*": ["../../packages/shared/src/*"],
+      "@convex/_generated/*": ["../../convex/_generated/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

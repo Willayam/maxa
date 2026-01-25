@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
+import { ConvexClientProvider } from '@/components/convex-provider';
 import './globals.css';
 
 const nunito = Nunito({
@@ -20,7 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="sv" className={nunito.variable}>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <ConvexClientProvider>{children}</ConvexClientProvider>
+      </body>
     </html>
   );
 }
