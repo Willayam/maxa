@@ -8,6 +8,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { SiteHeader } from '@/components/site/site-header';
+import { SiteFooter } from '@/components/site/site-footer';
 import { WaitlistForm } from '@/components/waitlist-form';
 import { FeatureCard } from '@/components/feature-card';
 import { AppPreviewMockup } from '@/components/app-preview-mockup';
@@ -179,15 +180,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 px-6 border-t border-border">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-2xl font-black text-primary">Maxa</div>
-          <p className="text-sm text-foreground-muted">
-            &copy; {new Date().getFullYear()} Maxa. Alla rättigheter förbehållna.
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
