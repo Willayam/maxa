@@ -10,6 +10,7 @@
 
 import type * as files from "../files.js";
 import type * as tests from "../tests.js";
+import type * as waitlist from "../waitlist.js";
 
 import type {
   ApiFromModules,
@@ -20,6 +21,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   files: typeof files;
   tests: typeof tests;
+  waitlist: typeof waitlist;
 }>;
 
 /**
