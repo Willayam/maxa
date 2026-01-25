@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "setup": "bun install",
+        "setup": "bun install && (cp \"$CONDUCTOR_ROOT_PATH/apps/web/.env.local\" apps/web/.env.local 2>/dev/null || true) && (cp \"$CONDUCTOR_ROOT_PATH/apps/mobile/.env.local\" apps/mobile/.env.local 2>/dev/null || true)",
         "run": "bun run dev:mobile"
     },
     "runScriptMode": "nonconcurrent"

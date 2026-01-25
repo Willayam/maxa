@@ -39,16 +39,25 @@ maxa/
 ### Web app (`apps/web/`)
 - `src/app/gamla-prov/page.tsx` - Browse all historical HP tests
 - `src/app/gamla-prov/[slug]/page.tsx` - View/download PDFs for a test
+- `src/app/layout.tsx` - Root layout with PostHogProvider, ConvexClientProvider, ThemeProvider
 - `src/components/convex-provider.tsx` - Convex client provider
+- `src/providers/posthog-provider.tsx` - PostHog analytics with manual pageview tracking
 
 ### Mobile app (`apps/mobile/`)
+- `app/_layout.tsx` - Root stack with PostHogProvider, theme provider, Nunito font loading
 - `app/(tabs)/` - Tab screens (Idag, Träna, Jag)
 - `components/ui/` - Design system components
 - `constants/theme.ts` - Design tokens
+- `providers/posthog-provider.tsx` - PostHog analytics with auto screen tracking
 
 ### Scripts
 - `scripts/download_hogskoleprovet_tests.py` - Scrape PDFs from studera.nu
 - `scripts/upload-to-convex.ts` - Upload PDFs to Convex storage
+
+## Environment setup
+- See `.env.example` for required env vars
+- PostHog: Set `EXPO_PUBLIC_POSTHOG_KEY` (mobile) or `NEXT_PUBLIC_POSTHOG_KEY` (web)
+- Analytics disabled gracefully if keys not set
 
 ## Conventions
 - Use `@/` path alias for imports
