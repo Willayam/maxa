@@ -1,52 +1,76 @@
 # Maxa Agent Guide
 
 ## What this repo is
-- Expo Router app for Maxa (Hogskoleprovet prep). Current state is UI-first with mock data in screens.
-- Design is Duolingo-inspired: bold typography, 2px card borders, 3D button press effects, haptics.
-- Backend/auth/payment described in docs, but not implemented in code yet.
+- Turborepo monorepo with mobile app (Expo) and web app (Next.js) for Maxa (Högskoleprovet prep)
+- Shared Convex backend for real-time DB and file storage
+- Design is Duolingo-inspired: bold typography, 2px card borders, 3D button press effects
 
 ## Quick start
-- Install: `bun install`
-- Run dev server: `bun start` (same as `expo start`)
-- Platforms: `bun run ios`, `bun run android`, `bun run web`
-- Lint: `bun run lint`
+```bash
+bun install            # Install all dependencies
+bun dev                # Start all dev servers (turbo)
+bun dev:mobile         # Expo only
+bun dev:web            # Next.js only
+bunx convex dev        # Convex dev server (run separately)
+bun run lint           # Lint all packages
+```
 
-## Repo map (high-signal)
-- `app/_layout.tsx`: root stack, theme provider, Nunito font loading, splash screen handling.
-- `app/(tabs)/_layout.tsx`: tab bar config (Idag, Trana, Jag). `explore` tab is hidden.
-- `app/(tabs)/index.tsx`: Idag (dashboard) screen with mock data, streak animation, daily goal.
-- `app/(tabs)/trana.tsx`: Trana (training) hub with mode cards and section tiles.
-- `app/(tabs)/jag.tsx`: Jag (profile/progress) screen with stats and coach style selector.
-- `app/(tabs)/explore.tsx`: Expo template screen, kept but not shown.
-- `app/modal.tsx`: template modal screen.
-- `components/ui/*`: design-system components (Button, Card, Text, Chip, ProgressBar, StatBadge).
-- `constants/theme.ts`: design tokens (colors, spacing, typography, radius, shadows, section colors).
-- `utils/haptics.ts`: haptics helper that no-ops on web.
-- `hooks/use-color-scheme.ts`: color scheme hook re-export; `hooks/use-theme-color.ts` maps theme colors.
+## Repo structure
+```
+maxa/
+├── apps/
+│   ├── mobile/        # Expo app (React Native)
+│   └── web/           # Next.js app
+├── packages/
+│   └── shared/        # Shared code
+├── convex/            # Shared Convex backend
+├── content/           # Static content (PDFs, not in git)
+├── scripts/           # Upload/download scripts
+└── docs/              # Documentation
+```
 
-## Conventions and patterns
-- Use path alias `@/` for imports (configured in `tsconfig.json`).
-- Prefer `components/ui` + `constants/theme.ts` tokens over ad-hoc styles.
-- Buttons and tab presses use haptics via `triggerImpact` from `utils/haptics.ts`.
-- Animations are done with `react-native-reanimated` (e.g., `FadeInDown`, `withSpring`).
-- Fonts: Nunito is loaded in `app/_layout.tsx`. Avoid rendering UI before fonts are loaded.
-- Icons: `components/ui/icon-symbol` uses SF Symbols on iOS and Material Icons elsewhere.
+## Key files
 
-## Data and state
-- Screens use local mock objects (e.g., `MOCK_USER`). No API, auth, or storage wiring yet.
-- If you add data, keep it local/stateful or plan an integration layer; avoid mixing mock and real data silently.
+### Convex backend (shared)
+- `convex/schema.ts` - Database schema (tests, testFiles)
+- `convex/tests.ts` - Test queries: `list`, `getBySlug`, `create`
+- `convex/files.ts` - File queries: `getByTest`, `getUrl`, `generateUploadUrl`, `createFile`
 
-## Config notes
-- `app.json` enables new architecture, typed routes, and splash screen configuration.
-- `conductor.json` defines `bun`-based setup/run scripts used by automation.
+### Web app (`apps/web/`)
+- `src/app/gamla-prov/page.tsx` - Browse all historical HP tests
+- `src/app/gamla-prov/[slug]/page.tsx` - View/download PDFs for a test
+- `src/components/convex-provider.tsx` - Convex client provider
 
-## Docs and gaps
-- `docs/ARCHITECTURE.md` and `docs/ROADMAP.md` describe future plans (Convex, Clerk, RevenueCat, AI).
-- The directories mentioned there (e.g., `convex/`, `lib/`) do not exist in this repo yet.
-- Template leftovers: `components/themed-*`, `components/hello-wave`, and `app/(tabs)/explore.tsx`.
+### Mobile app (`apps/mobile/`)
+- `app/(tabs)/` - Tab screens (Idag, Träna, Jag)
+- `components/ui/` - Design system components
+- `constants/theme.ts` - Design tokens
 
-## Adding or changing screens
-- Create a file under `app/` (file-based routes). For tab screens, place under `app/(tabs)/`.
-- Update `app/(tabs)/_layout.tsx` if adding/removing a tab.
-- Build layouts using `SafeAreaView`, `ScrollView`, and the UI components for consistency.
-- Use theme tokens (`Spacing`, `BorderRadius`, `Colors`) to keep styling aligned with the design system.
+### Scripts
+- `scripts/download_hogskoleprovet_tests.py` - Scrape PDFs from studera.nu
+- `scripts/upload-to-convex.ts` - Upload PDFs to Convex storage
+
+## Conventions
+- Use `@/` path alias for imports
+- Mobile uses NativeWind (Tailwind for RN), web uses Tailwind CSS v4
+- Convex queries/mutations are in `convex/` at repo root, shared by both apps
+
+## Data flow
+- Web and mobile apps both connect to same Convex deployment
+- Historical HP tests stored in Convex: metadata in `tests` table, PDFs in file storage
+- `testFiles` table links tests to their PDF files with type metadata
+
+## Scripts usage
+```bash
+# Download HP PDFs from studera.nu (requires Python)
+python scripts/download_hogskoleprovet_tests.py
+
+# Upload downloaded PDFs to Convex
+bun scripts/upload-to-convex.ts
+bun scripts/upload-to-convex.ts --dry-run  # Preview only
+```
+
+## Docs
+- `docs/ARCHITECTURE.md` - System architecture and schema
+- `docs/ROADMAP.md` - Product roadmap and phases
+- `docs/plans/` - Implementation plans

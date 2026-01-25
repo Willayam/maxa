@@ -176,8 +176,10 @@ flowchart LR
 | Task | Description | Status |
 |------|-------------|--------|
 | Convex setup | Initialize, deploy schema | ✅ Done |
-| HP PDF storage | Upload historical tests to Convex | ✅ Done ([plan](plans/2026-01-25-convex-file-storage.md)) |
-| HP PDF extraction | Parse questions/answers from PDFs | Planned |
+| HP PDF storage | Upload historical tests to Convex (197 PDFs, 25 tests) | ✅ Done |
+| HP PDF extraction | Parse questions/answers from provpass + facit PDFs | Planned |
+| HP normering extraction | Parse score conversion tables | Planned |
+| HP continuous updates | Auto-detect + upload new tests from studera.nu | Planned |
 | Clerk auth | Google, Apple, Email/Password | |
 | User flow | Real auth → onboarding → app | |
 | Data persistence | Questions, sessions, progress | |

@@ -2,89 +2,56 @@
 
 ## Overview
 
-Maxa is a gamified Högskoleprovet prep app built with Expo (React Native). The app follows a "Duolingo-style" approach with streaks and an AI coach named Max.
+Maxa is a gamified Högskoleprovet prep app with a mobile app (Expo) and web app (Next.js). The project uses a Turborepo monorepo structure with shared Convex backend.
 
 ## Tech Stack
 
 | Layer | Technology |
 |-------|------------|
-| Framework | Expo SDK 54 (React Native 0.81, New Architecture) |
-| Routing | Expo Router 6 (file-based, typed routes) |
-| Styling | NativeWind v4 (Tailwind CSS) |
-| Backend | Convex (real-time DB, serverless functions) |
-| Auth | Clerk (Google, Apple, Email/Password) |
-| Payments | RevenueCat |
-| AI | Vercel AI SDK → Google Gemini (hot-swappable) |
-| Analytics | PostHog |
-| Notifications | Expo Notifications |
+| Monorepo | Turborepo with bun workspaces |
+| Mobile | Expo SDK 54 (React Native 0.81, New Architecture) |
+| Web | Next.js 15 (App Router) |
+| Styling | NativeWind v4 (mobile), Tailwind CSS v4 (web) |
+| Backend | Convex (real-time DB, serverless functions, file storage) |
+| Auth | Clerk (planned) |
+| Payments | RevenueCat (planned) |
+| AI | Vercel AI SDK → Google Gemini (planned) |
 
 ## Package Manager
 
 **bun** - All commands use bun:
 - `bun install` - Install dependencies
-- `bun start` - Start Expo dev server
-- `bun run ios` / `bun run android` - Platform-specific
+- `bun dev` - Start all dev servers (turbo)
+- `bun dev:mobile` - Start Expo dev server only
+- `bun dev:web` - Start Next.js dev server only
 - `bunx convex dev` - Start Convex dev server
 
 ## Project Structure
 
 ```
 maxa/
-├── app/                          # Routes (Expo Router)
-│   ├── _layout.tsx               # Root: providers wrapper
-│   ├── (auth)/                   # Unauthenticated routes
-│   │   ├── _layout.tsx
-│   │   ├── welcome.tsx
-│   │   ├── sign-in.tsx
-│   │   └── sign-up.tsx
-│   ├── (onboarding)/             # Post-signup flow
-│   │   ├── _layout.tsx
-│   │   ├── dream.tsx
-│   │   ├── education.tsx
-│   │   ├── city.tsx
-│   │   ├── meet-max.tsx
-│   │   └── choose-max-style.tsx
-│   ├── (app)/                    # Authenticated app
-│   │   ├── _layout.tsx           # Tab bar
-│   │   ├── (tabs)/
-│   │   │   ├── index.tsx         # Dashboard
-│   │   │   ├── practice.tsx      # Practice hub
-│   │   │   ├── progress.tsx      # Stats
-│   │   │   └── profile.tsx       # Profile
-│   │   ├── lesson/[id].tsx
-│   │   ├── quiz/[id].tsx
-│   │   ├── review.tsx
-│   │   ├── leaderboard.tsx
-│   │   └── invite.tsx
-│   └── (paywall)/
-│       └── subscribe.tsx
-├── components/
-│   ├── ui/                       # Base components
-│   ├── max/                      # AI coach components
-│   ├── practice/                 # Quiz/lesson components
-│   ├── dashboard/                # Home screen widgets
-│   └── onboarding/               # Onboarding components
-├── convex/
+├── apps/
+│   ├── mobile/                   # Expo app (React Native)
+│   │   ├── app/                  # Routes (Expo Router)
+│   │   ├── components/           # Mobile components
+│   │   └── constants/            # Theme tokens
+│   └── web/                      # Next.js app
+│       └── src/
+│           ├── app/              # Routes (App Router)
+│           │   ├── gamla-prov/   # Historical HP tests browser
+│           │   └── layout.tsx
+│           └── components/       # Web components
+├── packages/
+│   └── shared/                   # Shared code (planned)
+├── convex/                       # Convex backend (shared)
 │   ├── schema.ts                 # Database schema
-│   ├── users.ts
-│   ├── questions.ts
-│   ├── sessions.ts
-│   ├── streaks.ts
-│   ├── referrals.ts
-│   └── actions/
-│       └── max-chat.ts           # AI SDK integration
-├── hooks/
-│   ├── use-streak.ts
-│   ├── use-progress.ts
-│   ├── use-subscription.ts
-│   └── use-max.ts
-├── constants/
-│   └── theme.ts
-├── lib/
-│   ├── convex.ts                 # Convex client setup
-│   ├── clerk.ts                  # Clerk config
-│   ├── ai.ts                     # Vercel AI SDK setup
-│   └── posthog.ts                # Analytics
+│   ├── tests.ts                  # Test queries/mutations
+│   └── files.ts                  # File storage queries/mutations
+├── content/                      # Static content
+│   └── hogskoleprovet-tests/     # HP test PDFs (local, not in git)
+├── scripts/
+│   ├── download_hogskoleprovet_tests.py  # Scrape HP PDFs from studera.nu
+│   └── upload-to-convex.ts       # Upload PDFs to Convex storage
 └── docs/
     ├── ARCHITECTURE.md
     └── ROADMAP.md
@@ -92,12 +59,17 @@ maxa/
 
 ## Route Groups
 
+### Mobile App (Expo Router)
 | Group | Purpose | Auth Required |
 |-------|---------|---------------|
-| `(auth)` | Sign in/up flows | No |
-| `(onboarding)` | New user setup | Yes (but incomplete profile) |
-| `(app)` | Main application | Yes (complete profile) |
-| `(paywall)` | Subscription screens | Yes |
+| `(tabs)` | Main tab bar (Idag, Träna, Jag) | No (currently) |
+
+### Web App (Next.js App Router)
+| Route | Purpose |
+|-------|---------|
+| `/` | Landing page |
+| `/gamla-prov` | Browse historical HP tests |
+| `/gamla-prov/[slug]` | Download PDFs for specific test |
 
 ## Data Flow
 
@@ -149,25 +121,35 @@ export const ai = createGoogleGenerativeAI({
 // export const ai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
 ```
 
-## Convex Schema Overview
+## Convex Schema
 
-### Core Tables
+### Current Tables
+
+#### `tests`
+Historical Högskoleprovet test administrations:
+- `year: number` - 2013-2025
+- `season: "vår" | "höst"`
+- `date: string` - ISO date (e.g., "2024-10-20")
+- `slug: string` - URL-friendly ID (e.g., "hosten-2024")
+- `sourceUrl?: string` - studera.nu source page
+- Indexes: `by_slug`, `by_year_season`
+
+#### `testFiles`
+PDF files linked to tests (stored in Convex file storage):
+- `testId: Id<"tests">` - Parent test
+- `storageId: Id<"_storage">` - Convex storage reference
+- `fileType: "provpass" | "facit" | "kallhanvisning" | "normering"`
+- `section?: "verbal" | "kvantitativ"` - For provpass/normering
+- `passNumber?: number` - 1-5 for provpass
+- `originalFilename: string`
+- `sizeBytes: number`
+- Index: `by_test`
+
+### Planned Tables
 - `users` - User profiles, stats, subscription status
-- `sections` - HP test sections (ORD, LÄS, MEK, etc.)
-- `questions` - Question bank
+- `questions` - Parsed question bank from PDFs
 - `sessions` - Practice session records
 - `answers` - Individual answer history
-
-### Social Tables
-- `friendships` - Friend connections
-- `referrals` - Referral tracking
-
-### Gamification Tables
-- `dailyChallenges` - Daily challenge definitions
-- `userChallenges` - User challenge progress
-
-### Reference Data
-- `educationRequirements` - HP score requirements by program
 
 ## Authentication Flow
 

@@ -28,6 +28,7 @@ export const getBySlug = query({
 // Create a new test (used by upload script)
 export const create = mutation({
   args: {
+    adminSecret: v.string(),
     year: v.number(),
     season: v.union(v.literal("vår"), v.literal("höst")),
     date: v.string(),
@@ -35,6 +36,9 @@ export const create = mutation({
     sourceUrl: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    if (args.adminSecret !== process.env.ADMIN_SECRET) {
+      throw new Error("Unauthorized");
+    }
     // Check if test already exists
     const existing = await ctx.db
       .query("tests")

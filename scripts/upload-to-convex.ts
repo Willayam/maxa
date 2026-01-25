@@ -12,7 +12,18 @@ import { readdir, stat, readFile } from "fs/promises";
 import { join } from "path";
 
 const CONTENT_DIR = join(import.meta.dir, "../content/hogskoleprovet-tests");
-const CONVEX_URL = process.env.CONVEX_URL || "https://hushed-owl-539.convex.cloud";
+
+const CONVEX_URL = process.env.CONVEX_URL;
+if (!CONVEX_URL) {
+  console.error("Error: CONVEX_URL environment variable is required");
+  process.exit(1);
+}
+
+const ADMIN_SECRET = process.env.ADMIN_SECRET;
+if (!ADMIN_SECRET) {
+  console.error("Error: ADMIN_SECRET environment variable is required");
+  process.exit(1);
+}
 
 const client = new ConvexHttpClient(CONVEX_URL);
 
@@ -141,7 +152,9 @@ function parseFilename(filename: string): {
 
 async function uploadFile(filePath: string): Promise<string> {
   const fileData = await readFile(filePath);
-  const uploadUrl = await client.mutation(api.files.generateUploadUrl, {});
+  const uploadUrl = await client.mutation(api.files.generateUploadUrl, {
+    adminSecret: ADMIN_SECRET,
+  });
 
   const response = await fetch(uploadUrl, {
     method: "POST",
@@ -189,6 +202,7 @@ async function main() {
     let testId: string;
     if (!dryRun) {
       testId = await client.mutation(api.tests.create, {
+        adminSecret: ADMIN_SECRET,
         year: testMeta.year,
         season: testMeta.season,
         date: testMeta.date || "",
@@ -228,8 +242,9 @@ async function main() {
 
         // Create file record
         await client.mutation(api.files.createFile, {
-          testId: testId as any,
-          storageId: storageId as any,
+          adminSecret: ADMIN_SECRET,
+          testId: testId,
+          storageId: storageId,
           fileType: fileMeta.fileType,
           section: fileMeta.section,
           passNumber: fileMeta.passNumber,

@@ -22,8 +22,11 @@ export const getUrl = query({
 
 // Generate upload URL (used by upload script)
 export const generateUploadUrl = mutation({
-  args: {},
-  handler: async (ctx) => {
+  args: { adminSecret: v.string() },
+  handler: async (ctx, args) => {
+    if (args.adminSecret !== process.env.ADMIN_SECRET) {
+      throw new Error("Unauthorized");
+    }
     return await ctx.storage.generateUploadUrl();
   },
 });
@@ -31,6 +34,7 @@ export const generateUploadUrl = mutation({
 // Create file record after upload
 export const createFile = mutation({
   args: {
+    adminSecret: v.string(),
     testId: v.id("tests"),
     storageId: v.id("_storage"),
     fileType: v.union(
@@ -47,6 +51,9 @@ export const createFile = mutation({
     sizeBytes: v.number(),
   },
   handler: async (ctx, args) => {
+    if (args.adminSecret !== process.env.ADMIN_SECRET) {
+      throw new Error("Unauthorized");
+    }
     // Check if file already exists (by testId + originalFilename)
     const existing = await ctx.db
       .query("testFiles")

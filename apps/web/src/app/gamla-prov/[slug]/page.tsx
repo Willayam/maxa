@@ -231,16 +231,15 @@ function groupFiles(files: TestFile[]) {
 
 function formatDate(dateStr: string): string {
   if (!dateStr) return "";
-  try {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString("sv-SE", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  } catch {
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) {
     return dateStr;
   }
+  return date.toLocaleDateString("sv-SE", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 }
 
 function formatFileSize(bytes: number): string {
