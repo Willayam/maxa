@@ -173,13 +173,15 @@ flowchart LR
 ### Phase 3: Backend Integration
 **Focus:** Connect UI to real data
 
-| Task | Description |
-|------|-------------|
-| Convex setup | Initialize, deploy schema |
-| Clerk auth | Google, Apple, Email/Password |
-| User flow | Real auth → onboarding → app |
-| Data persistence | Questions, sessions, progress |
-| Real-time updates | Streaks, leaderboard |
+| Task | Description | Status |
+|------|-------------|--------|
+| Convex setup | Initialize, deploy schema | ✅ Done |
+| HP PDF storage | Upload historical tests to Convex | ✅ Done ([plan](plans/2026-01-25-convex-file-storage.md)) |
+| HP PDF extraction | Parse questions/answers from PDFs | Planned |
+| Clerk auth | Google, Apple, Email/Password | |
+| User flow | Real auth → onboarding → app | |
+| Data persistence | Questions, sessions, progress | |
+| Real-time updates | Streaks, leaderboard | |
 
 ### Phase 4: AI & Engagement
 **Focus:** Max coach and retention features
