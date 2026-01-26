@@ -15,6 +15,20 @@ const nextConfig = {
     ];
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: '/gamla-prov',
+        destination: '/hogskoleprov',
+        permanent: true,
+      },
+      {
+        source: '/gamla-prov/:slug',
+        destination: '/hogskoleprov/:slug',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
