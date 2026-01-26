@@ -14,7 +14,7 @@ Each phase **extends** existing code — we're improving and completing, not reb
 - Integer phases (1, 2, 3, 4): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 1: Foundation** - Local-first storage, state management, and mock quiz data
+- [x] **Phase 1: Foundation** - Local-first storage, state management, and mock quiz data
 - [ ] **Phase 2: Core Quiz Flow** - Question display, answer handling, feedback animations
 - [ ] **Phase 3: Main App Experience** - Polished tabs, gamification, Max coach integration
 - [ ] **Phase 4: Onboarding** - 9-screen onboarding flow with baseline test
@@ -43,8 +43,8 @@ Each phase **extends** existing code — we're improving and completing, not reb
   4. Mock scoring calculates accuracy and XP correctly
 
 Plans:
-- [ ] 01-01-PLAN.md — MMKV + Zustand setup with persist middleware
-- [ ] 01-02-PLAN.md — Mock quiz data creation (10 questions, 4 types)
+- [x] 01-01-PLAN.md — MMKV + Zustand setup with persist middleware
+- [x] 01-02-PLAN.md — Mock quiz data creation (10 questions, 4 types)
 
 ### Phase 2: Core Quiz Flow
 **Goal**: Users can complete a quiz session with satisfying visual and haptic feedback on every interaction
@@ -143,7 +143,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/2 | Planned | - |
+| 1. Foundation | 2/2 | ✓ Complete | 2026-01-26 |
 | 2. Core Quiz Flow | 0/3 | Not started | - |
 | 3. Main App Experience | 0/3 | Not started | - |
 | 4. Onboarding | 0/2 | Not started | - |
@@ -151,5 +151,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 ---
 *Roadmap created: 2026-01-26*
 *Phase 1 planned: 2026-01-26*
+*Phase 1 complete: 2026-01-26*
 *Depth: quick (4 phases, 10 plans)*
 *Coverage: 52/52 requirements mapped*
