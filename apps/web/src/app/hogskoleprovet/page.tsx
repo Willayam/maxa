@@ -16,10 +16,14 @@ export const metadata: Metadata = {
     "högskoleprov normering",
     "öva högskoleprov",
   ],
+  alternates: {
+    canonical: '/hogskoleprovet',
+  },
   openGraph: {
     title: "Gamla Högskoleprov - Ladda ner PDF med Facit",
     description: "Ladda ner gamla högskoleprov gratis med facit och normering.",
     type: "website",
+    url: '/hogskoleprovet',
   },
 };
 
