@@ -26,22 +26,12 @@ export function NormeringChart({ data }: NormeringChartProps) {
           data={chartData}
           margin={{ top: 20, right: 30, bottom: 50, left: 50 }}
         >
-          {/* Grid background for depth */}
           <defs>
-            {/* Gradient for bars - amber to gold with glow */}
+            {/* Gradient for bars - amber to gold */}
             <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#FFD93D" stopOpacity={1} />
-              <stop offset="50%" stopColor="#F7C948" stopOpacity={0.95} />
               <stop offset="100%" stopColor="#E5A400" stopOpacity={0.9} />
             </linearGradient>
-            {/* Glow filter for bars */}
-            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-              <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
           </defs>
 
           <XAxis
@@ -80,7 +70,6 @@ export function NormeringChart({ data }: NormeringChartProps) {
             fill="url(#barGradient)"
             radius={[4, 4, 0, 0]}
             maxBarSize={16}
-            filter="url(#glow)"
           >
             {chartData.map((entry, index) => (
               <Cell

@@ -60,8 +60,7 @@ export function NormeringSection({ data }: NormeringSectionProps) {
           Normering
         </h2>
         <p className="text-[#A8A3B8] text-lg max-w-2xl">
-          Se hur ditt resultat jämförs med alla {currentData.totalParticipants.toLocaleString('sv-SE')} som skrev provet.
-          Håll muspekaren över diagrammet för att utforska poängfördelningen.
+          Se hur poängen fördelade sig bland alla {currentData.totalParticipants.toLocaleString('sv-SE')} som skrev provet.
         </p>
       </div>
 

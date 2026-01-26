@@ -107,11 +107,7 @@ export function NormeringTable({
                       {row.percentage.toFixed(1)}%
                     </td>
                     <td className={`p-3 md:p-4 text-right font-semibold ${isTopScore ? 'text-[#F7C948]' : 'text-white'}`}>
-                      {percentile === 0 ? (
-                        <span className="text-[#F7C948]">Topp! 🏆</span>
-                      ) : (
-                        `Topp ${percentile}%`
-                      )}
+                      {percentile}%
                     </td>
                   </tr>
                 )
