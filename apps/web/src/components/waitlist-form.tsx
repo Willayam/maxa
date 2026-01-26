@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Loader2 } from 'lucide-react';
 import { useMutation } from 'convex/react';
@@ -13,7 +13,8 @@ export interface WaitlistFormProps {
   source?: string;
 }
 
-export function WaitlistForm({ className, source }: WaitlistFormProps) {
+// Inner component that uses Convex hooks - only rendered client-side
+function WaitlistFormInner({ className, source }: WaitlistFormProps) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -97,4 +98,32 @@ export function WaitlistForm({ className, source }: WaitlistFormProps) {
       </AnimatePresence>
     </div>
   );
+}
+
+// Outer component that defers rendering until client-side mount
+// This prevents useMutation from being called during SSR when ConvexProvider isn't available
+export function WaitlistForm({ className, source }: WaitlistFormProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // During SSR, render a placeholder to avoid layout shift
+  if (!mounted) {
+    return (
+      <div className={className}>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex-1">
+            <Input type="email" placeholder="Din e-postadress" disabled />
+          </div>
+          <Button size="lg" disabled className="whitespace-nowrap">
+            Få tidig tillgång
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  return <WaitlistFormInner className={className} source={source} />;
 }

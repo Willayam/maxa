@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as emails_confirmationEmail from "../emails/confirmationEmail.js";
 import type * as files from "../files.js";
 import type * as tests from "../tests.js";
 import type * as waitlist from "../waitlist.js";
@@ -19,6 +20,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  "emails/confirmationEmail": typeof emails_confirmationEmail;
   files: typeof files;
   tests: typeof tests;
   waitlist: typeof waitlist;
