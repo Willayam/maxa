@@ -50,6 +50,7 @@ Plans:
 **Goal**: Users can complete a quiz session with satisfying visual and haptic feedback on every interaction
 **Depends on**: Phase 1
 **Requirements**: QUIZ-01, QUIZ-02, QUIZ-03, QUIZ-04, QUIZ-05, QUIZ-06, QUIZ-07, QUIZ-08, ANIM-01, ANIM-02, ANIM-03, ANIM-04, ANIM-05, ANIM-06, ANIM-07, ANIM-08, ANIM-09
+**Plans:** 3 plans (Wave 1: 1 plan, Wave 2: 2 plans parallel)
 
 **Existing code:**
 - quiz/index.tsx, quiz/summary.tsx screens
@@ -70,9 +71,9 @@ Plans:
   5. User can review incorrect answers with explanations after session
 
 Plans:
-- [ ] 02-01: Connect quiz to Zustand state, improve question UI
-- [ ] 02-02: Complete answer feedback animations (celebrate, shake, pulse)
-- [ ] 02-03: Session summary improvements and error review screen
+- [ ] 02-01-PLAN.md — Connect quiz to Zustand, add checkmark + progress pulse animations
+- [ ] 02-02-PLAN.md — Summary XP display, progress persistence, celebration animations
+- [ ] 02-03-PLAN.md — Error review screen with explanations
 
 ### Phase 3: Main App Experience
 **Goal**: All three tabs are polished, consistent, and include gamification that motivates daily practice
@@ -143,8 +144,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 2/2 | ✓ Complete | 2026-01-26 |
-| 2. Core Quiz Flow | 0/3 | Not started | - |
+| 1. Foundation | 2/2 | Complete | 2026-01-26 |
+| 2. Core Quiz Flow | 0/3 | Planned | - |
 | 3. Main App Experience | 0/3 | Not started | - |
 | 4. Onboarding | 0/2 | Not started | - |
 
@@ -152,5 +153,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 *Roadmap created: 2026-01-26*
 *Phase 1 planned: 2026-01-26*
 *Phase 1 complete: 2026-01-26*
+*Phase 2 planned: 2026-01-26*
 *Depth: quick (4 phases, 10 plans)*
 *Coverage: 52/52 requirements mapped*
