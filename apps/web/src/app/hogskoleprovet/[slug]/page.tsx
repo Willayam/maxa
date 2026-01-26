@@ -45,10 +45,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       `högskoleprov ${test.year} normering`,
       `högskoleprov ${test.year} pdf`,
     ],
+    alternates: {
+      canonical: `/hogskoleprovet/${slug}`,
+    },
     openGraph: {
       title,
       description,
       type: "article",
+      url: `/hogskoleprovet/${slug}`,
     },
   };
 }
