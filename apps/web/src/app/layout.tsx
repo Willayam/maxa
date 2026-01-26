@@ -6,6 +6,7 @@ import { PostHogProvider } from '@/providers/posthog-provider';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://maxa.se'),
   title: 'Maxa - Högskoleprovet Prep',
   description: 'Plugga smart för Högskoleprovet med Maxa. Gamifierad träning och AI-coach.',
   keywords: ['högskoleprovet', 'HP', 'plugga', 'träning', 'AI', 'studier'],
