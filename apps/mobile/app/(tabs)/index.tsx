@@ -173,7 +173,7 @@ export default function IdagScreen() {
 
             {/* Streak badge */}
             <Animated.View style={[styles.streakBadge, fireAnimatedStyle]}>
-              <View style={[styles.streakInner, { backgroundColor: colorScheme === 'dark' ? '#3D2800' : '#FFF3E0' }]}>
+              <View style={[styles.streakInner, { backgroundColor: colors.warningLight }]}>
                 <Text style={styles.streakIcon}>🔥</Text>
                 <Text style={[styles.streakNumber, { color: colors.streak }]}>
                   {currentStreak}
