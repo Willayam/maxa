@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Pressable, StyleSheet, Text } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
+  withSequence,
 } from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
 
@@ -21,6 +22,7 @@ interface QuizHeaderProps {
   totalQuestions: number;
   section: SectionCode;
   onClose: () => void;
+  shouldPulse?: boolean; // Triggers pulse when true
 }
 
 /**
@@ -32,15 +34,32 @@ export function QuizHeader({
   totalQuestions,
   section,
   onClose,
+  shouldPulse = false,
 }: QuizHeaderProps) {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
   const sectionColors = SectionColors[section];
 
   const closeButtonScale = useSharedValue(1);
+  const pulseScale = useSharedValue(1);
+
+  // Pulse animation when correct answer
+  useEffect(() => {
+    if (shouldPulse) {
+      // Quick scale up and back
+      pulseScale.value = withSequence(
+        withSpring(1.05, { damping: 15, stiffness: 400 }),
+        withSpring(1, { damping: 15, stiffness: 400 })
+      );
+    }
+  }, [shouldPulse, pulseScale]);
 
   const animatedCloseStyle = useAnimatedStyle(() => ({
     transform: [{ scale: closeButtonScale.value }],
+  }));
+
+  const progressAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: pulseScale.value }],
   }));
 
   const handleClosePressIn = () => {
@@ -75,13 +94,13 @@ export function QuizHeader({
       </AnimatedPressable>
 
       {/* Progress bar */}
-      <View style={styles.progressContainer}>
+      <Animated.View style={[styles.progressContainer, progressAnimatedStyle]}>
         <ProgressBar
           progress={progress}
           size="sm"
           color={sectionColors.accent}
         />
-      </View>
+      </Animated.View>
 
       {/* Section pill - inverted style */}
       <SectionPill
