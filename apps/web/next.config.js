@@ -19,12 +19,12 @@ const nextConfig = {
     return [
       {
         source: '/gamla-prov',
-        destination: '/hogskoleprov',
+        destination: '/hogskoleprovet',
         permanent: true,
       },
       {
         source: '/gamla-prov/:slug',
-        destination: '/hogskoleprov/:slug',
+        destination: '/hogskoleprovet/:slug',
         permanent: true,
       },
     ];

@@ -117,7 +117,7 @@ function TestCard({ test }: { test: Test }) {
 
   return (
     <Link
-      href={`/hogskoleprov/${test.slug}`}
+      href={`/hogskoleprovet/${test.slug}`}
       className="block p-6 bg-card-background rounded-2xl border-2 border-border hover:border-primary transition-colors group"
     >
       <div className="flex items-center justify-between">

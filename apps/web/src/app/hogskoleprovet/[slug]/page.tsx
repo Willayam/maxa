@@ -72,7 +72,7 @@ export default async function TestPage({ params }: PageProps) {
       <main className="flex-1 pt-24 pb-12 px-6">
         <div className="max-w-4xl mx-auto">
           <Link
-            href="/hogskoleprov"
+            href="/hogskoleprovet"
             className="text-foreground-muted hover:text-primary transition-colors mb-6 inline-flex items-center gap-2"
           >
             <span>←</span> Alla högskoleprov
@@ -148,7 +148,7 @@ export default async function TestPage({ params }: PageProps) {
                 .map((t) => (
                   <Link
                     key={t.id}
-                    href={`/hogskoleprov/${t.slug}`}
+                    href={`/hogskoleprovet/${t.slug}`}
                     className="flex items-center justify-between p-4 bg-card-background rounded-xl border-2 border-border hover:border-primary transition-colors group"
                   >
                     <span className="font-semibold text-foreground group-hover:text-primary transition-colors">

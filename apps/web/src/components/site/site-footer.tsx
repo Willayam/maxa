@@ -24,7 +24,7 @@ export function SiteFooter() {
           <ul className="space-y-2 text-sm text-text-muted">
             <li><Link href="/antagningsstatistik" className="hover:text-primary transition-colors">Antagningsstatistik</Link></li>
             <li><Link href="/studieplan" className="hover:text-primary transition-colors">Studieplan</Link></li>
-            <li><Link href="/hogskoleprov" className="hover:text-primary transition-colors">Gamla prov</Link></li>
+            <li><Link href="/hogskoleprovet" className="hover:text-primary transition-colors">Gamla prov</Link></li>
             <li><Link href="/normering" className="hover:text-primary transition-colors">Normering</Link></li>
           </ul>
         </div>
@@ -34,7 +34,7 @@ export function SiteFooter() {
             {recentTests.map((test) => (
               <li key={test.id}>
                 <Link
-                  href={`/hogskoleprov/${test.slug}`}
+                  href={`/hogskoleprovet/${test.slug}`}
                   className="hover:text-primary transition-colors"
                 >
                   {getSeasonDisplay(test.season)} {test.year}
