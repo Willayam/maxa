@@ -45,3 +45,5 @@ app-example
 
 # Large binary files
 *.pdf
+# Allow PDFs in web public directory for historical HP tests
+!apps/web/public/pdfs/**/*.pdf
