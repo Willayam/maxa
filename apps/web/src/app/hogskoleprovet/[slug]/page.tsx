@@ -156,6 +156,12 @@ export default async function TestPage({ params }: PageProps) {
             </div>
           )}
 
+          {normeringData && (
+            <div className="mt-12">
+              <NormeringSection data={normeringData} />
+            </div>
+          )}
+
           <section className="mt-16 pt-8 border-t border-border">
             <h2 className="text-xl font-bold text-foreground mb-4">
               Fler högskoleprov
