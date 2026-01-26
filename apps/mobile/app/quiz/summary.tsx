@@ -1,6 +1,6 @@
 // apps/mobile/app/quiz/summary.tsx
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -12,6 +12,7 @@ import { Card } from '@/components/ui/card';
 import { Colors, Spacing, BorderRadius, FontFamily, FontSize, SectionColors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import type { SectionCode, AnswerRecord } from '@/constants/mock-questions';
+import { calculateSessionXP } from '@/constants/mock-questions';
 import {
   TARGET_TIME_PER_QUESTION,
   DEFAULT_TARGET_TIME,
@@ -20,6 +21,8 @@ import {
   SUMMARY_TITLES,
   PACE_STATUS,
 } from '@/constants/quiz-config';
+import { useProgressStore } from '@/stores/progressStore';
+import { useQuizStore } from '@/stores/quizStore';
 
 /**
  * Format seconds as M:SS
@@ -60,6 +63,13 @@ export default function SummaryScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
 
+  // Get store actions
+  const { addXP, completeSession, updateStreak } = useProgressStore();
+  const { resetSession } = useQuizStore();
+
+  // Track if we've already updated progress (prevent double-updates)
+  const [hasUpdatedProgress, setHasUpdatedProgress] = useState(false);
+
   // Parse params
   const section = params.section || 'XYZ';
   let answers: AnswerRecord[] = [];
@@ -78,6 +88,10 @@ export default function SummaryScreen() {
   const targetTime = TARGET_TIME_PER_QUESTION[section] || DEFAULT_TARGET_TIME;
   const pacePercentOver = ((avgTimePerQuestion - targetTime) / targetTime) * 100;
 
+  // Calculate XP earned
+  const xpResult = calculateSessionXP(answers);
+  const xpEarned = xpResult.xp;
+
   // Determine title and pace status
   const summaryTitle = getSummaryTitle(percentage);
   const paceStatus = getPaceStatus(pacePercentOver);
@@ -88,8 +102,19 @@ export default function SummaryScreen() {
   // Section colors
   const sectionColor = SectionColors[section as keyof typeof SectionColors];
 
+  // Update progress store once on mount
+  useEffect(() => {
+    if (!hasUpdatedProgress && answers.length > 0) {
+      addXP(xpEarned);
+      completeSession(correctCount, totalQuestions);
+      updateStreak();
+      setHasUpdatedProgress(true);
+    }
+  }, [hasUpdatedProgress, answers.length, xpEarned, correctCount, totalQuestions, addXP, completeSession, updateStreak]);
+
   // Handle navigation
   const handleDone = () => {
+    resetSession(); // Clear quizStore
     router.dismissAll(); // Return to trana screen
   };
 
