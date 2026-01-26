@@ -11,7 +11,7 @@ Transform Maxa's basic test download pages into rich, SEO-optimized study resour
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 1: SEO Foundation** - Sitemap, robots.txt, metadata, and canonical URLs
-- [ ] **Phase 2: Structured Data** - JSON-LD schemas for rich snippets and breadcrumbs
+- [x] **Phase 2: Structured Data** - JSON-LD schemas for rich snippets and breadcrumbs
 - [ ] **Phase 3: Normering** - Data extraction, chart component, and page integration
 - [ ] **Phase 4: Strategy Content** - Swedish strategy pages from research source material
 - [ ] **Phase 5: Cross-Linking & Polish** - Internal links, navigation, and OG images
@@ -44,7 +44,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 02-01-PLAN.md — Add Article and BreadcrumbList JSON-LD to hogskoleprovet pages
+- [x] 02-01-PLAN.md — Add Article and BreadcrumbList JSON-LD to hogskoleprovet pages
 
 ### Phase 3: Normering
 **Goal**: Every test page displays interactive normering data that is both visually compelling and bot-readable
@@ -106,7 +106,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. SEO Foundation | 2/2 | Complete | 2026-01-26 |
-| 2. Structured Data | 0/1 | Ready | - |
+| 2. Structured Data | 1/1 | Complete | 2026-01-26 |
 | 3. Normering | 0/3 | Not started | - |
 | 4. Strategy Content | 0/3 | Not started | - |
 | 5. Cross-Linking & Polish | 0/3 | Not started | - |
