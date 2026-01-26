@@ -67,7 +67,7 @@ export function OptionButton({
   }));
 
   const handlePressIn = () => {
-    scale.value = withSpring(0.98, { damping: 20, stiffness: 300 });
+    scale.value = withSpring(0.95, { damping: 20, stiffness: 300 });
   };
 
   const handlePressOut = () => {
