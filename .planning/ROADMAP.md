@@ -52,16 +52,16 @@ Plans:
 **Requirements**: NORM-01, NORM-02, NORM-03, NORM-04, NORM-05
 **Success Criteria** (what must be TRUE):
   1. Normering data extracted from PDFs and stored in structured format
-  2. Test detail pages display interactive line chart showing raw score to HP score conversion
+  2. Test detail pages display interactive histogram chart with bell curve overlay
   3. Chart has accessible HTML table fallback visible to screen readers and bots
   4. Normering section appears on all test pages that have normering data available
   5. Chart renders correctly with JavaScript disabled (table fallback visible)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: Normering data extraction and storage
-- [ ] 03-02: Chart component with accessible table fallback
-- [ ] 03-03: Integration on test detail pages
+- [ ] 03-01-PLAN.md — Create normering data infrastructure and extract hosten-2025 data
+- [ ] 03-02-PLAN.md — Build chart components (histogram, bell curve, table fallback)
+- [ ] 03-03-PLAN.md — Integrate NormeringSection into test detail pages
 
 ### Phase 4: Strategy Content
 **Goal**: Users can learn Hogskoleprovet strategies through comprehensive Swedish-language content
@@ -107,7 +107,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 |-------|----------------|--------|-----------|
 | 1. SEO Foundation | 2/2 | Complete | 2026-01-26 |
 | 2. Structured Data | 1/1 | Complete | 2026-01-26 |
-| 3. Normering | 0/3 | Not started | - |
+| 3. Normering | 0/3 | Ready | - |
 | 4. Strategy Content | 0/3 | Not started | - |
 | 5. Cross-Linking & Polish | 0/3 | Not started | - |
 
