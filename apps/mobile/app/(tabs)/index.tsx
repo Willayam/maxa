@@ -31,6 +31,7 @@ import {
 } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { triggerImpact } from '@/utils/haptics';
+import { useProgressStore } from '@/stores';
 
 // Mock data - will be replaced with real data from Convex
 const MOCK_USER = {
@@ -49,6 +50,7 @@ const MOCK_USER = {
 export default function IdagScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
+  const totalXP = useProgressStore((state) => state.totalXP);
 
   // Calculate days until exam
   const today = new Date();
@@ -108,6 +110,9 @@ export default function IdagScreen() {
               </Text>
               <Text variant="hero" style={styles.nameText}>
                 {MOCK_USER.name}
+              </Text>
+              <Text variant="caption" color="tertiary">
+                {totalXP} XP
               </Text>
             </View>
 
