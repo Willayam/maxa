@@ -16,7 +16,7 @@ Each phase **extends** existing code — we're improving and completing, not reb
 
 - [x] **Phase 1: Foundation** - Local-first storage, state management, and mock quiz data
 - [x] **Phase 2: Core Quiz Flow** - Question display, answer handling, feedback animations
-- [ ] **Phase 3: Main App Experience** - Polished tabs, gamification, Max coach integration
+- [x] **Phase 3: Main App Experience** - Polished tabs, gamification, Max coach integration
 - [ ] **Phase 4: Onboarding** - 9-screen onboarding flow with baseline test
 
 ## Phase Details
@@ -104,9 +104,9 @@ Plans:
 **Plans:** 3 plans (Wave 1: 1 plan, Wave 2: 2 plans parallel)
 
 Plans:
-- [ ] 03-01-PLAN.md — Gamification store & Max coach infrastructure (date-fns, streak logic, XP leveling)
-- [ ] 03-02-PLAN.md — Idag & Trana tab polish with real state (connect to stores, prominent CTA)
-- [ ] 03-03-PLAN.md — Jag tab, Max coach integration, streak milestone celebrations
+- [x] 03-01-PLAN.md — Gamification store & Max coach infrastructure (date-fns, streak logic, XP leveling)
+- [x] 03-02-PLAN.md — Idag & Trana tab polish with real state (connect to stores, prominent CTA)
+- [x] 03-03-PLAN.md — Jag tab, Max coach integration, streak milestone celebrations
 
 ### Phase 4: Onboarding
 **Goal**: New users complete a guided onboarding that sets their goal, runs a baseline test, and creates an account
@@ -148,7 +148,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete | 2026-01-26 |
 | 2. Core Quiz Flow | 3/3 | Complete | 2026-01-26 |
-| 3. Main App Experience | 0/3 | Planned | - |
+| 3. Main App Experience | 3/3 | Complete | 2026-01-26 |
 | 4. Onboarding | 0/2 | Not started | - |
 
 ---
@@ -158,5 +158,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 *Phase 2 planned: 2026-01-26*
 *Phase 2 complete: 2026-01-26*
 *Phase 3 planned: 2026-01-26*
+*Phase 3 complete: 2026-01-26*
 *Depth: quick (4 phases, 10 plans)*
 *Coverage: 52/52 requirements mapped*
