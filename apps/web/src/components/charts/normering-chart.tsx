@@ -16,7 +16,7 @@ export function NormeringChart({ data }: NormeringChartProps) {
   }))
 
   return (
-    <div className="min-h-[300px] md:min-h-[400px] w-full">
+    <div className="h-[300px] md:h-[400px] w-full">
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart data={chartData} margin={{ top: 20, right: 20, bottom: 60, left: 60 }}>
           <XAxis
