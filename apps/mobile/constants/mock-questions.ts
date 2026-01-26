@@ -373,15 +373,61 @@ export const MOCK_QUESTIONS_LAS: Question[] = [
   },
 ];
 
+// Mock questions for KVA (Kvantitativa jämförelser / Quantitative Comparisons)
+export const MOCK_QUESTIONS_KVA: Question[] = [
+  {
+    id: 'kva-001',
+    section: 'KVA',
+    number: 1,
+    text: 'Jämför de två kvantiteterna:\nKvantitet I: 3x + 5, där x = 4\nKvantitet II: 2x + 10, där x = 5',
+    options: [
+      { label: 'A', text: 'Kvantitet I är störst' },
+      { label: 'B', text: 'Kvantitet II är störst' },
+      { label: 'C', text: 'Kvantiteterna är lika stora' },
+      { label: 'D', text: 'Det går inte att avgöra' },
+    ],
+    correctAnswer: 'B',
+    explanation: 'Kvantitet I: 3(4) + 5 = 12 + 5 = 17. Kvantitet II: 2(5) + 10 = 10 + 10 = 20. Så kvantitet II är störst (20 > 17).',
+  },
+  {
+    id: 'kva-002',
+    section: 'KVA',
+    number: 2,
+    text: 'Jämför de två kvantiteterna:\nKvantitet I: Arean av en cirkel med radie 3 cm\nKvantitet II: Arean av en kvadrat med sida 5 cm',
+    options: [
+      { label: 'A', text: 'Kvantitet I är störst' },
+      { label: 'B', text: 'Kvantitet II är störst' },
+      { label: 'C', text: 'Kvantiteterna är lika stora' },
+      { label: 'D', text: 'Det går inte att avgöra' },
+    ],
+    correctAnswer: 'A',
+    explanation: 'Kvantitet I: πr² = π(3²) = 9π ≈ 28.3 cm². Kvantitet II: 5² = 25 cm². Så kvantitet I är störst (28.3 > 25).',
+  },
+  {
+    id: 'kva-003',
+    section: 'KVA',
+    number: 3,
+    text: 'Jämför de två kvantiteterna:\nKvantitet I: x² där x > 1\nKvantitet II: 2x där x > 1',
+    options: [
+      { label: 'A', text: 'Kvantitet I är störst' },
+      { label: 'B', text: 'Kvantitet II är störst' },
+      { label: 'C', text: 'Kvantiteterna är lika stora' },
+      { label: 'D', text: 'Det går inte att avgöra' },
+    ],
+    correctAnswer: 'D',
+    explanation: 'För x = 1.5: x² = 2.25, 2x = 3, så II > I. För x = 3: x² = 9, 2x = 6, så I > II. Svaret beror på värdet av x, därför går det inte att avgöra.',
+  },
+];
+
 // Map section code to questions
 export const MOCK_QUESTIONS: Record<SectionCode, Question[]> = {
   XYZ: MOCK_QUESTIONS_XYZ,
   ORD: MOCK_QUESTIONS_ORD,
   LÄS: MOCK_QUESTIONS_LAS,
+  KVA: MOCK_QUESTIONS_KVA,
   // For other sections, use placeholders
   MEK: MOCK_QUESTIONS_ORD,
   ELF: MOCK_QUESTIONS_ORD,
-  KVA: MOCK_QUESTIONS_XYZ,
   NOG: MOCK_QUESTIONS_XYZ,
   DTK: MOCK_QUESTIONS_XYZ,
 };
