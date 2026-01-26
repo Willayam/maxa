@@ -101,10 +101,12 @@ Plans:
   4. Streak counter tracks consecutive days and shows milestone animations
   5. Max displays personality-based messages that change based on coach style setting
 
+**Plans:** 3 plans (Wave 1: 1 plan, Wave 2: 2 plans parallel)
+
 Plans:
-- [ ] 03-01: Design audit and component unification
-- [ ] 03-02: Idag and Träna tab polish with real state
-- [ ] 03-03: Jag tab, gamification system, and Max coach
+- [ ] 03-01-PLAN.md — Gamification store & Max coach infrastructure (date-fns, streak logic, XP leveling)
+- [ ] 03-02-PLAN.md — Idag & Trana tab polish with real state (connect to stores, prominent CTA)
+- [ ] 03-03-PLAN.md — Jag tab, Max coach integration, streak milestone celebrations
 
 ### Phase 4: Onboarding
 **Goal**: New users complete a guided onboarding that sets their goal, runs a baseline test, and creates an account
@@ -146,7 +148,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete | 2026-01-26 |
 | 2. Core Quiz Flow | 3/3 | Complete | 2026-01-26 |
-| 3. Main App Experience | 0/3 | Not started | - |
+| 3. Main App Experience | 0/3 | Planned | - |
 | 4. Onboarding | 0/2 | Not started | - |
 
 ---
@@ -155,5 +157,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 *Phase 1 complete: 2026-01-26*
 *Phase 2 planned: 2026-01-26*
 *Phase 2 complete: 2026-01-26*
+*Phase 3 planned: 2026-01-26*
 *Depth: quick (4 phases, 10 plans)*
 *Coverage: 52/52 requirements mapped*
