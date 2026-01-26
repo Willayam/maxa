@@ -327,12 +327,58 @@ export const MOCK_QUESTIONS_ORD: Question[] = [
   },
 ];
 
+// Mock questions for LÄS (Läsförståelse / Swedish Reading Comprehension)
+export const MOCK_QUESTIONS_LAS: Question[] = [
+  {
+    id: 'las-001',
+    section: 'LÄS',
+    number: 1,
+    text: 'Lagen om allemansrätten ger alla rätt att vistas i naturen, även på privat mark. Man får dock inte skada natur eller djurliv. Det är tillåtet att plocka vilda bär och svamp, men inte att skada träd eller buskar.\n\nVad är huvudsyftet med allemansrätten?',
+    options: [
+      { label: 'A', text: 'Att skydda privat egendom' },
+      { label: 'B', text: 'Att ge allmänheten tillgång till naturen' },
+      { label: 'C', text: 'Att reglera kommersiell bärplockning' },
+      { label: 'D', text: 'Att bevara hotade växtarter' },
+    ],
+    correctAnswer: 'B',
+    explanation: 'Texten beskriver hur allemansrätten ger alla rätt att vistas i naturen, vilket visar att huvudsyftet är att ge allmänheten naturtillgång.',
+  },
+  {
+    id: 'las-002',
+    section: 'LÄS',
+    number: 2,
+    text: 'Fotosyntes är processen där växter omvandlar solljus till energi. Klorofyll i växternas blad absorberar ljus, främst blått och rött ljus, medan grönt ljus reflekteras. Därför ser vi bladen som gröna.\n\nVarför ser växternas blad gröna ut?',
+    options: [
+      { label: 'A', text: 'Klorofyll producerar grönt ljus' },
+      { label: 'B', text: 'Bladen absorberar grönt ljus' },
+      { label: 'C', text: 'Grönt ljus reflekteras av bladen' },
+      { label: 'D', text: 'Solljuset innehåller mest grönt ljus' },
+    ],
+    correctAnswer: 'C',
+    explanation: 'Texten anger tydligt att "grönt ljus reflekteras", vilket är anledningen till att vi uppfattar bladen som gröna.',
+  },
+  {
+    id: 'las-003',
+    section: 'LÄS',
+    number: 3,
+    text: 'Under vikingatiden var Sverige inte ett enat rike utan bestod av flera småkungariken. Handeln var viktig och vikingarna reste långt för att handla och erövra. Runskrift användes för att dokumentera viktiga händelser på runstenar.\n\nVad kan man dra för slutsats om vikingasamhället?',
+    options: [
+      { label: 'A', text: 'Sverige var politiskt splittrat under vikingatiden' },
+      { label: 'B', text: 'Vikingarna var främst bönder utan kontakt med omvärlden' },
+      { label: 'C', text: 'Runskrift var det enda skriftspråket i Norden' },
+      { label: 'D', text: 'Alla vikingar kunde läsa och skriva' },
+    ],
+    correctAnswer: 'A',
+    explanation: 'Texten beskriver explicit att Sverige "inte var ett enat rike utan bestod av flera småkungariken", vilket visar politisk splittring.',
+  },
+];
+
 // Map section code to questions
 export const MOCK_QUESTIONS: Record<SectionCode, Question[]> = {
   XYZ: MOCK_QUESTIONS_XYZ,
   ORD: MOCK_QUESTIONS_ORD,
-  // For other sections, use XYZ questions as placeholder
-  LÄS: MOCK_QUESTIONS_ORD,
+  LÄS: MOCK_QUESTIONS_LAS,
+  // For other sections, use placeholders
   MEK: MOCK_QUESTIONS_ORD,
   ELF: MOCK_QUESTIONS_ORD,
   KVA: MOCK_QUESTIONS_XYZ,
