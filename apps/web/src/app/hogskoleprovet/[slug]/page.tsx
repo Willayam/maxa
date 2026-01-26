@@ -4,6 +4,11 @@ import { Metadata } from "next";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import {
+  JsonLd,
+  generateArticleJsonLd,
+  generateBreadcrumbJsonLd,
+} from "@/lib/structured-data";
+import {
   tests,
   getTestBySlug,
   getPdfUrl,
@@ -70,8 +75,13 @@ export default async function TestPage({ params }: PageProps) {
 
   const grouped = groupFiles(test.files);
 
+  const articleJsonLd = generateArticleJsonLd(test);
+  const breadcrumbJsonLd = generateBreadcrumbJsonLd(test);
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <SiteHeader />
       <main className="flex-1 pt-24 pb-12 px-6">
         <div className="max-w-4xl mx-auto">

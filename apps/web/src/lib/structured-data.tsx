@@ -1,10 +1,10 @@
-import type { Article, BreadcrumbList, WithContext } from 'schema-dts';
+import type { Article, BreadcrumbList, Thing, WithContext } from 'schema-dts';
 import type { Test } from '@/data/tests';
 
 const BASE_URL = 'https://maxa.se';
 
 interface JsonLdProps {
-  data: Record<string, unknown>;
+  data: WithContext<Thing>;
 }
 
 /**
