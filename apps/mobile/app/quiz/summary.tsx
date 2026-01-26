@@ -24,6 +24,8 @@ import {
 } from '@/constants/quiz-config';
 import { useProgressStore } from '@/stores/progressStore';
 import { useQuizStore } from '@/stores/quizStore';
+import { useCoachStore, useGamificationStore } from '@/stores';
+import { StreakMilestone } from '@/components/celebrations/StreakMilestone';
 
 /**
  * Format seconds as M:SS
@@ -74,6 +76,14 @@ export default function SummaryScreen() {
   // Track if we've already updated progress (prevent double-updates)
   const [hasUpdatedProgress, setHasUpdatedProgress] = useState(false);
 
+  // Coach and gamification stores
+  const { getMessage } = useCoachStore();
+  const { currentStreak } = useGamificationStore();
+
+  // Streak celebration state
+  const [showStreakCelebration, setShowStreakCelebration] = useState(false);
+  const streakMilestones = [3, 7, 14, 30, 60, 100];
+
   // Parse params
   const section = params.section || 'XYZ';
   let answers: AnswerRecord[] = [];
@@ -106,6 +116,13 @@ export default function SummaryScreen() {
   // Section colors
   const sectionColor = SectionColors[section as keyof typeof SectionColors];
 
+  // Get coach message based on quiz results
+  const coachMessage = getMessage({
+    type: 'quiz_complete',
+    correct: correctCount,
+    total: totalQuestions,
+  });
+
   // Update progress store once on mount
   useEffect(() => {
     if (!hasUpdatedProgress && answers.length > 0) {
@@ -120,6 +137,17 @@ export default function SummaryScreen() {
   useEffect(() => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
   }, []);
+
+  // Check for streak milestone after progress update
+  useEffect(() => {
+    if (hasUpdatedProgress && streakMilestones.includes(currentStreak)) {
+      // Small delay to let the UI render first
+      const timer = setTimeout(() => {
+        setShowStreakCelebration(true);
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [hasUpdatedProgress, currentStreak]);
 
   // Handle navigation
   const handleDone = () => {
@@ -276,14 +304,14 @@ export default function SummaryScreen() {
             {/* Average time per question */}
             <View style={styles.statRow}>
               <Text variant="body" color="secondary">
-                Snitt/fråga
+                Snitt/fraga
               </Text>
               <View style={styles.timeInfo}>
                 <Text variant="h4" style={{ color: colors.text }}>
                   {formatTime(avgTimePerQuestion)}
                 </Text>
                 <Text variant="caption" color="tertiary" style={styles.targetText}>
-                  Mål: {formatTime(targetTime)}
+                  Mal: {formatTime(targetTime)}
                 </Text>
               </View>
             </View>
@@ -310,6 +338,28 @@ export default function SummaryScreen() {
                   }}
                 >
                   {paceStatus.label}
+                </Text>
+              </View>
+            </View>
+          </Card>
+        </Animated.View>
+
+        {/* Max Coach Feedback */}
+        <Animated.View entering={FadeInDown.duration(400).delay(600)}>
+          <Card style={styles.coachCard}>
+            <View style={styles.coachContent}>
+              <View style={[styles.coachAvatar, { backgroundColor: colors.backgroundTertiary }]}>
+                <Text style={styles.coachEmoji}>🤖</Text>
+              </View>
+              <View style={styles.coachTextContent}>
+                <View style={styles.coachNameRow}>
+                  <Text variant="h5">Max</Text>
+                  <View style={[styles.aiBadge, { backgroundColor: colors.primary }]}>
+                    <Text style={[styles.aiBadgeText, { color: colors.textOnPrimary }]}>AI</Text>
+                  </View>
+                </View>
+                <Text variant="bodySm" color="secondary">
+                  {coachMessage}
                 </Text>
               </View>
             </View>
@@ -346,6 +396,13 @@ export default function SummaryScreen() {
           Klar
         </Button>
       </Animated.View>
+
+      {/* Streak Milestone Celebration */}
+      <StreakMilestone
+        visible={showStreakCelebration}
+        days={currentStreak}
+        onDismiss={() => setShowStreakCelebration(false)}
+      />
     </SafeAreaView>
   );
 }
@@ -426,6 +483,42 @@ const styles = StyleSheet.create({
   },
   statsCard: {
     marginBottom: Spacing.lg,
+  },
+  coachCard: {
+    marginBottom: Spacing.lg,
+  },
+  coachContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  coachAvatar: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: Spacing.md,
+  },
+  coachEmoji: {
+    fontSize: 24,
+  },
+  coachTextContent: {
+    flex: 1,
+  },
+  coachNameRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+    marginBottom: Spacing.xxs,
+  },
+  aiBadge: {
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: 2,
+    borderRadius: BorderRadius.sm,
+  },
+  aiBadgeText: {
+    fontSize: 10,
+    fontFamily: FontFamily.bold,
   },
   statRow: {
     flexDirection: 'row',
