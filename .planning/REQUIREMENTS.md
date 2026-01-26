@@ -17,14 +17,14 @@ Requirements for user testing release. Each maps to roadmap phases.
 ### Design Audit
 
 - [ ] **AUDIT-01**: Idag tab reviewed and improved to consistent quality bar
-- [ ] **AUDIT-02**: Träna tab reviewed and improved to consistent quality bar
+- [ ] **AUDIT-02**: Trana tab reviewed and improved to consistent quality bar
 - [ ] **AUDIT-03**: Jag tab reviewed and improved to consistent quality bar
 - [ ] **AUDIT-04**: Component library unified (buttons, cards, inputs match across app)
 - [ ] **AUDIT-05**: Design tokens used consistently (no hardcoded colors)
 
 ### Onboarding Flow
 
-- [ ] **ONBD-01**: Welcome screen with name input and persona picker (gymnasieelev/omtagare/förälder)
+- [ ] **ONBD-01**: Welcome screen with name input and persona picker (gymnasieelev/omtagare/foralder)
 - [ ] **ONBD-02**: Dream screen with program search and city picker
 - [ ] **ONBD-03**: Score screen with target HP slider showing required score
 - [ ] **ONBD-04**: Date screen with exam date picker and countdown display
@@ -72,10 +72,10 @@ Requirements for user testing release. Each maps to roadmap phases.
 - [ ] **TABS-02**: Idag shows goal score and target program
 - [ ] **TABS-03**: Idag shows daily mission progress and start practice button
 - [ ] **TABS-04**: Idag shows streak chip with current streak
-- [ ] **TABS-05**: Träna shows mode selector (svagaste först, delprov, simulera)
-- [ ] **TABS-06**: Träna allows starting practice in selected mode
+- [ ] **TABS-05**: Trana shows mode selector (svagaste forst, delprov, simulera)
+- [ ] **TABS-06**: Trana allows starting practice in selected mode
 - [ ] **TABS-07**: Jag shows progress card with HP score vs goal
-- [ ] **TABS-08**: Jag shows weakness tiles (röd/gul/grön by section)
+- [ ] **TABS-08**: Jag shows weakness tiles (rod/gul/gron by section)
 - [ ] **TABS-09**: Jag shows Max coach box with personality message
 
 ### Max Coach (Static)
@@ -88,7 +88,7 @@ Requirements for user testing release. Each maps to roadmap phases.
 ### Mock Data
 
 - [ ] **MOCK-01**: 10 mock HP questions available (mix of verbal + quantitative)
-- [ ] **MOCK-02**: Questions include ORD, LÄS, XYZ, KVA types
+- [ ] **MOCK-02**: Questions include ORD, LAS, XYZ, KVA types
 - [ ] **MOCK-03**: Each question has correct answer and explanation
 - [ ] **MOCK-04**: Mock scoring calculates accuracy and XP
 
@@ -139,70 +139,70 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | TBD | Pending |
-| FOUND-02 | TBD | Pending |
-| FOUND-03 | TBD | Pending |
-| FOUND-04 | TBD | Pending |
-| AUDIT-01 | TBD | Pending |
-| AUDIT-02 | TBD | Pending |
-| AUDIT-03 | TBD | Pending |
-| AUDIT-04 | TBD | Pending |
-| AUDIT-05 | TBD | Pending |
-| ONBD-01 | TBD | Pending |
-| ONBD-02 | TBD | Pending |
-| ONBD-03 | TBD | Pending |
-| ONBD-04 | TBD | Pending |
-| ONBD-05 | TBD | Pending |
-| ONBD-06 | TBD | Pending |
-| ONBD-07 | TBD | Pending |
-| ONBD-08 | TBD | Pending |
-| ONBD-09 | TBD | Pending |
-| QUIZ-01 | TBD | Pending |
-| QUIZ-02 | TBD | Pending |
-| QUIZ-03 | TBD | Pending |
-| QUIZ-04 | TBD | Pending |
-| QUIZ-05 | TBD | Pending |
-| QUIZ-06 | TBD | Pending |
-| QUIZ-07 | TBD | Pending |
-| QUIZ-08 | TBD | Pending |
-| ANIM-01 | TBD | Pending |
-| ANIM-02 | TBD | Pending |
-| ANIM-03 | TBD | Pending |
-| ANIM-04 | TBD | Pending |
-| ANIM-05 | TBD | Pending |
-| ANIM-06 | TBD | Pending |
-| ANIM-07 | TBD | Pending |
-| ANIM-08 | TBD | Pending |
-| ANIM-09 | TBD | Pending |
-| GAME-01 | TBD | Pending |
-| GAME-02 | TBD | Pending |
-| GAME-03 | TBD | Pending |
-| GAME-04 | TBD | Pending |
-| GAME-05 | TBD | Pending |
-| GAME-06 | TBD | Pending |
-| TABS-01 | TBD | Pending |
-| TABS-02 | TBD | Pending |
-| TABS-03 | TBD | Pending |
-| TABS-04 | TBD | Pending |
-| TABS-05 | TBD | Pending |
-| TABS-06 | TBD | Pending |
-| TABS-07 | TBD | Pending |
-| TABS-08 | TBD | Pending |
-| TABS-09 | TBD | Pending |
-| MAX-01 | TBD | Pending |
-| MAX-02 | TBD | Pending |
-| MAX-03 | TBD | Pending |
-| MAX-04 | TBD | Pending |
-| MOCK-01 | TBD | Pending |
-| MOCK-02 | TBD | Pending |
-| MOCK-03 | TBD | Pending |
-| MOCK-04 | TBD | Pending |
+| FOUND-01 | Phase 1 | Pending |
+| FOUND-02 | Phase 1 | Pending |
+| FOUND-03 | Phase 1 | Pending |
+| FOUND-04 | Phase 1 | Pending |
+| AUDIT-01 | Phase 3 | Pending |
+| AUDIT-02 | Phase 3 | Pending |
+| AUDIT-03 | Phase 3 | Pending |
+| AUDIT-04 | Phase 3 | Pending |
+| AUDIT-05 | Phase 3 | Pending |
+| ONBD-01 | Phase 4 | Pending |
+| ONBD-02 | Phase 4 | Pending |
+| ONBD-03 | Phase 4 | Pending |
+| ONBD-04 | Phase 4 | Pending |
+| ONBD-05 | Phase 4 | Pending |
+| ONBD-06 | Phase 4 | Pending |
+| ONBD-07 | Phase 4 | Pending |
+| ONBD-08 | Phase 4 | Pending |
+| ONBD-09 | Phase 4 | Pending |
+| QUIZ-01 | Phase 2 | Pending |
+| QUIZ-02 | Phase 2 | Pending |
+| QUIZ-03 | Phase 2 | Pending |
+| QUIZ-04 | Phase 2 | Pending |
+| QUIZ-05 | Phase 2 | Pending |
+| QUIZ-06 | Phase 2 | Pending |
+| QUIZ-07 | Phase 2 | Pending |
+| QUIZ-08 | Phase 2 | Pending |
+| ANIM-01 | Phase 2 | Pending |
+| ANIM-02 | Phase 2 | Pending |
+| ANIM-03 | Phase 2 | Pending |
+| ANIM-04 | Phase 2 | Pending |
+| ANIM-05 | Phase 2 | Pending |
+| ANIM-06 | Phase 2 | Pending |
+| ANIM-07 | Phase 2 | Pending |
+| ANIM-08 | Phase 2 | Pending |
+| ANIM-09 | Phase 2 | Pending |
+| GAME-01 | Phase 3 | Pending |
+| GAME-02 | Phase 3 | Pending |
+| GAME-03 | Phase 3 | Pending |
+| GAME-04 | Phase 3 | Pending |
+| GAME-05 | Phase 3 | Pending |
+| GAME-06 | Phase 3 | Pending |
+| TABS-01 | Phase 3 | Pending |
+| TABS-02 | Phase 3 | Pending |
+| TABS-03 | Phase 3 | Pending |
+| TABS-04 | Phase 3 | Pending |
+| TABS-05 | Phase 3 | Pending |
+| TABS-06 | Phase 3 | Pending |
+| TABS-07 | Phase 3 | Pending |
+| TABS-08 | Phase 3 | Pending |
+| TABS-09 | Phase 3 | Pending |
+| MAX-01 | Phase 3 | Pending |
+| MAX-02 | Phase 3 | Pending |
+| MAX-03 | Phase 3 | Pending |
+| MAX-04 | Phase 3 | Pending |
+| MOCK-01 | Phase 1 | Pending |
+| MOCK-02 | Phase 1 | Pending |
+| MOCK-03 | Phase 1 | Pending |
+| MOCK-04 | Phase 1 | Pending |
 
 **Coverage:**
 - v1 requirements: 52 total
-- Mapped to phases: 0
-- Unmapped: 52 ⚠️
+- Mapped to phases: 52
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-01-26*
-*Last updated: 2026-01-26 after initial definition*
+*Last updated: 2026-01-26 after roadmap creation*
