@@ -25,6 +25,7 @@ Each phase **extends** existing code — we're improving and completing, not reb
 **Goal**: App has instant, synchronous state management with mock quiz data ready for the quiz flow
 **Depends on**: Nothing (first phase)
 **Requirements**: FOUND-01, FOUND-02, FOUND-03, FOUND-04, MOCK-01, MOCK-02, MOCK-03, MOCK-04
+**Plans:** 2 plans (Wave 1 - parallel)
 
 **Existing code:**
 - Mock data inline in screens (MOCK_USER in index.tsx)
@@ -42,8 +43,8 @@ Each phase **extends** existing code — we're improving and completing, not reb
   4. Mock scoring calculates accuracy and XP correctly
 
 Plans:
-- [ ] 01-01: MMKV + Zustand setup with persist middleware
-- [ ] 01-02: Mock quiz data creation (10 questions, 4 types)
+- [ ] 01-01-PLAN.md — MMKV + Zustand setup with persist middleware
+- [ ] 01-02-PLAN.md — Mock quiz data creation (10 questions, 4 types)
 
 ### Phase 2: Core Quiz Flow
 **Goal**: Users can complete a quiz session with satisfying visual and haptic feedback on every interaction
@@ -142,12 +143,13 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/2 | Not started | - |
+| 1. Foundation | 0/2 | Planned | - |
 | 2. Core Quiz Flow | 0/3 | Not started | - |
 | 3. Main App Experience | 0/3 | Not started | - |
 | 4. Onboarding | 0/2 | Not started | - |
 
 ---
 *Roadmap created: 2026-01-26*
+*Phase 1 planned: 2026-01-26*
 *Depth: quick (4 phases, 10 plans)*
 *Coverage: 52/52 requirements mapped*
