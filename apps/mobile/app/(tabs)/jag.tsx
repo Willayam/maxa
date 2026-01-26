@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import {
   View,
   StyleSheet,
@@ -26,24 +26,22 @@ import {
 } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { triggerImpact } from '@/utils/haptics';
+import {
+  useGamificationStore,
+  useCoachStore,
+  useProgressStore,
+  type CoachPersonality,
+} from '@/stores';
 
-// Mock user data
-const MOCK_USER = {
+// User profile data (non-store data that needs real tracking later)
+const USER_PROFILE = {
   name: 'Emma Andersson',
   email: 'emma@example.com',
-  avatar: null,
   joinedDate: new Date('2024-11-15'),
   isPro: false,
-
-  // Progress
-  currentScore: 1.2,
+  currentScore: 1.2, // HP score - needs real tracking
   goalScore: 1.8,
-  streak: 12,
-  longestStreak: 18,
-  totalQuestions: 847,
-  correctRate: 68,
-
-  // Weaknesses
+  // Weakness data - needs real tracking
   sections: [
     { code: 'NOG', name: 'Kvantitativa resonemang', level: 'weak', progress: 19 },
     { code: 'KVA', name: 'Kvantitativa jämförelser', level: 'weak', progress: 28 },
@@ -54,19 +52,14 @@ const MOCK_USER = {
     { code: 'DTK', name: 'Diagram, tabeller, kartor', level: 'strong', progress: 67 },
     { code: 'ELF', name: 'Engelsk läsförståelse', level: 'strong', progress: 71 },
   ],
-
-  // Coach
-  coachStyle: 'hype' as 'hype' | 'calm' | 'strict',
   aiAsksToday: 3,
   aiAsksLimit: 10,
 };
 
-type CoachStyle = 'hype' | 'calm' | 'strict';
-
-const COACH_STYLES: { id: CoachStyle; label: string; emoji: string; description: string }[] = [
-  { id: 'hype', label: 'Hype', emoji: '🔥', description: 'Energisk' },
-  { id: 'calm', label: 'Lugn', emoji: '🧘', description: 'Stöttande' },
-  { id: 'strict', label: 'Strikt', emoji: '💪', description: 'Krävande' },
+const COACH_STYLES: { id: CoachPersonality; label: string; emoji: string; description: string }[] = [
+  { id: 'Hype', label: 'Hype', emoji: '🔥', description: 'Energisk' },
+  { id: 'Lugn', label: 'Lugn', emoji: '🧘', description: 'Stöttande' },
+  { id: 'Strikt', label: 'Strikt', emoji: '💪', description: 'Krävande' },
 ];
 
 interface StatCardProps {
@@ -99,7 +92,7 @@ function StatCard({ label, value, icon, color, bgColor, delay = 0 }: StatCardPro
 }
 
 interface WeaknessTileProps {
-  section: typeof MOCK_USER.sections[0];
+  section: typeof USER_PROFILE.sections[0];
   delay?: number;
 }
 
@@ -171,19 +164,41 @@ function WeaknessTile({ section, delay = 0 }: WeaknessTileProps) {
 export default function JagScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
-  const [coachStyle, setCoachStyle] = useState<CoachStyle>(MOCK_USER.coachStyle);
+
+  // Connect to stores for real data
+  const {
+    currentStreak,
+    longestStreak,
+    totalXP,
+    level,
+    xpForNextLevel,
+    xpProgressInLevel,
+  } = useGamificationStore();
+
+  const { totalAnswered, accuracyPercent } = useProgressStore();
+
+  const { personality, setPersonality, getMessage } = useCoachStore();
+
+  // Get contextual message from Max coach
+  const maxMessage = useMemo(() => {
+    // Show streak milestone message if on a milestone
+    if (currentStreak >= 7 && currentStreak % 7 === 0) {
+      return getMessage({ type: 'streak_milestone', days: currentStreak });
+    }
+    return getMessage({ type: 'tab_visit', tab: 'Jag' });
+  }, [currentStreak, getMessage]);
 
   // Calculate progress percentage toward goal
-  const progressToGoal = MOCK_USER.goalScore > 0
+  const progressToGoal = USER_PROFILE.goalScore > 0
     ? Math.min(
         100,
-        Math.max(0, Math.round((MOCK_USER.currentScore / MOCK_USER.goalScore) * 100))
+        Math.max(0, Math.round((USER_PROFILE.currentScore / USER_PROFILE.goalScore) * 100))
       )
     : 0;
 
-  const handleCoachStyleChange = (style: CoachStyle) => {
+  const handleCoachStyleChange = (style: CoachPersonality) => {
     triggerImpact(Haptics.ImpactFeedbackStyle.Light);
-    setCoachStyle(style);
+    setPersonality(style);
   };
 
   const handleUpgradePress = () => {
@@ -209,23 +224,37 @@ export default function JagScreen() {
               <View style={styles.avatarContainer}>
                 <View style={[styles.avatar, { backgroundColor: colors.primaryLight }]}>
                   <Text style={[styles.avatarText, { color: colors.primary }]}>
-                    {MOCK_USER.name.split(' ').map(n => n[0]).join('')}
+                    {USER_PROFILE.name.split(' ').map(n => n[0]).join('')}
                   </Text>
                 </View>
               </View>
 
               <View style={styles.profileInfo}>
-                <Text variant="h3">{MOCK_USER.name.split(' ')[0]}</Text>
+                <View style={styles.nameRow}>
+                  <Text variant="h3">{USER_PROFILE.name.split(' ')[0]}</Text>
+                  <View style={[styles.levelBadge, { backgroundColor: colors.primaryLight }]}>
+                    <Text style={[styles.levelBadgeText, { color: colors.primary }]}>
+                      Niva {level}
+                    </Text>
+                  </View>
+                </View>
                 <Text variant="bodySm" color="secondary">
-                  {MOCK_USER.streak} dagars streak 🔥
+                  {currentStreak} dagars streak 🔥
                 </Text>
-                <Text variant="caption" color="tertiary">
-                  Medlem sedan {MOCK_USER.joinedDate.toLocaleDateString('sv-SE', { month: 'short', year: 'numeric' })}
-                </Text>
+                <View style={styles.xpProgressContainer}>
+                  <ProgressBar
+                    progress={(xpProgressInLevel() / xpForNextLevel()) * 100}
+                    size="sm"
+                    style={styles.xpProgressBar}
+                  />
+                  <Text variant="caption" color="tertiary">
+                    {xpProgressInLevel()}/{xpForNextLevel()} XP
+                  </Text>
+                </View>
               </View>
             </View>
 
-            {!MOCK_USER.isPro && (
+            {!USER_PROFILE.isPro && (
               <Button
                 fullWidth
                 size="lg"
@@ -254,7 +283,7 @@ export default function JagScreen() {
               <View style={styles.progressCircleContainer}>
                 <View style={[styles.progressCircle, { borderColor: colors.progressTrack }]}>
                   <Text style={[styles.currentScore, { color: colors.primary }]}>
-                    {MOCK_USER.currentScore.toFixed(1)}
+                    {USER_PROFILE.currentScore.toFixed(1)}
                   </Text>
                   <Text variant="caption" color="tertiary">
                     nu
@@ -268,7 +297,7 @@ export default function JagScreen() {
                     <View style={[styles.progressDot, { backgroundColor: colors.primary }]} />
                     <Text variant="bodySm" color="secondary">Nuvarande</Text>
                   </View>
-                  <Text variant="h4" color="primary">{MOCK_USER.currentScore.toFixed(1)}</Text>
+                  <Text variant="h4" color="primary">{USER_PROFILE.currentScore.toFixed(1)}</Text>
                 </View>
 
                 <View style={[styles.progressDivider, { backgroundColor: colors.divider }]} />
@@ -278,7 +307,7 @@ export default function JagScreen() {
                     <View style={[styles.progressDot, { backgroundColor: colors.textTertiary }]} />
                     <Text variant="bodySm" color="secondary">Mål</Text>
                   </View>
-                  <Text variant="h4">{MOCK_USER.goalScore.toFixed(1)}</Text>
+                  <Text variant="h4">{USER_PROFILE.goalScore.toFixed(1)}</Text>
                 </View>
 
                 <View style={[styles.progressDivider, { backgroundColor: colors.divider }]} />
@@ -289,7 +318,7 @@ export default function JagScreen() {
                     <Text variant="bodySm" color="secondary">Kvar</Text>
                   </View>
                   <Text variant="h4" color="streak">
-                    +{(MOCK_USER.goalScore - MOCK_USER.currentScore).toFixed(1)}
+                    +{(USER_PROFILE.goalScore - USER_PROFILE.currentScore).toFixed(1)}
                   </Text>
                 </View>
               </View>
@@ -300,8 +329,8 @@ export default function JagScreen() {
         {/* Stats Grid */}
         <View style={styles.statsGrid}>
           <StatCard
-            label="Frågor"
-            value={MOCK_USER.totalQuestions.toLocaleString()}
+            label="Fragor"
+            value={totalAnswered.toLocaleString()}
             icon="📝"
             color={colors.primary}
             bgColor={colors.primaryLight}
@@ -309,23 +338,23 @@ export default function JagScreen() {
           />
           <StatCard
             label="Streak"
-            value={`${MOCK_USER.streak}d`}
+            value={`${currentStreak}d`}
             icon="🔥"
             color={colors.streak}
-            bgColor={colorScheme === 'dark' ? '#3D2800' : '#FFF3E0'}
+            bgColor={colors.warningLight}
             delay={300}
           />
           <StatCard
-            label="Bästa"
-            value={`${MOCK_USER.longestStreak}d`}
+            label="Basta"
+            value={`${longestStreak}d`}
             icon="🏆"
             color={colors.star}
             bgColor={colors.primaryLight}
             delay={350}
           />
           <StatCard
-            label="Rätt"
-            value={`${MOCK_USER.correctRate}%`}
+            label="Ratt"
+            value={`${accuracyPercent()}%`}
             icon="✓"
             color={colors.success}
             bgColor={colors.successLight}
@@ -342,7 +371,7 @@ export default function JagScreen() {
             </View>
           </View>
           <View style={styles.weaknessList}>
-            {MOCK_USER.sections.slice(0, 4).map((section, index) => (
+            {USER_PROFILE.sections.slice(0, 4).map((section, index) => (
               <WeaknessTile
                 key={section.code}
                 section={section}
@@ -373,23 +402,30 @@ export default function JagScreen() {
                 </View>
                 <View style={styles.coachUsage}>
                   <ProgressBar
-                    progress={(MOCK_USER.aiAsksToday / MOCK_USER.aiAsksLimit) * 100}
+                    progress={(USER_PROFILE.aiAsksToday / USER_PROFILE.aiAsksLimit) * 100}
                     size="sm"
                     style={styles.coachProgressBar}
                   />
                   <Text variant="caption" color="tertiary">
-                    {MOCK_USER.aiAsksToday}/{MOCK_USER.aiAsksLimit} frågor idag
+                    {USER_PROFILE.aiAsksToday}/{USER_PROFILE.aiAsksLimit} fragor idag
                   </Text>
                 </View>
               </View>
             </View>
 
+            {/* Max coach contextual message */}
+            <View style={[styles.coachMessageContainer, { backgroundColor: colors.backgroundTertiary }]}>
+              <Text variant="bodySm" color="secondary" style={styles.coachMessage}>
+                {maxMessage}
+              </Text>
+            </View>
+
             <Text variant="label" color="secondary" style={styles.coachStyleLabel}>
-              Välj coachstil
+              Valj coachstil
             </Text>
             <View style={styles.coachStyles}>
               {COACH_STYLES.map((style) => {
-                const isSelected = coachStyle === style.id;
+                const isSelected = personality === style.id;
                 return (
                   <Pressable
                     key={style.id}
@@ -504,6 +540,28 @@ const styles = StyleSheet.create({
   },
   profileInfo: {
     flex: 1,
+  },
+  nameRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+    marginBottom: Spacing.xxs,
+  },
+  levelBadge: {
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: Spacing.xxs,
+    borderRadius: BorderRadius.lg,
+  },
+  levelBadgeText: {
+    fontSize: FontSize.xs,
+    fontFamily: FontFamily.bold,
+  },
+  xpProgressContainer: {
+    marginTop: Spacing.xs,
+    gap: Spacing.xxs,
+  },
+  xpProgressBar: {
+    width: '80%',
   },
   upgradeIcon: {
     fontSize: 18,
@@ -703,6 +761,14 @@ const styles = StyleSheet.create({
   },
   coachProgressBar: {
     width: '100%',
+  },
+  coachMessageContainer: {
+    padding: Spacing.md,
+    borderRadius: BorderRadius.xl,
+    marginBottom: Spacing.lg,
+  },
+  coachMessage: {
+    fontStyle: 'italic',
   },
   coachStyleLabel: {
     marginBottom: Spacing.md,
