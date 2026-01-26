@@ -1,3 +1,5 @@
 export { storage, zustandStorage } from './storage'
 export { useQuizStore } from './quizStore'
 export { useProgressStore } from './progressStore'
+export { useGamificationStore } from './gamificationStore'
+export { useCoachStore, type CoachPersonality, type MessageContext } from './coachStore'
