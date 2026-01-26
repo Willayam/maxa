@@ -28,11 +28,11 @@ Progress: [████░░░░░░] 50%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 2/2 | 9 min | 4.5 min |
-| 02-core-quiz-flow | 2/3 | 6 min | 3.0 min |
+| 02-core-quiz-flow | 2/3 | 7 min | 3.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-03 (2 min), 02-01 (4 min), 01-02 (2 min), 01-01 (7 min)
-- Trend: Improving velocity, recent plans averaging 3.0 min
+- Last 5 plans: 02-02 (3 min), 02-01 (4 min), 01-02 (2 min), 01-01 (7 min)
+- Trend: Consistent velocity, averaging 3.8 min per plan
 
 *Updated after each plan completion*
 
@@ -55,9 +55,10 @@ Recent decisions affecting current work:
 - Store separation: quizStore (session) vs progressStore (cumulative) (01-01)
 - Animation trigger pattern: use local boolean state rather than direct store access (02-01)
 - Session resume: check currentQuestions.length > 0 && sessionStartTime !== null (02-01)
-- Local state storage for cross-navigation data: store questions before navigating (02-03)
-- Selective gesture enablement: enable for review/summary, disable during active quiz (02-03)
-- Encouraging error review tone: "Nu vet du vad du behöver fokusera på!" (02-03)
+- XP display prominence: Placed immediately after title, before score (02-02)
+- Progress update guard: Use hasUpdatedProgress state to prevent double-updates (02-02)
+- Animation timing: 400ms duration, staggered delays (0/150/300/450/600ms) for cascade (02-02)
+- Session cleanup: Reset quiz session on "Klar" for fresh state (02-02)
 
 ### Pending Todos
 
@@ -70,6 +71,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-26T13:22:51Z
-Stopped at: Completed 02-03-PLAN.md
+Last session: 2026-01-26T13:23:01Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None
