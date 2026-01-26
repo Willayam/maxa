@@ -46,6 +46,14 @@ const USER_PROFILE = {
 // Days of week for streak calendar
 const WEEKDAYS = ['M', 'T', 'O', 'T', 'F', 'L', 'S'];
 
+// Helper to get time-appropriate greeting
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 12) return 'God morgon';
+  if (hour < 17) return 'God eftermiddag';
+  return 'God kväll';
+};
+
 export default function IdagScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
@@ -124,21 +132,31 @@ export default function IdagScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
+        {/* Greeting Header */}
+        <Animated.View entering={FadeInDown.duration(300)} style={styles.greetingSection}>
+          <Text style={[styles.greetingLabel, { color: colors.textSecondary }]}>
+            {getGreeting()}
+          </Text>
+          <Text style={[styles.greetingName, { color: colors.text }]}>
+            Redo att plugga?
+          </Text>
+        </Animated.View>
+
         {/* Top Stats Bar - Duolingo Style */}
         <Animated.View
           entering={FadeInDown.duration(400).delay(50)}
           style={styles.topStatsBar}
         >
           {/* XP Stat */}
-          <View style={[styles.topStat, { backgroundColor: colors.primaryLight }]}>
+          <View style={[styles.topStat, { backgroundColor: colors.primaryLight, borderColor: colors.primaryDark }]}>
             <Text style={styles.topStatIcon}>⭐</Text>
-            <Text style={[styles.topStatValue, { color: colors.primary }]}>
+            <Text style={[styles.topStatValue, { color: colors.primaryDark }]}>
               {totalXP}
             </Text>
           </View>
 
           {/* Streak Stat */}
-          <View style={[styles.topStat, { backgroundColor: colors.warningLight }]}>
+          <View style={[styles.topStat, { backgroundColor: colors.warningLight, borderColor: colors.streak + '40' }]}>
             <Text style={styles.topStatIcon}>🔥</Text>
             <Text style={[styles.topStatValue, { color: colors.streak }]}>
               {currentStreak}
@@ -146,7 +164,7 @@ export default function IdagScreen() {
           </View>
 
           {/* Goal Stat */}
-          <View style={[styles.topStat, { backgroundColor: colors.successLight }]}>
+          <View style={[styles.topStat, { backgroundColor: colors.successLight, borderColor: colors.success + '40' }]}>
             <Text style={styles.topStatIcon}>🎯</Text>
             <Text style={[styles.topStatValue, { color: colors.success }]}>
               {USER_PROFILE.goalScore.toFixed(1)}
@@ -157,6 +175,9 @@ export default function IdagScreen() {
         {/* Main Practice Card */}
         <Animated.View entering={FadeInDown.duration(400).delay(100)}>
           <Card style={styles.mainCard}>
+            {/* Accent bar at top */}
+            <View style={[styles.cardAccent, { backgroundColor: colors.primary }]} />
+
             {/* Daily Goal Progress */}
             <View style={styles.dailyGoalSection}>
               <View style={styles.dailyGoalHeader}>
@@ -251,6 +272,9 @@ export default function IdagScreen() {
         {/* Week Calendar */}
         <Animated.View entering={FadeInDown.duration(400).delay(200)}>
           <Card style={styles.weekCard}>
+            <Text style={[styles.weekLabel, { color: colors.textTertiary }]}>
+              DENNA VECKA
+            </Text>
             <View style={styles.weekDays}>
               {WEEKDAYS.map((day, i) => {
                 const isCompleted = weeklyStreak[i];
@@ -306,7 +330,7 @@ export default function IdagScreen() {
           >
             <View style={styles.coachLayout}>
               {/* Mascot Avatar */}
-              <View style={[styles.mascotContainer, { backgroundColor: colors.primary }]}>
+              <View style={[styles.mascotContainer, { backgroundColor: colors.primary, borderColor: colors.primaryDark }]}>
                 <Text style={styles.mascotEmoji}>🦉</Text>
               </View>
 
@@ -357,6 +381,21 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing['4xl'] + 20,
   },
 
+  // Greeting Section
+  greetingSection: {
+    marginBottom: Spacing.lg,
+    paddingTop: Spacing.sm,
+  },
+  greetingLabel: {
+    fontSize: FontSize.base,
+    fontFamily: FontFamily.medium,
+  },
+  greetingName: {
+    fontSize: FontSize['3xl'],
+    fontFamily: FontFamily.black,
+    letterSpacing: -0.5,
+  },
+
   // Top Stats Bar
   topStatsBar: {
     flexDirection: 'row',
@@ -371,18 +410,28 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.sm,
     borderRadius: BorderRadius.full,
     gap: Spacing.xs,
+    borderWidth: 1,
   },
   topStatIcon: {
-    fontSize: 16,
+    fontSize: 18,
   },
   topStatValue: {
-    fontSize: FontSize.lg,
+    fontSize: FontSize.xl,
     fontFamily: FontFamily.black,
   },
 
   // Main Card
   mainCard: {
     marginBottom: Spacing.lg,
+  },
+  cardAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 4,
+    borderTopLeftRadius: BorderRadius['2xl'],
+    borderTopRightRadius: BorderRadius['2xl'],
   },
   dailyGoalSection: {
     marginBottom: Spacing.lg,
@@ -394,15 +443,17 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.sm,
   },
   goalLabel: {
-    fontSize: FontSize.base,
-    fontFamily: FontFamily.semibold,
+    fontSize: FontSize.sm,
+    fontFamily: FontFamily.bold,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
   },
   goalFraction: {
     flexDirection: 'row',
     alignItems: 'baseline',
   },
   goalCurrent: {
-    fontSize: FontSize['2xl'],
+    fontSize: FontSize['4xl'],
     fontFamily: FontFamily.black,
   },
   goalDivider: {
@@ -447,7 +498,6 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.black,
     lineHeight: 44,
     letterSpacing: 0,
-    marginBottom: Spacing.xxs,
   },
   statBigNumberAccent: {
     letterSpacing: -0.5,
@@ -455,18 +505,26 @@ const styles = StyleSheet.create({
   statSubtext: {
     fontSize: FontSize.sm,
     fontFamily: FontFamily.regular,
-    marginBottom: 2,
+    lineHeight: FontSize.sm * 1.2,
   },
   statEmphasis: {
     fontSize: FontSize.sm,
     fontFamily: FontFamily.bold,
     textAlign: 'center',
+    lineHeight: FontSize.sm * 1.2,
   },
 
   // Week Card
   weekCard: {
     marginBottom: Spacing.lg,
     paddingVertical: Spacing.lg,
+  },
+  weekLabel: {
+    fontSize: FontSize.xs,
+    fontFamily: FontFamily.bold,
+    letterSpacing: 1.5,
+    textAlign: 'center',
+    marginBottom: Spacing.md,
   },
   weekDays: {
     flexDirection: 'row',
@@ -484,9 +542,9 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.black,
   },
   dayCircle: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -508,12 +566,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   mascotContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: 52,
+    height: 52,
+    borderRadius: 26,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: Spacing.md,
+    borderWidth: 2,
   },
   mascotEmoji: {
     fontSize: 24,
@@ -529,8 +588,8 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   coachName: {
-    fontSize: FontSize.base,
-    fontFamily: FontFamily.bold,
+    fontSize: FontSize.lg,
+    fontFamily: FontFamily.black,
   },
   personalityLabel: {
     fontSize: FontSize.sm,
