@@ -10,7 +10,7 @@ Transform Maxa's basic test download pages into rich, SEO-optimized study resour
 - Integer phases (1, 2, 3, 4, 5): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 1: SEO Foundation** - Sitemap, robots.txt, metadata, and canonical URLs
+- [x] **Phase 1: SEO Foundation** - Sitemap, robots.txt, metadata, and canonical URLs
 - [ ] **Phase 2: Structured Data** - JSON-LD schemas for rich snippets and breadcrumbs
 - [ ] **Phase 3: Normering** - Data extraction, chart component, and page integration
 - [ ] **Phase 4: Strategy Content** - Swedish strategy pages from research source material
@@ -30,8 +30,8 @@ Transform Maxa's basic test download pages into rich, SEO-optimized study resour
 **Plans**: 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Create sitemap.xml and robots.txt
-- [ ] 01-02-PLAN.md — Add metadataBase and canonical URLs
+- [x] 01-01-PLAN.md — Create sitemap.xml and robots.txt
+- [x] 01-02-PLAN.md — Add metadataBase and canonical URLs
 
 ### Phase 2: Structured Data
 **Goal**: Pages qualify for rich snippets in search results via JSON-LD
@@ -105,7 +105,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. SEO Foundation | 0/2 | Planned | - |
+| 1. SEO Foundation | 2/2 | ✓ Complete | 2026-01-26 |
 | 2. Structured Data | 0/1 | Not started | - |
 | 3. Normering | 0/3 | Not started | - |
 | 4. Strategy Content | 0/3 | Not started | - |
