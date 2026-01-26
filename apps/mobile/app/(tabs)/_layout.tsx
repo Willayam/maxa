@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol, IconSymbolName } from '@/components/ui/icon-symbol';
-import { Colors, Spacing, BorderRadius, Shadows, ShadowsDark } from '@/constants/theme';
+import { Colors, Spacing, BorderRadius, Shadows, ShadowsDark, FontFamily } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
 interface TabIconProps {
@@ -61,7 +61,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.tabIconDefault,
+        tabBarInactiveTintColor: colors.textSecondary,
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarBackground: () => <TabBarBackground />,
@@ -74,9 +74,10 @@ export default function TabLayout() {
           ...shadows.md,
         },
         tabBarLabelStyle: {
-          fontSize: 11,
-          fontWeight: '600',
+          fontSize: 13,
+          fontFamily: FontFamily.bold,
           marginTop: 4,
+          letterSpacing: 0.3,
         },
       }}
     >
