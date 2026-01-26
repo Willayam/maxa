@@ -15,7 +15,7 @@ Each phase **extends** existing code — we're improving and completing, not reb
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 1: Foundation** - Local-first storage, state management, and mock quiz data
-- [ ] **Phase 2: Core Quiz Flow** - Question display, answer handling, feedback animations
+- [x] **Phase 2: Core Quiz Flow** - Question display, answer handling, feedback animations
 - [ ] **Phase 3: Main App Experience** - Polished tabs, gamification, Max coach integration
 - [ ] **Phase 4: Onboarding** - 9-screen onboarding flow with baseline test
 
@@ -71,9 +71,9 @@ Plans:
   5. User can review incorrect answers with explanations after session
 
 Plans:
-- [ ] 02-01-PLAN.md — Connect quiz to Zustand, add checkmark + progress pulse animations
-- [ ] 02-02-PLAN.md — Summary XP display, progress persistence, celebration animations
-- [ ] 02-03-PLAN.md — Error review screen with explanations
+- [x] 02-01-PLAN.md — Connect quiz to Zustand, add checkmark + progress pulse animations
+- [x] 02-02-PLAN.md — Summary XP display, progress persistence, celebration animations
+- [x] 02-03-PLAN.md — Error review screen with explanations
 
 ### Phase 3: Main App Experience
 **Goal**: All three tabs are polished, consistent, and include gamification that motivates daily practice
@@ -145,7 +145,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete | 2026-01-26 |
-| 2. Core Quiz Flow | 0/3 | Planned | - |
+| 2. Core Quiz Flow | 3/3 | Complete | 2026-01-26 |
 | 3. Main App Experience | 0/3 | Not started | - |
 | 4. Onboarding | 0/2 | Not started | - |
 
@@ -154,5 +154,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 *Phase 1 planned: 2026-01-26*
 *Phase 1 complete: 2026-01-26*
 *Phase 2 planned: 2026-01-26*
+*Phase 2 complete: 2026-01-26*
 *Depth: quick (4 phases, 10 plans)*
 *Coverage: 52/52 requirements mapped*

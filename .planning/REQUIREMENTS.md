@@ -36,26 +36,26 @@ Requirements for user testing release. Each maps to roadmap phases.
 
 ### Quiz Flow
 
-- [ ] **QUIZ-01**: Question card displays question text and answer options
-- [ ] **QUIZ-02**: User can select an answer option
-- [ ] **QUIZ-03**: Correct answer shows green success state with celebration
-- [ ] **QUIZ-04**: Wrong answer shows red error state with correct answer revealed
-- [ ] **QUIZ-05**: Progress bar shows current position in quiz session
-- [ ] **QUIZ-06**: Session summary shows score, accuracy %, and XP earned
-- [ ] **QUIZ-07**: Review errors screen shows wrong answers with explanations
-- [ ] **QUIZ-08**: Exit confirmation modal prevents accidental progress loss
+- [x] **QUIZ-01**: Question card displays question text and answer options
+- [x] **QUIZ-02**: User can select an answer option
+- [x] **QUIZ-03**: Correct answer shows green success state with celebration
+- [x] **QUIZ-04**: Wrong answer shows red error state with correct answer revealed
+- [x] **QUIZ-05**: Progress bar shows current position in quiz session
+- [x] **QUIZ-06**: Session summary shows score, accuracy %, and XP earned
+- [x] **QUIZ-07**: Review errors screen shows wrong answers with explanations
+- [x] **QUIZ-08**: Exit confirmation modal prevents accidental progress loss
 
 ### Polish & Animations
 
-- [ ] **ANIM-01**: Answer options scale to 0.95 on press, spring bounce back
-- [ ] **ANIM-02**: Correct answer triggers checkmark scale-in animation
-- [ ] **ANIM-03**: Wrong answer triggers shake animation (3 cycles, 50ms each)
-- [ ] **ANIM-04**: Progress bar pulses on correct answer
-- [ ] **ANIM-05**: Haptic feedback on answer selection (light impact)
-- [ ] **ANIM-06**: Haptic feedback on correct answer (success pattern)
-- [ ] **ANIM-07**: Haptic feedback on wrong answer (error pattern)
-- [ ] **ANIM-08**: Button press effects across all interactive elements
-- [ ] **ANIM-09**: Card transitions use transform/opacity only (no layout animations)
+- [x] **ANIM-01**: Answer options scale to 0.95 on press, spring bounce back
+- [x] **ANIM-02**: Correct answer triggers checkmark scale-in animation
+- [x] **ANIM-03**: Wrong answer triggers shake animation (3 cycles, 50ms each)
+- [x] **ANIM-04**: Progress bar pulses on correct answer
+- [x] **ANIM-05**: Haptic feedback on answer selection (light impact)
+- [x] **ANIM-06**: Haptic feedback on correct answer (success pattern)
+- [x] **ANIM-07**: Haptic feedback on wrong answer (error pattern)
+- [x] **ANIM-08**: Button press effects across all interactive elements
+- [x] **ANIM-09**: Card transitions use transform/opacity only (no layout animations)
 
 ### Gamification
 
@@ -157,23 +157,23 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ONBD-07 | Phase 4 | Pending |
 | ONBD-08 | Phase 4 | Pending |
 | ONBD-09 | Phase 4 | Pending |
-| QUIZ-01 | Phase 2 | Pending |
-| QUIZ-02 | Phase 2 | Pending |
-| QUIZ-03 | Phase 2 | Pending |
-| QUIZ-04 | Phase 2 | Pending |
-| QUIZ-05 | Phase 2 | Pending |
-| QUIZ-06 | Phase 2 | Pending |
-| QUIZ-07 | Phase 2 | Pending |
-| QUIZ-08 | Phase 2 | Pending |
-| ANIM-01 | Phase 2 | Pending |
-| ANIM-02 | Phase 2 | Pending |
-| ANIM-03 | Phase 2 | Pending |
-| ANIM-04 | Phase 2 | Pending |
-| ANIM-05 | Phase 2 | Pending |
-| ANIM-06 | Phase 2 | Pending |
-| ANIM-07 | Phase 2 | Pending |
-| ANIM-08 | Phase 2 | Pending |
-| ANIM-09 | Phase 2 | Pending |
+| QUIZ-01 | Phase 2 | Complete |
+| QUIZ-02 | Phase 2 | Complete |
+| QUIZ-03 | Phase 2 | Complete |
+| QUIZ-04 | Phase 2 | Complete |
+| QUIZ-05 | Phase 2 | Complete |
+| QUIZ-06 | Phase 2 | Complete |
+| QUIZ-07 | Phase 2 | Complete |
+| QUIZ-08 | Phase 2 | Complete |
+| ANIM-01 | Phase 2 | Complete |
+| ANIM-02 | Phase 2 | Complete |
+| ANIM-03 | Phase 2 | Complete |
+| ANIM-04 | Phase 2 | Complete |
+| ANIM-05 | Phase 2 | Complete |
+| ANIM-06 | Phase 2 | Complete |
+| ANIM-07 | Phase 2 | Complete |
+| ANIM-08 | Phase 2 | Complete |
+| ANIM-09 | Phase 2 | Complete |
 | GAME-01 | Phase 3 | Pending |
 | GAME-02 | Phase 3 | Pending |
 | GAME-03 | Phase 3 | Pending |
@@ -205,4 +205,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-26*
-*Last updated: 2026-01-26 after Phase 1 completion*
+*Last updated: 2026-01-26 after Phase 2 completion*
