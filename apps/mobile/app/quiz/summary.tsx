@@ -65,7 +65,10 @@ export default function SummaryScreen() {
 
   // Get store actions
   const { addXP, completeSession, updateStreak } = useProgressStore();
-  const { resetSession } = useQuizStore();
+  const { currentQuestions, resetSession } = useQuizStore();
+
+  // Store questions in local state since we'll need them for review even after navigating
+  const [sessionQuestions] = useState(currentQuestions);
 
   // Track if we've already updated progress (prevent double-updates)
   const [hasUpdatedProgress, setHasUpdatedProgress] = useState(false);
@@ -119,8 +122,15 @@ export default function SummaryScreen() {
   };
 
   const handleReviewErrors = () => {
-    // TODO: Navigate to review errors screen
-    console.log('Review errors');
+    const incorrectAnswers = answers.filter(a => !a.correct);
+    router.push({
+      pathname: '/quiz/review',
+      params: {
+        section,
+        incorrectAnswers: JSON.stringify(incorrectAnswers),
+        questions: JSON.stringify(sessionQuestions),
+      },
+    });
   };
 
   return (
