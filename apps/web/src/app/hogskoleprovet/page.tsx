@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
+import { JsonLd, generateBreadcrumbJsonLd } from "@/lib/structured-data";
 import { tests, type Test } from "@/data/tests";
 
 export const metadata: Metadata = {
@@ -45,6 +46,7 @@ export default function HogskoleprovPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <JsonLd data={generateBreadcrumbJsonLd()} />
       <SiteHeader />
       <main className="flex-1 pt-24 pb-12 px-6">
         <div className="max-w-4xl mx-auto">
