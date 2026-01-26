@@ -32,7 +32,7 @@ import {
 } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { triggerImpact } from '@/utils/haptics';
-import { useProgressStore, useGamificationStore } from '@/stores';
+import { useProgressStore, useGamificationStore, useCoachStore } from '@/stores';
 
 // Mock data for elements not yet connected to stores
 // These will come from onboarding (Phase 4) and real tracking
@@ -64,6 +64,10 @@ export default function IdagScreen() {
     isDailyGoalComplete,
     checkAndUpdateStreak,
   } = useGamificationStore();
+  const { getMessage } = useCoachStore();
+
+  // Get Max coach message based on current context
+  const coachMessage = getMessage({ type: 'tab_visit', tab: 'Idag' });
 
   // Check streak on component mount
   useEffect(() => {
@@ -335,7 +339,7 @@ export default function IdagScreen() {
                   </View>
                 </View>
                 <Text variant="bodySm" color="secondary">
-                  Bra jobbat igår! Du är på väg mot 2 veckors streak 🔥
+                  {coachMessage}
                 </Text>
               </View>
               <Text style={[styles.coachArrow, { color: colors.textTertiary }]}>→</Text>
