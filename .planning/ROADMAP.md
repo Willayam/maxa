@@ -38,13 +38,13 @@ Plans:
 **Depends on**: Phase 1
 **Requirements**: SEO-03
 **Success Criteria** (what must be TRUE):
-  1. Test pages include ScholarlyArticle JSON-LD with datePublished and publisher
+  1. Test pages include Article JSON-LD with datePublished and publisher
   2. All pages include BreadcrumbList JSON-LD showing navigation hierarchy
   3. JSON-LD validates without errors in Google Rich Results Test
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 02-01: JSON-LD schema implementation for all page types
+- [ ] 02-01-PLAN.md — Add Article and BreadcrumbList JSON-LD to hogskoleprovet pages
 
 ### Phase 3: Normering
 **Goal**: Every test page displays interactive normering data that is both visually compelling and bot-readable
@@ -105,8 +105,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. SEO Foundation | 2/2 | ✓ Complete | 2026-01-26 |
-| 2. Structured Data | 0/1 | Not started | - |
+| 1. SEO Foundation | 2/2 | Complete | 2026-01-26 |
+| 2. Structured Data | 0/1 | Ready | - |
 | 3. Normering | 0/3 | Not started | - |
 | 4. Strategy Content | 0/3 | Not started | - |
 | 5. Cross-Linking & Polish | 0/3 | Not started | - |
