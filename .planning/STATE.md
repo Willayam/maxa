@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-26)
 ## Current Position
 
 Phase: 3 of 4 (Main App Experience)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-01-26 — Completed 03-01-PLAN.md
+Last activity: 2026-01-26 — Completed 03-02-PLAN.md
 
-Progress: [██████░░░░] 60%
+Progress: [███████░░░] 70%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
-- Average duration: 3.3 min
-- Total execution time: 20 min
+- Total plans completed: 7
+- Average duration: 3.4 min
+- Total execution time: 24 min
 
 **By Phase:**
 
@@ -29,11 +29,11 @@ Progress: [██████░░░░] 60%
 |-------|-------|-------|----------|
 | 01-foundation | 2/2 | 9 min | 4.5 min |
 | 02-core-quiz-flow | 3/3 | 9 min | 3.0 min |
-| 03-main-app-experience | 1/3 | 2 min | 2.0 min |
+| 03-main-app-experience | 2/3 | 6 min | 3.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-01 (2 min), 02-03 (2 min), 02-02 (3 min), 02-01 (4 min), 01-02 (2 min)
-- Trend: Improving velocity, Phase 3 started at 2.0 min
+- Last 5 plans: 03-02 (4 min), 03-01 (2 min), 02-03 (2 min), 02-02 (3 min), 02-01 (4 min)
+- Trend: Steady velocity around 3 min/plan
 
 *Updated after each plan completion*
 
@@ -49,7 +49,7 @@ Recent decisions affecting current work:
 - Design-as-you-go in code (no Figma)
 - ~10 mock questions sufficient for demo
 - XP calculation: 10 base + 2 per consecutive correct (01-02)
-- Mixed question proportions: 3 ORD, 2 LÄS, 3 XYZ, 2 KVA (01-02)
+- Mixed question proportions: 3 ORD, 2 LAS, 3 XYZ, 2 KVA (01-02)
 - MMKV v4 with Nitro Modules for new architecture compatibility (01-01)
 - Zustand persist with createJSONStorage wrapper pattern (01-01)
 - Expo prebuild required - exits Expo Go workflow (01-01)
@@ -66,6 +66,9 @@ Recent decisions affecting current work:
 - XP curve: linear 1-10, polynomial 11-30, steep 31+ (03-01)
 - Default daily goal: 20 questions (03-01)
 - Coach personalities: Hype/Lugn/Strikt with growth mindset messaging (03-01)
+- CTA pulse animation: 1.02 scale, 2s cycle when daily goal incomplete (03-02)
+- Streak badge uses warningLight theme token (03-02)
+- Smart mode: 2 weakest sections (hardcoded WEAKNESS_ORDER until Phase 4) (03-02)
 
 ### Pending Todos
 
@@ -78,5 +81,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-26
-Stopped at: Completed 03-01-PLAN.md
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None
