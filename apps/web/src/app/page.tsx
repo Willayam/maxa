@@ -8,6 +8,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { SiteHeader } from '@/components/site/site-header';
+import { SiteFooter } from '@/components/site/site-footer';
 import { WaitlistForm } from '@/components/waitlist-form';
 import { FeatureCard } from '@/components/feature-card';
 import { AppPreviewMockup } from '@/components/app-preview-mockup';
@@ -61,7 +62,7 @@ export default function HomePage() {
               <p className="text-xl text-foreground-muted mb-8 max-w-lg">
                 Din personliga HP-coach i mobilen. Få en daglig plan som tar dig från där du är nu till poängen du behöver – på bara 15 min om dagen.
               </p>
-              <WaitlistForm className="max-w-md" />
+              <WaitlistForm className="max-w-md" source="hero" />
               <p className="mt-4 text-sm text-foreground-muted">
                 Bli en av de första att få tillgång – vi lanserar inför vårens HP.
               </p>
@@ -174,20 +175,12 @@ export default function HomePage() {
             <p className="text-lg text-foreground-muted mb-8">
               Gå med i väntelistan och få tidig tillgång innan vårens HP.
             </p>
-            <WaitlistForm className="max-w-md mx-auto" />
+            <WaitlistForm className="max-w-md mx-auto" source="footer-cta" />
           </motion.div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 px-6 border-t border-border">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-2xl font-black text-primary">Maxa</div>
-          <p className="text-sm text-foreground-muted">
-            &copy; {new Date().getFullYear()} Maxa. Alla rättigheter förbehållna.
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

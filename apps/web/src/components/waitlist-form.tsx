@@ -1,19 +1,25 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, Loader2 } from 'lucide-react';
+import { Mail, Loader2 } from 'lucide-react';
+import { useMutation } from 'convex/react';
+import { api } from '../../../../convex/_generated/api';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 
 export interface WaitlistFormProps {
   className?: string;
+  source?: string;
 }
 
-export function WaitlistForm({ className }: WaitlistFormProps) {
+// Inner component that uses Convex hooks - only rendered client-side
+function WaitlistFormInner({ className, source }: WaitlistFormProps) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+
+  const joinWaitlist = useMutation(api.waitlist.join);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -26,12 +32,14 @@ export function WaitlistForm({ className }: WaitlistFormProps) {
 
     setStatus('loading');
 
-    // TODO: Replace with Convex mutation
-    // Simulate API call for now
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    setStatus('success');
-    setEmail('');
+    try {
+      await joinWaitlist({ email, source });
+      setStatus('success');
+      setEmail('');
+    } catch {
+      setStatus('error');
+      setErrorMessage('Något gick fel. Försök igen.');
+    }
   };
 
   return (
@@ -44,8 +52,10 @@ export function WaitlistForm({ className }: WaitlistFormProps) {
             animate={{ opacity: 1, scale: 1 }}
             className="flex items-center gap-3 text-success"
           >
-            <CheckCircle className="w-6 h-6" />
-            <span className="font-semibold">Du är på listan! Vi hör av oss snart.</span>
+            <Mail className="w-6 h-6" />
+            <span className="font-semibold">
+              Kolla din inkorg! Vi har skickat en bekräftelselänk.
+            </span>
           </motion.div>
         ) : (
           <motion.form
@@ -88,4 +98,32 @@ export function WaitlistForm({ className }: WaitlistFormProps) {
       </AnimatePresence>
     </div>
   );
+}
+
+// Outer component that defers rendering until client-side mount
+// This prevents useMutation from being called during SSR when ConvexProvider isn't available
+export function WaitlistForm({ className, source }: WaitlistFormProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // During SSR, render a placeholder to avoid layout shift
+  if (!mounted) {
+    return (
+      <div className={className}>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex-1">
+            <Input type="email" placeholder="Din e-postadress" disabled />
+          </div>
+          <Button size="lg" disabled className="whitespace-nowrap">
+            Få tidig tillgång
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  return <WaitlistFormInner className={className} source={source} />;
 }
