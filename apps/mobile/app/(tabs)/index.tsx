@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   StyleSheet,
   ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -31,18 +32,20 @@ import {
 } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { triggerImpact } from '@/utils/haptics';
-import { useProgressStore } from '@/stores';
+import { useProgressStore, useGamificationStore } from '@/stores';
 
-// Mock data - will be replaced with real data from Convex
-const MOCK_USER = {
-  name: 'Emma',
-  streak: 12,
+// Mock data for elements not yet connected to stores
+// These will come from onboarding (Phase 4) and real tracking
+const USER_PROFILE = {
+  name: 'Emma', // Will come from auth
   examDate: new Date(2026, 3, 5),
   goalScore: 1.8,
   dreamProgram: 'Läkarprogrammet',
   dreamCity: 'Lund',
-  dailyGoal: 25,
-  dailyProgress: 8,
+};
+
+// Mock data for weekly stats (needs real tracking)
+const WEEKLY_STATS = {
   weeklyCorrect: 42,
   weakestSection: 'NOG',
 };
@@ -50,20 +53,35 @@ const MOCK_USER = {
 export default function IdagScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
+  const router = useRouter();
+
+  // Real state from stores
   const totalXP = useProgressStore((state) => state.totalXP);
+  const {
+    currentStreak,
+    dailyProgress,
+    dailyGoal,
+    isDailyGoalComplete,
+    checkAndUpdateStreak,
+  } = useGamificationStore();
+
+  // Check streak on component mount
+  useEffect(() => {
+    checkAndUpdateStreak();
+  }, [checkAndUpdateStreak]);
 
   // Calculate days until exam
   const today = new Date();
   const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   const daysUntilExam = Math.max(
     0,
-    Math.ceil((MOCK_USER.examDate.getTime() - todayStart.getTime()) / (1000 * 60 * 60 * 24))
+    Math.ceil((USER_PROFILE.examDate.getTime() - todayStart.getTime()) / (1000 * 60 * 60 * 24))
   );
 
   // Animated fire icon for streak
   const fireScale = useSharedValue(1);
 
-  React.useEffect(() => {
+  useEffect(() => {
     fireScale.value = withRepeat(
       withSequence(
         withTiming(1.15, { duration: 500 }),
@@ -78,13 +96,50 @@ export default function IdagScreen() {
     transform: [{ scale: fireScale.value }],
   }));
 
-  const handleCtaPress = () => {
-    triggerImpact(Haptics.ImpactFeedbackStyle.Medium);
-    console.log('Start practice');
+  // Animated pulsing CTA when goal not complete
+  const ctaScale = useSharedValue(1);
+  const goalComplete = isDailyGoalComplete();
+
+  useEffect(() => {
+    if (!goalComplete) {
+      ctaScale.value = withRepeat(
+        withSequence(
+          withTiming(1.02, { duration: 1000 }),
+          withTiming(1, { duration: 1000 })
+        ),
+        -1,
+        true
+      );
+    } else {
+      ctaScale.value = withTiming(1, { duration: 200 });
+    }
+  }, [goalComplete, ctaScale]);
+
+  const ctaAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: ctaScale.value }],
+  }));
+
+  // Dynamic CTA text based on progress
+  const getCtaText = () => {
+    if (goalComplete) {
+      return 'MAL UPPNATT - TRANA MER?';
+    }
+    if (dailyProgress === 0) {
+      return 'STARTA DAGENS PASS';
+    }
+    return `FORTSATT (${dailyProgress}/${dailyGoal})`;
   };
 
-  const safeGoal = Math.max(0, MOCK_USER.dailyGoal);
-  const safeProgress = Math.max(0, MOCK_USER.dailyProgress);
+  const handleCtaPress = () => {
+    triggerImpact(Haptics.ImpactFeedbackStyle.Medium);
+    router.push({
+      pathname: '/quiz',
+      params: { section: 'MIXED' },
+    });
+  };
+
+  const safeGoal = Math.max(0, dailyGoal);
+  const safeProgress = Math.max(0, dailyProgress);
   const progressPercent = safeGoal
     ? Math.min(100, Math.round((safeProgress / safeGoal) * 100))
     : 0;
@@ -109,7 +164,7 @@ export default function IdagScreen() {
                 Välkommen tillbaka,
               </Text>
               <Text variant="hero" style={styles.nameText}>
-                {MOCK_USER.name}
+                {USER_PROFILE.name}
               </Text>
               <Text variant="caption" color="tertiary">
                 {totalXP} XP
@@ -121,7 +176,7 @@ export default function IdagScreen() {
               <View style={[styles.streakInner, { backgroundColor: colorScheme === 'dark' ? '#3D2800' : '#FFF3E0' }]}>
                 <Text style={styles.streakIcon}>🔥</Text>
                 <Text style={[styles.streakNumber, { color: colors.streak }]}>
-                  {MOCK_USER.streak}
+                  {currentStreak}
                 </Text>
               </View>
             </Animated.View>
@@ -137,8 +192,8 @@ export default function IdagScreen() {
                 </Text>
               </View>
               <Text style={[styles.dailyGoalProgress, { color: colors.text }]}>
-                <Text style={styles.dailyGoalCurrent}>{MOCK_USER.dailyProgress}</Text>
-                <Text style={[styles.dailyGoalTotal, { color: colors.textTertiary }]}> / {MOCK_USER.dailyGoal}</Text>
+                <Text style={styles.dailyGoalCurrent}>{dailyProgress}</Text>
+                <Text style={[styles.dailyGoalTotal, { color: colors.textTertiary }]}> / {dailyGoal}</Text>
               </Text>
             </View>
             <ProgressBar progress={progressPercent} size="md" />
@@ -176,16 +231,16 @@ export default function IdagScreen() {
               {questionsRemaining} frågor kvar för att nå dagens mål
             </Text>
 
-            {/* CTA Button */}
-            <Button
-              fullWidth
-              size="xl"
-              onPress={handleCtaPress}
-            >
-              {MOCK_USER.dailyProgress === 0
-                ? '▶ STARTA DAGENS PASS'
-                : '▶ FORTSÄTT TRÄNA'}
-            </Button>
+            {/* CTA Button with pulse animation */}
+            <Animated.View style={ctaAnimatedStyle}>
+              <Button
+                fullWidth
+                size="xl"
+                onPress={handleCtaPress}
+              >
+                {goalComplete ? '✓ ' : '▶ '}{getCtaText()}
+              </Button>
+            </Animated.View>
           </Card>
         </Animated.View>
 
@@ -213,13 +268,13 @@ export default function IdagScreen() {
           <Card style={styles.statCard}>
             <View style={styles.statInner}>
               <Text style={[styles.statNumber, { color: colors.primary }]}>
-                {MOCK_USER.goalScore.toFixed(1)}
+                {USER_PROFILE.goalScore.toFixed(1)}
               </Text>
               <Text variant="label" color="secondary">
-                DITT MÅL
+                DITT MAL
               </Text>
               <Text variant="caption" color="tertiary" numberOfLines={1}>
-                {MOCK_USER.dreamProgram}
+                {USER_PROFILE.dreamProgram}
               </Text>
             </View>
           </Card>
@@ -238,20 +293,20 @@ export default function IdagScreen() {
             <Card style={[styles.weeklyStatCard, { backgroundColor: colors.successLight }]}>
               <Text style={styles.weeklyStatIcon}>✓</Text>
               <Text style={[styles.weeklyStatValue, { color: colors.success }]}>
-                +{MOCK_USER.weeklyCorrect}
+                +{WEEKLY_STATS.weeklyCorrect}
               </Text>
               <Text variant="caption" color="secondary">
-                Rätt denna vecka
+                Ratt denna vecka
               </Text>
             </Card>
 
             <Card style={[styles.weeklyStatCard, { backgroundColor: colors.errorLight }]}>
               <Text style={styles.weeklyStatIcon}>📉</Text>
               <Text style={[styles.weeklyStatValue, { color: colors.error }]}>
-                {MOCK_USER.weakestSection}
+                {WEEKLY_STATS.weakestSection}
               </Text>
               <Text variant="caption" color="secondary">
-                Behöver träning
+                Behover traning
               </Text>
             </Card>
           </View>
