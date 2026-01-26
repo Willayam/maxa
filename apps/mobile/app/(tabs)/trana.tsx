@@ -34,18 +34,22 @@ import { triggerImpact } from '@/utils/haptics';
 // HP Sections with mock progress data
 const HP_SECTIONS = {
   verbal: [
-    { code: 'ORD', name: 'Ordförståelse', progress: 45, questionsAnswered: 120 },
-    { code: 'LÄS', name: 'Läsförståelse', progress: 62, questionsAnswered: 85 },
+    { code: 'ORD', name: 'Ordforstaelse', progress: 45, questionsAnswered: 120 },
+    { code: 'LAS', name: 'Lasforstaelse', progress: 62, questionsAnswered: 85 },
     { code: 'MEK', name: 'Meningskomplettering', progress: 38, questionsAnswered: 67 },
-    { code: 'ELF', name: 'Engelsk läsförståelse', progress: 71, questionsAnswered: 94 },
+    { code: 'ELF', name: 'Engelsk lasforstaelse', progress: 71, questionsAnswered: 94 },
   ],
   kvantitativ: [
-    { code: 'XYZ', name: 'Matematisk problemlösning', progress: 55, questionsAnswered: 143 },
-    { code: 'KVA', name: 'Kvantitativa jämförelser', progress: 28, questionsAnswered: 52 },
+    { code: 'XYZ', name: 'Matematisk problemlosning', progress: 55, questionsAnswered: 143 },
+    { code: 'KVA', name: 'Kvantitativa jamforelser', progress: 28, questionsAnswered: 52 },
     { code: 'NOG', name: 'Kvantitativa resonemang', progress: 19, questionsAnswered: 31 },
     { code: 'DTK', name: 'Diagram, tabeller, kartor', progress: 67, questionsAnswered: 78 },
   ],
 };
+
+// Mock weakness order - sorted by weakness (lowest progress first)
+// Will be replaced with real tracking in Phase 4
+const WEAKNESS_ORDER = ['NOG', 'KVA', 'MEK', 'ORD'];
 
 type TrainingMode = 'smart' | 'section' | 'simulate';
 
@@ -235,7 +239,7 @@ function SectionTile({ section, onPress, delay = 0 }: SectionTileProps) {
             />
           </View>
           <Text variant="caption" color="tertiary">
-            {section.questionsAnswered} frågor
+            {section.questionsAnswered} fragor
           </Text>
         </View>
       </AnimatedPressable>
@@ -252,17 +256,29 @@ export default function TranaScreen() {
   const handleStartTraining = () => {
     triggerImpact(Haptics.ImpactFeedbackStyle.Medium);
     if (selectedMode === 'smart') {
-      // For smart mode, pick a weak section (NOG for now as mock)
+      // Pick 2 weakest sections for smart mix
+      const weakestSections = WEAKNESS_ORDER.slice(0, 2);
       router.push({
         pathname: '/quiz',
-        params: { section: 'NOG' },
+        params: {
+          section: 'SMART',
+          focusSections: weakestSections.join(','),
+        },
       });
     } else if (selectedMode === 'section') {
-      // Section mode requires selecting a section first
-      console.log('Please select a section');
-    } else {
-      // Simulate mode - not implemented yet
-      console.log('Simulate mode coming soon');
+      // Section mode handled by section tile press
+      // Button shows instruction to select section above
+      console.log('Select a section above to start');
+    } else if (selectedMode === 'simulate') {
+      // Simulate mode - full HP test
+      router.push({
+        pathname: '/quiz',
+        params: {
+          section: 'SIMULATE',
+          questionCount: '160',
+          timed: 'true',
+        },
+      });
     }
   };
 
@@ -301,7 +317,7 @@ export default function TranaScreen() {
             )}
           </View>
           <Text variant="bodyLg" color="secondary">
-            Välj hur du vill öva idag
+            Valj hur du vill ova idag
           </Text>
         </Animated.View>
 
@@ -309,15 +325,15 @@ export default function TranaScreen() {
         <View style={styles.modesSection}>
           <ModeCard
             title="Smart träning"
-            description="AI väljer frågor baserat på dina svagaste områden"
+            description="AI valjer fragor baserat pa dina svagaste omraden"
             icon="🎯"
             selected={selectedMode === 'smart'}
             onPress={() => setSelectedMode('smart')}
             delay={150}
           />
           <ModeCard
-            title="Välj delprov"
-            description="Fokusera på ett specifikt delområde av HP"
+            title="Valj delprov"
+            description="Fokusera pa ett specifikt delomrade av HP"
             icon="📚"
             selected={selectedMode === 'section'}
             onPress={() => setSelectedMode('section')}
@@ -325,7 +341,7 @@ export default function TranaScreen() {
           />
           <ModeCard
             title="Simulera HP"
-            description="Fullt HP-prov under realistiska förhållanden"
+            description="Fullt HP-prov under realistiska forhallanden"
             icon="⏱️"
             selected={selectedMode === 'simulate'}
             onPress={() => setSelectedMode('simulate')}
@@ -387,17 +403,15 @@ export default function TranaScreen() {
           >
             <Card>
               <View style={styles.smartInfoContent}>
-                <View style={[styles.smartInfoIcon, { backgroundColor: colors.success + '20' }]}>
-                  <Text style={styles.smartInfoEmoji}>💡</Text>
+                <View style={[styles.smartInfoIcon, { backgroundColor: colors.primaryLight }]}>
+                  <Text style={styles.smartInfoEmoji}>🎯</Text>
                 </View>
                 <View style={styles.smartInfoText}>
                   <Text variant="h5" style={{ marginBottom: Spacing.xxs }}>
-                    Rekommenderat för dig
+                    10 fragor
                   </Text>
                   <Text variant="bodySm" color="secondary">
-                    Baserat på din historik bör du fokusera på{' '}
-                    <Text variant="bodySm" weight="bold" color="error">NOG</Text> och{' '}
-                    <Text variant="bodySm" weight="bold" color="warning">KVA</Text> idag
+                    ~5 min • Fokus pa {WEAKNESS_ORDER[0]} och {WEAKNESS_ORDER[1]}
                   </Text>
                 </View>
               </View>
@@ -418,13 +432,13 @@ export default function TranaScreen() {
                 </View>
                 <Text variant="h3" style={styles.simulateTitle}>Simulerat HP</Text>
                 <Text variant="body" color="secondary" style={styles.simulateSubtitle}>
-                  Upplev ett fullständigt högskoleprovet
+                  Upplev ett fullstandigt hogskoleprovet
                 </Text>
 
                 <View style={styles.simulateStats}>
                   <View style={styles.simulateStat}>
                     <Text style={[styles.simulateStatValue, { color: colors.primary }]}>160</Text>
-                    <Text variant="caption" color="secondary">frågor</Text>
+                    <Text variant="caption" color="secondary">fragor</Text>
                   </View>
                   <View style={[styles.simulateDivider, { backgroundColor: colors.divider }]} />
                   <View style={styles.simulateStat}>
@@ -441,7 +455,7 @@ export default function TranaScreen() {
                 <View style={[styles.tipBox, { backgroundColor: colors.backgroundTertiary }]}>
                   <Text style={styles.tipEmoji}>💡</Text>
                   <Text variant="bodySm" color="secondary" style={styles.tipText}>
-                    Sätt av ostörd tid och simulera provmiljön för bästa resultat
+                    Satt av ostord tid och simulera provmiljon for basta resultat
                   </Text>
                 </View>
               </View>
@@ -458,9 +472,10 @@ export default function TranaScreen() {
             fullWidth
             size="xl"
             onPress={handleStartTraining}
+            disabled={selectedMode === 'section'}
           >
-            {selectedMode === 'smart' && '▶ STARTA SMART TRÄNING'}
-            {selectedMode === 'section' && '📚 VÄLJ DELPROV OVAN'}
+            {selectedMode === 'smart' && '🎯 STARTA SMART TRANING'}
+            {selectedMode === 'section' && 'VALJ DELPROV OVAN ↑'}
             {selectedMode === 'simulate' && '⏱️ STARTA SIMULERAT PROV'}
           </Button>
         </Animated.View>
