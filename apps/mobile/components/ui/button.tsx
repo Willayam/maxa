@@ -28,7 +28,7 @@ import {
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { triggerImpact } from '@/utils/haptics';
 
-const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const AnimatedView = Animated.createAnimatedComponent(View);
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost';
 type ButtonSize = 'sm' | 'md' | 'lg' | 'xl';
@@ -48,9 +48,9 @@ interface ButtonProps extends Omit<PressableProps, 'style'> {
 
 /**
  * Duolingo-style Button component
- * - 3D pressed effect with border-bottom
+ * - 3D pressed effect using wrapper shadow technique
+ * - Shadow follows rounded corners properly
  * - Uppercase text with font-black (900) weight
- * - Yellow background for primary
  */
 export function Button({
   children,
@@ -71,26 +71,20 @@ export function Button({
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
 
-  // Animated values for 3D press effect
+  // Animated value for press effect
   const translateY = useSharedValue(0);
-  const borderBottomWidth = useSharedValue(ButtonDepth);
 
-  const animatedContainerStyle = useAnimatedStyle(() => ({
+  const animatedButtonStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
-    borderBottomWidth: borderBottomWidth.value,
   }));
 
   const handlePressIn = (e: any) => {
-    // Press down - remove border, translate down
-    translateY.value = withTiming(ButtonDepth, { duration: 50 });
-    borderBottomWidth.value = withTiming(0, { duration: 50 });
+    translateY.value = withTiming(ButtonDepth - 1, { duration: 50 });
     onPressIn?.(e);
   };
 
   const handlePressOut = (e: any) => {
-    // Release - restore border, translate back
     translateY.value = withTiming(0, { duration: 100 });
-    borderBottomWidth.value = withTiming(ButtonDepth, { duration: 100 });
     onPressOut?.(e);
   };
 
@@ -103,96 +97,125 @@ export function Button({
 
   const isDisabled = disabled || loading;
 
-  const getVariantStyles = (): { container: ViewStyle; text: TextStyle; borderColor: string } => {
+  const getVariantStyles = (): {
+    button: ViewStyle;
+    shadow: ViewStyle;
+    text: TextStyle;
+  } => {
     switch (variant) {
       case 'primary':
         return {
-          container: {
+          button: {
             backgroundColor: isDisabled
               ? Primitives.neutral[200]
               : colors.primary,
+          },
+          shadow: {
+            backgroundColor: isDisabled
+              ? Primitives.neutral[300]
+              : colors.primaryDark,
           },
           text: {
             color: isDisabled
               ? colors.textTertiary
               : colors.textOnPrimary,
           },
-          borderColor: isDisabled
-            ? Primitives.neutral[300]
-            : colors.primaryDark, // #E5A400
         };
       case 'secondary':
         return {
-          container: {
+          button: {
             backgroundColor: colors.cardBackground,
             borderWidth: 2,
-            borderTopWidth: 2,
-            borderLeftWidth: 2,
-            borderRightWidth: 2,
+            borderColor: colors.cardBorder,
+          },
+          shadow: {
+            backgroundColor: colors.cardBorder,
           },
           text: {
             color: isDisabled ? colors.textTertiary : colors.text,
           },
-          borderColor: colors.cardBorder,
         };
       case 'ghost':
         return {
-          container: {
+          button: {
+            backgroundColor: 'transparent',
+          },
+          shadow: {
             backgroundColor: 'transparent',
           },
           text: {
             color: isDisabled ? colors.textTertiary : colors.primary,
           },
-          borderColor: 'transparent',
         };
     }
   };
 
-  const getSizeStyles = (): { container: ViewStyle; text: TextStyle } => {
+  const getSizeStyles = (): {
+    button: ViewStyle;
+    shadow: ViewStyle;
+    text: TextStyle;
+    borderRadius: number;
+  } => {
     switch (size) {
       case 'sm':
         return {
-          container: {
+          button: {
             height: 36,
             paddingHorizontal: Spacing.md,
-            borderRadius: BorderRadius.lg,
+          },
+          shadow: {
+            height: 36 + ButtonDepth,
+            paddingHorizontal: Spacing.md,
           },
           text: {
             fontSize: FontSize.sm,
           },
+          borderRadius: BorderRadius.lg,
         };
       case 'md':
         return {
-          container: {
+          button: {
             height: 44,
             paddingHorizontal: Spacing.lg,
-            borderRadius: BorderRadius.xl,
+          },
+          shadow: {
+            height: 44 + ButtonDepth,
+            paddingHorizontal: Spacing.lg,
           },
           text: {
             fontSize: FontSize.base,
           },
+          borderRadius: BorderRadius.xl,
         };
       case 'lg':
         return {
-          container: {
+          button: {
             height: 52,
             paddingHorizontal: Spacing.xl,
-            borderRadius: BorderRadius['2xl'],
+          },
+          shadow: {
+            height: 52 + ButtonDepth,
+            paddingHorizontal: Spacing.xl,
           },
           text: {
             fontSize: FontSize.lg,
           },
+          borderRadius: BorderRadius['2xl'],
         };
       case 'xl':
         return {
-          container: {
+          button: {
             height: 56,
             paddingHorizontal: Spacing['2xl'],
-            borderRadius: BorderRadius['2xl'],
+          },
+          shadow: {
+            height: 56 + ButtonDepth,
+            paddingHorizontal: Spacing['2xl'],
           },
           text: {
             fontSize: FontSize.xl,
           },
+          borderRadius: BorderRadius['2xl'],
         };
     }
   };
@@ -200,52 +223,116 @@ export function Button({
   const variantStyles = getVariantStyles();
   const sizeStyles = getSizeStyles();
 
-  // Don't apply 3D effect to ghost variant
-  const use3DEffect = variant !== 'ghost' && !isDisabled;
+  // Ghost variant doesn't use 3D effect
+  if (variant === 'ghost') {
+    return (
+      <Pressable
+        style={[
+          styles.ghostButton,
+          sizeStyles.button,
+          { borderRadius: sizeStyles.borderRadius },
+          fullWidth && styles.fullWidth,
+          style,
+        ]}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        onPress={handlePress}
+        disabled={isDisabled}
+        {...props}
+      >
+        {loading ? (
+          <ActivityIndicator size="small" color={variantStyles.text.color} />
+        ) : (
+          <View style={styles.content}>
+            {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
+            <Text style={[styles.text, sizeStyles.text, variantStyles.text]}>
+              {children}
+            </Text>
+            {rightIcon && <View style={styles.rightIcon}>{rightIcon}</View>}
+          </View>
+        )}
+      </Pressable>
+    );
+  }
 
+  // 3D button with shadow wrapper
   return (
-    <AnimatedPressable
+    <View
       style={[
-        styles.base,
-        variantStyles.container,
-        sizeStyles.container,
+        styles.wrapper,
         fullWidth && styles.fullWidth,
-        use3DEffect && {
-          borderBottomColor: variantStyles.borderColor,
-        },
         style,
-        use3DEffect && animatedContainerStyle,
       ]}
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
-      onPress={handlePress}
-      disabled={isDisabled}
-      {...props}
     >
-      {loading ? (
-        <ActivityIndicator
-          size="small"
-          color={variantStyles.text.color}
-        />
-      ) : (
-        <View style={styles.content}>
-          {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
-          <Text style={[styles.text, sizeStyles.text, variantStyles.text]}>
-            {children}
-          </Text>
-          {rightIcon && <View style={styles.rightIcon}>{rightIcon}</View>}
-        </View>
-      )}
-    </AnimatedPressable>
+      {/* Shadow layer - sits behind and shows at bottom */}
+      <View
+        style={[
+          styles.shadow,
+          sizeStyles.shadow,
+          variantStyles.shadow,
+          { borderRadius: sizeStyles.borderRadius },
+        ]}
+      />
+
+      {/* Button layer - animates up/down */}
+      <AnimatedView
+        style={[
+          styles.button,
+          sizeStyles.button,
+          variantStyles.button,
+          { borderRadius: sizeStyles.borderRadius },
+          animatedButtonStyle,
+        ]}
+      >
+        <Pressable
+          style={styles.pressable}
+          onPressIn={handlePressIn}
+          onPressOut={handlePressOut}
+          onPress={handlePress}
+          disabled={isDisabled}
+          {...props}
+        >
+          {loading ? (
+            <ActivityIndicator size="small" color={variantStyles.text.color} />
+          ) : (
+            <View style={styles.content}>
+              {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
+              <Text style={[styles.text, sizeStyles.text, variantStyles.text]}>
+                {children}
+              </Text>
+              {rightIcon && <View style={styles.rightIcon}>{rightIcon}</View>}
+            </View>
+          )}
+        </Pressable>
+      </AnimatedView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  base: {
+  wrapper: {
+    position: 'relative',
+  },
+  shadow: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+  },
+  button: {
+    position: 'relative',
+    zIndex: 1,
+  },
+  pressable: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderBottomWidth: ButtonDepth, // 6px 3D effect
+  },
+  ghostButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   fullWidth: {
     width: '100%',
@@ -256,7 +343,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    fontFamily: FontFamily.black, // 900 - Nunito Black for bold CTA
+    fontFamily: FontFamily.black,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
