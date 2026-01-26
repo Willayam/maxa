@@ -141,8 +141,23 @@ export default function SummaryScreen() {
           </Text>
         </Animated.View>
 
+        {/* XP Card - Duolingo-style celebration */}
+        <Animated.View entering={FadeInDown.duration(500).delay(150)}>
+          <Card style={[styles.xpCard, { backgroundColor: colors.primaryLight }]}>
+            <View style={styles.xpContent}>
+              <Text style={styles.xpIcon}>⚡</Text>
+              <View style={styles.xpTextContainer}>
+                <Text style={[styles.xpAmount, { color: colors.primary }]}>
+                  +{xpEarned}
+                </Text>
+                <Text variant="body" color="secondary">XP tjänat</Text>
+              </View>
+            </View>
+          </Card>
+        </Animated.View>
+
         {/* Score card */}
-        <Animated.View entering={FadeInDown.duration(500).delay(200)}>
+        <Animated.View entering={FadeInDown.duration(500).delay(300)}>
           <Card style={styles.scoreCard}>
             <View style={styles.scoreContent}>
               <View style={styles.scoreMain}>
@@ -199,7 +214,7 @@ export default function SummaryScreen() {
         </Animated.View>
 
         {/* Stats card */}
-        <Animated.View entering={FadeInDown.duration(500).delay(300)}>
+        <Animated.View entering={FadeInDown.duration(500).delay(450)}>
           <Card style={styles.statsCard}>
             {/* Total time */}
             <View style={styles.statRow}>
@@ -291,7 +306,7 @@ export default function SummaryScreen() {
 
       {/* Bottom buttons */}
       <Animated.View
-        entering={FadeInDown.duration(500).delay(400)}
+        entering={FadeInDown.duration(500).delay(600)}
         style={[
           styles.bottomBar,
           {
@@ -337,6 +352,24 @@ const styles = StyleSheet.create({
   titleIcon: {
     fontSize: 64,
     marginBottom: Spacing.md,
+  },
+  xpCard: {
+    marginBottom: Spacing.lg,
+  },
+  xpContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  xpIcon: {
+    fontSize: 40,
+    marginRight: Spacing.md,
+  },
+  xpTextContainer: {
+    flex: 1,
+  },
+  xpAmount: {
+    fontSize: FontSize['3xl'],
+    fontFamily: FontFamily.bold,
   },
   scoreCard: {
     marginBottom: Spacing.lg,
