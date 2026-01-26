@@ -22,7 +22,9 @@ awaiting: user response
 
 ### 1. Idag Tab Display
 expected: Idag tab shows countdown to HP exam, goal score, daily mission progress (X/20 questions), and streak chip with current streak count
-result: [pending]
+result: issue
+reported: "Fire emoji pulsing too intensively, not balanced. Redundant info (both '20 questions left' AND '0/20'). Button text cut off, shadow not rounded, should use icon not emoji, text not centered. '69 Dagar kvar' spacing/fonts ugly. 1.8 goal too light barely visible. Screen cuts off above tab menu. Veckans framsteg section could be better. Max AI section lame needs real mascot vibes like Duolingo."
+severity: major
 
 ### 2. Idag Tab CTA Pulsing
 expected: If daily goal is not yet complete, the main CTA button pulses subtly (1.02 scale animation). Button text shows "STARTA" (no progress), "FORTSÄTT" (mid-progress), or "MÅL UPPNÅTT" (goal complete)
@@ -64,10 +66,18 @@ result: [pending]
 
 total: 10
 passed: 0
-issues: 0
-pending: 10
+issues: 1
+pending: 9
 skipped: 0
 
 ## Gaps
 
-[none yet]
+- truth: "Idag tab shows polished, balanced UI with countdown, goal, daily progress, and streak"
+  status: failed
+  reason: "User reported: Fire emoji pulsing too intensively. Redundant info display. Button issues (cut off, shadow, centering). Ugly countdown typography. Goal score too light. Screen cutoff. Veckans framsteg needs work. Max AI section needs real mascot vibes."
+  severity: major
+  test: 1
+  root_cause: ""
+  artifacts: []
+  missing: []
+  debug_session: ""
