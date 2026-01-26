@@ -169,7 +169,6 @@ export default function JagScreen() {
   const {
     currentStreak,
     longestStreak,
-    totalXP,
     level,
     xpForNextLevel,
     xpProgressInLevel,

@@ -82,7 +82,6 @@ export default function SummaryScreen() {
 
   // Streak celebration state
   const [showStreakCelebration, setShowStreakCelebration] = useState(false);
-  const streakMilestones = [3, 7, 14, 30, 60, 100];
 
   // Parse params
   const section = params.section || 'XYZ';
@@ -140,6 +139,7 @@ export default function SummaryScreen() {
 
   // Check for streak milestone after progress update
   useEffect(() => {
+    const streakMilestones = [3, 7, 14, 30, 60, 100];
     if (hasUpdatedProgress && streakMilestones.includes(currentStreak)) {
       // Small delay to let the UI render first
       const timer = setTimeout(() => {
