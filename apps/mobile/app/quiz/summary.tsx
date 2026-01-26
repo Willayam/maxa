@@ -5,6 +5,7 @@ import { StyleSheet, View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import Animated, { FadeInDown } from 'react-native-reanimated';
+import * as Haptics from 'expo-haptics';
 
 import { Text } from '@/components/ui/text';
 import { Button } from '@/components/ui/button';
@@ -115,6 +116,11 @@ export default function SummaryScreen() {
     }
   }, [hasUpdatedProgress, answers.length, xpEarned, correctCount, totalQuestions, addXP, completeSession, updateStreak]);
 
+  // Celebration haptic on mount
+  useEffect(() => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+  }, []);
+
   // Handle navigation
   const handleDone = () => {
     resetSession(); // Clear quizStore
@@ -142,7 +148,7 @@ export default function SummaryScreen() {
       >
         {/* Title section with emoji */}
         <Animated.View
-          entering={FadeInDown.duration(500).delay(100)}
+          entering={FadeInDown.duration(400)}
           style={styles.titleSection}
         >
           <Text style={styles.titleIcon}>{summaryTitle.icon}</Text>
@@ -152,7 +158,7 @@ export default function SummaryScreen() {
         </Animated.View>
 
         {/* XP Card - Duolingo-style celebration */}
-        <Animated.View entering={FadeInDown.duration(500).delay(150)}>
+        <Animated.View entering={FadeInDown.duration(400).delay(150)}>
           <Card style={[styles.xpCard, { backgroundColor: colors.primaryLight }]}>
             <View style={styles.xpContent}>
               <Text style={styles.xpIcon}>⚡</Text>
@@ -167,7 +173,7 @@ export default function SummaryScreen() {
         </Animated.View>
 
         {/* Score card */}
-        <Animated.View entering={FadeInDown.duration(500).delay(300)}>
+        <Animated.View entering={FadeInDown.duration(400).delay(300)}>
           <Card style={styles.scoreCard}>
             <View style={styles.scoreContent}>
               <View style={styles.scoreMain}>
@@ -224,7 +230,7 @@ export default function SummaryScreen() {
         </Animated.View>
 
         {/* Stats card */}
-        <Animated.View entering={FadeInDown.duration(500).delay(450)}>
+        <Animated.View entering={FadeInDown.duration(400).delay(450)}>
           <Card style={styles.statsCard}>
             {/* Total time */}
             <View style={styles.statRow}>
@@ -316,7 +322,7 @@ export default function SummaryScreen() {
 
       {/* Bottom buttons */}
       <Animated.View
-        entering={FadeInDown.duration(500).delay(600)}
+        entering={FadeInDown.duration(400).delay(600)}
         style={[
           styles.bottomBar,
           {
