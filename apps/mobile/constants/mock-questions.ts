@@ -440,3 +440,40 @@ export function getQuestionsForSection(section: SectionCode, count: number = 10)
     number: index + 1,
   }));
 }
+
+// Get a mixed set of questions from different sections
+export function getMixedQuestions(count: number = 10): Question[] {
+  // Take proportional amounts from each section (representative HP mix)
+  const ord = MOCK_QUESTIONS_ORD.slice(0, 3);
+  const las = MOCK_QUESTIONS_LAS.slice(0, 2);
+  const xyz = MOCK_QUESTIONS_XYZ.slice(0, 3);
+  const kva = MOCK_QUESTIONS_KVA.slice(0, 2);
+
+  // Combine and shuffle
+  const mixed = [...ord, ...las, ...xyz, ...kva]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, count)
+    .map((q, i) => ({ ...q, number: i + 1 }));
+
+  return mixed;
+}
+
+// Calculate XP earned from a quiz session
+export function calculateSessionXP(answers: AnswerRecord[]): { xp: number; accuracy: number } {
+  let xp = 0;
+  let streak = 0;
+  let correct = 0;
+
+  for (const answer of answers) {
+    if (answer.correct) {
+      correct++;
+      xp += 10 + (streak * 2);
+      streak++;
+    } else {
+      streak = 0;
+    }
+  }
+
+  const accuracy = answers.length > 0 ? (correct / answers.length) * 100 : 0;
+  return { xp: Math.round(xp), accuracy: Math.round(accuracy) };
+}
