@@ -15,6 +15,8 @@ import {
   type Test,
   type TestFile,
 } from "@/data/tests";
+import { NormeringSection } from "@/components/charts/normering-section";
+import { getNormeringData } from "@/lib/normering/loader";
 
 export function generateStaticParams() {
   return tests.map((test) => ({
@@ -69,6 +71,9 @@ export default async function TestPage({ params }: PageProps) {
   if (!test) {
     notFound();
   }
+
+  // Load normering data (returns null if not available)
+  const normeringData = await getNormeringData(slug);
 
   const seasonLabel = test.season === "vår" ? "Våren" : "Hösten";
   const title = `Högskoleprovet ${seasonLabel.toLowerCase()} ${test.year}`;
