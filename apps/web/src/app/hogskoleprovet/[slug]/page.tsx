@@ -168,6 +168,54 @@ export default async function TestPage({ params }: PageProps) {
           )}
 
           <RelatedTests currentTest={test} />
+
+          {/* Strategy content links */}
+          <section className="mt-16 pt-8 border-t border-border">
+            <h2 className="text-xl font-bold text-foreground mb-4">
+              Lär dig strategier
+            </h2>
+            <p className="text-foreground-muted mb-6">
+              Förbättra ditt resultat genom att lära dig känna igen vanliga fällor och optimera din tidsplanering.
+            </p>
+            <div className="grid gap-3">
+              <Link
+                href="/hogskoleprovet/strategier/kvantitativa-fallor"
+                className="flex items-center justify-between p-4 bg-card-background rounded-xl border-2 border-border hover:border-primary transition-colors group"
+              >
+                <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Kvantitativa fällor
+                </span>
+                <span className="text-foreground-muted group-hover:text-primary">&rarr;</span>
+              </Link>
+              <Link
+                href="/hogskoleprovet/strategier/verbala-fallor"
+                className="flex items-center justify-between p-4 bg-card-background rounded-xl border-2 border-border hover:border-primary transition-colors group"
+              >
+                <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Verbala fällor
+                </span>
+                <span className="text-foreground-muted group-hover:text-primary">&rarr;</span>
+              </Link>
+              <Link
+                href="/hogskoleprovet/strategier/vanliga-misstag"
+                className="flex items-center justify-between p-4 bg-card-background rounded-xl border-2 border-border hover:border-primary transition-colors group"
+              >
+                <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Vanliga misstag
+                </span>
+                <span className="text-foreground-muted group-hover:text-primary">&rarr;</span>
+              </Link>
+              <Link
+                href="/hogskoleprovet/strategier/tidsstrategi"
+                className="flex items-center justify-between p-4 bg-card-background rounded-xl border-2 border-border hover:border-primary transition-colors group"
+              >
+                <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Tidsstrategi
+                </span>
+                <span className="text-foreground-muted group-hover:text-primary">&rarr;</span>
+              </Link>
+            </div>
+          </section>
         </div>
       </main>
       <SiteFooter />
