@@ -4,209 +4,163 @@
 
 ## APIs & External Services
 
-**Email Service:**
-- **Resend** - Transactional email delivery
-  - Used for: Waitlist confirmation emails (double opt-in flow)
-  - SDK/Client: Fetch API (custom integration, no SDK)
-  - Implementation: `convex/waitlist.ts` → `sendConfirmationEmail` internal action
-  - Auth: `RESEND_API_KEY` environment variable (backend only)
-  - API Endpoint: `https://api.resend.com/emails` (POST)
-  - From address: `Maxa <hej@maxahp.se>`
+**PostHog Analytics:**
+- Service: PostHog (https://posthog.com)
+- What it's used for: Product analytics, user tracking, pageview tracking, screen tracking
+- SDK/Client:
+  - Web: `posthog-js` 1.335.2 (`apps/web/src/providers/posthog-provider.tsx`)
+  - Mobile: `posthog-react-native` 4.24.0 (`apps/mobile/providers/posthog-provider.tsx`)
+- Auth: Environment variables `NEXT_PUBLIC_POSTHOG_KEY` (web) / `EXPO_PUBLIC_POSTHOG_KEY` (mobile)
+- Configuration:
+  - Region: EU host `https://eu.i.posthog.com` (default for GDPR compliance) or US `https://us.i.posthog.com`
+  - Web: Manual pageview tracking on route changes, respects Do Not Track setting, session recording disabled
+  - Mobile: Auto screen tracking on navigation, auto app lifecycle events, deep link tracking, session recording disabled
+  - Feature: Graceful degradation - analytics disabled if API key not set
 
-**Analytics & Product Insights:**
-- **PostHog** - Product analytics and user telemetry
-  - Used for: Event tracking, pageview tracking, app lifecycle events
-  - SDK/Client: `posthog-js` (web), `posthog-react-native` (mobile)
-  - Auth: `NEXT_PUBLIC_POSTHOG_KEY` (web), `EXPO_PUBLIC_POSTHOG_KEY` (mobile)
-  - Host: `NEXT_PUBLIC_POSTHOG_HOST` / `EXPO_PUBLIC_POSTHOG_HOST`
-  - Default: EU server (https://eu.i.posthog.com) for GDPR compliance
-  - Features:
-    - Web: Manual pageview tracking via `posthog.capture('$pageview')` in `apps/web/src/providers/posthog-provider.tsx`
-    - Mobile: Auto-captures screen views, app lifecycle, deep links via `posthog.screen()` in `apps/mobile/providers/posthog-provider.tsx`
-    - Privacy: Respects DNT (Do Not Track) header on web
-    - Session recording disabled by default
-    - Optional: Can be disabled if API key not set
+**Google Fonts API:**
+- Service: Google Fonts (https://fonts.googleapis.com)
+- What it's used for: Nunito font family loading
+- Integration: CDN link in `apps/web/src/app/layout.tsx`
+  - Link: `https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap`
+- Also via `@expo-google-fonts/nunito` 0.4.2 for mobile app
 
 ## Data Storage
 
-**Databases:**
-- **Convex** (primary backend)
-  - Type: Real-time document database (CRDT-based)
-  - Client: `convex/react` (web), Convex SDK (backend)
-  - Connection: `NEXT_PUBLIC_CONVEX_URL` environment variable
-  - Location: Root `convex/` directory (shared by web and mobile)
-  - Schema file: `convex/schema.ts`
-
-**Tables:**
-- `tests` - Historical Högskoleprovet test metadata
-  - Fields: year, season, date, slug, sourceUrl
-  - Indexes: by_slug, by_year_season
-
-- `testFiles` - Individual PDF files linked to tests
-  - Fields: testId, storageId, fileType, section, passNumber, originalFilename, sizeBytes
-  - File types: provpass, facit, kallhanvisning, normering
-  - Sections: verbal, kvantitativ
-  - Index: by_test
-
-- `waitlist` - Email waitlist signups with double opt-in
-  - Fields: email, createdAt, source, status, confirmationToken, confirmationSentAt, confirmedAt
-  - Status: pending, confirmed
-  - Indexes: by_email, by_token
+**Primary Database:**
+- Provider: Convex (https://www.convex.dev)
+- Type: Real-time serverless database with WebSocket sync
+- Connection:
+  - URL: `NEXT_PUBLIC_CONVEX_URL` (configured via environment)
+  - Client: `convex/react` (web) and Convex client (mobile via shared logic)
+- Schema location: `convex/schema.ts`
+  - `tests` table: Test administrations with year, season, date, slug, sourceUrl
+  - `testFiles` table: Individual PDF files linked to tests with file metadata
+  - `waitlist` table: Email signups from landing page
+- Queries/Mutations: `convex/tests.ts`, `convex/files.ts`, `convex/waitlist.ts`
 
 **File Storage:**
-- **Convex File Storage** (built-in to Convex)
-  - Used for: PDF storage for historical HP tests
-  - Integration: `convex/files.ts` queries/mutations
-  - Storage IDs: Referenced in `testFiles.storageId`
-  - Upload flow: `generateUploadUrl()` → client upload → `createFile()` mutation
-  - Download flow: `getUrl()` query returns signed URL
+- Provider: Convex file storage (built-in)
+- What it stores: PDF files for Högskoleprovet tests (test papers, answer keys, explanations)
+- How it works:
+  - Upload URL generation: `convex/files.ts::generateUploadUrl()`
+  - File storage after upload: `convex/files.ts::createFile()`
+  - Download URLs: `convex/files.ts::getUrl()`
+- Access: Only via authenticated Convex queries/mutations
 
 **Caching:**
-- Not detected
+- Strategy: Real-time via Convex WebSocket - no external caching service
+- React Query/SWR: Not explicitly used; Convex React hooks handle caching
 
 ## Authentication & Identity
 
-**Auth Provider:**
-- None detected - No user authentication system
-- Waitlist uses email-based double opt-in (not identity provider)
-
-**Current Approach:**
-- Waitlist stored in Convex without user authentication
-- Email confirmation via token (stateless, token-based verification)
-- Double opt-in flow: `join()` → email sent → `confirmEmail()` on link click
+**Auth Provider:** Custom auth (no centralized auth service)
+- Implementation: Secret-based authentication for admin operations
+  - Admin secret passed to Convex mutations for test/file uploads
+  - Mutations check `process.env.ADMIN_SECRET` server-side
+  - Files: `convex/tests.ts`, `convex/files.ts`
+- User-facing features (waitlist signup) have no authentication required
+- Future auth: System designed to work with Auth0/Clerk if needed (Convex supports both)
 
 ## Monitoring & Observability
 
 **Error Tracking:**
-- Not detected - No dedicated error tracking service (Sentry, Rollbar, etc.)
+- Service: Not explicitly configured
+- Default behavior: Browser console errors, server-side error handling in Convex mutations
 
 **Logs:**
-- Console logging in development
-- Backend: `convex/waitlist.ts` logs errors to console if RESEND_API_KEY missing or email send fails
-- Frontend: PostHog provider logs missing API key to console if not configured
+- Approach:
+  - Client-side: Browser DevTools console
+  - Server-side (Convex): Convex dashboard logs
+  - PostHog also captures events with limited error tracking
+
+**Performance Monitoring:**
+- PostHog provides basic user interaction metrics
+- No dedicated APM (Application Performance Monitoring) service
 
 ## CI/CD & Deployment
 
-**Hosting:**
-- Assumed: Vercel (Next.js standard), Expo managed service (mobile)
-- Convex: Hosted backend (convex.dev)
+**Hosting Platforms:**
+
+Web App (`apps/web/`):
+- Platform: Next.js compatible (Vercel, Netlify, self-hosted Node.js)
+- Framework support: Next.js 15.1.0 with App Router
+- Environment: Node.js runtime
+
+Mobile App (`apps/mobile/`):
+- Platform: Expo Go for development, EAS Build for production
+- Distribution: App Store (iOS) and Google Play (Android) via EAS or local build
+- Expo Tunnel: For live preview during development
+
+Backend (`convex/`):
+- Platform: Convex cloud (https://www.convex.dev)
+- Deployment: `bunx convex deploy` command
+- Environment: Serverless (Convex handles all infrastructure)
+- Database: Managed by Convex
 
 **CI Pipeline:**
-- Not detected - No GitHub Actions, CI config files found
+- Service: Not detected (no GitHub Actions, GitLab CI, etc. in repo)
+- Local development: Turbo for monorepo task orchestration
+- Scripts available:
+  - `bun dev` - Start all dev servers
+  - `bun build` - Build all packages
+  - `bun lint` - Lint all packages
+  - `bun typecheck` - Type-check all packages
+
+**Deployment Flow:**
+```
+Web: Local build → Next.js build output → Deploy to Vercel/Netlify/Node.js host
+Mobile: Source → Expo/EAS Build → iOS app + Android app → App Stores
+Backend: TypeScript → bunx convex deploy → Convex cloud
+```
 
 ## Environment Configuration
 
-**Required env vars (Production):**
-- `NEXT_PUBLIC_CONVEX_URL` - Convex backend URL (web only, SSR/client)
-- `NEXT_PUBLIC_APP_URL` - App domain for confirmation links (defaults to https://maxahp.se)
-- `RESEND_API_KEY` - Email service (backend/Convex only, required for waitlist emails)
+**Required Environment Variables:**
 
-**Optional env vars (Production):**
-- `NEXT_PUBLIC_POSTHOG_KEY` - Analytics (web, optional)
-- `NEXT_PUBLIC_POSTHOG_HOST` - Analytics host (defaults to EU)
-- `EXPO_PUBLIC_POSTHOG_KEY` - Analytics (mobile, optional)
-- `EXPO_PUBLIC_POSTHOG_HOST` - Analytics host (defaults to EU)
+Critical:
+- `NEXT_PUBLIC_CONVEX_URL` - Convex backend URL (blocks web app without it, but gracefully fails with warning)
+- `CONVEX_URL` - Convex backend URL for deployment scripts (required for uploads)
+- `ADMIN_SECRET` - Secret token for administrative mutations (test/file creation)
 
-**Secrets location:**
-- Development: `.env.local` in `apps/web/` and `apps/mobile/`
-- Template: `.env.example` at repo root documents all required/optional vars
+Optional:
+- `NEXT_PUBLIC_POSTHOG_KEY` - PostHog analytics key (analytics disabled if not set)
+- `NEXT_PUBLIC_POSTHOG_HOST` - PostHog EU/US host selection (defaults to EU)
+- `EXPO_PUBLIC_POSTHOG_KEY` - Mobile PostHog analytics key (analytics disabled if not set)
+- `EXPO_PUBLIC_POSTHOG_HOST` - Mobile PostHog host (defaults to EU)
+- `NODE_ENV` - Runtime environment (development/production) - auto-set by frameworks
+
+**Secrets Location:**
+- Local development: `.env.local` files (not committed)
+- Template: `.env.example` documents required variables
+- Deployment:
+  - Vercel/Netlify: Environment variables in dashboard
+  - Convex: Environment variables in Convex dashboard
+  - Mobile: Build-time environment injection via EAS secrets
 
 ## Webhooks & Callbacks
 
-**Incoming:**
-- Not detected - No webhook endpoints
+**Incoming Webhooks:**
+- Not detected - no webhook endpoints in codebase
 
-**Outgoing:**
-- Resend email callbacks: Implicit via email confirmation flow
-  - Flow: Email sent → User clicks link → GET `/bekrafta?token=...` → `confirmEmail()` mutation
-  - Implementation: `apps/web/src/app/bekrafta/` (confirmation page)
+**Outgoing Webhooks:**
+- Not detected - Convex backend does not trigger external webhooks
 
-## Third-Party Content & APIs
+**Notification Channels:**
+- PostHog: One-way event tracking (no callbacks)
+- Convex: Real-time subscriptions via WebSocket (client-side listening)
 
-**Content Sources:**
-- Historical Högskoleprovet PDFs sourced from studera.nu
-  - Reference: `convex/schema.ts` → `tests.sourceUrl` stores original source
-  - Download script: `scripts/download_hogskoleprovet_tests.py` scrapes studera.nu
-  - Upload script: `scripts/upload-to-convex.ts` uploads PDFs to Convex storage
+## Third-Party Dependencies
 
-**Google Fonts:**
-- Nunito font family via Google Fonts CDN
-  - URL: `https://fonts.googleapis.com` with preconnect optimization
-  - Weights: 400, 500, 600, 700, 800, 900
+**Open Source Libraries Used:**
+- Framer Motion - Animation library (React only)
+- Lucide React - Icon library (web)
+- React Markdown - Markdown parser
+- Gray Matter - Front matter extraction (for future CMS integration)
+- NativeWind tooling ecosystem (removed from mobile, now StyleSheet-based)
 
-## Integration Flow Diagrams
-
-**Waitlist (Double Opt-In Flow):**
-```
-Frontend (web)
-  ↓
-[POST] /api/waitlist/join (Convex mutation)
-  ├→ Check if email exists
-  ├→ Generate confirmationToken
-  ├→ Insert into waitlist (status: pending)
-  ├→ Schedule internal action
-  ↓
-[Convex] sendConfirmationEmail (internal action)
-  ├→ Generate confirmation URL with token
-  ├→ Send via Resend API
-  ├→ Mark confirmationSentAt on success
-  ↓
-User receives email
-  ↓
-User clicks confirmation link
-  ↓
-Frontend: GET /bekrafta?token=...
-  ↓
-[Convex] confirmEmail mutation (public)
-  ├→ Lookup token in waitlist
-  ├→ Update status: pending → confirmed
-  ├→ Set confirmedAt timestamp
-  ↓
-PostHog: Capture event (if enabled)
-```
-
-**Historical Tests Download Flow:**
-```
-Frontend (web)
-  ↓
-Route: /hogskoleprovet/[slug]
-  ↓
-[Convex] getBySlug query
-  ↓
-[Convex] getByTest query (fetch files)
-  ↓
-[Convex] getUrl query (per file)
-  ↓
-Generate signed Convex URLs
-  ↓
-Frontend: Render download links
-  ↓
-User click → Browser fetches from Convex signed URL
-```
-
-**Analytics Flow:**
-```
-Frontend (web/mobile)
-  ↓
-User navigates / performs action
-  ↓
-PostHog SDK captures event
-  ↓
-PostHog API (EU endpoint)
-  ├→ Record in PostHog project
-  ├→ Respect DNT header (web only)
-  ↓
-Dashboard accessible in PostHog UI
-```
-
-## Data Privacy & Compliance
-
-**GDPR Considerations:**
-- Email storage: Encrypted in Convex
-- Confirmation tokens: Cryptographic UUIDs, single-use
-- Privacy-first analytics: PostHog defaults to EU server
-- DNT respected: PostHog web SDK respects browser DNT setting
-- Data retention: Not specified (check Convex/PostHog policies)
+**Content APIs (Future):**
+- StuDera.nu - Source of Högskoleprovet PDFs (scraped via `scripts/download_hogskoleprovet_tests.py`)
+- Currently manual download, not automated API integration
 
 ---
 

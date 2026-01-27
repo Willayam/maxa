@@ -18,12 +18,33 @@ import {
 
 import { useColorScheme } from '@maxa/shared/hooks';
 import { PostHogProvider } from '@/providers/posthog-provider';
+import { Colors } from '@/constants/theme';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? 'light'];
+
+  // Customize navigation themes to use app background colors
+  const customLightTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: Colors.light.background,
+      card: Colors.light.cardBackground,
+    },
+  };
+
+  const customDarkTheme = {
+    ...DarkTheme,
+    colors: {
+      ...DarkTheme.colors,
+      background: Colors.dark.background,
+      card: Colors.dark.cardBackground,
+    },
+  };
 
   const [fontsLoaded] = useFonts({
     Nunito_400Regular,
@@ -46,8 +67,8 @@ export default function RootLayout() {
 
   return (
     <PostHogProvider>
-      <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <View style={{ flex: 1, backgroundColor: colors.background }} onLayout={onLayoutRootView}>
+        <ThemeProvider value={colorScheme === 'dark' ? customDarkTheme : customLightTheme}>
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="(tabs)" />
             <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />

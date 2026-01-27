@@ -1,95 +1,115 @@
-# Maxa SEO & Content Enhancement
+# Maxa Mobile App — Complete UI Flow
 
 ## What This Is
 
-A comprehensive SEO and content platform for Maxa's Hogskoleprovet web app. Test download pages are now rich, SEO-optimized study resources with interactive normering (score conversion) visualizations, comprehensive Swedish strategy content, and complete technical SEO infrastructure. 72 statically generated pages establish Maxa as an authority on Hogskoleprovet-related searches.
+Maxa is "Duolingo for Högskoleprovet" — a mobile app that helps Swedish students (16-25) prepare for the national university admissions test. This milestone delivers a complete, polished UI flow with mock data that real users can test, establishing the foundation before backend integration.
 
 ## Core Value
 
-**Every test page becomes a valuable study resource, not just a download link.** Users find actionable data (normering charts) and strategy insights, while search engines see structured, crawlable content that establishes Maxa as an authority on Hogskoleprovet.
+Users can experience the full app flow — from onboarding through quiz practice — with an instant, native-feeling experience that makes test prep feel achievable.
 
 ## Requirements
 
 ### Validated
 
-- ✓ Test listing page at `/hogskoleprovet` with all historical tests — existing
-- ✓ Test detail pages at `/hogskoleprovet/[slug]` with PDF downloads — existing
-- ✓ Static site generation for test pages (good for SEO) — existing
-- ✓ Convex backend for file storage and metadata — existing
+- ✓ Tab navigation (Idag, Träna, Jag) — existing
+- ✓ Basic Idag dashboard layout — existing
+- ✓ Design tokens and theme system — existing
 - ✓ PostHog analytics integration — existing
-- ✓ Dark/light theme support — existing
-- ✓ Permanent redirects from old URLs (`/gamla-prov/*`) — existing
-- ✓ SEO-01: Dynamic sitemap.xml (34 URLs incl. test + strategy pages) — v1.0
-- ✓ SEO-02: robots.txt with crawler directives — v1.0
-- ✓ SEO-03: JSON-LD structured data (Article + BreadcrumbList) — v1.0
-- ✓ SEO-04: Canonical URLs on all pages — v1.0
-- ✓ SEO-05: Dynamic OpenGraph images (dark theme branding) — v1.0
-- ✓ SEO-06: Enhanced page metadata optimized for search intent — v1.0
-- ✓ NORM-01: Normering data extracted from PDFs to JSON — v1.0
-- ✓ NORM-02: Static JSON normering storage (SSG-compatible) — v1.0
-- ✓ NORM-03: Interactive Recharts histogram with bell curve — v1.0
-- ✓ NORM-04: Accessible HTML data table for bots/screen readers — v1.0
-- ✓ NORM-05: Normering section on all test detail pages — v1.0
-- ✓ NORM-06: Complete normering data for all 26 tests (2013-2025) — v1.0
-- ✓ STRAT-01: Kvantitativa fallor page (XYZ, KVA, NOG, DTK) — v1.0
-- ✓ STRAT-02: Verbala fallor page (ORD, LAS, MEK, ELF) — v1.0
-- ✓ STRAT-03: Vanliga misstag page — v1.0
-- ✓ STRAT-04: Tidsstrategi page — v1.0
-- ✓ STRAT-05: Swedish content rewritten from research — v1.0
-- ✓ LINK-01: Strategy links from test detail pages — v1.0
-- ✓ LINK-02: Test links from strategy pages (RecentTests) — v1.0
-- ✓ LINK-03: Related tests section with relevance scoring — v1.0
-- ✓ LINK-04: Breadcrumb navigation on all pages — v1.0
 
 ### Active
 
-(No active requirements — next milestone TBD)
+**Design Audit & Polish:**
+- [ ] Audit existing screens (Idag, Träna, Jag) for consistency
+- [ ] Refine components to unified quality bar
+- [ ] Add micro-interactions (button presses, card transitions)
+- [ ] Add haptic feedback on key actions
+- [ ] Implement loading states for rare network calls
+
+**Onboarding Flow (8 screens):**
+- [ ] Welcome screen (name input, persona picker: gymnasieelev/omtagare/förälder)
+- [ ] Dream screen (program search, city picker)
+- [ ] Score screen (target HP slider, shows required score)
+- [ ] Date screen (exam date picker, countdown display)
+- [ ] Time screen (daily commitment: 10/15/25 min options)
+- [ ] Plan screen (path summary, baseline CTA)
+- [ ] Baseline screen (10 mixed questions, timed)
+- [ ] Results screen (current level vs goal, weakest section, account CTA)
+
+**Account Creation:**
+- [ ] Account creation after baseline (Apple/Google/Email)
+- [ ] Delayed signup pattern (Duolingo-style)
+
+**Main App Tabs:**
+- [ ] Idag: Countdown, goal score, daily mission, streak chip, start practice button
+- [ ] Träna: Mode selector (svagaste först, delprov-träning, simulera prov)
+- [ ] Jag: Progress card, weakness tiles (röd/gul/grön), Max coach box
+
+**Quiz Flow:**
+- [ ] Question card with options and optional timer
+- [ ] Answer feedback (correct/wrong with animations)
+- [ ] Session summary with score and Max celebration
+- [ ] Review errors screen with explanations
+
+**Max Coach (Static):**
+- [ ] Static personality-based messages (Hype/Lugn/Strikt styles)
+- [ ] Coach style settings in Jag tab
+- [ ] Trigger on: quiz completion, streaks, encouragement
+
+**Mock Data:**
+- [ ] ~10 mock HP questions (mix of verbal + quantitative)
+- [ ] Question types: ORD, LÄS, XYZ, KVA (representative sample)
+- [ ] Mock scoring and results calculation
 
 ### Out of Scope
 
-- Interactive trap examples/visualizations on strategy pages — complexity, defer to v2
-- Video content — different content type, separate initiative
-- User accounts/progress tracking — separate feature milestone
-- Mobile app content sync — app has different content strategy
-- Paid/premium content gating — monetization is separate decision
-- A/B testing of content — optimize after baseline established
+- Real AI coach responses (Gemini/GPT) — Phase 4, requires backend
+- RevenueCat/payments — Phase 5, requires subscription infrastructure
+- Push notifications — Phase 4, requires backend triggers
+- Real question extraction from PDFs — separate workstream
+- Web app changes — mobile-first for this milestone
+- Leaderboards/social features — post-v1
 
 ## Context
 
-**Current State (v1.0 shipped 2026-01-27):**
-- 72 statically generated pages (27 test pages, 5 strategy pages, hub, list, root + OG images)
-- 7,911 lines of TypeScript/TSX in web app
-- Tech stack: Next.js 15 (App Router, SSG), Tailwind CSS, Convex, Recharts
-- 26 normering JSON datasets covering all historical tests (2013-2025)
-- 3,155 lines of Swedish strategy content across 4 pages
-- Complete SEO: sitemap, robots, canonical URLs, JSON-LD, OG images
-- Production build passes cleanly with zero errors
+**Existing codebase:**
+- Turborepo monorepo with Expo mobile app (apps/mobile/)
+- Convex backend set up with tests/files/waitlist schema
+- 197 HP PDFs uploaded to Convex storage
+- PostHog analytics working on both platforms
+- Some screens exist with mock data (tabs partially built)
+- Design tokens established (Duolingo-inspired: bold typography, 2px borders, 3D buttons)
 
-**Source Material:**
-Research document "Hogskoleprovets fallor och strategier" — fully consumed into strategy pages.
+**Design approach:**
+- Design-as-you-go in code (no Figma handoff)
+- Some components are refined, others need work
+- Audit existing first, then build new screens
+- Screen-by-screen, component-by-component improvement
+
+**Architecture decision:**
+- Local-first — all quiz data stored on device
+- App should feel instant, no loading spinners for content
+- Convex only for live features (auth, sync, leaderboards later)
+- Data is trivial in size (~10 questions for demo)
 
 ## Constraints
 
-- **Tech stack**: Next.js 15 / Convex / Tailwind CSS
-- **Charts**: Recharts (chosen over shadcn charts for direct control)
-- **SEO**: Data must be bot-readable (HTML table fallbacks, not canvas-only)
-- **Language**: All user-facing content in Swedish
-- **Content source**: Strategy content rewritten from research (not copy-paste)
+- **Platform**: Mobile only (Expo/React Native) — web is separate
+- **Data**: Mock data only — real extraction is a parallel workstream
+- **Auth**: UI only — actual auth integration is backend phase
+- **AI**: Static messages only — no API calls for coach responses
+- **Content**: ~10 questions sufficient for user testing demo
 
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Start with SEO foundation before content | Foundation for all other work, quick wins, high impact | ✓ Good |
-| 7 phases with quick depth | Balanced structure for 21 requirements | ✓ Good |
-| Text-only strategy pages for v1 | Ship basics first, add interactive examples in v2 | ✓ Good |
-| Recharts for normering visualization | Direct control over histogram + bell curve, SSG-compatible | ✓ Good |
-| Dynamic OG images via ImageResponse | No external dependencies, dark theme branding | ✓ Good |
-| Static JSON for normering data | SSG-compatible, no runtime DB calls, fast loads | ✓ Good |
-| Swedish du-tilltal style | Authoritative but friendly educational tone | ✓ Good |
-| Progressive enhancement (table-first) | Accessible to bots and screen readers without JS | ✓ Good |
-| Same-season priority in related tests | Better relevance for students preparing for specific test | ✓ Good |
-| Phase 7 gap closure after audit | Systematic quality assurance before shipping | ✓ Good |
+| Local-first architecture | Instant feel, no loading spinners, data is small | — Pending |
+| Delayed signup (after baseline) | Reduce friction, Duolingo pattern proven | — Pending |
+| Baseline = first mission | Simplify flow, one activation moment | — Pending |
+| Design-as-you-go | No Figma, iterate faster in code | — Pending |
+| Audit before build | Ensure new screens inherit polish | — Pending |
+| ~10 mock questions | Sufficient for demo, keeps scope tight | — Pending |
 
 ---
-*Last updated: 2026-01-27 after v1.0 milestone*
+*Last updated: 2026-01-26 after initialization*

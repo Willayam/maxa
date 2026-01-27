@@ -21,6 +21,70 @@ This allows faster iteration on UX without backend dependencies.
 
 ---
 
+## Current Development Status
+
+**Last Updated:** 2026-01-27
+**Branch:** `Willayam/quiz-foundations` (merging to main)
+**Status:** v0.9 complete with integration gaps
+
+### Completed (v0.9)
+
+| Phase | Name | Status | Plans |
+|-------|------|--------|-------|
+| 1 | Foundation | ✅ Complete | MMKV + Zustand stores, mock questions |
+| 2 | Core Quiz Flow | ✅ Complete | Quiz UI, animations, haptics, summary, review |
+| 3 | Main App Experience | ✅ Complete | Polished tabs, gamification stores, Max coach |
+
+**Key deliverables:**
+- MMKV synchronous storage (instant app startup)
+- Zustand stores: quizStore, progressStore, gamificationStore, coachStore
+- 26 mock HP questions (4 types: ORD, LÄS, XYZ, KVA)
+- Complete quiz flow with checkmark/shake animations, haptics
+- Three polished tabs: Idag (dashboard), Träna (practice modes), Jag (profile)
+- Max coach with 3 personalities (Hype/Lugn/Strikt)
+- Streak milestone celebrations (3, 7, 14, 30, 60, 100 days)
+
+### Integration Gaps (Must Fix Before v1.0)
+
+**Issue:** Quiz completion updates `progressStore` but NOT `gamificationStore`. This means:
+- Daily goal progress doesn't update after quizzes
+- Streak tracking via gamificationStore doesn't fire
+- Level/XP in Jag tab doesn't increase
+- Streak celebrations don't trigger
+
+**Fix required in `apps/mobile/app/quiz/summary.tsx`:**
+```typescript
+// Add to useEffect after quiz completion:
+import { useGamificationStore } from '@/stores';
+
+const { recordActivity, addDailyProgress, awardXP } = useGamificationStore();
+
+// After existing progressStore calls, add:
+awardXP(xpEarned);
+recordActivity();
+addDailyProgress(totalQuestions);
+```
+
+**Additional fix in `apps/mobile/app/(tabs)/index.tsx`:**
+- Replace hardcoded Max coach message (line 338) with `coachStore.getMessage()`
+
+### Next Up
+
+| Phase | Name | Description |
+|-------|------|-------------|
+| 3.1 | Integration Fixes | Wire gamificationStore in quiz summary, fix Idag Max message |
+| 4 | Onboarding | 8 screens: Welcome → Baseline → Results → Account creation |
+
+### Planning Artifacts
+
+Development planning files are in `.planning/`:
+- `PROJECT.md` - Project definition and requirements
+- `ROADMAP.md` - Phase breakdown and execution plan
+- `STATE.md` - Current position and context
+- `v0.9-MILESTONE-AUDIT.md` - Detailed audit with gaps
+
+---
+
 ## User Flow Overview
 
 ```mermaid

@@ -48,6 +48,7 @@ export function OptionButton({
   // Animated values
   const scale = useSharedValue(1);
   const translateX = useSharedValue(0);
+  const checkmarkScale = useSharedValue(0);
 
   // Shake animation when incorrect - tune values in /quiz/playground
   useEffect(() => {
@@ -62,12 +63,30 @@ export function OptionButton({
     }
   }, [state, translateX]);
 
+  // Checkmark scale-in animation when correct
+  useEffect(() => {
+    if (state === 'correct') {
+      checkmarkScale.value = withSpring(1, {
+        damping: 12,
+        stiffness: 200,
+        overshootClamping: false, // Allow bounce
+      });
+    } else {
+      checkmarkScale.value = 0; // Reset when not correct
+    }
+  }, [state, checkmarkScale]);
+
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }, { translateX: translateX.value }],
   }));
 
+  const checkmarkAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: checkmarkScale.value }],
+    opacity: checkmarkScale.value,
+  }));
+
   const handlePressIn = () => {
-    scale.value = withSpring(0.98, { damping: 20, stiffness: 300 });
+    scale.value = withSpring(0.95, { damping: 20, stiffness: 300 });
   };
 
   const handlePressOut = () => {
@@ -130,13 +149,13 @@ export function OptionButton({
   const renderIcon = () => {
     if (state === 'correct') {
       return (
-        <View style={styles.iconContainer}>
+        <Animated.View style={[styles.iconContainer, checkmarkAnimatedStyle]}>
           <Ionicons
             name="checkmark-circle"
             size={24}
             color={Primitives.success[500]}
           />
-        </View>
+        </Animated.View>
       );
     }
     if (state === 'incorrect') {

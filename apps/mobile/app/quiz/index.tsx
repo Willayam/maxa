@@ -18,7 +18,6 @@ import { Text } from '@/components/ui/text';
 import { Button } from '@/components/ui/button';
 import {
   getQuestionsForSection,
-  type Question,
   type OptionLabel,
   type SectionCode,
   type AnswerRecord,
@@ -27,6 +26,7 @@ import { QUESTIONS_PER_SESSION } from '@/constants/quiz-config';
 import { Colors, Spacing } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { triggerImpact } from '@/utils/haptics';
+import { useQuizStore } from '@/stores/quizStore';
 
 type QuizPhase = 'answering' | 'feedback';
 
@@ -38,26 +38,47 @@ export default function QuizScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
 
-  // State management
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // Zustand store for quiz session
+  const {
+    currentQuestionIndex,
+    answers,
+    currentQuestions,
+    sessionStartTime,
+    startSession,
+    submitAnswer,
+    nextQuestion,
+  } = useQuizStore();
+
+  // Local UI state (not persisted)
   const [selectedOption, setSelectedOption] = useState<OptionLabel | null>(null);
   const [phase, setPhase] = useState<QuizPhase>('answering');
-  const [answers, setAnswers] = useState<AnswerRecord[]>([]);
-  const answersRef = useRef<AnswerRecord[]>([]);
-  const [questionStartTime, setQuestionStartTime] = useState(Date.now());
-  const [sessionStartTime] = useState(Date.now());
+  const [lastAnswerCorrect, setLastAnswerCorrect] = useState(false);
   const [showExitModal, setShowExitModal] = useState(false);
+  const [questionStartTime, setQuestionStartTime] = useState(Date.now());
+  const answersRef = useRef<AnswerRecord[]>([]);
 
-  // Load questions on mount
+  // Load questions on mount or resume session
   useEffect(() => {
-    const loadedQuestions = getQuestionsForSection(section, QUESTIONS_PER_SESSION);
-    setQuestions(loadedQuestions);
+    // Check if there's an active session to resume
+    if (currentQuestions.length > 0 && sessionStartTime !== null) {
+      // Resume existing session - keep answersRef in sync
+      answersRef.current = answers;
+    } else {
+      // Start new session
+      const loadedQuestions = getQuestionsForSection(section, QUESTIONS_PER_SESSION);
+      startSession(loadedQuestions, section);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [section]);
 
+  // Keep answersRef in sync with store
+  useEffect(() => {
+    answersRef.current = answers;
+  }, [answers]);
+
   // Current question
-  const currentQuestion = questions[currentIndex];
-  const isLastQuestion = currentIndex === questions.length - 1;
+  const currentQuestion = currentQuestions[currentQuestionIndex];
+  const isLastQuestion = currentQuestionIndex === currentQuestions.length - 1;
 
   // Get option state for rendering
   const getOptionState = (label: OptionLabel): OptionState => {
@@ -92,9 +113,11 @@ export default function QuizScreen() {
       timeSpent,
     };
 
-    const updatedAnswers = [...answers, newAnswer];
-    setAnswers(updatedAnswers);
-    answersRef.current = updatedAnswers;
+    // Submit to store
+    submitAnswer(newAnswer);
+
+    // Track for pulse animation
+    setLastAnswerCorrect(isCorrect);
 
     // Haptic feedback
     if (isCorrect) {
@@ -110,7 +133,9 @@ export default function QuizScreen() {
   const handleContinue = () => {
     if (isLastQuestion) {
       // Navigate to summary - use ref to ensure we have all answers including the last one
-      const totalTime = Math.round((Date.now() - sessionStartTime) / 1000);
+      const totalTime = sessionStartTime
+        ? Math.round((Date.now() - sessionStartTime) / 1000)
+        : 0;
       router.replace({
         pathname: '/quiz/summary',
         params: {
@@ -120,10 +145,11 @@ export default function QuizScreen() {
         },
       });
     } else {
-      // Move to next question
-      setCurrentIndex((prev) => prev + 1);
+      // Move to next question in store
+      nextQuestion();
       setSelectedOption(null);
       setPhase('answering');
+      setLastAnswerCorrect(false);
       setQuestionStartTime(Date.now());
     }
   };
@@ -143,7 +169,7 @@ export default function QuizScreen() {
   };
 
   // Loading state
-  if (questions.length === 0) {
+  if (currentQuestions.length === 0) {
     return (
       <SafeAreaView
         style={[styles.container, { backgroundColor: colors.background }]}
@@ -166,10 +192,11 @@ export default function QuizScreen() {
     >
       {/* Header */}
       <QuizHeader
-        currentQuestion={currentIndex + 1}
-        totalQuestions={questions.length}
+        currentQuestion={currentQuestionIndex + 1}
+        totalQuestions={currentQuestions.length}
         section={section}
         onClose={handleClosePress}
+        shouldPulse={lastAnswerCorrect}
       />
 
       {/* Question content */}
@@ -186,7 +213,7 @@ export default function QuizScreen() {
           {/* Question text */}
           <View style={styles.questionContainer}>
             <Text variant="h3" style={{ color: colors.text }}>
-              {currentIndex + 1}. {currentQuestion.text}
+              {currentQuestionIndex + 1}. {currentQuestion.text}
             </Text>
           </View>
 

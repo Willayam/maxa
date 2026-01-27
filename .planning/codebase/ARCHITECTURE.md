@@ -4,172 +4,178 @@
 
 ## Pattern Overview
 
-**Overall:** Next.js App Router with static generation (SSG) for content pages, client-side interactivity via Convex real-time database, and shared Expo mobile app pointing to same backend.
+**Overall:** Monorepo turborepo with shared backend (Convex) and dual frontend (Next.js web + Expo mobile) using shared component library.
 
 **Key Characteristics:**
-- Static site generation (SSG) for all public test listing pages using `generateStaticParams()`
-- Client-side rendering (CSR) for form submissions and interactive features
-- Convex as shared backend: real-time database + file storage for both web and mobile apps
-- Monorepo structure (Turborepo) with shared UI components via `@maxa/shared` package
-- SEO-optimized with dynamic metadata generation and semantic HTML
-- Theme-aware CSS with CSS custom properties supporting light/dark mode
+- Monorepo structure with workspace organization (apps, packages, convex)
+- Shared Convex backend serving both web and mobile
+- Shared React component library (`@maxa/shared`) for consistent UI across platforms
+- Each platform has its own app-specific code and styling approach
+- Static file serving for web (PDFs in public), Convex storage for future dynamic content
+- Analytics via PostHog on both platforms with graceful degradation
 
 ## Layers
 
-**Presentation Layer (Next.js Pages & Components):**
-- Purpose: Render server-side HTML for SEO, handle client-side interactivity with React components
-- Location: `apps/web/src/app/` (pages), `apps/web/src/components/` (reusable UI)
-- Contains: Page components (`.tsx`), layout files, server/client components
-- Depends on: Convex client, theme context, PostHog analytics
-- Used by: Browser clients visiting maxa.app
+**Backend (Convex):**
+- Purpose: Real-time database, file storage, authentication
+- Location: `convex/` at repo root
+- Contains: Schema definitions, queries, mutations, file management
+- Depends on: Convex SDK
+- Used by: Both web and mobile apps via `convex/react` client
 
-**Data Access Layer (Convex):**
-- Purpose: Real-time database, file storage, business logic (queries/mutations)
-- Location: `convex/` at repository root
-- Contains: Schema definition, queries (`tests.ts`, `files.ts`), mutations (`waitlist.ts`)
-- Depends on: Convex cloud infrastructure
-- Used by: Web app (Next.js) and mobile app (Expo) via React hooks
+**Web Frontend (Next.js):**
+- Purpose: Marketing landing page, test browsing, PDF downloads
+- Location: `apps/web/`
+- Contains: App Router pages, React components, server/client logic separation
+- Depends on: Convex client, shared components, PostHog, Next.js theming
+- Used by: End users via HTTP/browser
 
-**Static Content Layer:**
-- Purpose: Pre-generated static test data and PDF files
-- Location: `apps/web/src/data/tests.ts` (metadata), `apps/web/public/pdfs/` (files)
-- Contains: Type definitions for tests/files, static test list, PDF URLs
-- Depends on: None (pure data)
-- Used by: Test listing and detail pages for SSG
+**Mobile Frontend (Expo/React Native):**
+- Purpose: Quiz practice, progress tracking, learning experience
+- Location: `apps/mobile/`
+- Contains: Expo router screens, React Native components, platform-specific code
+- Depends on: Convex client (when connected), shared components, PostHog
+- Used by: End users via native app (iOS/Android)
 
-**Shared Component Library:**
-- Purpose: Code reuse across web and mobile apps
+**Shared Components Library:**
+- Purpose: Consistent UI/UX across platforms
 - Location: `packages/shared/src/`
-- Contains: UI components, hooks (theme, animation), constants, utilities
-- Depends on: React, React Native Web, NativeWind (mobile only)
-- Used by: Both `apps/web/` and `apps/mobile/`
+- Contains: UI components (Button, Card, Text, etc.), design tokens, hooks, utilities
+- Depends on: React, React Native (for cross-platform components)
+- Used by: Both web and mobile apps
 
 ## Data Flow
 
-**Test List & Detail Pages (SSG):**
+**Test Listing & Download (Web):**
 
-1. Build time: `generateStaticParams()` in `[slug]/page.tsx` iterates `tests` array from `apps/web/src/data/tests.ts`
-2. Next.js generates static HTML for each test slug (e.g., `/hogskoleprovet/hosten-2024`)
-3. Static pages contain links to PDFs in `apps/web/public/pdfs/{slug}/`
-4. No Convex dependency for test pages—purely static generation
+1. User navigates to `/gamla-prov`
+2. `apps/web/src/app/gamla-prov/page.tsx` loads static test data from `apps/web/src/data/tests.ts`
+3. Page renders list of tests with links to detail pages
+4. User clicks test → navigates to `/gamla-prov/[slug]`
+5. `apps/web/src/app/gamla-prov/[slug]/page.tsx` fetches test files from static data
+6. Files are organized by type (provpass, facit, normering, kallhanvisning)
+7. User downloads PDF via direct link to `/public/pdfs/{slug}/{filename}`
 
-**Waitlist Signup (Interactive):**
+**Waitlist Signup (Web):**
 
-1. User submits email via `WaitlistForm` component (client-side)
-2. Form validates locally, then calls Convex mutation `api.waitlist.createSignup()`
-3. Convex creates record in `waitlist` table with `pending` status and confirmation token
-4. Email sent via Resend (configured in `convex/emails/`)
-5. User clicks confirmation link → navigates to `/bekrafta?token=XXX`
-6. `/bekrafta` page (client-side) calls `api.waitlist.confirmEmail()` mutation
-7. Token validated, status updated to `confirmed`
+1. User fills `<WaitlistForm>` component
+2. Form submits email to Convex `waitlist.insert` mutation
+3. Convex stores in `waitlist` table with email, createdAt, source
+4. Form shows success/error feedback
 
-**Analytics Flow:**
+**Daily Dashboard (Mobile):**
 
-1. PostHog provider initialized in `apps/web/src/providers/posthog-provider.tsx` (client-side)
-2. On route change: `PageViewTracker` component captures `$pageview` event with URL
-3. Mobile app uses Expo Router's automatic screen tracking (no manual pageview needed)
+1. App loads root layout (`apps/mobile/app/_layout.tsx`)
+2. PostHogProvider initialized for analytics (auto screen tracking)
+3. Navigation Stack renders Tab layout (`apps/mobile/app/(tabs)/_layout.tsx`)
+4. User navigates to "Idag" tab (index screen)
+5. `apps/mobile/app/(tabs)/index.tsx` renders dashboard with:
+   - Greeting + streak (mock data currently)
+   - Daily goal progress bar
+   - Practice start button
+   - Stats cards (days until exam, goal score)
+   - Weekly progress section
+   - AI coach teaser card
+6. All data currently mock (future: load from Convex)
 
 **State Management:**
-
-- **Static pages:** No state (pure SSG HTML)
-- **Interactive pages:** React hooks (`useState`, `useEffect`) for local UI state
-- **Server state:** Convex queries/mutations for persistent data
-- **Theme state:** Context provider in `ThemeProvider` using `next-themes` (respects OS preference)
+- Web: Client-side React state, server components for initial rendering
+- Mobile: Local React state via hooks, eventual Convex queries for user data
+- Convex: Source of truth for persisted data (tests, files, waitlist, user progress)
 
 ## Key Abstractions
 
-**Test Data Structure:**
+**Test Entity:**
+- Purpose: Represents a Högskoleprovet test administration
+- Examples: `convex/schema.ts` (Convex), `apps/web/src/data/tests.ts` (web types)
+- Pattern: Defined once in Convex schema, mirrored in TypeScript interfaces on clients
+- Properties: year, season (vår/höst), date, slug, sourceUrl
 
-- `Test` interface defines metadata (year, season, date, slug)
-- `TestFile` interface describes individual PDFs (type, section, filename, size)
-- Static `tests` array in `apps/web/src/data/tests.ts` is source of truth for listing
-- Helper functions: `getTestBySlug()`, `getPdfUrl()` normalize access
+**TestFile Entity:**
+- Purpose: Represents a downloadable PDF associated with a test
+- Examples: `convex/schema.ts`, `apps/web/src/data/tests.ts`
+- Pattern: Linked to test via `testId`, typed by `fileType` (provpass, facit, etc.)
+- Storage: Currently in `/public/pdfs/`, future: Convex file storage
 
-**Page Components as Data Containers:**
+**Design Tokens:**
+- Purpose: Centralize theme values across platforms
+- Examples: `packages/shared/src/constants/theme.ts`, `apps/mobile/constants/theme.ts`, `apps/web/src/app/globals.css`
+- Pattern: CSS variables (web), JS constants (mobile) for colors, spacing, borders, shadows
+- Semantic tokens (primary, secondary, error) instead of hardcoded hex values
 
-- `hogskoleprovet/page.tsx`: Lists all tests, groups by year, client-side rendering
-- `hogskoleprovet/[slug]/page.tsx`: Displays single test with file download links, SSG with dynamic metadata
-- `page.tsx` (home): Landing page with hero, features, animated mockups, client-side
-
-**Providers Pattern:**
-
-- `ConvexClientProvider`: Lazily initializes Convex client only on client-side (avoids SSR issues)
-- `PostHogProvider`: Wraps app with analytics, disables gracefully if no API key
-- `ThemeProvider`: Uses `next-themes` for light/dark mode with system preference
-- All three composed in `layout.tsx` with `Suspense` boundary
-
-**File Organization:**
-
-- `site/` components: Reusable layout parts (header, footer) used across pages
-- `ui/` components: Headless UI building blocks (button, input, card)
-- Page-specific components inline or in parent directory (e.g., `WaitlistForm`)
+**Component Hierarchy (Shared):**
+- Presentational: `Button`, `Card`, `Text`, `ProgressBar`, `Chip`
+- Hooks: `useColorScheme` (detects light/dark mode)
+- Utilities: `haptics` (haptic feedback for mobile)
 
 ## Entry Points
 
-**Web App Root:**
-- Location: `apps/web/src/app/layout.tsx`
-- Triggers: User visits maxa.app or any subpath
-- Responsibilities: Set up providers (Convex, PostHog, theme), define root metadata, load Nunito font
+**Web:**
+- Location: `apps/web/src/app/layout.tsx` (root layout)
+- Triggers: Next.js page load
+- Responsibilities: Set up providers (PostHog, Convex, theme), render layout, load fonts
 
-**Home Page:**
+**Web - Home Page:**
 - Location: `apps/web/src/app/page.tsx`
-- Triggers: User navigates to `/`
-- Responsibilities: Display hero section with waitlist form, feature cards, app mockups
-- Rendering: Client-side (`'use client'`) for animations and interactivity
+- Triggers: User visits `/`
+- Responsibilities: Render marketing landing page with hero, features, CTAs, waitlist signup
 
-**Test Listing Page:**
-- Location: `apps/web/src/app/hogskoleprovet/page.tsx`
-- Triggers: User navigates to `/hogskoleprovet`
-- Responsibilities: Fetch all tests from static data, group by year, render as cards with links
-- Rendering: Static generation (no `'use client'`)
+**Web - Tests Browse:**
+- Location: `apps/web/src/app/gamla-prov/page.tsx`
+- Triggers: User visits `/gamla-prov`
+- Responsibilities: List all tests from static data, link to detail pages
 
-**Test Detail Page:**
-- Location: `apps/web/src/app/hogskoleprovet/[slug]/page.tsx`
-- Triggers: User navigates to `/hogskoleprovet/{slug}` (e.g., `/hogskoleprovet/hosten-2024`)
-- Responsibilities: Load test data by slug, group files by type, render download links, show related tests
-- Rendering: Static generation with `generateStaticParams()` and `generateMetadata()`
+**Web - Test Detail:**
+- Location: `apps/web/src/app/gamla-prov/[slug]/page.tsx`
+- Triggers: User visits `/gamla-prov/[slug]`
+- Responsibilities: Fetch test files, group by type, render download cards
 
-**Email Confirmation Page:**
-- Location: `apps/web/src/app/bekrafta/page.tsx`
-- Triggers: User clicks confirmation link from waitlist email
-- Responsibilities: Extract token from URL, call Convex to validate, show success/error
-- Rendering: Client-side with Suspense wrapper for SSR safety
+**Mobile:**
+- Location: `apps/mobile/app/_layout.tsx` (root layout)
+- Triggers: App launch
+- Responsibilities: Set up providers (PostHog, theme), load Nunito font, render navigation
+
+**Mobile - Tab Navigation:**
+- Location: `apps/mobile/app/(tabs)/_layout.tsx`
+- Triggers: Root layout renders
+- Responsibilities: Set up bottom tab navigation with 3 screens (Idag, Träna, Jag)
+
+**Mobile - Idag (Dashboard):**
+- Location: `apps/mobile/app/(tabs)/index.tsx`
+- Triggers: User taps "Idag" tab
+- Responsibilities: Show daily progress, goals, AI coach message, streak counter
 
 ## Error Handling
 
-**Strategy:** Try-catch for async operations, graceful fallback for missing data, user-facing error messages.
+**Strategy:** Graceful degradation; optional features degrade if dependencies missing
 
 **Patterns:**
-
-- **Page not found:** `notFound()` in `[slug]/page.tsx` returns 404 if slug doesn't match any test
-- **Convex mutations:** Wrapped in `.catch()` to set error state without crashing (see `bekrafta/page.tsx`)
-- **Optional API key:** Features degrade gracefully if `NEXT_PUBLIC_CONVEX_URL` or `NEXT_PUBLIC_POSTHOG_KEY` not set
-- **Email confirmation:** Invalid token shows error message with option to re-register, no exception thrown
+- Convex client initialized only if `NEXT_PUBLIC_CONVEX_URL` set; falls back to render without provider
+- PostHog disabled if API key missing; analytics gracefully skipped with console warning
+- Static data as fallback for tests (no real-time dependency)
+- Error boundaries on routes (`apps/web/src/app/error.tsx`, `apps/web/src/app/not-found.tsx`)
 
 ## Cross-Cutting Concerns
 
 **Logging:**
-
-- Development warnings logged to console (e.g., missing Convex URL)
-- PostHog event tracking captures `$pageview` with full URL for analytics
-- No structured error logging—relies on browser console and Convex logs
+- Web: `console.warn()` for development info (missing env vars)
+- Mobile: Similar console logging, no structured logging yet
 
 **Validation:**
-
-- Form validation in `WaitlistForm`: email format checked client-side via HTML `type="email"`
-- Test slug validation in page component: matches against `tests` array at build time
-- Convex mutations validate inputs server-side (email format, token format)
+- Web: Form validation in `<WaitlistForm>` (client-side required)
+- Convex: Admin secret validation on mutations (server-side)
+- Types: Full TypeScript coverage with strict mode enabled
 
 **Authentication:**
+- Web: Admin secret for mutation access (TODO: proper auth)
+- Mobile: Not yet implemented (no user auth)
+- Convex: Validates `adminSecret` on create/upload mutations
 
-- No user authentication implemented yet
-- Waitlist uses token-based email confirmation (see `confirmationToken` in schema)
-- Future: Mobile app may add sign-up/login before training features enabled
+**Analytics:**
+- Web: PostHog pageview tracking on route changes (manual via `usePathname`, `useSearchParams`)
+- Mobile: PostHog auto-screen tracking via Expo Router integration
+- Both: Respect Do Not Track browser setting, GDPR-compliant EU data residency
 
-**SEO:**
+---
 
-- Root metadata defined in `layout.tsx` (title, description, OpenGraph)
-- Page-level metadata in test pages via `generateMetadata()` function
-- Title includes year/season for test detail pages (e.g., "Högskoleprovet hösten 2024 - PDF, Facit & Normering")
-- Keywords target search terms: "gamla högskoleprov", "högskoleprov PDF", "HP facit"
-- Proper heading hierarchy (`<h1>` for page title, `<h2>` for sections)
+*Architecture analysis: 2026-01-26*
