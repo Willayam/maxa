@@ -14,7 +14,7 @@ Transform Maxa's basic test download pages into rich, SEO-optimized study resour
 - [x] **Phase 2: Structured Data** - JSON-LD schemas for rich snippets and breadcrumbs
 - [x] **Phase 3: Normering** - Data extraction, chart component, and page integration
 - [ ] **Phase 4: Strategy Content** - Swedish strategy pages from research source material
-- [ ] **Phase 5: Cross-Linking & Polish** - Internal links, navigation, and OG images
+- [x] **Phase 5: Cross-Linking & Polish** - Internal links, navigation, and OG images
 - [ ] **Phase 6: Complete Normering Data** - Parse all historical normeringstabeller and display on test pages
 
 ## Phase Details
@@ -93,9 +93,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — Breadcrumb navigation with shadcn component
-- [ ] 05-02-PLAN.md — Related tests enhancement with relevance algorithm
-- [ ] 05-03-PLAN.md — OpenGraph images for social sharing
+- [x] 05-01-PLAN.md — Breadcrumb navigation with shadcn component
+- [x] 05-02-PLAN.md — Related tests enhancement with relevance algorithm
+- [x] 05-03-PLAN.md — OpenGraph images for social sharing
 
 ### Phase 6: Complete Normering Data
 **Goal**: All historical tests with normeringstabeller have their data parsed and displayed on their pages
@@ -127,7 +127,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 2. Structured Data | 1/1 | Complete | 2026-01-26 |
 | 3. Normering | 3/3 | Complete | 2026-01-27 |
 | 4. Strategy Content | 0/3 | Not started | - |
-| 5. Cross-Linking & Polish | 0/3 | Planned | - |
+| 5. Cross-Linking & Polish | 3/3 | Complete | 2026-01-27 |
 | 6. Complete Normering Data | 0/3 | Planned | - |
 
 ## Requirement Coverage
