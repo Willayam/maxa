@@ -13,7 +13,7 @@ Transform Maxa's basic test download pages into rich, SEO-optimized study resour
 - [x] **Phase 1: SEO Foundation** - Sitemap, robots.txt, metadata, and canonical URLs
 - [x] **Phase 2: Structured Data** - JSON-LD schemas for rich snippets and breadcrumbs
 - [x] **Phase 3: Normering** - Data extraction, chart component, and page integration
-- [ ] **Phase 4: Strategy Content** - Swedish strategy pages from research source material
+- [x] **Phase 4: Strategy Content** - Swedish strategy pages from research source material
 - [x] **Phase 5: Cross-Linking & Polish** - Internal links, navigation, and OG images
 - [x] **Phase 6: Complete Normering Data** - Parse all historical normeringstabeller and display on test pages
 
@@ -77,9 +77,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Strategy hub page with routing, SEO metadata, and card grid
-- [ ] 04-02-PLAN.md — Kvantitativa and Verbala fallor content pages
-- [ ] 04-03-PLAN.md — Vanliga misstag and Tidsstrategi content pages
+- [x] 04-01-PLAN.md — Strategy hub page with routing, SEO metadata, and card grid
+- [x] 04-02-PLAN.md — Kvantitativa and Verbala fallor content pages
+- [x] 04-03-PLAN.md — Vanliga misstag and Tidsstrategi content pages
 
 ### Phase 5: Cross-Linking & Polish
 **Goal**: Navigation and social sharing polished with breadcrumbs, improved related tests, and OG images
@@ -126,7 +126,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 1. SEO Foundation | 2/2 | Complete | 2026-01-26 |
 | 2. Structured Data | 1/1 | Complete | 2026-01-26 |
 | 3. Normering | 3/3 | Complete | 2026-01-27 |
-| 4. Strategy Content | 0/3 | Not started | - |
+| 4. Strategy Content | 3/3 | Complete | 2026-01-27 |
 | 5. Cross-Linking & Polish | 3/3 | Complete | 2026-01-27 |
 | 6. Complete Normering Data | 3/3 | Complete | 2026-01-27 |
 
