@@ -1,0 +1,1736 @@
+
+
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="sv">
+<head>
+    <!-- META CONTENT PARTIAL -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Always force latest IE rendering engine & Chrome Frame -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>404</title>
+
+<meta property="Modified" content="Tue, 20 Apr 2021 09:11:02 GMT" />
+
+    <meta name="twitter:title" content="404 – Sidan kan inte hittas" />
+    <meta name="twitter:description" content="H&#228;r hittar du allt du beh&#246;ver veta om att studera p&#229; universitet och h&#246;gskola." />
+    <meta name="twitter:image" content="https://www.studera.nu/globalassets/vi-ses-pa-torget---fb.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <meta property="og:url" content="https://www.studera.nu/konfiguration/404/" />
+    <meta property="og:image" content="https://www.studera.nu/globalassets/vi-ses-pa-torget---fb.jpg" />
+    <meta property="og:site_name" content="Studera.nu" />
+    <meta property="fb:app_id" content="2140933196152990" />
+
+<meta property="og:type" content="website" />
+
+    <meta property="og:title" content="404 – Sidan kan inte hittas" />
+    <meta property="og:description" content="Opartisk information om utbildning p&#229; alla universitet och h&#246;gskolor i Sverige. Med antagningsstatistik, arbets&#173;marknadsprognoser och etableringsgrad." />
+
+
+
+<!-- META CONTENT PARTIAL -->
+
+    
+
+<!-- META CONTENT Icons & browser styling -->
+
+
+<link rel="manifest" href="/Static/images/site.webmanifest" />
+
+<link rel="icon" type="image/png" href="/Static/images/favicon.ico" />
+<link rel="mask-icon" href="/Static/images/safari-pinned-tab.svg" color="#5bbad5" />
+<link rel="apple-touch-icon" sizes="180x180" href="/Static/images/apple-touch-icon.png" />
+<link rel="canonical" href="https://www.studera.nu/konfiguration/404/" />
+
+<meta name="msapplication-TileColor" content="#da532c" />
+<meta name="theme-color" content="#ffffff" />
+<meta name="format-detection" content="telephone=no">
+
+<!-- META CONTENT Icons & browser styling -->
+
+
+<link href="/assets/css/v-639003532425527863/site.css" rel="stylesheet"/>
+
+    
+    
+
+
+    <script>
+        document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '');
+        window.slimmage = { tryWebP: true, verbose: false };
+        window.rsConf = { general: { noCookie: true } };
+        
+        window.uhr = {
+            onLoadQueue: [],
+            loaded: false,
+            mainLoaded: false,
+            //jQuery: {} sätts nedan
+            setLoaded: function () {
+                uhr.loaded = true;
+                console.debug('uhr.setLoaded', uhr.jQuery.fn.jquery, uhr.onLoadQueue);
+                uhr.onLoadQueue.forEach(function (fn) {
+                    fn(uhr.jQuery);
+                });
+            },
+            onLoad: function (fn) {
+                if (!uhr.loaded) {
+                    uhr.onLoadQueue.push(fn);
+                    return;
+                }
+                fn(uhr.jQuery);
+            }
+        };
+    </script>
+    <script src="/static/scripts/jquery-3.7.1.min.js"></script>
+
+    <script>
+        uhr.jQuery = $;
+    </script>
+    <script>
+var klaroConfig={
+    version:1,styling:{
+        theme:["light","left"]},
+        htmlTexts:!1,
+        cookieExpiresAfterDays:30,
+        groupByPurpose:!1,default:!1,mustConsent:!1,acceptAll:!0,hideDeclineAll:!1,hideLearnMore:!1,
+        translations:{sv:{privacyPolicyUrl:"https://www.studera.nu/om-studera.nu/om-studera.nu/kakor-cookies-pa-studera.nu/",
+        consentNotice:{description:"Denna webbplats använder kakor (cookies) som lagras i din webbläsare. Vissa kakor är nödvändiga för att sidan ska fungera korrekt och andra är valbara. Du väljer vilka du vill tillåta.",
+        learnMore:"Hantera valbara kakor"},
+        consentModal:{title:"Information om tjänster som använder kakor",
+            description:"Denna webbplats använder kakor (cookies) som lagras i din webbläsare. Vissa kakor är nödvändiga för att sidan ska fungera korrekt och andra är valbara. Du väljer vilka du vill tillåta."},
+        privacyPolicy:{name:"kakor",text:"Läs mer om hur vi hanterar {privacyPolicy}."},
+        contextualConsent:{acceptAlways:"Alltid",
+            acceptOnce:"Ja",
+            description:"Vill du ladda externt innehåll från {title}?"},
+            decline:"Tillåt bara nödvändiga kakor",
+            ok:"Tillåt alla kakor",
+        service:{disableAll:{description:"Använd detta reglage för att tillåta alla kakor eller endast nödvändiga.",
+            title:"Ändra för alla kakor"}},
+            purposeItem:{service:"service",services:"services"}},
+        en:{privacyPolicyUrl:"https://www.studera.nu/om-studera.nu/om-studera.nu/kakor-cookies-pa-studera.nu/",
+        consentNotice:{description:"This website uses cookies which are stored in your browser. Some cookies are necessary for the page to work properly and others are selectable. You choose which ones you want to allow.",
+        learnMore:"Cookie settings"},
+        consentModal:{title:"Information about services that use cookies",
+        description:"This website uses cookies which are stored in your web browser. Some cookies are necessary for the page to function correctly and others are selectable. You choose which ones you want to allow."},
+        privacyPolicy:{name:"cookies",text:"Read more about how we handle {privacyPolicy}."},
+        contextualConsent:{acceptAlways:"Always",
+            acceptOnce:"Yes",
+            description:"Do you want to load external content from {title}?"},
+            decline:"Allow only necessary cookies",
+            ok:"Allow all cookies",
+        service:{disableAll:{description:"Use this slider to allow all cookies or only necessary.",
+            title:"Change for all cookies"}}}},
+        services:[{name:"Necessary",
+            contextualConsentOnly:!1,
+            required:!0,
+        translations:{en:{title:"Necessary cookies / techniques",
+            description:"These cookies are necessary for the website to function and can not be turned off. They are usually only used when you use a function on the website that needs an answer, for example when you set cookies, log in or fill in a form."},
+        sv:{title:"Nödvändiga kakor / tekniker",
+            description:"Dessa kakor är nödvändiga för att webbplatsen ska fungera och kan inte stängas av. De används vanligtvis endast när du använder en funktion på webbplatsen som behöver ett svar, exempelvis när du ställer in kakor, loggar in eller fyller i ett formulär."}}},
+        {name:"tracking",
+            contextualConsentOnly:!1,
+        translations:{
+            en:{title:"Analysis and Development",
+                description:"The website uses the analysis service Hotjar to evaluate and improve the website content, experience and structure. The collection of the information is anonymised."},
+            sv:{title:"Analys och Utveckling",
+                description:"Webbplatsen använder analystjänsten Hotjar för att utvärdera och förbättra webbplatsens innehåll, upplevelse och struktur. Insamlandet av informationen anonymiseras."}}},
+        {name:"marketing",
+            contextualConsentOnly:!1,
+        translations:{
+            en:{title:"Marketing",
+                description:"The website uses Facebook for marketing."},
+            sv:{title:"Marknadsföring",
+                description:"Webbplatsen använder Facebook för marknadsföring."}}},
+        {name:"video",
+            title:"Video",
+            contextualConsentOnly:!1,
+            translations:{zz:{title:"Video"},
+            en:{description:"Videos on the site are embedded from Youtube and Kaltura. When these are played, the video services can use cookies."},
+            sv:{description:"Filmer på webbplatsen är inbäddade från externa videoplattformar. När dessa spelas upp kan videotjänsterna använda sig av kakor."}}}]};
+</script>
+<script defer type="text/javascript" src="/Scripts/klaro/klaro_v0.7_no_css.js"></script>
+<meta name="google-site-verification" content="7yzVKd6IxSRhx4Mq8RsWONTNspicE1ZOjls95GhvjjQ" />
+<meta name="facebook-domain-verification" content="i3y3ms2ysm5x3epwpkoswgz3sdz2sy" />
+
+<!-- Plausible -->
+<script defer data-domain="studera.nu" src="https://plausible.io/js/script.manual.tagged-events.js">
+</script>
+<!-- define the `plausible` function to manually trigger events -->
+<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+<!-- trigger pageview -->
+<script>
+  function prepareUrl(params) {
+    const url = new URL(location.href)
+    const queryParams = new URLSearchParams(location.search)
+    let customUrl = url.protocol + "//" + url.hostname + url.pathname.replace(/\/$/, '')
+    for (const paramName of params) {
+      const paramValue = queryParams.get(paramName)
+      if (paramValue) customUrl = customUrl + '/' + paramValue
+    }
+    return customUrl
+  }
+  plausible('pageview', { u: prepareUrl(["q", "f"]) + window.location.search })
+</script>
+
+<!-- Google Tag Manager -->
+<script data-type="application/javascript" type="text/plain" data-name="tracking">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MJ34XT');</script>
+<!-- End Google Tag Manager -->
+
+<!--<script async defer  data-name="tracking" data-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBr-AhXGkHUyqxCBtkLVWqKdMmOnbQtOTs"></script>-->
+
+
+    
+    
+</head>
+<body>
+    <!-- Google Tag Manager -->
+<noscript><iframe data-name="tracking"  data-src="//www.googletagmanager.com/ns.html?id=GTM-MJ34XT"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager -->
+    
+    
+
+
+    <script src="/assets/v-639003532425371476/site.js"></script>
+
+            <div class="hidden-print">
+
+
+            </div>
+
+<script>
+    function clearText(ctrl, defaultText) {
+        if (ctrl.value === defaultText) {
+            ctrl.value = "";
+        }
+    }
+
+    function resetText(ctrl, defaultText) {
+        if (ctrl.value === "") {
+            ctrl.value = defaultText;
+        }
+    }
+</script>
+<div class="container">
+    <header class="pageHeader">
+        <nav class="skip-links" aria-label="Hoppa direkt: " lang="sv">
+            <ul>
+                <li>
+                    <a id="gotocontent" href="#subpageTemplate">
+                        <span>G&#229; till det huvudsakliga inneh&#229;llet</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="gotonav" href="#mainnavigation">
+                        <span>Till navigationen</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="row hidden-print hidden-xs hidden-sm">
+            <div class="col-sm-10 col-sm-offset-2 text-right">
+                <div class="topNav dropdownItems" lang="sv">
+                    <div class="dropdown aboutUhrDropdown">
+                        <button id="HyperLinkAboutUhrHeaderLabel" class="AboutUhrLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span id="AboutUhrLabelHeader">Om Universitets- och h&#246;gskoler&#229;det</span>
+                            <span class="caret"></span>
+                        </button>
+                        <div class="dropdown-menu aboutUhrMenu" aria-labelledby="HyperLinkAboutUhrHeaderLabel">
+                            <div><p>Universitets- och h&ouml;gskoler&aring;det (UHR) &auml;r en myndighet som skapar f&ouml;ruts&auml;ttningar f&ouml;r att m&ouml;ta behovet av kompetens, nu och i framtiden.&nbsp;<br /><a href="https://uhr.se/om-uhr/detta-gor-uhr/">Om UHR</a></p>
+<p>&nbsp;</p></div>
+                        </div>
+                    </div>
+
+                    <div class="languageSwitchLink">
+                        <a id="HyperLinkMainLanguageSwitch" class="preventAutomaticIcon hyperLinkMainLanguageSwitch" href="https://www.studera.nu/startpage/" title="Change language of the site to english"
+                           lang="en">
+                            In English
+                        </a>
+                    </div>
+                    <div id="languageSwitchMenu" class="dropdown noJavaScript languageSwitchMenu">
+                        <button id="otherLanguagesSwitch" class="dropdown-toggle otherLanguagesSwitch" data-toggle="dropdown" aria-haspopup="true" lang="en">
+                            Other languages<span class='caret'></span></button>
+
+                        <div id="otherLanguagesMenu" class="dropdown-menu otherLanguagesMenu" aria-labelledby="otherLanguagesSwitch">
+
+                            <ul>
+                                    <li>
+                                        <a href="/andra-sprak/langre/arabiska/" lang="ar">العربية (Arabiska)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/langre/farsi/" lang="fa">به پارسی (Farsi)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/langre/francais/" lang="fr">Fran&#231;ais (Franska)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/langre/kinesiska/" lang="zh">中文 (Kinesiska)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/langre/polska/" lang="pl">Polski (Polska)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/langre/ryska/" lang="ru">Русский (Ryska)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/langre/somali/" lang="so">Af-Soomaali (Somaliska)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/langre/espanol/" lang="es">Espa&#241;ol (Spanska)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/langre/thai/" lang="th">ไทย (Thai)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/langre/tigrinja/" lang="ti">ትግርኛ (Tigrinja)</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/minoritetssprak/davvisamegiella/" lang="se">Davvis&#225;megiella</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/minoritetssprak/jiddisch/" lang="yi">Jiddisch</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/minoritetssprak/julevsamegiella/" lang="smj">Julevs&#225;megiella</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/minoritetssprak/meankieli/" lang="fi">Me&#228;nkieli</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/minoritetssprak/romani-arli/" lang="sv">Romani arli</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/minoritetssprak/romani-kalo/" lang="sv">Romani k&#225;lo</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/minoritetssprak/romani--kelderas/" lang="sv">Romani  kelderaš</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/minoritetssprak/romani-lovara/" lang="sv">Romani lovara</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/minoritetssprak/suomi/" lang="fi">Suomi</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/minoritetssprak/svensk-romani/" lang="sv">Svensk romani</a>
+                                    </li>
+                                    <li>
+                                        <a href="/andra-sprak/minoritetssprak/aarjelsaemiengiele/" lang="sma">&#197;arjelsaemieng&#239;ele</a>
+                                    </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xxs-9 col-xs-8 col-sm-8 siteLogoTextWrapper">
+                <a href="/" class="siteHeaderLogoImage"><img  alt='UHR'  src='/globalassets/uhr-logo-rgb.svg'  class="siteHeaderLogoImage logoLargeScreens" /><img  alt='UHR'  src='/globalassets/uhr_symbol_lila.svg'  class="siteHeaderLogoImage logoSmallScreens" /></a>
+                <a href="/" class="siteHeaderLogoText">
+                        <span>Studera.nu</span>
+                </a>
+            </div>
+            <div class="col-sm-4 text-right hidden-xs hidden-sm hidden-print">
+                <div class="search ess-quickSearchForm ess-box">
+                    
+
+<div class="searchInputGroup">
+	<form method="get" role="search" action="https://www.studera.nu/soksida/" class="headersearch" aria-label="S&#246;k p&#229; webbplatsen" data-enable-autocomplete="off" 
+          lang="sv">
+
+		<div class="input-group">
+            <label for="SearchBox1_QuickSearchBox"><span>S&#246;k p&#229; webbplatsen</span></label>
+			<input type="text" id="SearchBox1_QuickSearchBox" name="q" class="ess-searchbox searchPlaceholder form-control" title="S&#246;k p&#229; webbplatsen" placeholder="S&#246;k p&#229; webbplatsen" aria-controls="SearchBox1_AriaLive" />
+			<div id="SearchBox1_QuickSearchBox-autocomplete-suggestion-list"></div>
+			<div class="SearchBox1_QuickSearchBox-suggestions-help sr-only" id="SearchBox1_AriaLive" aria-atomic="true" role="alert" aria-live="polite"></div>
+			<span class="input-group-btn">
+                <button type="submit" class="ess-searchbutton btn btn-submit form-control QuickSearchButton searchBoxButton" id="SearchButton">
+                    <svg class='icon icon-forstoringsglas' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-forstoringsglas'></use></svg>
+                    <span class="hidden-xs hidden-sm">S&#246;k</span>
+                    <span class="sr-only hidden-md hidden-lg">S&#246;k</span>
+                </button>
+			</span>
+		</div>
+	</form>
+	
+</div>
+
+
+
+
+                </div>
+            </div>
+            <div class="hidden-md hidden-lg">
+                
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-mobile hidden-print panel-group" id="mobilmenucollapsecontainer">
+    <a href="#" class="show-search collapsed js-mobileMenuToggle" data-toggle="collapse" data-target="#search-mobile" role="button" aria-controls="search-mobile" aria-expanded="false">
+        <span class="icon menu-icon menu-icon--search">
+            <span class="menu-icon__bar menu-icon__bar--top"></span>
+            <span class="menu-icon__bar menu-icon__bar--middle"></span>
+            <span class="menu-icon__bar menu-icon__bar--bottom"></span>
+        </span>
+        <span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>
+        <span class="icon menu-icon search-icon">
+            <svg class='icon icon-forstoringsglas' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-forstoringsglas'></use></svg>
+        </span>
+        <span class="text">S&#246;k</span>
+    </a>
+	<a href="#" class="show-menu collapsed js-mobileMenuToggle" data-toggle="collapse" data-target="#mobileNavigation" role="button" aria-controls="mobileNavigation" aria-expanded="false">
+		<span class="icon menu-icon menu-icon--menu">
+			<span class="menu-icon__bar menu-icon__bar--top"></span>
+			<span class="menu-icon__bar menu-icon__bar--middle"></span>
+			<span class="menu-icon__bar menu-icon__bar--bottom"></span>
+		</span>
+		<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>
+		<span class="text">Meny</span>
+	</a>
+	<div class="panel" style="display: contents">
+		<div class="navbar-collapse collapse" id="mobileNavigation" data-parent="#mobilmenucollapsecontainer">
+			<div class="nav navbar-nav">
+				<ul>
+						<li class="lvl1m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-0" aria-controls="lvl11-0" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Att v&#228;lja utbildning
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-0" class="navbar-collapse collapse ">
+			    <li class="lvl2m">
+        <a href="https://www.studera.nu/jamfor-utbildning/" role="button" class="landing-partial-page preventAutomaticIcon">
+            <div>Hitta och jämför utbildningar</div>
+<svg class='icon icon-pil-hoger-ny' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-pil-hoger-ny'></use></svg>
+        </a>
+    </li>
+    <li class="lvl2m">
+        <a href="https://www.studera.nu/att-valja-utbildning/adresser/uoh/" role="button" class="landing-partial-page preventAutomaticIcon">
+            <div>Kontakta universitet och h&ouml;gskolor</div>
+<svg class='icon icon-pil-hoger-ny' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-pil-hoger-ny'></use></svg>
+        </a>
+    </li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-0lvl12Cont-0" aria-controls="lvl11-0lvl12Cont-0" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Hjälp i studievalet
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-0lvl12Cont-0" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/smart-studieval/studievagledare/" role="button" class=' ArticlePage preventAutomaticIcon'>Hitta en studievägledare</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/smart-studieval/tips-infor-studievalet/" role="button" class=' ArticlePage preventAutomaticIcon'>Tre tips inför studievalet</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/smart-studieval/jamfor-utbildningar/" role="button" class=' ArticlePage preventAutomaticIcon'>Jämför utbildningar</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/smart-studieval/undersok-utbildningens-kvalitet/" role="button" class=' ArticlePage preventAutomaticIcon'>Undersök utbildningens kvalitet</a>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-0lvl12Cont-1" aria-controls="lvl11-0lvl12Cont-1" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Studier och arbetsmarknad
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-0lvl12Cont-1" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/arbetsmarknad/har-finns-jobben/" role="button" class=' ArticlePage preventAutomaticIcon'>Här finns jobben</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/arbetsmarknad/etableringsgrad/" role="button" class=' ArticlePage preventAutomaticIcon'>Får jag jobb efter utbildningen?</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/arbetsmarknad/lon/" role="button" class=' ArticlePage preventAutomaticIcon'>Lön efter utbildningen</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/arbetsmarknad/omstallningsstudiestod/" role="button" class=' ArticlePage preventAutomaticIcon'>Omställningsstudiestöd</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/arbetsmarknad/komplettera-utlandsk-utbildning/" role="button" class=' ArticlePage preventAutomaticIcon'>Komplettera utländsk utbildning</a>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-0lvl12Cont-2" aria-controls="lvl11-0lvl12Cont-2" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Distansstudier
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-0lvl12Cont-2" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/distansstudier/studera-pa-distans/" role="button" class=' ArticlePage preventAutomaticIcon'>Studera på distans</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/distansstudier/natkurser-for-alla---moocs/" role="button" class=' ArticlePage preventAutomaticIcon'>Moocs – nätkurser för alla</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/distansstudier/se-upp-for-bluffuniversitet/" role="button" class=' ArticlePage preventAutomaticIcon'>Se upp för bluffuniversitet</a>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-0lvl12Cont-3" aria-controls="lvl11-0lvl12Cont-3" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Vägar i högre studier
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-0lvl12Cont-3" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/vagar/kurs-eller-program/" role="button" class=' ArticlePage preventAutomaticIcon'>Kurs eller program</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/vagar/utbildningsnivaer-och-examina/" role="button" class=' ArticlePage preventAutomaticIcon'>Utbildningsnivåer och examina</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/vagar/basar/" role="button" class=' ArticlePage preventAutomaticIcon'>Basår - förutbildning</a>
+        </li>
+        <li class='lvl3m '>
+            <div class="rightmenu">
+                <a role="button" href="https://www.studera.nu/att-valja-utbildning/vagar/forskarstudier/" class="text " aria-expanded="false">
+                    <span class="sr-only js-toggle-sr-text"  data-extended-close-text="St&#228;ng "></span>Forskarstudier
+                </a>
+                <a role="button" href="#" class="arrow" data-toggle="collapse" data-target="#lvl11-0lvl12Cont-3lvl13-3" aria-controls="lvl11-0lvl12Cont-3lvl13-3" aria-expanded="false">
+                    <span class="icon icon-triangel-pil-ned-uhr"></span>
+                </a>
+            </div>
+            <ul id="lvl11-0lvl12Cont-3lvl13-3" class="navbar-collapse collapse ">
+                    <li class='lvl4m '>
+        <a href="https://www.studera.nu/att-valja-utbildning/vagar/forskarstudier/antagning-behorighet/" role="button" class=' preventAutomaticIcon'>Antagning och behörighet till forskarutbildning</a>
+    </li>
+
+            </ul>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/vagar/universitet-eller-hogskola/" role="button" class=' ArticlePage preventAutomaticIcon'>Universitet och högskola, skillnad</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/vagar/andra-studier-an-hogskola/" role="button" class=' ArticlePage preventAutomaticIcon'>Andra studier än högskola</a>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-0lvl12Cont-4" aria-controls="lvl11-0lvl12Cont-4" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Lärarutbildningsguiden
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-0lvl12Cont-4" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/lararutbildningar/guiden/" role="button" class=' LararguidenPage preventAutomaticIcon'>Hitta din lärarutbildning</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/att-valja-utbildning/lararutbildningar/kulturskola/" role="button" class=' ArticlePage preventAutomaticIcon'>Pedagog i kulturskolan</a>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-0lvl12Cont-5" aria-controls="lvl11-0lvl12Cont-5" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Nationella minoriteter
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-0lvl12Cont-5" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <div class="rightmenu">
+                <a role="button" href="https://www.studera.nu/att-valja-utbildning/nationella-minoriteter/nationella-minoriteter/" class="text " aria-expanded="false">
+                    <span class="sr-only js-toggle-sr-text"  data-extended-close-text="St&#228;ng "></span>Utbildningar i språk och kulturer
+                </a>
+                <a role="button" href="#" class="arrow" data-toggle="collapse" data-target="#lvl11-0lvl12Cont-5lvl13-0" aria-controls="lvl11-0lvl12Cont-5lvl13-0" aria-expanded="false">
+                    <span class="icon icon-triangel-pil-ned-uhr"></span>
+                </a>
+            </div>
+            <ul id="lvl11-0lvl12Cont-5lvl13-0" class="navbar-collapse collapse ">
+                    <li class='lvl4m '>
+        <a href="https://www.studera.nu/att-valja-utbildning/nationella-minoriteter/nationella-minoriteter/filmer/" role="button" class=' preventAutomaticIcon'>Filmer: nationella minoritetsspråk i högre utbildning</a>
+    </li>
+
+            </ul>
+        </li>
+
+		</ul>
+	</li>
+
+		</ul>
+	</li>
+	<li class="lvl1m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-1" aria-controls="lvl11-1" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>S&#229; kommer du in
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-1" class="navbar-collapse collapse ">
+			    <li class="lvl2m">
+        <a href="https://www.studera.nu/jamfor-utbildning/" role="button" class="landing-partial-page preventAutomaticIcon">
+            <div>Hitta och jämför utbildningar</div>
+<svg class='icon icon-pil-hoger-ny' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-pil-hoger-ny'></use></svg>
+        </a>
+    </li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-1lvl12Cont-0" aria-controls="lvl11-1lvl12Cont-0" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Behörig för högre studier
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-1lvl12Cont-0" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/sa-kommer-du-in/behorig/grundlaggande-behorighet/" role="button" class=' ArticlePage preventAutomaticIcon'>Grundläggande behörighet</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/sa-kommer-du-in/behorig/sarskild-behorighet/" role="button" class=' ArticlePage preventAutomaticIcon'>Särskild behörighet</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/sa-kommer-du-in/behorig/utlandska-meriter/" role="button" class=' ArticlePage preventAutomaticIcon'>Utländska meriter</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/sa-kommer-du-in/behorig/reell-kompetens/" role="button" class=' ArticlePage preventAutomaticIcon'>Bedömning av reell kompetens</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/sa-kommer-du-in/behorig/saknar-behorighet/" role="button" class=' ArticlePage preventAutomaticIcon'>Saknar du behörighet?</a>
+        </li>
+        <li class='lvl3m '>
+            <div class="rightmenu">
+                <a role="button" href="https://www.studera.nu/sa-kommer-du-in/behorig/grundlaggande-behorighetsprovet/" class="text " aria-expanded="false">
+                    <span class="sr-only js-toggle-sr-text"  data-extended-close-text="St&#228;ng "></span>Grundläggande behörighetsprovet
+                </a>
+                <a role="button" href="#" class="arrow" data-toggle="collapse" data-target="#lvl11-1lvl12Cont-0lvl13-5" aria-controls="lvl11-1lvl12Cont-0lvl13-5" aria-expanded="false">
+                    <span class="icon icon-triangel-pil-ned-uhr"></span>
+                </a>
+            </div>
+            <ul id="lvl11-1lvl12Cont-0lvl13-5" class="navbar-collapse collapse ">
+                    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/behorig/grundlaggande-behorighetsprovet/har-provresultat/" role="button" class=' preventAutomaticIcon'>Du som har ett provresultat</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/behorig/grundlaggande-behorighetsprovet/faq/" role="button" class=' preventAutomaticIcon'>Frågor och svar om behörighetsprovet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/behorig/grundlaggande-behorighetsprovet/kompetenser/" role="button" class=' preventAutomaticIcon'>Kompetenser för grundläggande behörighet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/behorig/grundlaggande-behorighetsprovet/Kontakt/" role="button" class=' preventAutomaticIcon'>Kontaktuppgifter</a>
+    </li>
+
+            </ul>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-1lvl12Cont-1" aria-controls="lvl11-1lvl12Cont-1" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Anmälan och antagning
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-1lvl12Cont-1" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/sa-kommer-du-in/anmalan-och-antagning/antagningsstatistik/" role="button" class=' ArticlePage preventAutomaticIcon'>Antagningsstatistik</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/sa-kommer-du-in/anmalan-och-antagning/sa-anmaler-du-dig/" role="button" class=' ArticlePage preventAutomaticIcon'>Så anmäler du dig</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/sa-kommer-du-in/anmalan-och-antagning/meritvarde/" role="button" class=' ArticlePage preventAutomaticIcon'>Ditt meritvärde</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/sa-kommer-du-in/anmalan-och-antagning/urval/" role="button" class=' ArticlePage preventAutomaticIcon'>Urval</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/sa-kommer-du-in/anmalan-och-antagning/avgifter/" role="button" class=' ArticlePage preventAutomaticIcon'>Anmälnings- och studieavgifter</a>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-1lvl12Cont-2" aria-controls="lvl11-1lvl12Cont-2" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Ämneskrav för yrkeslärare
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-1lvl12Cont-2" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <div class="rightmenu">
+                <a role="button" href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/" class="text " aria-expanded="false">
+                    <span class="sr-only js-toggle-sr-text"  data-extended-close-text="St&#228;ng "></span>Ämneskrav för yrkeslärarprogram
+                </a>
+                <a role="button" href="#" class="arrow" data-toggle="collapse" data-target="#lvl11-1lvl12Cont-2lvl13-0" aria-controls="lvl11-1lvl12Cont-2lvl13-0" aria-expanded="false">
+                    <span class="icon icon-triangel-pil-ned-uhr"></span>
+                </a>
+            </div>
+            <ul id="lvl11-1lvl12Cont-2lvl13-0" class="navbar-collapse collapse ">
+                    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/barn-fritid/" role="button" class=' preventAutomaticIcon'>Barn- och fritidsprogrammet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/bygg-anlaggning/" role="button" class=' preventAutomaticIcon'>Bygg- och anläggningsprogrammet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/design-somnadsteknisk/" role="button" class=' preventAutomaticIcon'>Design och sömnadstekniska utbildningen</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/el-energi/" role="button" class=' preventAutomaticIcon'>El- och energiprogrammet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/estetiska-programmet/" role="button" class=' preventAutomaticIcon'>Estetiska programmet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/finsnickeri/" role="button" class=' preventAutomaticIcon'>Finsnickeriutbildningen</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/Florist/" role="button" class=' preventAutomaticIcon'>Floristutbildningen</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/Flygteknik/" role="button" class=' preventAutomaticIcon'>Flygteknikutbildningen</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/Fordons-transport/" role="button" class=' preventAutomaticIcon'>Fordons- och transportprogrammet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/Fordon-snofordonsteknik/" role="button" class=' preventAutomaticIcon'>Fordons- och transportprogrammet - snöfordonsteknik</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/frisor-stylist/" role="button" class=' preventAutomaticIcon'>Frisör- och stylistprogrammet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/forsaljning-service/" role="button" class=' preventAutomaticIcon'>Försäljning- och serviceprogrammet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/glashantverk/" role="button" class=' preventAutomaticIcon'>Glashantverksutbildningen</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/Guldsmed/" role="button" class=' preventAutomaticIcon'>Guldsmedsutbildningen</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/hotell-turism/" role="button" class=' preventAutomaticIcon'>Hotell- och turismprogrammet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/industriteknik/" role="button" class=' preventAutomaticIcon'>Industritekniska programmet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/Marinteknik/" role="button" class=' preventAutomaticIcon'>Marinteknikutbildningen</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/naturbruksprogrammet/" role="button" class=' preventAutomaticIcon'>Naturbruksprogrammet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/Naturbruk-sarskilda-varianter/" role="button" class=' preventAutomaticIcon'>Naturbruksprogrammet - särskilda varianter</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/restaurang-livsmedel/" role="button" class=' preventAutomaticIcon'>Restaurang- och livsmedelsprogrammet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/sjofartsutbildningen/" role="button" class=' preventAutomaticIcon'>Sjöfartsutbildningen</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/tagteknikutbildningen/" role="button" class=' preventAutomaticIcon'>Tågteknikutbildningen</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/Samiska-naringar/" role="button" class=' preventAutomaticIcon'>Utbildningen samiska näringar</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/VVS-fastighet/" role="button" class=' preventAutomaticIcon'>VVS- och fastighetsprogrammet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/vard-omsorg/" role="button" class=' preventAutomaticIcon'>Vård- och omsorgsprogrammet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/waldorfinriktning/" role="button" class=' preventAutomaticIcon'>Waldorfinriktning</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/yrkesdansarutbildningen/" role="button" class=' preventAutomaticIcon'>Yrkesdansarutbildningen</a>
+    </li>
+
+            </ul>
+        </li>
+
+		</ul>
+	</li>
+
+		</ul>
+	</li>
+	<li class="lvl1m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-2" aria-controls="lvl11-2" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Livet som student
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-2" class="navbar-collapse collapse ">
+			    <li class="lvl2m">
+        <a href="https://studenthalsa.se/" role="button" class="landing-partial-page preventAutomaticIcon">
+            <div>Studenth&auml;lsa.se - tips och r&aring;d f&ouml;r h&aring;llbart studieliv</div>
+<svg class='icon icon-extern-lank' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-extern-lank'></use></svg>
+        </a>
+    </li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-2lvl12Cont-0" aria-controls="lvl11-2lvl12Cont-0" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Ny på högskolan
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-2lvl12Cont-0" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/ny-pa-hogskolan/checklista/" role="button" class=' ArticlePage preventAutomaticIcon'>Checklista för antagna</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/ny-pa-hogskolan/studieteknik/" role="button" class=' ArticlePage preventAutomaticIcon'>Få hjälp med din studieteknik</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/ny-pa-hogskolan/sa-gar-studierna-till/" role="button" class=' ArticlePage preventAutomaticIcon'>Så går studierna till</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/ny-pa-hogskolan/tentor-och-examination/" role="button" class=' ArticlePage preventAutomaticIcon'>Tentor och examination</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/ny-pa-hogskolan/begrepp/" role="button" class=' ArticlePage preventAutomaticIcon'>Högskolans begrepp</a>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-2lvl12Cont-1" aria-controls="lvl11-2lvl12Cont-1" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Bostad, ekonomi och stöd
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-2lvl12Cont-1" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/stod/studentekonomi/" role="button" class=' ArticlePage preventAutomaticIcon'>Din ekonomi som student</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/stod/bostad/" role="button" class=' ArticlePage preventAutomaticIcon'>Så fixar du bostad</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/stod/studera-med-barn/" role="button" class=' ArticlePage preventAutomaticIcon'>Studera med barn</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/stod/Stod-anpassningar/" role="button" class=' ArticlePage preventAutomaticIcon'>Stöd vid funktionsnedsättning</a>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-2lvl12Cont-2" aria-controls="lvl11-2lvl12Cont-2" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Lag och rätt på högskolan
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-2lvl12Cont-2" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/lag-och-ratt/lagar-och-regler-pa-hogskolan/" role="button" class=' ArticlePage preventAutomaticIcon'>Lagar och regler på högskolan</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/lag-och-ratt/overklaga-antagningsbeslut/" role="button" class=' ArticlePage preventAutomaticIcon'>Överklaga antagningsbeslut</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/lag-och-ratt/enskilda-utbildningsanordnare/" role="button" class=' ArticlePage preventAutomaticIcon'>Enskilda utbildningsanordnare</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/lag-och-ratt/din-ratt-att-delta-i-undervisningen/" role="button" class=' ArticlePage preventAutomaticIcon'>Tjänstledighet för studier</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/lag-och-ratt/fusk-eller-plagiat/" role="button" class=' ArticlePage preventAutomaticIcon'>Fusk eller plagiat</a>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-2lvl12Cont-3" aria-controls="lvl11-2lvl12Cont-3" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Påverka din utbildning
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-2lvl12Cont-3" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/paverka/studentinflytande/" role="button" class=' ArticlePage preventAutomaticIcon'>Studentinflytande</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/paverka/studentkaren/" role="button" class=' ArticlePage preventAutomaticIcon'>Studentkåren</a>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-2lvl12Cont-4" aria-controls="lvl11-2lvl12Cont-4" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Sjukdom, paus eller byte
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-2lvl12Cont-4" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/paus-eller-byte/ratt-att-slutfora/" role="button" class=' ArticlePage preventAutomaticIcon'>Rätt att slutföra utbildningen</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/paus-eller-byte/studieuppehall/" role="button" class=' ArticlePage preventAutomaticIcon'>Studieuppehåll</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/paus-eller-byte/byta/" role="button" class=' ArticlePage preventAutomaticIcon'>Byta utbildning eller studieort</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/paus-eller-byte/sjuk/" role="button" class=' ArticlePage preventAutomaticIcon'>Sjuk som student</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/livet-som-student/paus-eller-byte/skjuta-upp/" role="button" class=' ArticlePage preventAutomaticIcon'>Anstånd - att skjuta upp studierna</a>
+        </li>
+
+		</ul>
+	</li>
+
+		</ul>
+	</li>
+	<li class="lvl1m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-3" aria-controls="lvl11-3" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Studera utomlands
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-3" class="navbar-collapse collapse ">
+			    <li class="lvl2m">
+        <a href="https://www.studera.nu/studera-utomlands/studera-utomlands/" role="button" class="landing-partial-page preventAutomaticIcon">
+            <div>Studera utomlands</div>
+<svg class='icon icon-pil-hoger-ny' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-pil-hoger-ny'></use></svg>
+        </a>
+    </li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-3lvl12Cont-0" aria-controls="lvl11-3lvl12Cont-0" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Planera utlandsstudier
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-3lvl12Cont-0" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/studera-utomlands/bra-att-veta/tips/" role="button" class=' ArticlePage preventAutomaticIcon'>Tips inför utlandsstudier</a>
+        </li>
+        <li class='lvl3m '>
+            <div class="rightmenu">
+                <a role="button" href="https://www.studera.nu/studera-utomlands/bra-att-veta/pa-egen-hand/" class="text " aria-expanded="false">
+                    <span class="sr-only js-toggle-sr-text"  data-extended-close-text="St&#228;ng "></span>Åka på egen hand, freemover
+                </a>
+                <a role="button" href="#" class="arrow" data-toggle="collapse" data-target="#lvl11-3lvl12Cont-0lvl13-1" aria-controls="lvl11-3lvl12Cont-0lvl13-1" aria-expanded="false">
+                    <span class="icon icon-triangel-pil-ned-uhr"></span>
+                </a>
+            </div>
+            <ul id="lvl11-3lvl12Cont-0lvl13-1" class="navbar-collapse collapse ">
+                    <li class='lvl4m '>
+        <a href="https://www.studera.nu/studera-utomlands/bra-att-veta/pa-egen-hand/lander/" role="button" class=' preventAutomaticIcon'>Vart kan jag åka?</a>
+    </li>
+
+            </ul>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/studera-utomlands/bra-att-veta/funktionsnedsattning/" role="button" class=' ArticlePage preventAutomaticIcon'>Stöd vid funktionsnedsättning</a>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-3lvl12Cont-1" aria-controls="lvl11-3lvl12Cont-1" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Utbytesprogram
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-3lvl12Cont-1" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/studera-utomlands/utbytesprogram/att-aka-som-utbytesstudent/" role="button" class=' ArticlePage preventAutomaticIcon'>Att åka som utbytesstudent</a>
+        </li>
+        <li class='lvl3m '>
+            <div class="rightmenu">
+                <a role="button" href="https://www.studera.nu/studera-utomlands/utbytesprogram/erasmus/" class="text " aria-expanded="false">
+                    <span class="sr-only js-toggle-sr-text"  data-extended-close-text="St&#228;ng "></span>Erasmus+
+                </a>
+                <a role="button" href="#" class="arrow" data-toggle="collapse" data-target="#lvl11-3lvl12Cont-1lvl13-1" aria-controls="lvl11-3lvl12Cont-1lvl13-1" aria-expanded="false">
+                    <span class="icon icon-triangel-pil-ned-uhr"></span>
+                </a>
+            </div>
+            <ul id="lvl11-3lvl12Cont-1lvl13-1" class="navbar-collapse collapse ">
+                    <li class='lvl4m '>
+        <a href="https://www.studera.nu/studera-utomlands/utbytesprogram/erasmus/ansokan/" role="button" class=' preventAutomaticIcon'>Erasmus+ ansökan</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/studera-utomlands/utbytesprogram/erasmus/gron-hallbarhet/" role="button" class=' preventAutomaticIcon'>Grön hållbarhet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/studera-utomlands/utbytesprogram/erasmus/fragor-och-svar/" role="button" class=' preventAutomaticIcon'>Frågor och svar</a>
+    </li>
+
+            </ul>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/studera-utomlands/utbytesprogram/nordplus/" role="button" class=' ArticlePage preventAutomaticIcon'>Nordplus</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/studera-utomlands/utbytesprogram/erasmus-gemensamma-masterprogram/" role="button" class=' ArticlePage preventAutomaticIcon'>Erasmus mundus gemensamma masterprogram</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/studera-utomlands/utbytesprogram/asem-duo/" role="button" class=' ArticlePage preventAutomaticIcon'>ASEM-DUO</a>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-3lvl12Cont-2" aria-controls="lvl11-3lvl12Cont-2" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Program för utlandspraktik
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-3lvl12Cont-2" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/studera-utomlands/praktik-utomlands/att-praktisera-utomlands/" role="button" class=' ArticlePage preventAutomaticIcon'>Att praktisera utomlands</a>
+        </li>
+        <li class='lvl3m '>
+            <div class="rightmenu">
+                <a role="button" href="https://www.studera.nu/studera-utomlands/praktik-utomlands/erasmus-praktik/" class="text " aria-expanded="false">
+                    <span class="sr-only js-toggle-sr-text"  data-extended-close-text="St&#228;ng "></span>Erasmus+ praktik
+                </a>
+                <a role="button" href="#" class="arrow" data-toggle="collapse" data-target="#lvl11-3lvl12Cont-2lvl13-1" aria-controls="lvl11-3lvl12Cont-2lvl13-1" aria-expanded="false">
+                    <span class="icon icon-triangel-pil-ned-uhr"></span>
+                </a>
+            </div>
+            <ul id="lvl11-3lvl12Cont-2lvl13-1" class="navbar-collapse collapse ">
+                    <li class='lvl4m '>
+        <a href="https://www.studera.nu/studera-utomlands/praktik-utomlands/erasmus-praktik/fragor-och-svar/" role="button" class=' preventAutomaticIcon'>Frågor och svar</a>
+    </li>
+
+            </ul>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/studera-utomlands/praktik-utomlands/praktik-inom-eus-institutioner/" role="button" class=' ArticlePage preventAutomaticIcon'>Praktik inom EU:s institutioner</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/studera-utomlands/praktik-utomlands/iaeste/" role="button" class=' ArticlePage preventAutomaticIcon'>IAESTE</a>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-3lvl12Cont-3" aria-controls="lvl11-3lvl12Cont-3" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Europastudier för internationellt yrkesliv
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-3lvl12Cont-3" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/studera-utomlands/europastudier/college-of-europe/" role="button" class=' ArticlePage preventAutomaticIcon'>College of Europe</a>
+        </li>
+
+		</ul>
+	</li>
+
+		</ul>
+	</li>
+	<li class="lvl1m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-4" aria-controls="lvl11-4" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>H&#246;gskoleprovet
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-4" class="navbar-collapse collapse ">
+			    <li class="lvl2m">
+        <a href="https://www.studera.nu/hogskoleprov/hp-aktuellt/" role="button" class="landing-partial-page preventAutomaticIcon">
+            <div>Aktuellt om h&ouml;gskoleprovet</div>
+<svg class='icon icon-pil-hoger-ny' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-pil-hoger-ny'></use></svg>
+        </a>
+    </li>
+    <li class="lvl2m">
+        <a href="https://www.hogskoleprov.nu/" role="button" class="landing-partial-page preventAutomaticIcon">
+            <div>Till ditt konto, hogskoleprov.nu</div>
+<svg class='icon icon-extern-lank' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-extern-lank'></use></svg>
+        </a>
+    </li>
+    <li class="lvl2m">
+        <a href="https://www.studera.nu/hogskoleprov/resultat/resultat/senaste/" role="button" class="landing-partial-page preventAutomaticIcon">
+            <div>Fr&aring;gor och facit senaste provet</div>
+<svg class='icon icon-pil-hoger-ny' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-pil-hoger-ny'></use></svg>
+        </a>
+    </li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-4lvl12Cont-0" aria-controls="lvl11-4lvl12Cont-0" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Om högskoleprovet
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-4lvl12Cont-0" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <div class="rightmenu">
+                <a role="button" href="https://www.studera.nu/hogskoleprov/om/intro/" class="text " aria-expanded="false">
+                    <span class="sr-only js-toggle-sr-text"  data-extended-close-text="St&#228;ng "></span>Vad är högskoleprovet?
+                </a>
+                <a role="button" href="#" class="arrow" data-toggle="collapse" data-target="#lvl11-4lvl12Cont-0lvl13-0" aria-controls="lvl11-4lvl12Cont-0lvl13-0" aria-expanded="false">
+                    <span class="icon icon-triangel-pil-ned-uhr"></span>
+                </a>
+            </div>
+            <ul id="lvl11-4lvl12Cont-0lvl13-0" class="navbar-collapse collapse ">
+                    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/om/intro/skapa/" role="button" class=' preventAutomaticIcon'>Så arbetar vi med högskoleprovet</a>
+    </li>
+
+            </ul>
+        </li>
+        <li class='lvl3m '>
+            <div class="rightmenu">
+                <a role="button" href="https://www.studera.nu/hogskoleprov/om/forbereda/" class="text " aria-expanded="false">
+                    <span class="sr-only js-toggle-sr-text"  data-extended-close-text="St&#228;ng "></span>Förbered dig inför provet
+                </a>
+                <a role="button" href="#" class="arrow" data-toggle="collapse" data-target="#lvl11-4lvl12Cont-0lvl13-1" aria-controls="lvl11-4lvl12Cont-0lvl13-1" aria-expanded="false">
+                    <span class="icon icon-triangel-pil-ned-uhr"></span>
+                </a>
+            </div>
+            <ul id="lvl11-4lvl12Cont-0lvl13-1" class="navbar-collapse collapse ">
+                    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/om/forbereda/tidigare/" role="button" class=' preventAutomaticIcon'>Öva på tidigare högskoleprov</a>
+    </li>
+
+            </ul>
+        </li>
+        <li class='lvl3m '>
+            <div class="rightmenu">
+                <a role="button" href="https://www.studera.nu/hogskoleprov/om/faq/" class="text " aria-expanded="false">
+                    <span class="sr-only js-toggle-sr-text"  data-extended-close-text="St&#228;ng "></span>Frågor och svar
+                </a>
+                <a role="button" href="#" class="arrow" data-toggle="collapse" data-target="#lvl11-4lvl12Cont-0lvl13-2" aria-controls="lvl11-4lvl12Cont-0lvl13-2" aria-expanded="false">
+                    <span class="icon icon-triangel-pil-ned-uhr"></span>
+                </a>
+            </div>
+            <ul id="lvl11-4lvl12Cont-0lvl13-2" class="navbar-collapse collapse ">
+                    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/om/faq/anmalan/" role="button" class=' preventAutomaticIcon'>Frågor om anmälan</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/om/faq/dyslexi-synskada/" role="button" class=' preventAutomaticIcon'>Frågor om dyslexi eller synskada</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/om/faq/anpassning-provsituation/" role="button" class=' preventAutomaticIcon'>Frågor om anpassning av provsituationen</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/om/faq/betalning/" role="button" class=' preventAutomaticIcon'>Frågor om betalning</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/om/faq/inloggning/" role="button" class=' preventAutomaticIcon'>Frågor om inloggning</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/om/faq/praktiskt-provdagen/" role="button" class=' preventAutomaticIcon'>Frågor om allt praktiskt under provdagen</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/om/faq/ovrigt/" role="button" class=' preventAutomaticIcon'>Övriga frågor</a>
+    </li>
+
+            </ul>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-4lvl12Cont-1" aria-controls="lvl11-4lvl12Cont-1" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Anmälan
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-4lvl12Cont-1" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <a href="https://www.studera.nu/hogskoleprov/anmalan/forbered/" role="button" class=' ArticlePage preventAutomaticIcon'>Förbered din anmälan</a>
+        </li>
+        <li class='lvl3m '>
+            <a href="https://www.studera.nu/hogskoleprov/anmalan/karta/" role="button" class=' ArticlePage preventAutomaticIcon'>Här kan du skriva högskole­provet</a>
+        </li>
+        <li class='lvl3m '>
+            <div class="rightmenu">
+                <a role="button" href="https://www.studera.nu/hogskoleprov/anmalan/anpassning/" class="text " aria-expanded="false">
+                    <span class="sr-only js-toggle-sr-text"  data-extended-close-text="St&#228;ng "></span>Anpassningar av prov och provsituation
+                </a>
+                <a role="button" href="#" class="arrow" data-toggle="collapse" data-target="#lvl11-4lvl12Cont-1lvl13-2" aria-controls="lvl11-4lvl12Cont-1lvl13-2" aria-expanded="false">
+                    <span class="icon icon-triangel-pil-ned-uhr"></span>
+                </a>
+            </div>
+            <ul id="lvl11-4lvl12Cont-1lvl13-2" class="navbar-collapse collapse ">
+                    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/anmalan/anpassning/dyslexi/" role="button" class=' preventAutomaticIcon'>Anpassning av prov för dyslexi</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/anmalan/anpassning/synskada/" role="button" class=' preventAutomaticIcon'>Anpassning av prov för synskada</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/anmalan/anpassning/provsituation/" role="button" class=' preventAutomaticIcon'>Anpassning av provsituationen</a>
+    </li>
+
+            </ul>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-4lvl12Cont-2" aria-controls="lvl11-4lvl12Cont-2" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Provdagen
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-4lvl12Cont-2" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <div class="rightmenu">
+                <a role="button" href="https://www.studera.nu/hogskoleprov/provdag/praktiskt/" class="text " aria-expanded="false">
+                    <span class="sr-only js-toggle-sr-text"  data-extended-close-text="St&#228;ng "></span>Schema, kallelse och praktiskt
+                </a>
+                <a role="button" href="#" class="arrow" data-toggle="collapse" data-target="#lvl11-4lvl12Cont-2lvl13-0" aria-controls="lvl11-4lvl12Cont-2lvl13-0" aria-expanded="false">
+                    <span class="icon icon-triangel-pil-ned-uhr"></span>
+                </a>
+            </div>
+            <ul id="lvl11-4lvl12Cont-2lvl13-0" class="navbar-collapse collapse ">
+                    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/provdag/praktiskt/kontroller/" role="button" class=' preventAutomaticIcon'>In- och utpasseringskontroller</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/provdag/praktiskt/fusk/" role="button" class=' preventAutomaticIcon'>Fusk på högskoleprovet</a>
+    </li>
+
+            </ul>
+        </li>
+
+		</ul>
+	</li>
+	<li class="lvl2m">
+		<a role="button" href="#" data-toggle="collapse" data-target="#lvl11-4lvl12Cont-3" aria-controls="lvl11-4lvl12Cont-3" aria-expanded="false">
+			<span class="sr-only js-toggle-sr-text" data-extended-close-text="St&#228;ng "></span>Resultat
+			<span class="icon icon-triangel-pil-ned-uhr"></span>
+		</a>
+		<ul id="lvl11-4lvl12Cont-3" class="navbar-collapse collapse  preventAutomaticIcon">
+			        <li class='lvl3m '>
+            <div class="rightmenu">
+                <a role="button" href="https://www.studera.nu/hogskoleprov/resultat/resultat/" class="text " aria-expanded="false">
+                    <span class="sr-only js-toggle-sr-text"  data-extended-close-text="St&#228;ng "></span>Förstå och använd ditt resultat
+                </a>
+                <a role="button" href="#" class="arrow" data-toggle="collapse" data-target="#lvl11-4lvl12Cont-3lvl13-0" aria-controls="lvl11-4lvl12Cont-3lvl13-0" aria-expanded="false">
+                    <span class="icon icon-triangel-pil-ned-uhr"></span>
+                </a>
+            </div>
+            <ul id="lvl11-4lvl12Cont-3lvl13-0" class="navbar-collapse collapse ">
+                    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/resultat/resultat/senaste/" role="button" class=' preventAutomaticIcon'>Frågor, facit och normering från senaste provet</a>
+    </li>
+    <li class='lvl4m '>
+        <a href="https://www.studera.nu/hogskoleprov/resultat/resultat/rakna/" role="button" class=' preventAutomaticIcon'>Så räknas resultatet fram</a>
+    </li>
+
+            </ul>
+        </li>
+
+		</ul>
+	</li>
+
+		</ul>
+	</li>
+
+				</ul>
+			</div>
+			<div class="bottomNavMobile dropdownItems hidden-lg hidden-md">
+				<div class="languageSwitchLink">
+					<a id="HyperLinkMainLanguageSwitch-Mobile" class="hyperLinkMainLanguageSwitch" href="https://www.studera.nu/startpage/" title="Change language of the site to english">In English</a>
+				</div>
+				<div id="languageSwitchMenu-Mobile" class="dropdown noJavaScript languageSwitchMenu">
+					<a id="otherLanguagesSwitch-Mobile" class="dropdown-toggle otherLanguagesSwitch" href="#" data-toggle="dropdown" role="button" aria-haspopup="true">Other languages<span class='caret'></span></a>
+
+					<div id="otherLanguagesMenu-Mobile" class="dropdown-menu otherLanguagesMenu" aria-labelledby="otherLanguagesSwitch-Mobile">
+						<ul>
+								<li>
+									<a href="/andra-sprak/langre/arabiska/">العربية (Arabiska)</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/langre/farsi/">به پارسی (Farsi)</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/langre/francais/">Fran&#231;ais (Franska)</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/langre/kinesiska/">中文 (Kinesiska)</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/langre/polska/">Polski (Polska)</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/langre/ryska/">Русский (Ryska)</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/langre/somali/">Af-Soomaali (Somaliska)</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/langre/espanol/">Espa&#241;ol (Spanska)</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/langre/thai/">ไทย (Thai)</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/langre/tigrinja/">ትግርኛ (Tigrinja)</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/minoritetssprak/davvisamegiella/">Davvis&#225;megiella</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/minoritetssprak/jiddisch/">Jiddisch</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/minoritetssprak/julevsamegiella/">Julevs&#225;megiella</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/minoritetssprak/meankieli/">Me&#228;nkieli</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/minoritetssprak/romani-arli/">Romani arli</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/minoritetssprak/romani-kalo/">Romani k&#225;lo</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/minoritetssprak/romani--kelderas/">Romani  kelderaš</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/minoritetssprak/romani-lovara/">Romani lovara</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/minoritetssprak/suomi/">Suomi</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/minoritetssprak/svensk-romani/">Svensk romani</a>
+								</li>
+								<li>
+									<a href="/andra-sprak/minoritetssprak/aarjelsaemiengiele/">&#197;arjelsaemieng&#239;ele</a>
+								</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel" style="display: contents">
+		<div class="navbar-collapse collapse panel" id="search-mobile" data-parent="#mobilmenucollapsecontainer">
+			<div class="search ess-quickSearchForm ess-box">
+				
+
+<div class="searchInputGroup">
+	<form method="get" role="search" action="https://www.studera.nu/soksida/" class="headersearch" aria-label="S&#246;k p&#229; webbplatsen" data-enable-autocomplete="off" 
+          lang="sv">
+
+		<div class="input-group">
+            <label for="SearchBox2_QuickSearchBox"><span>S&#246;k p&#229; webbplatsen</span></label>
+			<input type="text" id="SearchBox2_QuickSearchBox" name="q" class="ess-searchbox searchPlaceholder form-control" title="S&#246;k p&#229; webbplatsen" placeholder="S&#246;k p&#229; webbplatsen" aria-controls="SearchBox2_AriaLive" />
+			<div id="SearchBox2_QuickSearchBox-autocomplete-suggestion-list"></div>
+			<div class="SearchBox2_QuickSearchBox-suggestions-help sr-only" id="SearchBox2_AriaLive" aria-atomic="true" role="alert" aria-live="polite"></div>
+			<span class="input-group-btn">
+                <button type="submit" class="ess-searchbutton btn btn-submit form-control QuickSearchButton searchBoxButton" id="SearchButton">
+                    <svg class='icon icon-forstoringsglas' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-forstoringsglas'></use></svg>
+                    <span class="hidden-xs hidden-sm">S&#246;k</span>
+                    <span class="sr-only hidden-md hidden-lg">S&#246;k</span>
+                </button>
+			</span>
+		</div>
+	</form>
+	
+</div>
+
+
+
+
+			</div>
+		</div>
+	</div>
+
+</nav>
+            </div>
+        </div>
+        <div class="row hidden-sm hidden-xs">
+            
+
+
+
+
+
+<div class="col-sm-12">
+    <nav class="navbar yamm navbar-default navbar-desktop" lang="sv">
+        <div id="mainnavigation"> 
+            <h2 class="hidden">Sitens inneh&#229;ll</h2>
+            <ul class="nav navbar-nav">
+                    <li class='dropdown yamm-fw first  noJavaScript'>
+
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            Att välja utbildning
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <div>
+                                <div class='col-md-3 ColUl'>
+    <h3 class="firstItem">Hjälp i studievalet</h3><ul>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/smart-studieval/studievagledare/" class="preventAutomaticIcon">Hitta en studievägledare</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/smart-studieval/tips-infor-studievalet/" class="preventAutomaticIcon">Tre tips inför studievalet</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/smart-studieval/jamfor-utbildningar/" class="preventAutomaticIcon">Jämför utbildningar</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/smart-studieval/undersok-utbildningens-kvalitet/" class="preventAutomaticIcon">Undersök utbildningens kvalitet</a></li>
+</ul>    <h3 class="firstItem">Studier och arbetsmarknad</h3><ul>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/arbetsmarknad/har-finns-jobben/" class="preventAutomaticIcon">Här finns jobben</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/arbetsmarknad/etableringsgrad/" class="preventAutomaticIcon">Får jag jobb efter utbildningen?</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/arbetsmarknad/lon/" class="preventAutomaticIcon">Lön efter utbildningen</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/arbetsmarknad/omstallningsstudiestod/" class="preventAutomaticIcon">Omställningsstudiestöd</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/arbetsmarknad/komplettera-utlandsk-utbildning/" class="preventAutomaticIcon">Komplettera utländsk utbildning</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColUl'>
+    <h3 class="firstItem">Distansstudier</h3><ul>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/distansstudier/studera-pa-distans/" class="preventAutomaticIcon">Studera på distans</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/distansstudier/natkurser-for-alla---moocs/" class="preventAutomaticIcon">Moocs – nätkurser för alla</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/distansstudier/se-upp-for-bluffuniversitet/" class="preventAutomaticIcon">Se upp för bluffuniversitet</a></li>
+</ul>    <h3 class="firstItem">Vägar i högre studier</h3><ul>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/vagar/kurs-eller-program/" class="preventAutomaticIcon">Kurs eller program</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/vagar/utbildningsnivaer-och-examina/" class="preventAutomaticIcon">Utbildningsnivåer och examina</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/vagar/basar/" class="preventAutomaticIcon">Basår - förutbildning</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/vagar/forskarstudier/" class="preventAutomaticIcon">Forskarstudier</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/vagar/universitet-eller-hogskola/" class="preventAutomaticIcon">Universitet och högskola, skillnad</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/vagar/andra-studier-an-hogskola/" class="preventAutomaticIcon">Andra studier än högskola</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColUl'>
+    <h3 class="firstItem">Lärarutbildningsguiden</h3><ul>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/lararutbildningar/guiden/" class="preventAutomaticIcon">Hitta din lärarutbildning</a></li>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/lararutbildningar/kulturskola/" class="preventAutomaticIcon">Pedagog i kulturskolan</a></li>
+</ul>    <h3 class="firstItem">Nationella minoriteter</h3><ul>
+    <li class=""><a href="https://www.studera.nu/att-valja-utbildning/nationella-minoriteter/nationella-minoriteter/" class="preventAutomaticIcon">Utbildningar i språk och kulturer</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColDiv'><div>
+    <div>
+            <div class="landingPartialPage">
+                <a href="https://www.studera.nu/jamfor-utbildning/" class="preventAutomaticIcon">
+                    <div class="h3 vignette">Hitta och jämför utbildningar</div>
+<svg class='icon icon-pil-hoger-ny' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-pil-hoger-ny'></use></svg>
+                </a>
+            </div >
+</div>
+    <div>
+            <div class="landingPartialPage">
+                <a href="https://www.studera.nu/att-valja-utbildning/adresser/uoh/" class="preventAutomaticIcon">
+                    <div class="h3 vignette">Kontakta universitet och h&ouml;gskolor</div>
+<svg class='icon icon-pil-hoger-ny' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-pil-hoger-ny'></use></svg>
+                </a>
+            </div >
+</div>
+                </div></div>
+
+                </div>
+            </li>
+        </ul>
+    </li>
+    <li class='dropdown yamm-fw   noJavaScript'>
+
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            Så kommer du in
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <div>
+                                <div class='col-md-3 ColUl'>
+    <h3 class="firstItem">Behörig för högre studier</h3><ul>
+    <li class=""><a href="https://www.studera.nu/sa-kommer-du-in/behorig/grundlaggande-behorighet/" class="preventAutomaticIcon">Grundläggande behörighet</a></li>
+    <li class=""><a href="https://www.studera.nu/sa-kommer-du-in/behorig/sarskild-behorighet/" class="preventAutomaticIcon">Särskild behörighet</a></li>
+    <li class=""><a href="https://www.studera.nu/sa-kommer-du-in/behorig/utlandska-meriter/" class="preventAutomaticIcon">Utländska meriter</a></li>
+    <li class=""><a href="https://www.studera.nu/sa-kommer-du-in/behorig/reell-kompetens/" class="preventAutomaticIcon">Bedömning av reell kompetens</a></li>
+    <li class=""><a href="https://www.studera.nu/sa-kommer-du-in/behorig/saknar-behorighet/" class="preventAutomaticIcon">Saknar du behörighet?</a></li>
+    <li class=""><a href="https://www.studera.nu/sa-kommer-du-in/behorig/grundlaggande-behorighetsprovet/" class="preventAutomaticIcon">Grundläggande behörighetsprovet</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColUl'>
+    <h3 class="firstItem">Anmälan och antagning</h3><ul>
+    <li class=""><a href="https://www.studera.nu/sa-kommer-du-in/anmalan-och-antagning/antagningsstatistik/" class="preventAutomaticIcon">Antagningsstatistik</a></li>
+    <li class=""><a href="https://www.studera.nu/sa-kommer-du-in/anmalan-och-antagning/sa-anmaler-du-dig/" class="preventAutomaticIcon">Så anmäler du dig</a></li>
+    <li class=""><a href="https://www.studera.nu/sa-kommer-du-in/anmalan-och-antagning/meritvarde/" class="preventAutomaticIcon">Ditt meritvärde</a></li>
+    <li class=""><a href="https://www.studera.nu/sa-kommer-du-in/anmalan-och-antagning/urval/" class="preventAutomaticIcon">Urval</a></li>
+    <li class=""><a href="https://www.studera.nu/sa-kommer-du-in/anmalan-och-antagning/avgifter/" class="preventAutomaticIcon">Anmälnings- och studieavgifter</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColUl'>
+    <h3 class="firstItem">Ämneskrav för yrkeslärare</h3><ul>
+    <li class=""><a href="https://www.studera.nu/sa-kommer-du-in/yrkeslarare/amneskrav/" class="preventAutomaticIcon">Ämneskrav för yrkeslärarprogram</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColDiv'><div>
+    <div>
+            <div class="landingPartialPage">
+                <a href="https://www.studera.nu/jamfor-utbildning/" class="preventAutomaticIcon">
+                    <div class="h3 vignette">Hitta och jämför utbildningar</div>
+<svg class='icon icon-pil-hoger-ny' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-pil-hoger-ny'></use></svg>
+                </a>
+            </div >
+</div>
+                </div></div>
+
+                </div>
+            </li>
+        </ul>
+    </li>
+    <li class='dropdown yamm-fw   noJavaScript'>
+
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            Livet som student
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <div>
+                                <div class='col-md-3 ColUl'>
+    <h3 class="firstItem">Ny på högskolan</h3><ul>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/ny-pa-hogskolan/checklista/" class="preventAutomaticIcon">Checklista för antagna</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/ny-pa-hogskolan/studieteknik/" class="preventAutomaticIcon">Få hjälp med din studieteknik</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/ny-pa-hogskolan/sa-gar-studierna-till/" class="preventAutomaticIcon">Så går studierna till</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/ny-pa-hogskolan/tentor-och-examination/" class="preventAutomaticIcon">Tentor och examination</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/ny-pa-hogskolan/begrepp/" class="preventAutomaticIcon">Högskolans begrepp</a></li>
+</ul>    <h3 class="firstItem">Bostad, ekonomi och stöd</h3><ul>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/stod/studentekonomi/" class="preventAutomaticIcon">Din ekonomi som student</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/stod/bostad/" class="preventAutomaticIcon">Så fixar du bostad</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/stod/studera-med-barn/" class="preventAutomaticIcon">Studera med barn</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/stod/Stod-anpassningar/" class="preventAutomaticIcon">Stöd vid funktionsnedsättning</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColUl'>
+    <h3 class="firstItem">Lag och rätt på högskolan</h3><ul>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/lag-och-ratt/lagar-och-regler-pa-hogskolan/" class="preventAutomaticIcon">Lagar och regler på högskolan</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/lag-och-ratt/overklaga-antagningsbeslut/" class="preventAutomaticIcon">Överklaga antagningsbeslut</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/lag-och-ratt/enskilda-utbildningsanordnare/" class="preventAutomaticIcon">Enskilda utbildningsanordnare</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/lag-och-ratt/din-ratt-att-delta-i-undervisningen/" class="preventAutomaticIcon">Tjänstledighet för studier</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/lag-och-ratt/fusk-eller-plagiat/" class="preventAutomaticIcon">Fusk eller plagiat</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColUl'>
+    <h3 class="firstItem">Påverka din utbildning</h3><ul>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/paverka/studentinflytande/" class="preventAutomaticIcon">Studentinflytande</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/paverka/studentkaren/" class="preventAutomaticIcon">Studentkåren</a></li>
+</ul>    <h3 class="firstItem">Sjukdom, paus eller byte</h3><ul>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/paus-eller-byte/ratt-att-slutfora/" class="preventAutomaticIcon">Rätt att slutföra utbildningen</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/paus-eller-byte/studieuppehall/" class="preventAutomaticIcon">Studieuppehåll</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/paus-eller-byte/byta/" class="preventAutomaticIcon">Byta utbildning eller studieort</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/paus-eller-byte/sjuk/" class="preventAutomaticIcon">Sjuk som student</a></li>
+    <li class=""><a href="https://www.studera.nu/livet-som-student/paus-eller-byte/skjuta-upp/" class="preventAutomaticIcon">Anstånd - att skjuta upp studierna</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColDiv'><div>
+    <div>
+            <div class="standardPartialPageInMainMenu">
+                <a href="https://studenthalsa.se/" class="preventAutomaticIcon">
+                    <div class="h3 vignette">Studenth&auml;lsa.se - tips och r&aring;d f&ouml;r h&aring;llbart studieliv</div>
+                    
+<svg class='icon icon-extern-lank' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-extern-lank'></use></svg>
+                </a>
+            </div>
+</div>
+                </div></div>
+
+                </div>
+            </li>
+        </ul>
+    </li>
+    <li class='dropdown yamm-fw   noJavaScript'>
+
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            Studera utomlands
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <div>
+                                <div class='col-md-3 ColUl'>
+    <h3 class="firstItem">Planera utlandsstudier</h3><ul>
+    <li class=""><a href="https://www.studera.nu/studera-utomlands/bra-att-veta/tips/" class="preventAutomaticIcon">Tips inför utlandsstudier</a></li>
+    <li class=""><a href="https://www.studera.nu/studera-utomlands/bra-att-veta/pa-egen-hand/" class="preventAutomaticIcon">Åka på egen hand, freemover</a></li>
+    <li class=""><a href="https://www.studera.nu/studera-utomlands/bra-att-veta/funktionsnedsattning/" class="preventAutomaticIcon">Stöd vid funktionsnedsättning</a></li>
+</ul>    <h3 class="firstItem">Utbytesprogram</h3><ul>
+    <li class=""><a href="https://www.studera.nu/studera-utomlands/utbytesprogram/att-aka-som-utbytesstudent/" class="preventAutomaticIcon">Att åka som utbytesstudent</a></li>
+    <li class=""><a href="https://www.studera.nu/studera-utomlands/utbytesprogram/erasmus/" class="preventAutomaticIcon">Erasmus+</a></li>
+    <li class=""><a href="https://www.studera.nu/studera-utomlands/utbytesprogram/nordplus/" class="preventAutomaticIcon">Nordplus</a></li>
+    <li class=""><a href="https://www.studera.nu/studera-utomlands/utbytesprogram/erasmus-gemensamma-masterprogram/" class="preventAutomaticIcon">Erasmus mundus gemensamma masterprogram</a></li>
+    <li class=""><a href="https://www.studera.nu/studera-utomlands/utbytesprogram/asem-duo/" class="preventAutomaticIcon">ASEM-DUO</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColUl'>
+    <h3 class="firstItem">Program för utlandspraktik</h3><ul>
+    <li class=""><a href="https://www.studera.nu/studera-utomlands/praktik-utomlands/att-praktisera-utomlands/" class="preventAutomaticIcon">Att praktisera utomlands</a></li>
+    <li class=""><a href="https://www.studera.nu/studera-utomlands/praktik-utomlands/erasmus-praktik/" class="preventAutomaticIcon">Erasmus+ praktik</a></li>
+    <li class=""><a href="https://www.studera.nu/studera-utomlands/praktik-utomlands/praktik-inom-eus-institutioner/" class="preventAutomaticIcon">Praktik inom EU:s institutioner</a></li>
+    <li class=""><a href="https://www.studera.nu/studera-utomlands/praktik-utomlands/iaeste/" class="preventAutomaticIcon">IAESTE</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColUl'>
+    <h3 class="firstItem">Europastudier för internationellt yrkesliv</h3><ul>
+    <li class=""><a href="https://www.studera.nu/studera-utomlands/europastudier/college-of-europe/" class="preventAutomaticIcon">College of Europe</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColDiv'><div>
+    <div>
+            <div class="landingPartialPage">
+                <a href="https://www.studera.nu/studera-utomlands/studera-utomlands/" class="preventAutomaticIcon">
+                    <div class="h3 vignette">Studera utomlands</div>
+<svg class='icon icon-pil-hoger-ny' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-pil-hoger-ny'></use></svg>
+                </a>
+            </div >
+</div>
+                </div></div>
+
+                </div>
+            </li>
+        </ul>
+    </li>
+    <li class='dropdown yamm-fw last  noJavaScript'>
+
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            Högskoleprovet
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <div>
+                                <div class='col-md-3 ColUl'>
+    <h3 class="firstItem">Om högskoleprovet</h3><ul>
+    <li class=""><a href="https://www.studera.nu/hogskoleprov/om/intro/" class="preventAutomaticIcon">Vad är högskoleprovet?</a></li>
+    <li class=""><a href="https://www.studera.nu/hogskoleprov/om/forbereda/" class="preventAutomaticIcon">Förbered dig inför provet</a></li>
+    <li class=""><a href="https://www.studera.nu/hogskoleprov/om/faq/" class="preventAutomaticIcon">Frågor och svar</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColUl'>
+    <h3 class="firstItem">Anmälan</h3><ul>
+    <li class=""><a href="https://www.studera.nu/hogskoleprov/anmalan/forbered/" class="preventAutomaticIcon">Förbered din anmälan</a></li>
+    <li class=""><a href="https://www.studera.nu/hogskoleprov/anmalan/karta/" class="preventAutomaticIcon">Här kan du skriva högskole­provet</a></li>
+    <li class=""><a href="https://www.studera.nu/hogskoleprov/anmalan/anpassning/" class="preventAutomaticIcon">Anpassningar av prov och provsituation</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColUl'>
+    <h3 class="firstItem">Provdagen</h3><ul>
+    <li class=""><a href="https://www.studera.nu/hogskoleprov/provdag/praktiskt/" class="preventAutomaticIcon">Schema, kallelse och praktiskt</a></li>
+</ul>    <h3 class="firstItem">Resultat</h3><ul>
+    <li class=""><a href="https://www.studera.nu/hogskoleprov/resultat/resultat/" class="preventAutomaticIcon">Förstå och använd ditt resultat</a></li>
+</ul>            </div><div class='col-md-3 UlColEndColDiv'><div>
+    <div>
+            <div class="standardPartialPageInMainMenu">
+                <a href="https://www.studera.nu/hogskoleprov/hp-aktuellt/" class="preventAutomaticIcon">
+                    <div class="h3 vignette">Aktuellt om h&ouml;gskoleprovet</div>
+                     
+<svg class='icon icon-pil-hoger-ny' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-pil-hoger-ny'></use></svg>
+                </a>
+            </div>
+</div>
+    <div>
+            <div class="standardPartialPageInMainMenu">
+                <a href="https://www.hogskoleprov.nu/" class="preventAutomaticIcon">
+                    <div class="h3 vignette">Till ditt konto, hogskoleprov.nu</div>
+                    
+<svg class='icon icon-extern-lank' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-extern-lank'></use></svg>
+                </a>
+            </div>
+</div>
+    <div>
+            <div class="standardPartialPageInMainMenu">
+                <a href="https://www.studera.nu/hogskoleprov/resultat/resultat/senaste/" class="preventAutomaticIcon">
+                    <div class="h3 vignette">Fr&aring;gor och facit senaste provet</div>
+                    
+<svg class='icon icon-pil-hoger-ny' aria-hidden='true' focusable='false'><use xlink:href='/assets/icons/studeranuiconsprite.svg#icon-pil-hoger-ny'></use></svg>
+                </a>
+            </div>
+</div>
+                </div></div>
+
+                </div>
+            </li>
+        </ul>
+    </li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+
+        </div>
+    </header>
+</div>
+
+        <main id="mainContent">
+
+
+            
+<input type="hidden" id="HiddenFieldGroupContentH2" value="False" />
+<input type="hidden" id="HiddenFieldGroupContentH3" value="False" />
+
+<div id="subpageTemplate" class="container">
+	<div class="row">
+		<div class="col-md-8">
+			<div id="standardPage" class="articlePage">
+				<div class="row">
+					<div id="header" class="col-md-12">
+							<h1>404 – Sidan kan inte hittas</h1>
+					</div>
+				</div>
+								<div class="row">
+					<div id="mainBody" class="col-md-12">
+						<div class="overflow-hidden">
+							<h2>Vi hittar tyv&auml;rr inte sidan du letar efter</h2>
+<p><a href="/soksida/">Anv&auml;nd s&ouml;kfunktionen</a></p>
+<p><a href="/">Till startsidan</a></p>
+<p style="border-bottom: 1px solid black;">&nbsp;</p>
+<h2>We're sorry, but we couldn't find the page you are looking for</h2>
+<p><a href="/startpage/search/">Use the site search</a></p>
+<p><a href="/startpage/">Go to the English start page</a></p>
+
+						</div>
+						<!--eri-no-index-->
+						<div class="pagePublish">Sidan uppdaterades 2021-04-20</div>
+
+						<!--/eri-no-index-->
+					</div>
+				</div>
+				<div class="blockareapage row">
+					<div id="blockarealeft" class="col-xs-6">
+						
+					</div>
+					<div id="blockareamiddle" class="col-xs-6">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="blockarearight" class="col-xs-6 col-md-4">
+			
+		</div>
+	</div>
+</div>
+
+        </main>
+
+<div class="backdrop fade"></div>
+<div class="container">
+    <div class="row hidden-print hidden-md hidden-lg">
+        <div class="bottomNavFooter dropdownItems" lang="sv">
+            <div class="dropdown aboutUhrDropdown">
+                <button id="HyperLinkAboutUhrFooterLabel" class="AboutUhrLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span id="AboutUhrLabelFooter">Om Universitets- och h&#246;gskoler&#229;det</span>
+                    <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu aboutUhrMenu" aria-labelledby="HyperLinkAboutUhrFooterLabel">
+                    <div><p>Universitets- och h&ouml;gskoler&aring;det (UHR) &auml;r en myndighet som skapar f&ouml;ruts&auml;ttningar f&ouml;r att m&ouml;ta behovet av kompetens, nu och i framtiden.&nbsp;<br /><a href="https://uhr.se/om-uhr/detta-gor-uhr/">Om UHR</a></p>
+<p>&nbsp;</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer" class="hidden-print" lang="sv">
+        <div class="row footerRow equal">
+            <div class="col-md-3 footerColumn col-sm-12 col-xs-12">
+                <h2 class="footerHeader">Kontakt</h2>
+                <p>Universitets- och h&ouml;gskoler&aring;det<br /><span class="font-weight-bold">Telefon</span>&nbsp;010-470 03 00<br />(lunchst&auml;ngt kl. 12&ndash;13)</p>
+<p><a href="/om-studera.nu/om-studera.nu/">Om Studera.nu</a></p>
+<p><a href="/om-studera.nu/tillganglighet/">Webbplatsens tillg&auml;nglighet</a></p>
+<p><a id="cookiesettings" href="#">Hantera cookies</a></p>
+            </div>
+            <div class="col-md-3 footerColumn col-sm-12 col-xs-12">
+                <h2 class="footerHeader">UHR:s webbplatser</h2>
+                <div><div><div class="blockFrame relatedLinks">
+        <div class="blockBody">
+        <ul>
+<li><a href="https://www.antagning.se/se/start" rel="noopener">Antagning.se</a></li>
+<li><a href="https://www.universityadmissions.se/intl/start" rel="noopener"><span lang="En" data-lang="Engelska">Universityadmissions.se</span></a></li>
+<li><a href="https://www.uhr.se/" rel="noopener">Uhr.se</a></li>
+</ul>
+    </div>
+</div>
+</div></div>
+            </div>
+            <div class="col-md-3 footerColumn col-sm-12 col-xs-12">
+                            </div>
+            <div class="col-md-3 footerColumn col-sm-12 col-xs-12">
+                <div class="vision">
+                    <img src="/Static/images/Citat_lila.svg" alt="" class="citat" />
+                    <div>
+                        <p><span class="header">Utbildning, utbyte, utveckling</span>
+                            – f&#246;r alla som vill vidare
+                        </p>
+                    </div>
+                </div>
+                <div>
+                        <img src="/globalassets/uhr-logo-rgb.svg" title="" alt="Till uhr.se" class="footerLogo"/>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<!--/ end footer -->
+    <script type="text/javascript" src="https://dl.episerver.net/13.6.1/epi-util/find.js"></script>
+<script type="text/javascript">
+if(typeof FindApi === 'function'){var api = new FindApi();api.setApplicationUrl('/');api.setServiceApiBaseUrl('/find_v2/');api.processEventFromCurrentUri();api.bindWindowEvents();api.bindAClickEvent();api.sendBufferedEvents();}
+</script>
+
+    <script>
+//<![CDATA[
+(function() {
+
+var element = document.getElementById("cookiesettings");
+if (element) {
+element.onclick = function(event) {
+return klaro.show();
+}
+}
+})();
+/*]]>*/
+</script>
+</body>
+</html>
