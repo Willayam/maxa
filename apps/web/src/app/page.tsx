@@ -62,7 +62,7 @@ export default function HomePage() {
               <p className="text-xl text-foreground-muted mb-8 max-w-lg">
                 Din personliga HP-coach i mobilen. Få en daglig plan som tar dig från där du är nu till poängen du behöver – på bara 15 min om dagen.
               </p>
-              <WaitlistForm className="max-w-md" />
+              <WaitlistForm className="max-w-md" source="hero" />
               <p className="mt-4 text-sm text-foreground-muted">
                 Bli en av de första att få tillgång – vi lanserar inför vårens HP.
               </p>
@@ -175,7 +175,7 @@ export default function HomePage() {
             <p className="text-lg text-foreground-muted mb-8">
               Gå med i väntelistan och få tidig tillgång innan vårens HP.
             </p>
-            <WaitlistForm className="max-w-md mx-auto" />
+            <WaitlistForm className="max-w-md mx-auto" source="footer-cta" />
           </motion.div>
         </div>
       </section>
