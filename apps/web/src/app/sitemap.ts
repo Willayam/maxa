@@ -20,6 +20,40 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
+  // Strategy page routes
+  const strategyRoutes: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE_URL}/hogskoleprovet/strategier`,
+      lastModified: new Date('2026-01-27'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/hogskoleprovet/strategier/kvantitativa-fallor`,
+      lastModified: new Date('2026-01-27'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/hogskoleprovet/strategier/verbala-fallor`,
+      lastModified: new Date('2026-01-27'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/hogskoleprovet/strategier/vanliga-misstag`,
+      lastModified: new Date('2026-01-27'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/hogskoleprovet/strategier/tidsstrategi`,
+      lastModified: new Date('2026-01-27'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+  ]
+
   // Dynamic test page routes
   const testRoutes: MetadataRoute.Sitemap = tests.map((test) => ({
     url: `${BASE_URL}/hogskoleprovet/${test.slug}`,
@@ -28,5 +62,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
-  return [...staticRoutes, ...testRoutes]
+  return [...staticRoutes, ...strategyRoutes, ...testRoutes]
 }
