@@ -71,6 +71,7 @@ export default async function Image({
         >
           <div
             style={{
+              display: "flex",
               fontSize: 36,
               opacity: 0.7,
               marginBottom: 16,
@@ -78,11 +79,19 @@ export default async function Image({
           >
             Högskoleprovet
           </div>
-          <div style={{ fontSize: 80, fontWeight: "bold", marginBottom: 24 }}>
+          <div
+            style={{
+              display: "flex",
+              fontSize: 80,
+              fontWeight: "bold",
+              marginBottom: 24,
+            }}
+          >
             {seasonLabel} {test.year}
           </div>
           <div
             style={{
+              display: "flex",
               fontSize: 32,
               opacity: 0.8,
               textAlign: "center",
@@ -99,6 +108,9 @@ export default async function Image({
           >
             <div
               style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 backgroundColor: "#D4A017",
                 color: "#1E1A2D",
                 padding: "12px 32px",
