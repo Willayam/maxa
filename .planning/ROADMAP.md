@@ -16,7 +16,7 @@ Transform Maxa's basic test download pages into rich, SEO-optimized study resour
 - [x] **Phase 4: Strategy Content** - Swedish strategy pages from research source material
 - [x] **Phase 5: Cross-Linking & Polish** - Internal links, navigation, and OG images
 - [x] **Phase 6: Complete Normering Data** - Parse all historical normeringstabeller and display on test pages
-- [ ] **Phase 7: Gap Closure & Link Integrity** - Fix OG images, complete sitemap, add bidirectional linking, validate all links
+- [x] **Phase 7: Gap Closure & Link Integrity** - Fix OG images, complete sitemap, add bidirectional linking, validate all links
 
 ## Phase Details
 
@@ -130,10 +130,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 07-01-PLAN.md — Fix OG image build blocker (flexbox fix)
-- [ ] 07-02-PLAN.md — Complete sitemap + TODO cleanup
-- [ ] 07-03-PLAN.md — Bidirectional linking (LINK-01, LINK-02)
-- [ ] 07-04-PLAN.md — Strategy page OG images
+- [x] 07-01-PLAN.md — Fix OG image build blocker (flexbox fix)
+- [x] 07-02-PLAN.md — Complete sitemap + TODO cleanup
+- [x] 07-03-PLAN.md — Bidirectional linking (LINK-01, LINK-02)
+- [x] 07-04-PLAN.md — Strategy page OG images
 
 ## Progress
 
@@ -151,7 +151,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 4. Strategy Content | 3/3 | Complete | 2026-01-27 |
 | 5. Cross-Linking & Polish | 3/3 | Complete | 2026-01-27 |
 | 6. Complete Normering Data | 3/3 | Complete | 2026-01-27 |
-| 7. Gap Closure & Link Integrity | 0/? | Pending | — |
+| 7. Gap Closure & Link Integrity | 4/4 | Complete | 2026-01-27 |
 
 ## Requirement Coverage
 
