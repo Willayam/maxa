@@ -51,8 +51,8 @@ export const tests: Test[] = [
       { id: "hosten-2025-facit", fileType: "facit", filename: "hp-25b.pdf", sizeBytes: 27664 },
       { id: "hosten-2025-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 127885 },
       { id: "hosten-2025-norm-hela", fileType: "normering", filename: "norm25b-helaprovet.pdf", sizeBytes: 117686 },
-      { id: "hosten-2025-norm-kvant", fileType: "normering", filename: "norm25b-kvant.pdf", sizeBytes: 106564 },
-      { id: "hosten-2025-norm-verb", fileType: "normering", filename: "norm25b-verb.pdf", sizeBytes: 106457 },
+      { id: "hosten-2025-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm25b-kvant.pdf", sizeBytes: 106564 },
+      { id: "hosten-2025-norm-verb", fileType: "normering", section: "verbal", filename: "norm25b-verb.pdf", sizeBytes: 106457 },
     ],
   },
   {
@@ -68,6 +68,9 @@ export const tests: Test[] = [
       { id: "varen-2025-pp5-kvant", fileType: "provpass", section: "kvantitativ", passNumber: 5, filename: "provpass-5-kvant.pdf", sizeBytes: 2247200 },
       { id: "varen-2025-facit", fileType: "facit", filename: "hogskoleprovet-facit-25a.pdf", sizeBytes: 27734 },
       { id: "varen-2025-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 725043 },
+      { id: "varen-2025-norm-hela", fileType: "normering", filename: "norm25a-helaprovet.pdf", sizeBytes: 83958 },
+      { id: "varen-2025-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm25a-kvant.pdf", sizeBytes: 81565 },
+      { id: "varen-2025-norm-verb", fileType: "normering", section: "verbal", filename: "norm25a-verb.pdf", sizeBytes: 81607 }
     ],
   },
   // 2024
@@ -84,6 +87,9 @@ export const tests: Test[] = [
       { id: "hosten-2024-pp5-verb", fileType: "provpass", section: "verbal", passNumber: 5, filename: "provpass-5-verb-utan-elf.pdf", sizeBytes: 357283 },
       { id: "hosten-2024-facit", fileType: "facit", filename: "hogskoleprovet-facit-24b.pdf", sizeBytes: 27721 },
       { id: "hosten-2024-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 619641 },
+      { id: "hosten-2024-norm-hela", fileType: "normering", filename: "norm24b-helaprovet.pdf", sizeBytes: 84529 },
+      { id: "hosten-2024-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm24b-kvant.pdf", sizeBytes: 82317 },
+      { id: "hosten-2024-norm-verb", fileType: "normering", section: "verbal", filename: "norm24b-verb.pdf", sizeBytes: 82241 }
     ],
   },
   {
@@ -99,6 +105,9 @@ export const tests: Test[] = [
       { id: "varen-2024-pp5-kvant", fileType: "provpass", section: "kvantitativ", passNumber: 5, filename: "provpass-5-kvant.pdf", sizeBytes: 3037441 },
       { id: "varen-2024-facit", fileType: "facit", filename: "hogskoleprovet-facit-24a.pdf", sizeBytes: 27719 },
       { id: "varen-2024-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 621618 },
+      { id: "varen-2024-norm-hela", fileType: "normering", filename: "norm24a-helaprovet.pdf", sizeBytes: 84765 },
+      { id: "varen-2024-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm24a-kvant.pdf", sizeBytes: 82259 },
+      { id: "varen-2024-norm-verb", fileType: "normering", section: "verbal", filename: "norm24a-verb.pdf", sizeBytes: 82254 }
     ],
   },
   // 2023
@@ -115,6 +124,9 @@ export const tests: Test[] = [
       { id: "hosten-2023-pp5-verb", fileType: "provpass", section: "verbal", passNumber: 5, filename: "provpass-5-verb-utan-elf.pdf", sizeBytes: 435831 },
       { id: "hosten-2023-facit", fileType: "facit", filename: "hogskoleprovet-facit-23b.pdf", sizeBytes: 539848 },
       { id: "hosten-2023-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 726837 },
+      { id: "hosten-2023-norm-hela", fileType: "normering", filename: "norm23b-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "hosten-2023-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm23b-kvant.pdf", sizeBytes: 103286 },
+      { id: "hosten-2023-norm-verb", fileType: "normering", section: "verbal", filename: "norm23b-verb.pdf", sizeBytes: 103286 },
     ],
   },
   {
@@ -130,6 +142,9 @@ export const tests: Test[] = [
       { id: "varen-2023-pp5-verb", fileType: "provpass", section: "verbal", passNumber: 5, filename: "provpass-5-verb-utan-elf.pdf", sizeBytes: 990155 },
       { id: "varen-2023-facit", fileType: "facit", filename: "hogskoleprovet-facit-23a.pdf", sizeBytes: 236141 },
       { id: "varen-2023-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 646145 },
+      { id: "varen-2023-norm-hela", fileType: "normering", filename: "norm23a-helaprovet.pdf", sizeBytes: 97151 },
+      { id: "varen-2023-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm23a-kvant.pdf", sizeBytes: 94024 },
+      { id: "varen-2023-norm-verb", fileType: "normering", section: "verbal", filename: "norm23a-verb.pdf", sizeBytes: 92387 },
     ],
   },
   // 2022
@@ -146,6 +161,9 @@ export const tests: Test[] = [
       { id: "hosten-2022-pp5-verb", fileType: "provpass", section: "verbal", passNumber: 5, filename: "provpass-5-verb-utan-elf.pdf", sizeBytes: 1023516 },
       { id: "hosten-2022-facit", fileType: "facit", filename: "hogskoleprovet-facit-22b.pdf", sizeBytes: 385901 },
       { id: "hosten-2022-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 625133 },
+      { id: "hosten-2022-norm-hela", fileType: "normering", filename: "norm22b-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "hosten-2022-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm22b-kvant.pdf", sizeBytes: 103286 },
+      { id: "hosten-2022-norm-verb", fileType: "normering", section: "verbal", filename: "norm22b-verb.pdf", sizeBytes: 103286 },
     ],
   },
   {
@@ -161,6 +179,9 @@ export const tests: Test[] = [
       { id: "varen-2022-pp5-verb", fileType: "provpass", section: "verbal", passNumber: 5, filename: "provpass-5-verb-utan-elf.pdf", sizeBytes: 396757 },
       { id: "varen-2022-facit", fileType: "facit", filename: "hogskoleprovet-facit-22a2-7-maj.pdf", sizeBytes: 216877 },
       { id: "varen-2022-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 1134131 },
+      { id: "varen-2022-norm-hela", fileType: "normering", filename: "norm22a2-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "varen-2022-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm22a2-kvant.pdf", sizeBytes: 103286 },
+      { id: "varen-2022-norm-verb", fileType: "normering", section: "verbal", filename: "norm22a2-verb.pdf", sizeBytes: 103286 },
     ],
   },
   {
@@ -176,6 +197,9 @@ export const tests: Test[] = [
       { id: "varen-2022-mars-pp5-kvant", fileType: "provpass", section: "kvantitativ", passNumber: 5, filename: "provpass-5-kvant.pdf", sizeBytes: 5638743 },
       { id: "varen-2022-mars-facit", fileType: "facit", filename: "hogskoleprovet-facit-22a1.pdf", sizeBytes: 98955 },
       { id: "varen-2022-mars-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 1145992 },
+      { id: "varen-2022-mars-norm-hela", fileType: "normering", filename: "norm22a1-helaprovet.pdf", sizeBytes: 138560 },
+      { id: "varen-2022-mars-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm22a1-kvant.pdf", sizeBytes: 127330 },
+      { id: "varen-2022-mars-norm-verb", fileType: "normering", section: "verbal", filename: "norm22a1-verb.pdf", sizeBytes: 125536 },
     ],
   },
   // 2021
@@ -192,6 +216,9 @@ export const tests: Test[] = [
       { id: "hosten-2021-pp5-verb", fileType: "provpass", section: "verbal", passNumber: 5, filename: "211024-provpass-5-verb-utan-elf.pdf", sizeBytes: 672497 },
       { id: "hosten-2021-facit", fileType: "facit", filename: "hogskoleprovet-facit-21-b.pdf", sizeBytes: 279298 },
       { id: "hosten-2021-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 1179865 },
+      { id: "hosten-2021-norm-hela", fileType: "normering", filename: "norm21b-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "hosten-2021-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm21b-kvant.pdf", sizeBytes: 103286 },
+      { id: "hosten-2021-norm-verb", fileType: "normering", section: "verbal", filename: "norm21b-verb.pdf", sizeBytes: 103286 },
     ],
   },
   {
@@ -207,6 +234,9 @@ export const tests: Test[] = [
       { id: "varen-2021-pp5-kvant", fileType: "provpass", section: "kvantitativ", passNumber: 5, filename: "provpass-5-kvant.pdf", sizeBytes: 1140367 },
       { id: "varen-2021-facit", fileType: "facit", filename: "hogskoleprovet-facit-21a2.pdf", sizeBytes: 210780 },
       { id: "varen-2021-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 1119830 },
+      { id: "varen-2021-norm-hela", fileType: "normering", filename: "norm21a2-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "varen-2021-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm21a2-kvant.pdf", sizeBytes: 103286 },
+      { id: "varen-2021-norm-verb", fileType: "normering", section: "verbal", filename: "norm21a2-verb.pdf", sizeBytes: 103286 },
     ],
   },
   {
@@ -222,6 +252,9 @@ export const tests: Test[] = [
       { id: "varen-2021-mars-pp5-kvant", fileType: "provpass", section: "kvantitativ", passNumber: 5, filename: "hogskoleprovet-2021-03-13-del-5-kvantitativ-del.pdf", sizeBytes: 1295371 },
       { id: "varen-2021-mars-facit", fileType: "facit", filename: "hogskoleprovet-facit-21a1.pdf", sizeBytes: 224761 },
       { id: "varen-2021-mars-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 793075 },
+      { id: "varen-2021-mars-norm-hela", fileType: "normering", filename: "norm21a1-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "varen-2021-mars-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm21a1-kvant.pdf", sizeBytes: 103286 },
+      { id: "varen-2021-mars-norm-verb", fileType: "normering", section: "verbal", filename: "norm21a1-verb.pdf", sizeBytes: 103286 },
     ],
   },
   // 2020
@@ -238,6 +271,9 @@ export const tests: Test[] = [
       { id: "hosten-2020-pp5-kvant", fileType: "provpass", section: "kvantitativ", passNumber: 5, filename: "hogskoleprovet-2020-10-25-del-5-kvantitativ-del.pdf", sizeBytes: 3554974 },
       { id: "hosten-2020-facit", fileType: "facit", filename: "facit-hp-2020-10-25.pdf", sizeBytes: 221367 },
       { id: "hosten-2020-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 689162 },
+      { id: "hosten-2020-norm-hela", fileType: "normering", filename: "norm20b-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "hosten-2020-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm20b-kvant.pdf", sizeBytes: 103286 },
+      { id: "hosten-2020-norm-verb", fileType: "normering", section: "verbal", filename: "norm20b-verb.pdf", sizeBytes: 103286 },
     ],
   },
   // 2019
@@ -256,6 +292,9 @@ export const tests: Test[] = [
       { id: "hosten-2019-facit-v1", fileType: "facit", filename: "hogskoleprovet-facit-19b-version-1.pdf", sizeBytes: 248607 },
       { id: "hosten-2019-facit-v2", fileType: "facit", filename: "hogskoleprovet-facit-19b-version-2.pdf", sizeBytes: 173741 },
       { id: "hosten-2019-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 152968 },
+      { id: "hosten-2019-norm-hela", fileType: "normering", filename: "norm19b-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "hosten-2019-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm19b-kvant.pdf", sizeBytes: 103286 },
+      { id: "hosten-2019-norm-verb", fileType: "normering", section: "verbal", filename: "norm19b-verb.pdf", sizeBytes: 103286 },
     ],
   },
   {
@@ -271,6 +310,9 @@ export const tests: Test[] = [
       { id: "varen-2019-pp5-kvant", fileType: "provpass", section: "kvantitativ", passNumber: 5, filename: "hogskoleprovet-2019-04-06-del-5-kvantitativ-del.pdf", sizeBytes: 1163789 },
       { id: "varen-2019-facit", fileType: "facit", filename: "facit-hogskoleprovet-vt-2019.pdf", sizeBytes: 281313 },
       { id: "varen-2019-kallhanv", fileType: "kallhanvisning", filename: "kallforteckning-2019-a-dtk-las-mek-0022.pdf", sizeBytes: 238357 },
+      { id: "varen-2019-norm-hela", fileType: "normering", filename: "norm19a-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "varen-2019-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm19a-kvant.pdf", sizeBytes: 103286 },
+      { id: "varen-2019-norm-verb", fileType: "normering", section: "verbal", filename: "norm19a-verb.pdf", sizeBytes: 103286 },
     ],
   },
   // 2018
@@ -287,6 +329,9 @@ export const tests: Test[] = [
       { id: "hosten-2018-pp5-verb", fileType: "provpass", section: "verbal", passNumber: 5, filename: "hogskoleprovet-2018-10-21-del-5-verbal-del-utan-elf.pdf", sizeBytes: 346678 },
       { id: "hosten-2018-facit", fileType: "facit", filename: "facit-ht18.pdf", sizeBytes: 321674 },
       { id: "hosten-2018-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 674490 },
+      { id: "hosten-2018-norm-hela", fileType: "normering", filename: "norm18b-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "hosten-2018-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm18b-kvant.pdf", sizeBytes: 103286 },
+      { id: "hosten-2018-norm-verb", fileType: "normering", section: "verbal", filename: "norm18b-verb.pdf", sizeBytes: 103286 },
     ],
   },
   {
@@ -312,6 +357,9 @@ export const tests: Test[] = [
       { id: "varen-2018-facit-v7", fileType: "facit", filename: "facit-version-7-18a-221.pdf", sizeBytes: 61702 },
       { id: "varen-2018-facit-v8", fileType: "facit", filename: "facit-version-8-18a-222.pdf", sizeBytes: 61567 },
       { id: "varen-2018-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 528717 },
+      { id: "varen-2018-norm-hela", fileType: "normering", filename: "norm18a-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "varen-2018-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm18a-kvant.pdf", sizeBytes: 103286 },
+      { id: "varen-2018-norm-verb", fileType: "normering", section: "verbal", filename: "norm18a-verb.pdf", sizeBytes: 103286 },
     ],
   },
   // 2017
@@ -328,6 +376,9 @@ export const tests: Test[] = [
       { id: "hosten-2017-pp5-kvant", fileType: "provpass", section: "kvantitativ", passNumber: 5, filename: "provpass-5-kvant-version-1.pdf", sizeBytes: 1134759 },
       { id: "hosten-2017-facit", fileType: "facit", filename: "facit-version-1.pdf", sizeBytes: 60635 },
       { id: "hosten-2017-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 470506 },
+      { id: "hosten-2017-norm-hela", fileType: "normering", filename: "norm17b-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "hosten-2017-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm17b-kvant.pdf", sizeBytes: 103286 },
+      { id: "hosten-2017-norm-verb", fileType: "normering", section: "verbal", filename: "norm17b-verb.pdf", sizeBytes: 103286 },
     ],
   },
   {
@@ -343,6 +394,9 @@ export const tests: Test[] = [
       { id: "varen-2017-pp5-verb", fileType: "provpass", section: "verbal", passNumber: 5, filename: "provpass-5-verbal-a-utan-elf.pdf", sizeBytes: 205196 },
       { id: "varen-2017-facit", fileType: "facit", filename: "facit-a.pdf", sizeBytes: 16048 },
       { id: "varen-2017-kallhanv", fileType: "kallhanvisning", filename: "kallhanv17a.pdf", sizeBytes: 527688 },
+      { id: "varen-2017-norm-hela", fileType: "normering", filename: "norm17a-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "varen-2017-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm17a-kvant.pdf", sizeBytes: 103286 },
+      { id: "varen-2017-norm-verb", fileType: "normering", section: "verbal", filename: "norm17a-verb.pdf", sizeBytes: 103286 },
     ],
   },
   // 2016
@@ -359,6 +413,9 @@ export const tests: Test[] = [
       { id: "hosten-2016-pp5-kvant", fileType: "provpass", section: "kvantitativ", passNumber: 5, filename: "provpass-5-kvant-p-version-1.pdf", sizeBytes: 1481786 },
       { id: "hosten-2016-facit", fileType: "facit", filename: "facit-version-1-16b.pdf", sizeBytes: 60963 },
       { id: "hosten-2016-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 31598 },
+      { id: "hosten-2016-norm-hela", fileType: "normering", filename: "norm16b-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "hosten-2016-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm16b-kvant.pdf", sizeBytes: 103286 },
+      { id: "hosten-2016-norm-verb", fileType: "normering", section: "verbal", filename: "norm16b-verb.pdf", sizeBytes: 103286 },
     ],
   },
   {
@@ -374,6 +431,9 @@ export const tests: Test[] = [
       { id: "varen-2016-pp5-kvant", fileType: "provpass", section: "kvantitativ", passNumber: 5, filename: "provpass-5-kvant.pdf", sizeBytes: 754377 },
       { id: "varen-2016-facit", fileType: "facit", filename: "facit-vt2016.pdf", sizeBytes: 60971 },
       { id: "varen-2016-kallhanv", fileType: "kallhanvisning", filename: "kallor-vt-2016.pdf", sizeBytes: 33911 },
+      { id: "varen-2016-norm-hela", fileType: "normering", filename: "norm16a-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "varen-2016-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm16a-kvant.pdf", sizeBytes: 103286 },
+      { id: "varen-2016-norm-verb", fileType: "normering", section: "verbal", filename: "norm16a-verb.pdf", sizeBytes: 103286 },
     ],
   },
   // 2015
@@ -390,6 +450,9 @@ export const tests: Test[] = [
       { id: "hosten-2015-pp5-kvant", fileType: "provpass", section: "kvantitativ", passNumber: 5, filename: "provpass5kvant.pdf", sizeBytes: 1689357 },
       { id: "hosten-2015-facit", fileType: "facit", filename: "facit.pdf", sizeBytes: 7579 },
       { id: "hosten-2015-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 47757 },
+      { id: "hosten-2015-norm-hela", fileType: "normering", filename: "norm15b-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "hosten-2015-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm15b-kvant.pdf", sizeBytes: 103286 },
+      { id: "hosten-2015-norm-verb", fileType: "normering", section: "verbal", filename: "norm15b-verb.pdf", sizeBytes: 103286 },
     ],
   },
   {
@@ -405,6 +468,9 @@ export const tests: Test[] = [
       { id: "varen-2015-pp5-verb", fileType: "provpass", section: "verbal", passNumber: 5, filename: "provpass5verbuelf.pdf", sizeBytes: 149752 },
       { id: "varen-2015-facit", fileType: "facit", filename: "facit.pdf", sizeBytes: 7571 },
       { id: "varen-2015-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 234684 },
+      { id: "varen-2015-norm-hela", fileType: "normering", filename: "norm15a-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "varen-2015-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm15a-kvant.pdf", sizeBytes: 103286 },
+      { id: "varen-2015-norm-verb", fileType: "normering", section: "verbal", filename: "norm15a-verb.pdf", sizeBytes: 103286 },
     ],
   },
   // 2014
@@ -421,6 +487,9 @@ export const tests: Test[] = [
       { id: "hosten-2014-pp5-kvant", fileType: "provpass", section: "kvantitativ", passNumber: 5, filename: "provpass5kvant.pdf", sizeBytes: 10556408 },
       { id: "hosten-2014-facit", fileType: "facit", filename: "facit14b.pdf", sizeBytes: 8098 },
       { id: "hosten-2014-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 216579 },
+      { id: "hosten-2014-norm-hela", fileType: "normering", filename: "norm14b-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "hosten-2014-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm14b-kvant.pdf", sizeBytes: 103286 },
+      { id: "hosten-2014-norm-verb", fileType: "normering", section: "verbal", filename: "norm14b-verb.pdf", sizeBytes: 103286 },
     ],
   },
   {
@@ -436,6 +505,9 @@ export const tests: Test[] = [
       { id: "varen-2014-pp5-verb", fileType: "provpass", section: "verbal", passNumber: 5, filename: "provpass5verb14auelf.pdf", sizeBytes: 140818 },
       { id: "varen-2014-facit", fileType: "facit", filename: "facit.pdf", sizeBytes: 7647 },
       { id: "varen-2014-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 37783 },
+      { id: "varen-2014-norm-hela", fileType: "normering", filename: "norm14a-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "varen-2014-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm14a-kvant.pdf", sizeBytes: 103286 },
+      { id: "varen-2014-norm-verb", fileType: "normering", section: "verbal", filename: "norm14a-verb.pdf", sizeBytes: 103286 },
     ],
   },
   // 2013
@@ -452,6 +524,9 @@ export const tests: Test[] = [
       { id: "hosten-2013-pp5-kvant", fileType: "provpass", section: "kvantitativ", passNumber: 5, filename: "provpass5kvant.pdf", sizeBytes: 1378865 },
       { id: "hosten-2013-facit", fileType: "facit", filename: "facit13b.pdf", sizeBytes: 7550 },
       { id: "hosten-2013-kallhanv", fileType: "kallhanvisning", filename: "kallhanv.pdf", sizeBytes: 18783 },
+      { id: "hosten-2013-norm-hela", fileType: "normering", filename: "norm13b-helaprovet.pdf", sizeBytes: 103286 },
+      { id: "hosten-2013-norm-kvant", fileType: "normering", section: "kvantitativ", filename: "norm13b-kvant.pdf", sizeBytes: 103286 },
+      { id: "hosten-2013-norm-verb", fileType: "normering", section: "verbal", filename: "norm13b-verb.pdf", sizeBytes: 103286 },
     ],
   },
 ];

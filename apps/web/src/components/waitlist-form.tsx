@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Loader2 } from 'lucide-react';
 import { useMutation } from 'convex/react';
 import { api } from '../../../../convex/_generated/api';
+import { useConvexAvailable } from './convex-provider';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 
@@ -104,13 +105,14 @@ function WaitlistFormInner({ className, source }: WaitlistFormProps) {
 // This prevents useMutation from being called during SSR when ConvexProvider isn't available
 export function WaitlistForm({ className, source }: WaitlistFormProps) {
   const [mounted, setMounted] = useState(false);
+  const convexAvailable = useConvexAvailable();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // During SSR, render a placeholder to avoid layout shift
-  if (!mounted) {
+  // During SSR or when Convex is not configured, render a placeholder
+  if (!mounted || !convexAvailable) {
     return (
       <div className={className}>
         <div className="flex flex-col sm:flex-row gap-3">

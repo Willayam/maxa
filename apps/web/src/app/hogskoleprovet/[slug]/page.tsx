@@ -4,12 +4,21 @@ import { Metadata } from "next";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import {
+  JsonLd,
+  generateArticleJsonLd,
+  generateBreadcrumbJsonLd,
+} from "@/lib/structured-data";
+import {
   tests,
   getTestBySlug,
   getPdfUrl,
   type Test,
   type TestFile,
 } from "@/data/tests";
+import { NormeringSection } from "@/components/charts/normering-section";
+import { getNormeringData } from "@/lib/normering/loader";
+import { RelatedTests } from "@/components/navigation/related-tests";
+import { TestBreadcrumbs } from "@/components/navigation/test-breadcrumbs";
 
 export function generateStaticParams() {
   return tests.map((test) => ({
@@ -45,10 +54,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       `högskoleprov ${test.year} normering`,
       `högskoleprov ${test.year} pdf`,
     ],
+    alternates: {
+      canonical: `/hogskoleprovet/${slug}`,
+    },
     openGraph: {
       title,
       description,
       type: "article",
+      url: `/hogskoleprovet/${slug}`,
     },
   };
 }
@@ -61,19 +74,29 @@ export default async function TestPage({ params }: PageProps) {
     notFound();
   }
 
+  // Load normering data (returns null if not available)
+  const normeringData = await getNormeringData(slug);
+
   const seasonLabel = test.season === "vår" ? "Våren" : "Hösten";
   const title = `Högskoleprovet ${seasonLabel.toLowerCase()} ${test.year}`;
 
   const grouped = groupFiles(test.files);
 
+  const articleJsonLd = generateArticleJsonLd(test);
+  const breadcrumbJsonLd = generateBreadcrumbJsonLd(test);
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <SiteHeader />
       <main className="flex-1 pt-24 pb-12 px-6">
         <div className="max-w-4xl mx-auto">
+          <TestBreadcrumbs test={test} />
+
           <Link
             href="/hogskoleprovet"
-            className="text-foreground-muted hover:text-primary transition-colors mb-6 inline-flex items-center gap-2"
+            className="text-foreground-muted hover:text-primary transition-colors mb-6 inline-flex items-center gap-2 text-sm"
           >
             <span>←</span> Alla högskoleprov
           </Link>
@@ -116,49 +139,81 @@ export default async function TestPage({ params }: PageProps) {
                   test={test}
                 />
               )}
-
-              {grouped.normering.length > 0 && (
-                <FileSection
-                  title="Normering"
-                  description="Normeringstabeller"
-                  files={grouped.normering}
-                  test={test}
-                />
-              )}
-
-              {grouped.kallhanvisning.length > 0 && (
-                <FileSection
-                  title="Källhänvisningar"
-                  description="Referenser och källor"
-                  files={grouped.kallhanvisning}
-                  test={test}
-                />
-              )}
             </div>
           )}
 
+          {/* Normering section with integrated PDF sources */}
+          {normeringData && (
+            <div className="mt-12">
+              <NormeringSection
+                data={normeringData}
+                pdfSources={grouped.normering.map((file) => ({
+                  label: getNormeringLabel(file),
+                  url: getPdfUrl(test, file),
+                }))}
+              />
+            </div>
+          )}
+
+          {/* Källhänvisningar moved after normering */}
+          {grouped.kallhanvisning.length > 0 && (
+            <div className="mt-12">
+              <FileSection
+                title="Källhänvisningar"
+                description="Referenser och källor"
+                files={grouped.kallhanvisning}
+                test={test}
+              />
+            </div>
+          )}
+
+          <RelatedTests currentTest={test} />
+
+          {/* Strategy content links */}
           <section className="mt-16 pt-8 border-t border-border">
             <h2 className="text-xl font-bold text-foreground mb-4">
-              Fler högskoleprov
+              Lär dig strategier
             </h2>
+            <p className="text-foreground-muted mb-6">
+              Förbättra ditt resultat genom att lära dig känna igen vanliga fällor och optimera din tidsplanering.
+            </p>
             <div className="grid gap-3">
-              {tests
-                .filter((t) => t.id !== test.id)
-                .slice(0, 4)
-                .map((t) => (
-                  <Link
-                    key={t.id}
-                    href={`/hogskoleprovet/${t.slug}`}
-                    className="flex items-center justify-between p-4 bg-card-background rounded-xl border-2 border-border hover:border-primary transition-colors group"
-                  >
-                    <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {t.season === "vår" ? "Våren" : "Hösten"} {t.year}
-                    </span>
-                    <span className="text-foreground-muted group-hover:text-primary">
-                      →
-                    </span>
-                  </Link>
-                ))}
+              <Link
+                href="/hogskoleprovet/strategier/kvantitativa-fallor"
+                className="flex items-center justify-between p-4 bg-card-background rounded-xl border-2 border-border hover:border-primary transition-colors group"
+              >
+                <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Kvantitativa fällor
+                </span>
+                <span className="text-foreground-muted group-hover:text-primary">&rarr;</span>
+              </Link>
+              <Link
+                href="/hogskoleprovet/strategier/verbala-fallor"
+                className="flex items-center justify-between p-4 bg-card-background rounded-xl border-2 border-border hover:border-primary transition-colors group"
+              >
+                <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Verbala fällor
+                </span>
+                <span className="text-foreground-muted group-hover:text-primary">&rarr;</span>
+              </Link>
+              <Link
+                href="/hogskoleprovet/strategier/vanliga-misstag"
+                className="flex items-center justify-between p-4 bg-card-background rounded-xl border-2 border-border hover:border-primary transition-colors group"
+              >
+                <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Vanliga misstag
+                </span>
+                <span className="text-foreground-muted group-hover:text-primary">&rarr;</span>
+              </Link>
+              <Link
+                href="/hogskoleprovet/strategier/tidsstrategi"
+                className="flex items-center justify-between p-4 bg-card-background rounded-xl border-2 border-border hover:border-primary transition-colors group"
+              >
+                <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                  Tidsstrategi
+                </span>
+                <span className="text-foreground-muted group-hover:text-primary">&rarr;</span>
+              </Link>
             </div>
           </section>
         </div>
@@ -272,4 +327,10 @@ function formatFileSize(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function getNormeringLabel(file: TestFile): string {
+  if (file.section === "verbal") return "Normering verbal del (PDF)";
+  if (file.section === "kvantitativ") return "Normering kvantitativ del (PDF)";
+  return "Normering hela provet (PDF)";
 }
