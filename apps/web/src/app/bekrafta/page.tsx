@@ -4,6 +4,7 @@ import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useMutation } from 'convex/react';
 import { api } from '../../../../../convex/_generated/api';
+import { useConvexAvailable } from '@/components/convex-provider';
 import { motion } from 'framer-motion';
 import { CheckCircle, XCircle, Loader2 } from 'lucide-react';
 import { SiteHeader } from '@/components/site/site-header';
@@ -88,21 +89,50 @@ function ConfirmContent() {
   );
 }
 
+function ConvexUnavailableFallback() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="max-w-md w-full text-center space-y-6"
+    >
+      <div className="w-20 h-20 mx-auto bg-error/20 rounded-full flex items-center justify-center">
+        <XCircle className="w-12 h-12 text-error" />
+      </div>
+      <h1 className="text-3xl font-black text-foreground">
+        Tjänsten är inte tillgänglig
+      </h1>
+      <p className="text-lg text-foreground-muted">
+        Bekräftelsefunktionen är inte tillgänglig just nu. Försök igen senare.
+      </p>
+      <Link href="/">
+        <Button size="lg">Tillbaka till startsidan</Button>
+      </Link>
+    </motion.div>
+  );
+}
+
 export default function ConfirmPage() {
+  const convexAvailable = useConvexAvailable();
+
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
 
       <main className="flex items-center justify-center min-h-[80vh] px-6 pt-16">
-        <Suspense
-          fallback={
-            <div className="text-center">
-              <Loader2 className="w-16 h-16 mx-auto text-primary animate-spin" />
-            </div>
-          }
-        >
-          <ConfirmContent />
-        </Suspense>
+        {convexAvailable ? (
+          <Suspense
+            fallback={
+              <div className="text-center">
+                <Loader2 className="w-16 h-16 mx-auto text-primary animate-spin" />
+              </div>
+            }
+          >
+            <ConfirmContent />
+          </Suspense>
+        ) : (
+          <ConvexUnavailableFallback />
+        )}
       </main>
     </div>
   );

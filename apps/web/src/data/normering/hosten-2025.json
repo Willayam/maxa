@@ -42,11 +42,11 @@
       { "hpScore": 1.65, "count": 5, "percentage": 0.01, "cumulativePercentage": 99.99 },
       { "hpScore": 1.70, "count": 3, "percentage": 0.005, "cumulativePercentage": 99.995 },
       { "hpScore": 1.75, "count": 2, "percentage": 0.003, "cumulativePercentage": 99.998 },
-      { "hpScore": 1.80, "count": 1, "percentage": 0.002, "cumulativePercentage": 100.00 },
-      { "hpScore": 1.85, "count": 0, "percentage": 0, "cumulativePercentage": 100.00 },
-      { "hpScore": 1.90, "count": 0, "percentage": 0, "cumulativePercentage": 100.00 },
-      { "hpScore": 1.95, "count": 0, "percentage": 0, "cumulativePercentage": 100.00 },
-      { "hpScore": 2.00, "count": 0, "percentage": 0, "cumulativePercentage": 100.00 }
+      { "hpScore": 1.80, "count": 2, "percentage": 0.004, "cumulativePercentage": 99.992 },
+      { "hpScore": 1.85, "count": 1, "percentage": 0.002, "cumulativePercentage": 99.994 },
+      { "hpScore": 1.90, "count": 1, "percentage": 0.002, "cumulativePercentage": 99.996 },
+      { "hpScore": 1.95, "count": 1, "percentage": 0.002, "cumulativePercentage": 99.998 },
+      { "hpScore": 2.00, "count": 1, "percentage": 0.002, "cumulativePercentage": 100.00 }
     ]
   },
   "verbal": {

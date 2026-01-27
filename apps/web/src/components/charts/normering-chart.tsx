@@ -1,10 +1,13 @@
 'use client'
 
+import { useMemo } from 'react'
 import { Bar, ComposedChart, XAxis, YAxis, ResponsiveContainer, Tooltip, Cell, ReferenceLine } from 'recharts'
 import type { NormeringDistribution } from '@/lib/normering/types'
 
 interface NormeringChartProps {
   data: NormeringDistribution
+  /** Unique key for this data set - used to trigger clean re-renders between different data structures */
+  chartKey?: string
 }
 
 // Smart percentage formatter - shows more decimals for small numbers
@@ -16,25 +19,34 @@ function formatPct(value: number): string {
   return `${value.toFixed(1)}%`
 }
 
-export function NormeringChart({ data }: NormeringChartProps) {
-  // Transform data for chart
-  const chartData = data.distribution.map(row => ({
-    hpScore: row.hpScore,
-    count: row.count,
-    percentage: row.percentage,
-    cumulativePercentage: row.cumulativePercentage,
-    percentile: Math.max(0, 100 - row.cumulativePercentage),
-  }))
+export function NormeringChart({ data, chartKey }: NormeringChartProps) {
+  // Use actual distribution data directly - no normalization
+  // Different data sets (total vs verbal vs kvant) may have different granularities
+  const chartData = useMemo(() => {
+    return data.distribution.map(row => ({
+      hpScore: row.hpScore,
+      count: row.count,
+      percentage: row.percentage,
+      cumulativePercentage: row.cumulativePercentage,
+      percentile: Math.max(0, 100 - row.cumulativePercentage),
+    }))
+  }, [data.distribution])
 
   // Find the peak (mode) for gradient reference
   const maxCount = Math.max(...chartData.map(d => d.count))
 
+  // Determine X-axis interval based on data granularity
+  // 0.05 increments = ~40 points, 0.1 increments = ~21 points
+  const xAxisInterval = chartData.length > 30 ? 4 : 2
+
   return (
-    <div className="h-[320px] md:h-[400px] w-full">
+    // Key forces clean re-render when switching between different data structures
+    // This gives a smooth fade transition rather than trying to morph incompatible bar layouts
+    <div key={chartKey} className="h-[320px] md:h-[400px] w-full">
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart
           data={chartData}
-          margin={{ top: 20, right: 30, bottom: 50, left: 50 }}
+          margin={{ top: 20, right: 20, bottom: 50, left: 10 }}
         >
           <defs>
             {/* Gradient for bars - amber to gold */}
@@ -47,30 +59,32 @@ export function NormeringChart({ data }: NormeringChartProps) {
           <XAxis
             dataKey="hpScore"
             tickFormatter={(v) => v.toFixed(1)}
-            tick={{ fill: '#A8A3B8', fontSize: 12 }}
+            tick={{ fill: '#A8A3B8', fontSize: 12, fontWeight: 600 }}
             axisLine={{ stroke: '#3A3550' }}
             tickLine={{ stroke: '#3A3550' }}
-            interval={4}
+            interval={xAxisInterval}
+            domain={[0, 2]}
           />
           <YAxis
-            tick={{ fill: '#A8A3B8', fontSize: 12 }}
+            tick={{ fill: '#A8A3B8', fontSize: 11, fontWeight: 600 }}
             axisLine={{ stroke: '#3A3550' }}
             tickLine={{ stroke: '#3A3550' }}
-            tickFormatter={(v) => v.toLocaleString('sv-SE')}
+            width={45}
+            tickFormatter={(v) => v >= 1000 ? `${(v / 1000).toFixed(0)}k` : v.toString()}
           />
 
           {/* Mean reference line */}
           <ReferenceLine
             x={data.mean}
             stroke="#F7C948"
-            strokeDasharray="5 5"
-            strokeWidth={2}
+            strokeDasharray="6 4"
+            strokeWidth={3}
             label={{
               value: `Medel: ${data.mean.toFixed(2)}`,
               position: 'top',
               fill: '#F7C948',
-              fontSize: 12,
-              fontWeight: 600,
+              fontSize: 13,
+              fontWeight: 700,
             }}
           />
 
@@ -79,12 +93,14 @@ export function NormeringChart({ data }: NormeringChartProps) {
             dataKey="count"
             fill="url(#barGradient)"
             radius={[4, 4, 0, 0]}
-            maxBarSize={16}
+            maxBarSize={20}
+            animationDuration={600}
+            animationEasing="ease-in-out"
           >
-            {chartData.map((entry, index) => (
+            {chartData.map((entry) => (
               <Cell
-                key={`cell-${index}`}
-                fillOpacity={0.7 + (entry.count / maxCount) * 0.3}
+                key={`cell-${entry.hpScore}`}
+                fillOpacity={entry.count > 0 ? 0.7 + (entry.count / maxCount) * 0.3 : 0}
               />
             ))}
           </Bar>
@@ -94,6 +110,7 @@ export function NormeringChart({ data }: NormeringChartProps) {
             content={({ active, payload }) => {
               if (!active || !payload?.[0]) return null
               const d = payload[0].payload
+              if (d.count === 0) return null
               const isTopScore = d.percentile <= 10
               const isAboveAverage = d.hpScore > data.mean
 

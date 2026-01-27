@@ -1,16 +1,27 @@
 "use client";
 
 import { ConvexProvider, ConvexReactClient } from "convex/react";
-import { ReactNode, useState, useEffect } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
-// Create client lazily to avoid SSG/SSR issues
+// Context to let child components know if Convex is available
+const ConvexAvailableContext = createContext(false);
+
+/**
+ * Returns true if ConvexProvider is active (NEXT_PUBLIC_CONVEX_URL is set).
+ * Use this to conditionally render components that depend on Convex hooks.
+ */
+export function useConvexAvailable(): boolean {
+  return useContext(ConvexAvailableContext);
+}
+
+// Module-level singleton so the client is reused across remounts
 let convexClient: ConvexReactClient | null = null;
 
 function getConvexClient(): ConvexReactClient | null {
+  if (typeof window === "undefined") return null;
   if (!convexClient) {
     const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
     if (!convexUrl) {
-      // Allow pages that don't need Convex to work without the URL
       console.warn("NEXT_PUBLIC_CONVEX_URL not set - Convex features disabled");
       return null;
     }
@@ -20,16 +31,19 @@ function getConvexClient(): ConvexReactClient | null {
 }
 
 export function ConvexClientProvider({ children }: { children: ReactNode }) {
-  const [client, setClient] = useState<ConvexReactClient | null>(null);
+  const [client] = useState(getConvexClient);
 
-  useEffect(() => {
-    setClient(getConvexClient());
-  }, []);
-
-  // During SSR/SSG, render children without Convex provider
   if (!client) {
-    return <>{children}</>;
+    return (
+      <ConvexAvailableContext.Provider value={false}>
+        {children}
+      </ConvexAvailableContext.Provider>
+    );
   }
 
-  return <ConvexProvider client={client}>{children}</ConvexProvider>;
+  return (
+    <ConvexAvailableContext.Provider value={true}>
+      <ConvexProvider client={client}>{children}</ConvexProvider>
+    </ConvexAvailableContext.Provider>
+  );
 }
