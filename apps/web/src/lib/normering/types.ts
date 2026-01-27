@@ -5,11 +5,13 @@
  * - Total (hela provet): HP scores in 0.05 increments (0.00, 0.05, 0.10, ... 2.00)
  * - Verbal and Kvantitativ: HP scores in 0.10 increments (0.00, 0.10, 0.20, ... 2.00)
  *
- * TODO: Current data in hosten-2025.json is MOCK DATA with realistic distribution.
- * Real data should be extracted from official studera.nu PDFs:
+ * DATA SOURCE:
+ * Normering data extracted from official studera.nu PDFs:
  * - norm{YY}{season}-helaprovet.pdf (total)
  * - norm{YY}{season}-verb.pdf (verbal)
  * - norm{YY}{season}-kvant.pdf (kvantitativ)
+ *
+ * All data stored in src/data/normering/*.json (26 tests: 2013-2025, both seasons)
  */
 
 export interface NormeringRow {
