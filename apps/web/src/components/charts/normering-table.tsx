@@ -9,6 +9,15 @@ interface NormeringTableProps {
   defaultCollapsed?: boolean
 }
 
+// Smart percentage formatter - shows more decimals for small numbers
+function formatPercentage(value: number): string {
+  if (value === 0) return '0%'
+  if (value < 0.01) return '<0.01%'
+  if (value < 0.1) return `${value.toFixed(2)}%`
+  if (value < 1) return `${value.toFixed(1)}%`
+  return `${value.toFixed(1)}%`
+}
+
 export function NormeringTable({
   data,
   collapsible = false,
@@ -74,7 +83,7 @@ export function NormeringTable({
             </thead>
             <tbody>
               {data.distribution.map((row, index) => {
-                const percentile = Math.max(0, Math.round(100 - row.cumulativePercentage))
+                const percentile = Math.max(0, 100 - row.cumulativePercentage)
                 const isTopScore = percentile <= 10
                 const isMeanRow = index === meanRowIndex
 
@@ -104,10 +113,10 @@ export function NormeringTable({
                       {row.count.toLocaleString('sv-SE')}
                     </td>
                     <td className="p-3 md:p-4 text-right text-[#A8A3B8]">
-                      {row.percentage.toFixed(1)}%
+                      {formatPercentage(row.percentage)}
                     </td>
                     <td className={`p-3 md:p-4 text-right font-semibold ${isTopScore ? 'text-[#F7C948]' : 'text-white'}`}>
-                      {percentile}%
+                      {formatPercentage(percentile)}
                     </td>
                   </tr>
                 )

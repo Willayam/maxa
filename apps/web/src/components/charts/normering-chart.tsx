@@ -7,13 +7,23 @@ interface NormeringChartProps {
   data: NormeringDistribution
 }
 
+// Smart percentage formatter - shows more decimals for small numbers
+function formatPct(value: number): string {
+  if (value === 0) return '0%'
+  if (value < 0.01) return '<0.01%'
+  if (value < 0.1) return `${value.toFixed(2)}%`
+  if (value < 1) return `${value.toFixed(1)}%`
+  return `${value.toFixed(1)}%`
+}
+
 export function NormeringChart({ data }: NormeringChartProps) {
   // Transform data for chart
   const chartData = data.distribution.map(row => ({
     hpScore: row.hpScore,
     count: row.count,
     percentage: row.percentage,
-    percentile: Math.max(0, Math.round(100 - row.cumulativePercentage)),
+    cumulativePercentage: row.cumulativePercentage,
+    percentile: Math.max(0, 100 - row.cumulativePercentage),
   }))
 
   // Find the peak (mode) for gradient reference
@@ -103,15 +113,15 @@ export function NormeringChart({ data }: NormeringChartProps) {
 
                   {/* Percentile explanation */}
                   <p className="text-white font-semibold text-sm mb-1">
-                    {d.percentile === 0
+                    {d.cumulativePercentage >= 100
                       ? 'Högsta möjliga resultat!'
-                      : `Bättre än ${100 - d.percentile}% av alla`}
+                      : `Bättre än ${formatPct(d.cumulativePercentage).replace('%', '')}% av alla`}
                   </p>
 
                   {/* Stats */}
                   <div className="text-[#A8A3B8] text-xs space-y-0.5">
                     <p>{d.count.toLocaleString('sv-SE')} personer fick detta resultat</p>
-                    <p>({d.percentage.toFixed(1)}% av alla provdeltagare)</p>
+                    <p>({formatPct(d.percentage)} av alla provdeltagare)</p>
                   </div>
 
                   {/* Encouragement for above average */}
