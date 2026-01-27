@@ -1,0 +1,523 @@
+{
+  "testId": "varen-2022-mars",
+  "testDate": "2022-03-12",
+  "total": {
+    "mean": 0.87,
+    "stdDev": 0.39,
+    "totalParticipants": 29315,
+    "distribution": [
+      {
+        "hpScore": 0,
+        "count": 134,
+        "percentage": 0.5,
+        "cumulativePercentage": 0.5
+      },
+      {
+        "hpScore": 0.05,
+        "count": 217,
+        "percentage": 0.7,
+        "cumulativePercentage": 1.2
+      },
+      {
+        "hpScore": 0.1,
+        "count": 262,
+        "percentage": 0.9,
+        "cumulativePercentage": 2.1
+      },
+      {
+        "hpScore": 0.15,
+        "count": 419,
+        "percentage": 1.4,
+        "cumulativePercentage": 3.5
+      },
+      {
+        "hpScore": 0.2,
+        "count": 485,
+        "percentage": 1.7,
+        "cumulativePercentage": 5.2
+      },
+      {
+        "hpScore": 0.25,
+        "count": 525,
+        "percentage": 1.8,
+        "cumulativePercentage": 7
+      },
+      {
+        "hpScore": 0.3,
+        "count": 625,
+        "percentage": 2.1,
+        "cumulativePercentage": 9.1
+      },
+      {
+        "hpScore": 0.35,
+        "count": 786,
+        "percentage": 2.7,
+        "cumulativePercentage": 11.8
+      },
+      {
+        "hpScore": 0.4,
+        "count": 795,
+        "percentage": 2.7,
+        "cumulativePercentage": 14.5
+      },
+      {
+        "hpScore": 0.45,
+        "count": 903,
+        "percentage": 3.1,
+        "cumulativePercentage": 17.6
+      },
+      {
+        "hpScore": 0.5,
+        "count": 975,
+        "percentage": 3.3,
+        "cumulativePercentage": 20.9
+      },
+      {
+        "hpScore": 0.55,
+        "count": 1077,
+        "percentage": 3.7,
+        "cumulativePercentage": 24.6
+      },
+      {
+        "hpScore": 0.6,
+        "count": 1081,
+        "percentage": 3.7,
+        "cumulativePercentage": 28.3
+      },
+      {
+        "hpScore": 0.65,
+        "count": 1221,
+        "percentage": 4.2,
+        "cumulativePercentage": 32.4
+      },
+      {
+        "hpScore": 0.7,
+        "count": 1286,
+        "percentage": 4.4,
+        "cumulativePercentage": 36.8
+      },
+      {
+        "hpScore": 0.75,
+        "count": 1318,
+        "percentage": 4.5,
+        "cumulativePercentage": 41.3
+      },
+      {
+        "hpScore": 0.8,
+        "count": 1370,
+        "percentage": 4.7,
+        "cumulativePercentage": 46
+      },
+      {
+        "hpScore": 0.85,
+        "count": 1361,
+        "percentage": 4.6,
+        "cumulativePercentage": 50.6
+      },
+      {
+        "hpScore": 0.9,
+        "count": 1402,
+        "percentage": 4.8,
+        "cumulativePercentage": 55.4
+      },
+      {
+        "hpScore": 0.95,
+        "count": 1377,
+        "percentage": 4.7,
+        "cumulativePercentage": 60.1
+      },
+      {
+        "hpScore": 1,
+        "count": 1407,
+        "percentage": 4.8,
+        "cumulativePercentage": 64.9
+      },
+      {
+        "hpScore": 1.05,
+        "count": 1328,
+        "percentage": 4.5,
+        "cumulativePercentage": 69.4
+      },
+      {
+        "hpScore": 1.1,
+        "count": 1252,
+        "percentage": 4.3,
+        "cumulativePercentage": 73.7
+      },
+      {
+        "hpScore": 1.15,
+        "count": 1109,
+        "percentage": 3.8,
+        "cumulativePercentage": 77.5
+      },
+      {
+        "hpScore": 1.2,
+        "count": 1038,
+        "percentage": 3.5,
+        "cumulativePercentage": 81
+      },
+      {
+        "hpScore": 1.25,
+        "count": 930,
+        "percentage": 3.2,
+        "cumulativePercentage": 84.2
+      },
+      {
+        "hpScore": 1.3,
+        "count": 887,
+        "percentage": 3,
+        "cumulativePercentage": 87.2
+      },
+      {
+        "hpScore": 1.35,
+        "count": 740,
+        "percentage": 2.5,
+        "cumulativePercentage": 89.7
+      },
+      {
+        "hpScore": 1.4,
+        "count": 624,
+        "percentage": 2.1,
+        "cumulativePercentage": 91.9
+      },
+      {
+        "hpScore": 1.45,
+        "count": 533,
+        "percentage": 1.8,
+        "cumulativePercentage": 93.7
+      },
+      {
+        "hpScore": 1.5,
+        "count": 435,
+        "percentage": 1.5,
+        "cumulativePercentage": 95.2
+      },
+      {
+        "hpScore": 1.55,
+        "count": 386,
+        "percentage": 1.3,
+        "cumulativePercentage": 96.5
+      },
+      {
+        "hpScore": 1.6,
+        "count": 307,
+        "percentage": 1,
+        "cumulativePercentage": 97.5
+      },
+      {
+        "hpScore": 1.65,
+        "count": 232,
+        "percentage": 0.8,
+        "cumulativePercentage": 98.3
+      },
+      {
+        "hpScore": 1.7,
+        "count": 170,
+        "percentage": 0.6,
+        "cumulativePercentage": 98.9
+      },
+      {
+        "hpScore": 1.75,
+        "count": 124,
+        "percentage": 0.4,
+        "cumulativePercentage": 99.3
+      },
+      {
+        "hpScore": 1.8,
+        "count": 79,
+        "percentage": 0.3,
+        "cumulativePercentage": 99.6
+      },
+      {
+        "hpScore": 1.85,
+        "count": 62,
+        "percentage": 0.2,
+        "cumulativePercentage": 99.8
+      },
+      {
+        "hpScore": 1.9,
+        "count": 27,
+        "percentage": 0.1,
+        "cumulativePercentage": 99.9
+      },
+      {
+        "hpScore": 1.95,
+        "count": 16,
+        "percentage": 0.1,
+        "cumulativePercentage": 100
+      },
+      {
+        "hpScore": 2,
+        "count": 10,
+        "percentage": 0,
+        "cumulativePercentage": 100
+      }
+    ]
+  },
+  "verbal": {
+    "mean": 0.82,
+    "stdDev": 0.42,
+    "totalParticipants": 29315,
+    "distribution": [
+      {
+        "hpScore": 0,
+        "count": 1139,
+        "percentage": 3.9,
+        "cumulativePercentage": 3.9
+      },
+      {
+        "hpScore": 0.1,
+        "count": 589,
+        "percentage": 2,
+        "cumulativePercentage": 5.9
+      },
+      {
+        "hpScore": 0.2,
+        "count": 781,
+        "percentage": 2.7,
+        "cumulativePercentage": 8.6
+      },
+      {
+        "hpScore": 0.3,
+        "count": 1898,
+        "percentage": 6.5,
+        "cumulativePercentage": 15
+      },
+      {
+        "hpScore": 0.4,
+        "count": 1663,
+        "percentage": 5.7,
+        "cumulativePercentage": 20.7
+      },
+      {
+        "hpScore": 0.5,
+        "count": 1803,
+        "percentage": 6.2,
+        "cumulativePercentage": 26.9
+      },
+      {
+        "hpScore": 0.6,
+        "count": 2011,
+        "percentage": 6.9,
+        "cumulativePercentage": 33.7
+      },
+      {
+        "hpScore": 0.7,
+        "count": 2769,
+        "percentage": 9.4,
+        "cumulativePercentage": 43.2
+      },
+      {
+        "hpScore": 0.8,
+        "count": 2880,
+        "percentage": 9.8,
+        "cumulativePercentage": 53
+      },
+      {
+        "hpScore": 0.9,
+        "count": 2763,
+        "percentage": 9.4,
+        "cumulativePercentage": 62.4
+      },
+      {
+        "hpScore": 1,
+        "count": 2568,
+        "percentage": 8.8,
+        "cumulativePercentage": 71.2
+      },
+      {
+        "hpScore": 1.1,
+        "count": 2364,
+        "percentage": 8.1,
+        "cumulativePercentage": 79.2
+      },
+      {
+        "hpScore": 1.2,
+        "count": 1547,
+        "percentage": 5.3,
+        "cumulativePercentage": 84.5
+      },
+      {
+        "hpScore": 1.3,
+        "count": 1342,
+        "percentage": 4.6,
+        "cumulativePercentage": 89.1
+      },
+      {
+        "hpScore": 1.4,
+        "count": 776,
+        "percentage": 2.6,
+        "cumulativePercentage": 91.7
+      },
+      {
+        "hpScore": 1.5,
+        "count": 948,
+        "percentage": 3.2,
+        "cumulativePercentage": 95
+      },
+      {
+        "hpScore": 1.6,
+        "count": 487,
+        "percentage": 1.7,
+        "cumulativePercentage": 96.6
+      },
+      {
+        "hpScore": 1.7,
+        "count": 413,
+        "percentage": 1.4,
+        "cumulativePercentage": 98
+      },
+      {
+        "hpScore": 1.8,
+        "count": 280,
+        "percentage": 1,
+        "cumulativePercentage": 99
+      },
+      {
+        "hpScore": 1.9,
+        "count": 192,
+        "percentage": 0.7,
+        "cumulativePercentage": 99.7
+      },
+      {
+        "hpScore": 2,
+        "count": 102,
+        "percentage": 0.3,
+        "cumulativePercentage": 100
+      }
+    ]
+  },
+  "kvantitativ": {
+    "mean": 0.91,
+    "stdDev": 0.46,
+    "totalParticipants": 29315,
+    "distribution": [
+      {
+        "hpScore": 0,
+        "count": 493,
+        "percentage": 1.7,
+        "cumulativePercentage": 1.7
+      },
+      {
+        "hpScore": 0.1,
+        "count": 801,
+        "percentage": 2.7,
+        "cumulativePercentage": 4.4
+      },
+      {
+        "hpScore": 0.2,
+        "count": 770,
+        "percentage": 2.6,
+        "cumulativePercentage": 7
+      },
+      {
+        "hpScore": 0.3,
+        "count": 1490,
+        "percentage": 5.1,
+        "cumulativePercentage": 12.1
+      },
+      {
+        "hpScore": 0.4,
+        "count": 1673,
+        "percentage": 5.7,
+        "cumulativePercentage": 17.8
+      },
+      {
+        "hpScore": 0.5,
+        "count": 1779,
+        "percentage": 6.1,
+        "cumulativePercentage": 23.9
+      },
+      {
+        "hpScore": 0.6,
+        "count": 2421,
+        "percentage": 8.3,
+        "cumulativePercentage": 32.2
+      },
+      {
+        "hpScore": 0.7,
+        "count": 2338,
+        "percentage": 8,
+        "cumulativePercentage": 40.1
+      },
+      {
+        "hpScore": 0.8,
+        "count": 1807,
+        "percentage": 6.2,
+        "cumulativePercentage": 46.3
+      },
+      {
+        "hpScore": 0.9,
+        "count": 1802,
+        "percentage": 6.1,
+        "cumulativePercentage": 52.4
+      },
+      {
+        "hpScore": 1,
+        "count": 2400,
+        "percentage": 8.2,
+        "cumulativePercentage": 60.6
+      },
+      {
+        "hpScore": 1.1,
+        "count": 2191,
+        "percentage": 7.5,
+        "cumulativePercentage": 68.1
+      },
+      {
+        "hpScore": 1.2,
+        "count": 2192,
+        "percentage": 7.5,
+        "cumulativePercentage": 75.6
+      },
+      {
+        "hpScore": 1.3,
+        "count": 2021,
+        "percentage": 6.9,
+        "cumulativePercentage": 82.5
+      },
+      {
+        "hpScore": 1.4,
+        "count": 1334,
+        "percentage": 4.6,
+        "cumulativePercentage": 87
+      },
+      {
+        "hpScore": 1.5,
+        "count": 1157,
+        "percentage": 3.9,
+        "cumulativePercentage": 91
+      },
+      {
+        "hpScore": 1.6,
+        "count": 707,
+        "percentage": 2.4,
+        "cumulativePercentage": 93.4
+      },
+      {
+        "hpScore": 1.7,
+        "count": 890,
+        "percentage": 3,
+        "cumulativePercentage": 96.4
+      },
+      {
+        "hpScore": 1.8,
+        "count": 484,
+        "percentage": 1.7,
+        "cumulativePercentage": 98.1
+      },
+      {
+        "hpScore": 1.9,
+        "count": 324,
+        "percentage": 1.1,
+        "cumulativePercentage": 99.2
+      },
+      {
+        "hpScore": 2,
+        "count": 241,
+        "percentage": 0.8,
+        "cumulativePercentage": 100
+      }
+    ]
+  }
+}
