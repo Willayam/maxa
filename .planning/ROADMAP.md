@@ -12,9 +12,10 @@ Transform Maxa's basic test download pages into rich, SEO-optimized study resour
 
 - [x] **Phase 1: SEO Foundation** - Sitemap, robots.txt, metadata, and canonical URLs
 - [x] **Phase 2: Structured Data** - JSON-LD schemas for rich snippets and breadcrumbs
-- [ ] **Phase 3: Normering** - Data extraction, chart component, and page integration
+- [x] **Phase 3: Normering** - Data extraction, chart component, and page integration
 - [ ] **Phase 4: Strategy Content** - Swedish strategy pages from research source material
 - [ ] **Phase 5: Cross-Linking & Polish** - Internal links, navigation, and OG images
+- [ ] **Phase 6: Complete Normering Data** - Parse all historical normeringstabeller and display on test pages
 
 ## Phase Details
 
@@ -59,9 +60,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Create normering data infrastructure and extract hosten-2025 data
-- [ ] 03-02-PLAN.md — Build chart components (histogram, bell curve, table fallback)
-- [ ] 03-03-PLAN.md — Integrate NormeringSection into test detail pages
+- [x] 03-01-PLAN.md — Create normering data infrastructure and extract hosten-2025 data
+- [x] 03-02-PLAN.md — Build chart components (histogram, bell curve, table fallback)
+- [x] 03-03-PLAN.md — Integrate NormeringSection into test detail pages
 
 ### Phase 4: Strategy Content
 **Goal**: Users can learn Hogskoleprovet strategies through comprehensive Swedish-language content
@@ -81,35 +82,53 @@ Plans:
 - [ ] 04-03: Vanliga misstag and Tidsstrategi content pages
 
 ### Phase 5: Cross-Linking & Polish
-**Goal**: All pages are interconnected with contextual links and proper social sharing support
-**Depends on**: Phase 3, Phase 4 (needs all content to exist)
-**Requirements**: LINK-01, LINK-02, LINK-03, LINK-04, SEO-05
+**Goal**: Navigation and social sharing polished with breadcrumbs, improved related tests, and OG images
+**Depends on**: Phase 3 (normering infrastructure)
+**Requirements**: LINK-03, LINK-04, SEO-05
+**Note**: LINK-01 and LINK-02 (bidirectional test-strategy linking) deferred until Phase 4 completes
 **Success Criteria** (what must be TRUE):
-  1. Test detail pages link to relevant strategy pages with contextual anchor text
-  2. Strategy pages link to test pages with "Practice with real tests" CTAs
-  3. Test detail pages show related tests section (previous/next, same season)
-  4. All pages have breadcrumb navigation showing hierarchy
-  5. Social sharing displays branded OG image with page-specific content
+  1. Test detail pages show related tests section with smart algorithm
+  2. All pages have breadcrumb navigation showing hierarchy
+  3. Social sharing displays branded OG image with page-specific content
+**Plans**: 3 plans
+
+Plans:
+- [ ] 05-01-PLAN.md — Breadcrumb navigation with shadcn component
+- [ ] 05-02-PLAN.md — Related tests enhancement with relevance algorithm
+- [ ] 05-03-PLAN.md — OpenGraph images for social sharing
+
+### Phase 6: Complete Normering Data
+**Goal**: All historical tests with normeringstabeller have their data parsed and displayed on their pages
+**Depends on**: Phase 3 (needs normering infrastructure)
+**Requirements**: NORM-06
+**Success Criteria** (what must be TRUE):
+  1. All available normeringstabeller PDFs identified and catalogued
+  2. Normering data extracted from all historical tests into JSON format
+  3. Every test page with normering data displays the interactive chart
+  4. Data validated for accuracy against source PDFs
 **Plans**: TBD
 
 Plans:
-- [ ] 05-01: Internal linking implementation (test-strategy bidirectional)
-- [ ] 05-02: Breadcrumb navigation and related tests section
-- [ ] 05-03: OpenGraph images for social sharing
+- [ ] 06-01: Identify and catalogue all normeringstabeller sources
+- [ ] 06-02: Parse and extract normering data for all tests
+- [ ] 06-03: Validate data and ensure display on all applicable pages
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 (Phase 4 can run in parallel with Phase 3 after Phase 1 completes)
+(Phase 5 can run before Phase 4 - bidirectional linking deferred)
+(Phase 6 requires Phase 3 infrastructure to be complete)
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. SEO Foundation | 2/2 | Complete | 2026-01-26 |
 | 2. Structured Data | 1/1 | Complete | 2026-01-26 |
-| 3. Normering | 0/3 | Ready | - |
+| 3. Normering | 3/3 | Complete | 2026-01-27 |
 | 4. Strategy Content | 0/3 | Not started | - |
-| 5. Cross-Linking & Polish | 0/3 | Not started | - |
+| 5. Cross-Linking & Polish | 0/3 | Planned | - |
+| 6. Complete Normering Data | 0/3 | Not started | - |
 
 ## Requirement Coverage
 
@@ -131,9 +150,10 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | STRAT-03 | Phase 4 | Vanliga misstag page |
 | STRAT-04 | Phase 4 | Tidsstrategi page |
 | STRAT-05 | Phase 4 | Swedish content rewritten from research |
-| LINK-01 | Phase 5 | Strategy links from test pages |
-| LINK-02 | Phase 5 | Test links from strategy pages |
+| LINK-01 | Phase 5+ | Strategy links from test pages (after Phase 4) |
+| LINK-02 | Phase 5+ | Test links from strategy pages (after Phase 4) |
 | LINK-03 | Phase 5 | Related tests section |
 | LINK-04 | Phase 5 | Breadcrumb navigation |
+| NORM-06 | Phase 6 | Complete normering data for all tests |
 
-**Coverage: 20/20 requirements mapped**
+**Coverage: 21/21 requirements mapped**
