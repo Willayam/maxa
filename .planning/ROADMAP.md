@@ -74,12 +74,12 @@ Plans:
   3. Vanliga misstag page exists with common mistakes and countermeasures
   4. Tidsstrategi page exists with time management guidance
   5. All content is written in Swedish, rewritten from research (not copy-paste)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 04-01: Strategy hub page and routing setup
-- [ ] 04-02: Kvantitativa and Verbala fallor content pages
-- [ ] 04-03: Vanliga misstag and Tidsstrategi content pages
+- [ ] 04-01-PLAN.md — Strategy hub page with routing, SEO metadata, and card grid
+- [ ] 04-02-PLAN.md — Kvantitativa and Verbala fallor content pages
+- [ ] 04-03-PLAN.md — Vanliga misstag and Tidsstrategi content pages
 
 ### Phase 5: Cross-Linking & Polish
 **Goal**: Navigation and social sharing polished with breadcrumbs, improved related tests, and OG images
