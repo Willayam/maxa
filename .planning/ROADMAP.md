@@ -127,7 +127,13 @@ Plans:
   5. OG images exist for strategy pages
   6. Every internal link on the site resolves to a live page (zero 404s)
   7. Outdated TODO in types.ts cleaned up
-**Plans**: TBD
+**Plans**: 4 plans
+
+Plans:
+- [ ] 07-01-PLAN.md — Fix OG image build blocker (flexbox fix)
+- [ ] 07-02-PLAN.md — Complete sitemap + TODO cleanup
+- [ ] 07-03-PLAN.md — Bidirectional linking (LINK-01, LINK-02)
+- [ ] 07-04-PLAN.md — Strategy page OG images
 
 ## Progress
 
