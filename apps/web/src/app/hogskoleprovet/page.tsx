@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { JsonLd, generateBreadcrumbJsonLd } from "@/lib/structured-data";
 import { tests, type Test } from "@/data/tests";
+import { TestBreadcrumbs } from "@/components/navigation/test-breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Gamla Högskoleprov - Ladda ner PDF med Facit | Maxa",
@@ -50,6 +51,7 @@ export default function HogskoleprovPage() {
       <SiteHeader />
       <main className="flex-1 pt-24 pb-12 px-6">
         <div className="max-w-4xl mx-auto">
+          <TestBreadcrumbs />
           <h1 className="text-4xl font-extrabold text-foreground mb-4">
             Gamla högskoleprov
           </h1>
