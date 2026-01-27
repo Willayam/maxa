@@ -8,31 +8,30 @@ updated: 2026-01-26T21:30:00Z
 
 ## Current Test
 
-number: 1
-name: Idag Tab Display
+number: 3
+name: Trana Tab Mode Selection
 expected: |
-  Open the app and go to the Idag (Today) tab. You should see:
-  - Countdown to HP exam date
-  - Goal score display
-  - Daily mission progress (questions completed today / daily goal)
-  - Streak chip showing current streak count
-awaiting: user response
+  Go to Träna (Practice) tab. You should be able to:
+  - Select a practice mode (Smart, Section, Mixed)
+  - Tap the start button to navigate to quiz with selected mode
+awaiting: fix in progress - invoking frontend-design skill
 
 ## Tests
 
 ### 1. Idag Tab Display
 expected: Idag tab shows countdown to HP exam, goal score, daily mission progress (X/20 questions), and streak chip with current streak count
-result: issue
-reported: "Fire emoji pulsing too intensively, not balanced. Redundant info (both '20 questions left' AND '0/20'). Button text cut off, shadow not rounded, should use icon not emoji, text not centered. '69 Dagar kvar' spacing/fonts ugly. 1.8 goal too light barely visible. Screen cuts off above tab menu. Veckans framsteg section could be better. Max AI section lame needs real mascot vibes like Duolingo."
-severity: major
+result: pass
+note: Fixed after design iteration - top stats bar with 3 pills (XP/Streak/Goal), proper button shadow, tightened typography, improved week calendar
 
 ### 2. Idag Tab CTA Pulsing
 expected: If daily goal is not yet complete, the main CTA button pulses subtly (1.02 scale animation). Button text shows "STARTA" (no progress), "FORTSÄTT" (mid-progress), or "MÅL UPPNÅTT" (goal complete)
-result: [pending]
+result: pass
 
 ### 3. Trana Tab Mode Selection
 expected: Go to Träna (Practice) tab. You can select a practice mode (Smart, Section, Mixed). Tapping the start button navigates to the quiz with the selected mode
-result: [pending]
+result: issue
+reported: "Multiple UI issues: 1) Visual hierarchy unclear - mode selectors look same as info card, 2) Swedish åäö characters not rendering (shows 'ova' instead of 'öva'), 3) Välj delprov section layout broken - verbal/kvantitativa tiles misaligned and truncated, 4) '4 delprov' tab text hard to read, 5) Checkmark off-brand, 6) PRO tag ugly/off-brand, 7) Button copy too long - should use icons not emoji, 8) 'Starta simulerat prov' button text truncates"
+severity: major
 
 ### 4. Jag Tab Progress Display
 expected: Go to Jag (Profile) tab. You should see a progress card showing: level badge next to username, XP progress bar, total questions answered, and accuracy percentage
@@ -65,18 +64,18 @@ result: [pending]
 ## Summary
 
 total: 10
-passed: 0
+passed: 2
 issues: 1
-pending: 9
+pending: 7
 skipped: 0
 
 ## Gaps
 
-- truth: "Idag tab shows polished, balanced UI with countdown, goal, daily progress, and streak"
+- truth: "Träna tab has clear visual hierarchy, proper Swedish character rendering, and polished UI components"
   status: failed
-  reason: "User reported: Fire emoji pulsing too intensively. Redundant info display. Button issues (cut off, shadow, centering). Ugly countdown typography. Goal score too light. Screen cutoff. Veckans framsteg needs work. Max AI section needs real mascot vibes."
+  reason: "User reported: Multiple UI issues - unclear visual hierarchy between selectors and info cards, Swedish åäö not rendering, layout broken on delprov section, hard to read tabs, off-brand checkmarks and PRO tag, button copy too long with emoji instead of icons, button text truncation"
   severity: major
-  test: 1
+  test: 3
   root_cause: ""
   artifacts: []
   missing: []
