@@ -5,22 +5,22 @@
 See: .planning/PROJECT.md (updated 2026-01-26)
 
 **Core value:** Every test page becomes a valuable study resource, not just a download link
-**Current focus:** Phase 3 - Normering
+**Current focus:** Phase 6 - Complete Normering Data
 
 ## Current Position
 
-Phase: 3 of 5 (Normering)
-Plan: 2 of 3 in current phase
+Phase: 5 of 6 (Cross-Linking & Polish)
+Plan: 1 of 3 in current phase
 Status: In progress
-Last activity: 2026-01-27 — Completed 03-02-PLAN.md (Normering Visualization Components)
+Last activity: 2026-01-27 — Completed 05-03-PLAN.md (OpenGraph Images)
 
-Progress: [█████░░░░░] 50%
+Progress: [███████░░░] 70%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 5min
+- Total plans completed: 7
+- Average duration: 3min
 - Total execution time: 0.4 hours
 
 **By Phase:**
@@ -29,13 +29,14 @@ Progress: [█████░░░░░] 50%
 |-------|-------|-------|----------|
 | 1. SEO Foundation | 2/2 | 12min | 6min |
 | 2. Structured Data | 1/1 | 5min | 5min |
-| 3. Normering | 2/3 | 6min | 3min |
+| 3. Normering | 3/3 | 6min | 2min |
 | 4. Strategy Content | 0/3 | - | - |
-| 5. Cross-Linking | 0/3 | - | - |
+| 5. Cross-Linking | 1/3 | 2min | 2min |
+| 6. Complete Normering Data | 0/3 | - | - |
 
 **Recent Trend:**
-- Last 5 plans: 03-02 (4min), 03-01 (2min), 02-01 (5min), 01-02 (4min), 01-01 (8min)
-- Trend: Consistently fast execution on UI and data tasks
+- Last 5 plans: 05-03 (2min), 03-02 (4min), 03-01 (2min), 02-01 (5min), 01-02 (4min)
+- Trend: Very fast execution on infrastructure tasks (OG images, normering)
 
 *Updated after each plan completion*
 
@@ -64,6 +65,10 @@ Recent decisions affecting current work:
 - Progressive enhancement: table-first, chart when JavaScript loads
 - Collapsible table when JS enabled, expanded by default when disabled
 - Percentile format: "Topp X%" calculated as 100 - cumulativePercentage
+- Next.js ImageResponse API for OG image generation (no external dependencies)
+- Swedish season labels in OG images: "Våren" / "Hösten" for localization
+- Dark theme OG images (#1E1A2D bg, #D4A017 accent) matching site branding
+- System sans-serif for OG images (reliability over custom fonts)
 
 ### Pending Todos
 
@@ -73,14 +78,19 @@ None yet.
 
 None yet.
 
+### Roadmap Evolution
+
+- Phase 6 added: Complete Normering Data - Parse all historical normeringstabeller and display on test pages
+- Phase 3 marked complete: Infrastructure working on hosten-2025, remaining tests handled in Phase 6
+
 ## Session Continuity
 
-Last session: 2026-01-27 23:10:49Z
-Stopped at: Completed 03-02-PLAN.md (Normering Visualization Components)
+Last session: 2026-01-27 08:59:46Z
+Stopped at: Completed 05-03-PLAN.md (OpenGraph Images)
 Resume file: None
 
 ## Next Steps
 
-1. Execute 03-03-PLAN.md (Normering Page Integration)
-2. Phase 3 delivers: Interactive normering tables with score lookup on test detail pages
-3. Phase 4: Strategy Content (SEO landing pages)
+1. Continue Phase 5 (Cross-Linking & Polish) - 2 more plans
+2. Plan and execute Phase 6 (Complete Normering Data)
+3. Consider Phase 4 (Strategy Content) priority based on launch timeline
