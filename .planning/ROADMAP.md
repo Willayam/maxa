@@ -16,6 +16,7 @@ Transform Maxa's basic test download pages into rich, SEO-optimized study resour
 - [x] **Phase 4: Strategy Content** - Swedish strategy pages from research source material
 - [x] **Phase 5: Cross-Linking & Polish** - Internal links, navigation, and OG images
 - [x] **Phase 6: Complete Normering Data** - Parse all historical normeringstabeller and display on test pages
+- [ ] **Phase 7: Gap Closure & Link Integrity** - Fix OG images, complete sitemap, add bidirectional linking, validate all links
 
 ## Phase Details
 
@@ -113,6 +114,21 @@ Plans:
 - [x] 06-02-PLAN.md — Download and extract normering data for 2020-2023 tests (9 tests)
 - [x] 06-03-PLAN.md — Download and extract normering data for 2013-2019 tests (13 tests)
 
+### Phase 7: Gap Closure & Link Integrity
+**Goal**: Close all audit gaps — fix build blocker, complete sitemap, add bidirectional linking, and verify zero dead links across the site
+**Depends on**: All previous phases
+**Requirements**: SEO-01 (complete), SEO-05 (complete), LINK-01, LINK-02
+**Gap Closure**: Closes all gaps from v1 milestone audit
+**Success Criteria** (what must be TRUE):
+  1. OG image generation works for all tests including 2013-2017 (flexbox fix)
+  2. Sitemap includes all 5 strategy page URLs
+  3. Test detail pages link to relevant strategy content (LINK-01)
+  4. Strategy pages link to specific practice tests, not just generic /hogskoleprovet (LINK-02)
+  5. OG images exist for strategy pages
+  6. Every internal link on the site resolves to a live page (zero 404s)
+  7. Outdated TODO in types.ts cleaned up
+**Plans**: TBD
+
 ## Progress
 
 **Execution Order:**
@@ -129,6 +145,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 4. Strategy Content | 3/3 | Complete | 2026-01-27 |
 | 5. Cross-Linking & Polish | 3/3 | Complete | 2026-01-27 |
 | 6. Complete Normering Data | 3/3 | Complete | 2026-01-27 |
+| 7. Gap Closure & Link Integrity | 0/? | Pending | — |
 
 ## Requirement Coverage
 
@@ -150,8 +167,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | STRAT-03 | Phase 4 | Vanliga misstag page |
 | STRAT-04 | Phase 4 | Tidsstrategi page |
 | STRAT-05 | Phase 4 | Swedish content rewritten from research |
-| LINK-01 | Phase 5+ | Strategy links from test pages (after Phase 4) |
-| LINK-02 | Phase 5+ | Test links from strategy pages (after Phase 4) |
+| LINK-01 | Phase 7 | Strategy links from test pages |
+| LINK-02 | Phase 7 | Test links from strategy pages |
 | LINK-03 | Phase 5 | Related tests section |
 | LINK-04 | Phase 5 | Breadcrumb navigation |
 | NORM-06 | Phase 6 | Complete normering data for all tests |
