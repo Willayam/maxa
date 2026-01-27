@@ -101,6 +101,7 @@ None yet.
 
 - Phase 6 added: Complete Normering Data - Parse all historical normeringstabeller and display on test pages
 - Phase 3 marked complete: Infrastructure working on hosten-2025, remaining tests handled in Phase 6
+- Phase 6 marked complete: All 26 tests have normering data, verified ✓
 
 ## Session Continuity
 
