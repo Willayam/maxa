@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { JsonLd } from "@/lib/structured-data";
 import type { Article, BreadcrumbList, WithContext } from "schema-dts";
+import { RecentTests } from "@/components/navigation/recent-tests";
 
 const BASE_URL = "https://maxa.se";
 
@@ -713,21 +714,10 @@ export default function VerbalaFallorPage() {
                 <span className="text-primary font-bold">Läs mer →</span>
               </Link>
 
-              <Link
-                href="/hogskoleprovet"
-                className="block p-6 bg-card-background rounded-2xl border-2 border-border hover:border-primary transition-colors group"
-              >
-                <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors mb-2">
-                  Öva med gamla prov
-                </h3>
-                <p className="text-foreground-muted mb-4">
-                  Testa dina nya kunskaper på riktiga högskoleprov med facit och
-                  normering.
-                </p>
-                <span className="text-primary font-bold">Till proven →</span>
-              </Link>
             </div>
           </section>
+
+          <RecentTests count={4} />
         </div>
       </div>
     </>

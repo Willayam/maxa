@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { JsonLd } from "@/lib/structured-data";
 import type { Article, BreadcrumbList, WithContext } from "schema-dts";
+import { RecentTests } from "@/components/navigation/recent-tests";
 
 const BASE_URL = "https://maxa.se";
 
@@ -599,19 +600,10 @@ export default function VanligaMisstagPage() {
                   Maximera poängen per minut med rätt tidsplanering
                 </p>
               </Link>
-              <Link
-                href="/hogskoleprovet"
-                className="p-4 bg-background rounded-xl border-2 border-border hover:border-primary transition-colors"
-              >
-                <h3 className="font-bold text-foreground mb-1">
-                  Öva med gamla prov
-                </h3>
-                <p className="text-sm text-foreground-muted">
-                  Tillämpa strategierna på riktiga högskoleprov
-                </p>
-              </Link>
             </div>
           </section>
+
+          <RecentTests count={4} />
         </div>
       </div>
     </>
