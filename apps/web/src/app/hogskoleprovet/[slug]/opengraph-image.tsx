@@ -63,43 +63,52 @@ export default async function Image({
       >
         <div
           style={{
-            fontSize: 36,
-            opacity: 0.7,
-            marginBottom: 16,
-          }}
-        >
-          Högskoleprovet
-        </div>
-        <div style={{ fontSize: 80, fontWeight: "bold", marginBottom: 24 }}>
-          {seasonLabel} {test.year}
-        </div>
-        <div
-          style={{
-            fontSize: 32,
-            opacity: 0.8,
-            textAlign: "center",
-          }}
-        >
-          PDF, Facit & Normering
-        </div>
-        <div
-          style={{
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            marginTop: 60,
+            justifyContent: "center",
           }}
         >
           <div
             style={{
-              backgroundColor: "#D4A017",
-              color: "#1E1A2D",
-              padding: "12px 32px",
-              borderRadius: 12,
-              fontSize: 28,
-              fontWeight: "bold",
+              fontSize: 36,
+              opacity: 0.7,
+              marginBottom: 16,
             }}
           >
-            Maxa
+            Högskoleprovet
+          </div>
+          <div style={{ fontSize: 80, fontWeight: "bold", marginBottom: 24 }}>
+            {seasonLabel} {test.year}
+          </div>
+          <div
+            style={{
+              fontSize: 32,
+              opacity: 0.8,
+              textAlign: "center",
+            }}
+          >
+            PDF, Facit & Normering
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginTop: 60,
+            }}
+          >
+            <div
+              style={{
+                backgroundColor: "#D4A017",
+                color: "#1E1A2D",
+                padding: "12px 32px",
+                borderRadius: 12,
+                fontSize: 28,
+                fontWeight: "bold",
+              }}
+            >
+              Maxa
+            </div>
           </div>
         </div>
       </div>
