@@ -106,12 +106,12 @@ Plans:
   2. Normering data extracted from all historical tests into JSON format
   3. Every test page with normering data displays the interactive chart
   4. Data validated for accuracy against source PDFs
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 06-01: Identify and catalogue all normeringstabeller sources
-- [ ] 06-02: Parse and extract normering data for all tests
-- [ ] 06-03: Validate data and ensure display on all applicable pages
+- [ ] 06-01-PLAN.md — Download and extract normering data for 2024-2025 tests (VT 2025, HT 2024, VT 2024)
+- [ ] 06-02-PLAN.md — Download and extract normering data for 2020-2023 tests (9 tests)
+- [ ] 06-03-PLAN.md — Download and extract normering data for 2013-2019 tests (13 tests)
 
 ## Progress
 
@@ -128,7 +128,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 3. Normering | 3/3 | Complete | 2026-01-27 |
 | 4. Strategy Content | 0/3 | Not started | - |
 | 5. Cross-Linking & Polish | 0/3 | Planned | - |
-| 6. Complete Normering Data | 0/3 | Not started | - |
+| 6. Complete Normering Data | 0/3 | Planned | - |
 
 ## Requirement Coverage
 
