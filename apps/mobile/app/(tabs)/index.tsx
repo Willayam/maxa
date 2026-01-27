@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   StyleSheet,
   ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -13,8 +14,10 @@ import Animated, {
   withTiming,
   FadeInDown,
   FadeInUp,
+  Easing,
 } from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
+import { Ionicons } from '@expo/vector-icons';
 
 import { Text } from '@/components/ui/text';
 import { Card } from '@/components/ui/card';
@@ -31,135 +34,157 @@ import {
 } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { triggerImpact } from '@/utils/haptics';
+import { useProgressStore, useGamificationStore, useCoachStore } from '@/stores';
 
-// Mock data - will be replaced with real data from Convex
-const MOCK_USER = {
-  name: 'Emma',
-  streak: 12,
+// Mock data for elements not yet connected to stores
+const USER_PROFILE = {
   examDate: new Date(2026, 3, 5),
   goalScore: 1.8,
   dreamProgram: 'Läkarprogrammet',
-  dreamCity: 'Lund',
-  dailyGoal: 25,
-  dailyProgress: 8,
-  weeklyCorrect: 42,
-  weakestSection: 'NOG',
 };
+
+// Days of week for streak calendar
+const WEEKDAYS = ['M', 'T', 'O', 'T', 'F', 'L', 'S'];
 
 export default function IdagScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
+  const router = useRouter();
+
+  // Real state from stores
+  const totalXP = useProgressStore((state) => state.totalXP);
+  const {
+    currentStreak,
+    dailyProgress,
+    dailyGoal,
+    isDailyGoalComplete,
+    checkAndUpdateStreak,
+  } = useGamificationStore();
+  const { getMessage, personality } = useCoachStore();
+
+  const coachMessage = getMessage({ type: 'tab_visit', tab: 'Idag' });
+
+  useEffect(() => {
+    checkAndUpdateStreak();
+  }, [checkAndUpdateStreak]);
 
   // Calculate days until exam
   const today = new Date();
   const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   const daysUntilExam = Math.max(
     0,
-    Math.ceil((MOCK_USER.examDate.getTime() - todayStart.getTime()) / (1000 * 60 * 60 * 24))
+    Math.ceil((USER_PROFILE.examDate.getTime() - todayStart.getTime()) / (1000 * 60 * 60 * 24))
   );
 
-  // Animated fire icon for streak
-  const fireScale = useSharedValue(1);
+  // CTA pulse animation (very subtle)
+  const ctaScale = useSharedValue(1);
+  const goalComplete = isDailyGoalComplete();
 
-  React.useEffect(() => {
-    fireScale.value = withRepeat(
-      withSequence(
-        withTiming(1.15, { duration: 500 }),
-        withTiming(1, { duration: 500 })
-      ),
-      -1,
-      true
-    );
-  }, [fireScale]);
+  useEffect(() => {
+    if (!goalComplete) {
+      ctaScale.value = withRepeat(
+        withSequence(
+          withTiming(1.015, { duration: 1200, easing: Easing.inOut(Easing.ease) }),
+          withTiming(1, { duration: 1200, easing: Easing.inOut(Easing.ease) })
+        ),
+        -1,
+        false
+      );
+    } else {
+      ctaScale.value = withTiming(1, { duration: 200 });
+    }
+  }, [goalComplete, ctaScale]);
 
-  const fireAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: fireScale.value }],
+  const ctaAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: ctaScale.value }],
   }));
 
   const handleCtaPress = () => {
     triggerImpact(Haptics.ImpactFeedbackStyle.Medium);
-    console.log('Start practice');
+    router.push({
+      pathname: '/quiz',
+      params: { section: 'MIXED' },
+    });
   };
 
-  const safeGoal = Math.max(0, MOCK_USER.dailyGoal);
-  const safeProgress = Math.max(0, MOCK_USER.dailyProgress);
+  const safeGoal = Math.max(0, dailyGoal);
+  const safeProgress = Math.max(0, dailyProgress);
   const progressPercent = safeGoal
     ? Math.min(100, Math.round((safeProgress / safeGoal) * 100))
     : 0;
 
-  const questionsRemaining = Math.max(0, safeGoal - safeProgress);
+  // Mock weekly streak data
+  const todayIndex = today.getDay() === 0 ? 6 : today.getDay() - 1;
+  const weeklyStreak = WEEKDAYS.map((_, i) => i < todayIndex ? true : i === todayIndex ? dailyProgress > 0 : false);
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+    <SafeAreaView edges={['top']} style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Compact Header with Greeting + Streak */}
+        {/* Top Stats Bar - Duolingo Style */}
         <Animated.View
-          entering={FadeInDown.duration(600).delay(100)}
-          style={styles.header}
+          entering={FadeInDown.duration(400).delay(50)}
+          style={styles.topStatsBar}
         >
-          <View style={styles.headerTop}>
-            <View style={styles.greeting}>
-              <Text variant="body" color="secondary">
-                Välkommen tillbaka,
-              </Text>
-              <Text variant="hero" style={styles.nameText}>
-                {MOCK_USER.name}
-              </Text>
-            </View>
-
-            {/* Streak badge */}
-            <Animated.View style={[styles.streakBadge, fireAnimatedStyle]}>
-              <View style={[styles.streakInner, { backgroundColor: colorScheme === 'dark' ? '#3D2800' : '#FFF3E0' }]}>
-                <Text style={styles.streakIcon}>🔥</Text>
-                <Text style={[styles.streakNumber, { color: colors.streak }]}>
-                  {MOCK_USER.streak}
-                </Text>
-              </View>
-            </Animated.View>
+          {/* XP Stat */}
+          <View style={[styles.topStat, { backgroundColor: colors.primaryLight }]}>
+            <Ionicons name="star" size={16} color={colors.primaryDark} />
+            <Text style={[styles.topStatValue, { color: colors.primaryDark }]}>
+              {totalXP}
+            </Text>
           </View>
 
-          {/* Inline daily goal progress */}
-          <View style={styles.dailyGoalInline}>
-            <View style={styles.dailyGoalHeader}>
-              <View style={[styles.dailyGoalBadge, { backgroundColor: colors.primary }]}>
-                <Text style={[styles.dailyGoalBadgeStar, { color: colors.textOnPrimary }]}>★</Text>
-                <Text style={[styles.dailyGoalBadgeText, { color: colors.textOnPrimary }]}>
-                  DAGLIGT MÅL
-                </Text>
-              </View>
-              <Text style={[styles.dailyGoalProgress, { color: colors.text }]}>
-                <Text style={styles.dailyGoalCurrent}>{MOCK_USER.dailyProgress}</Text>
-                <Text style={[styles.dailyGoalTotal, { color: colors.textTertiary }]}> / {MOCK_USER.dailyGoal}</Text>
-              </Text>
-            </View>
-            <ProgressBar progress={progressPercent} size="md" />
+          {/* Streak Stat */}
+          <View style={[styles.topStat, { backgroundColor: colors.warningLight }]}>
+            <Ionicons name="flame" size={16} color={colors.streak} />
+            <Text style={[styles.topStatValue, { color: colors.streak }]}>
+              {currentStreak}
+            </Text>
+          </View>
+
+          {/* Goal Stat */}
+          <View style={[styles.topStat, { backgroundColor: colors.successLight }]}>
+            <Ionicons name="trophy" size={16} color={colors.success} />
+            <Text style={[styles.topStatValue, { color: colors.success }]}>
+              {USER_PROFILE.goalScore.toFixed(1)}
+            </Text>
           </View>
         </Animated.View>
 
-        {/* Practice Card */}
-        <Animated.View entering={FadeInDown.duration(600).delay(200)}>
-          <Card style={styles.practiceCard}>
-            {/* Section pills */}
-            <View style={styles.sectionPills}>
-              <Text variant="label" color="tertiary" style={styles.sectionLabel}>
-                Dagens mix:
+        {/* Main Practice Card */}
+        <Animated.View entering={FadeInDown.duration(400).delay(100)}>
+          <Card style={styles.mainCard}>
+            {/* Daily Goal Progress */}
+            <View style={styles.dailyGoalSection}>
+              <View style={styles.dailyGoalHeader}>
+                <Text style={[styles.goalLabel, { color: colors.text }]}>
+                  Dagligt mål
+                </Text>
+                <Text style={[styles.goalFraction, { color: colors.text }]}>
+                  <Text style={styles.goalCurrent}>{dailyProgress}</Text>
+                  <Text style={[styles.goalDivider, { color: colors.textTertiary }]}>/</Text>
+                  <Text style={[styles.goalTotal, { color: colors.textTertiary }]}>{dailyGoal}</Text>
+                </Text>
+              </View>
+              <ProgressBar progress={progressPercent} size="lg" />
+            </View>
+
+            {/* Section Pills */}
+            <View style={styles.sectionRow}>
+              <Text variant="caption" color="tertiary" style={styles.mixLabel}>
+                Dagens mix
               </Text>
-              <View style={styles.pillsRow}>
+              <View style={styles.pillsContainer}>
                 {['ORD', 'LÄS', 'XYZ', 'NOG'].map((section) => {
                   const sectionColor = SectionColors[section as keyof typeof SectionColors];
                   return (
                     <SectionPill
                       key={section}
                       section={section}
-                      bgColor={
-                        colorScheme === 'dark'
-                          ? sectionColor.dark
-                          : sectionColor.light
-                      }
+                      bgColor={colorScheme === 'dark' ? sectionColor.dark : sectionColor.light}
                       textColor={sectionColor.text}
                     />
                   );
@@ -167,124 +192,153 @@ export default function IdagScreen() {
               </View>
             </View>
 
-            <Text variant="bodySm" color="secondary" style={styles.remainingText}>
-              {questionsRemaining} frågor kvar för att nå dagens mål
-            </Text>
-
             {/* CTA Button */}
-            <Button
-              fullWidth
-              size="xl"
-              onPress={handleCtaPress}
-            >
-              {MOCK_USER.dailyProgress === 0
-                ? '▶ STARTA DAGENS PASS'
-                : '▶ FORTSÄTT TRÄNA'}
-            </Button>
+            <Animated.View style={ctaAnimatedStyle}>
+              <Button
+                fullWidth
+                size="xl"
+                onPress={handleCtaPress}
+                leftIcon={
+                  <Ionicons
+                    name={goalComplete ? 'checkmark-circle' : 'play'}
+                    size={22}
+                    color={colors.textOnPrimary}
+                  />
+                }
+              >
+                {goalComplete ? 'MÅL KLART' : dailyProgress > 0 ? 'FORTSÄTT' : 'STARTA'}
+              </Button>
+            </Animated.View>
           </Card>
         </Animated.View>
 
-        {/* Stats Row - Countdown & Goal */}
+        {/* Stats Row - Countdown & Program */}
         <Animated.View
-          entering={FadeInDown.duration(600).delay(300)}
+          entering={FadeInDown.duration(400).delay(150)}
           style={styles.statsRow}
         >
-          {/* Days countdown */}
+          {/* Days Countdown */}
           <Card style={styles.statCard}>
-            <View style={styles.statInner}>
-              <Text style={[styles.statNumber, { color: colors.text }]}>
+            <View style={styles.statContent}>
+              <Text style={[styles.statBigNumber, { color: colors.text }]}>
                 {daysUntilExam}
               </Text>
-              <Text variant="label" color="secondary">
-                DAGAR KVAR
+              <Text style={[styles.statSubtext, { color: colors.textSecondary }]}>
+                dagar till
               </Text>
-              <Text variant="caption" color="tertiary">
-                till HP
+              <Text style={[styles.statEmphasis, { color: colors.text }]}>
+                Högskoleprovet
               </Text>
             </View>
           </Card>
 
-          {/* Goal score */}
+          {/* Goal / Program */}
           <Card style={styles.statCard}>
-            <View style={styles.statInner}>
-              <Text style={[styles.statNumber, { color: colors.primary }]}>
-                {MOCK_USER.goalScore.toFixed(1)}
+            <View style={styles.statContent}>
+              <Text style={[styles.statBigNumber, styles.statBigNumberAccent, { color: colors.primary }]}>
+                {USER_PROFILE.goalScore.toFixed(1)}
               </Text>
-              <Text variant="label" color="secondary">
-                DITT MÅL
+              <Text style={[styles.statSubtext, { color: colors.textSecondary }]}>
+                mål för
               </Text>
-              <Text variant="caption" color="tertiary" numberOfLines={1}>
-                {MOCK_USER.dreamProgram}
+              <Text style={[styles.statEmphasis, { color: colors.text }]} numberOfLines={1}>
+                {USER_PROFILE.dreamProgram}
               </Text>
             </View>
           </Card>
         </Animated.View>
 
-        {/* Weekly Progress */}
-        <Animated.View
-          entering={FadeInDown.duration(600).delay(400)}
-          style={styles.weeklySection}
-        >
-          <View style={styles.sectionHeader}>
-            <Text variant="h4">Veckans framsteg</Text>
-          </View>
-
-          <View style={styles.weeklyStatsRow}>
-            <Card style={[styles.weeklyStatCard, { backgroundColor: colors.successLight }]}>
-              <Text style={styles.weeklyStatIcon}>✓</Text>
-              <Text style={[styles.weeklyStatValue, { color: colors.success }]}>
-                +{MOCK_USER.weeklyCorrect}
-              </Text>
-              <Text variant="caption" color="secondary">
-                Rätt denna vecka
-              </Text>
-            </Card>
-
-            <Card style={[styles.weeklyStatCard, { backgroundColor: colors.errorLight }]}>
-              <Text style={styles.weeklyStatIcon}>📉</Text>
-              <Text style={[styles.weeklyStatValue, { color: colors.error }]}>
-                {MOCK_USER.weakestSection}
-              </Text>
-              <Text variant="caption" color="secondary">
-                Behöver träning
-              </Text>
-            </Card>
-          </View>
+        {/* Week Calendar */}
+        <Animated.View entering={FadeInDown.duration(400).delay(200)}>
+          <Card style={styles.weekCard}>
+            <View style={styles.weekDays}>
+              {WEEKDAYS.map((day, i) => {
+                const isCompleted = weeklyStreak[i];
+                const isToday = i === todayIndex;
+                return (
+                  <View key={day + i} style={styles.dayColumn}>
+                    <Text
+                      style={[
+                        styles.dayLabel,
+                        { color: isToday ? colors.primary : colors.textTertiary },
+                        isToday && styles.dayLabelToday,
+                      ]}
+                    >
+                      {day}
+                    </Text>
+                    <View
+                      style={[
+                        styles.dayCircle,
+                        isCompleted && { backgroundColor: colors.success },
+                        !isCompleted && isToday && [
+                          styles.dayCircleToday,
+                          {
+                            backgroundColor: colors.primaryLight,
+                            borderColor: colors.primary,
+                          },
+                        ],
+                        !isCompleted && !isToday && {
+                          backgroundColor: colors.backgroundTertiary,
+                        },
+                      ]}
+                    >
+                      {isCompleted ? (
+                        <Ionicons name="checkmark" size={18} color="#fff" />
+                      ) : isToday ? (
+                        <View style={[styles.todayDot, { backgroundColor: colors.primary }]} />
+                      ) : null}
+                    </View>
+                  </View>
+                );
+              })}
+            </View>
+          </Card>
         </Animated.View>
 
-        {/* AI Coach Teaser */}
-        <Animated.View entering={FadeInUp.duration(600).delay(500)}>
+        {/* Max Coach Section */}
+        <Animated.View entering={FadeInUp.duration(400).delay(250)}>
           <Card
             onPress={() => {
               triggerImpact(Haptics.ImpactFeedbackStyle.Light);
-              console.log('Open Max');
+              router.push('/(tabs)/jag');
             }}
             style={styles.coachCard}
           >
-            <View style={styles.coachContent}>
-              <View style={[styles.coachAvatar, { backgroundColor: colors.backgroundTertiary }]}>
-                <Text style={styles.coachEmoji}>🤖</Text>
+            <View style={styles.coachLayout}>
+              {/* Mascot Avatar */}
+              <View style={[styles.mascotContainer, { backgroundColor: colors.primary }]}>
+                <Ionicons name="sparkles" size={24} color={colors.textOnPrimary} />
               </View>
-              <View style={styles.coachText}>
+
+              {/* Message */}
+              <View style={styles.coachTextContainer}>
                 <View style={styles.coachNameRow}>
-                  <Text variant="h5">Max</Text>
-                  <View style={[styles.aiBadge, { backgroundColor: colors.primary }]}>
-                    <Text style={[styles.aiBadgeText, { color: colors.textOnPrimary }]}>
-                      AI
-                    </Text>
-                  </View>
+                  <Text style={[styles.coachName, { color: colors.text }]}>
+                    Max
+                  </Text>
+                  <Text style={[styles.personalityLabel, { color: colors.textTertiary }]}>
+                    · {personality === 'Hype' ? 'Hype' : personality === 'Lugn' ? 'Lugn' : 'Strikt'}
+                  </Text>
                 </View>
-                <Text variant="bodySm" color="secondary">
-                  Bra jobbat igår! Du är på väg mot 2 veckors streak 🔥
+                <Text
+                  style={[styles.coachMessage, { color: colors.textSecondary }]}
+                  numberOfLines={2}
+                >
+                  {coachMessage}
                 </Text>
               </View>
-              <Text style={[styles.coachArrow, { color: colors.textTertiary }]}>→</Text>
+
+              <Ionicons
+                name="chevron-forward"
+                size={20}
+                color={colors.textTertiary}
+              />
             </View>
           </Card>
         </Animated.View>
 
-        {/* Bottom padding */}
-        <View style={styles.bottomPadding} />
+        {/* Bottom safe area padding */}
+        <View style={styles.bottomSpacer} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -299,28 +353,18 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingHorizontal: Spacing.lg,
-    paddingTop: Spacing.md,
+    paddingTop: Spacing.sm,
+    paddingBottom: Spacing['4xl'] + 20,
   },
-  header: {
-    marginBottom: Spacing.lg,
-  },
-  headerTop: {
+
+  // Top Stats Bar
+  topStatsBar: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    justifyContent: 'center',
+    gap: Spacing.md,
     marginBottom: Spacing.lg,
   },
-  greeting: {
-    flex: 1,
-  },
-  nameText: {
-    letterSpacing: -1.5,
-    marginTop: Spacing.xxs,
-  },
-  streakBadge: {
-    marginLeft: Spacing.md,
-  },
-  streakInner: {
+  topStat: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: Spacing.md,
@@ -328,65 +372,61 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.full,
     gap: Spacing.xs,
   },
-  streakIcon: {
-    fontSize: 16,
-  },
-  streakNumber: {
+  topStatValue: {
     fontSize: FontSize.lg,
-    fontFamily: FontFamily.bold,
+    fontFamily: FontFamily.black,
   },
-  dailyGoalInline: {
-    gap: Spacing.sm,
+
+  // Main Card
+  mainCard: {
+    marginBottom: Spacing.lg,
+  },
+  dailyGoalSection: {
+    marginBottom: Spacing.lg,
   },
   dailyGoalHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginBottom: Spacing.sm,
   },
-  dailyGoalBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: Spacing.xs,
-    borderRadius: BorderRadius.full,
-    gap: Spacing.xxs,
-  },
-  dailyGoalBadgeStar: {
-    fontSize: 12,
-    fontFamily: FontFamily.bold,
-  },
-  dailyGoalBadgeText: {
-    fontSize: FontSize.xxs,
-    fontFamily: FontFamily.black,
-    letterSpacing: 0.5,
-  },
-  dailyGoalProgress: {
-    fontSize: FontSize.base,
-  },
-  dailyGoalCurrent: {
-    fontSize: FontSize.xl,
-    fontFamily: FontFamily.extrabold,
-  },
-  dailyGoalTotal: {
+  goalLabel: {
     fontSize: FontSize.base,
     fontFamily: FontFamily.semibold,
   },
-  practiceCard: {
+  goalFraction: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+  },
+  goalCurrent: {
+    fontSize: FontSize['2xl'],
+    fontFamily: FontFamily.black,
+  },
+  goalDivider: {
+    fontSize: FontSize.lg,
+    fontFamily: FontFamily.medium,
+    marginHorizontal: 2,
+  },
+  goalTotal: {
+    fontSize: FontSize.lg,
+    fontFamily: FontFamily.semibold,
+  },
+
+  // Section Pills
+  sectionRow: {
     marginBottom: Spacing.lg,
   },
-  sectionPills: {
-    marginBottom: Spacing.md,
-  },
-  sectionLabel: {
+  mixLabel: {
     marginBottom: Spacing.sm,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
-  pillsRow: {
+  pillsContainer: {
     flexDirection: 'row',
     gap: Spacing.sm,
   },
-  remainingText: {
-    marginBottom: Spacing.lg,
-  },
+
+  // Stats Row
   statsRow: {
     flexDirection: 'row',
     gap: Spacing.md,
@@ -394,50 +434,79 @@ const styles = StyleSheet.create({
   },
   statCard: {
     flex: 1,
-  },
-  statInner: {
-    alignItems: 'center',
-  },
-  statNumber: {
-    fontSize: 42,
-    fontFamily: FontFamily.extrabold,
-    lineHeight: 48,
-    letterSpacing: -2,
-  },
-  weeklySection: {
-    marginBottom: Spacing.lg,
-  },
-  sectionHeader: {
-    marginBottom: Spacing.md,
-  },
-  weeklyStatsRow: {
-    flexDirection: 'row',
-    gap: Spacing.md,
-  },
-  weeklyStatCard: {
-    flex: 1,
-    alignItems: 'center',
+    flexBasis: 0,
+    minWidth: 0,
     paddingVertical: Spacing.lg,
   },
-  weeklyStatIcon: {
-    fontSize: 20,
-    marginBottom: Spacing.sm,
-    lineHeight: 28,
+  statContent: {
+    alignItems: 'center',
   },
-  weeklyStatValue: {
-    fontSize: FontSize.h2,
+  statBigNumber: {
+    fontSize: 40,
+    fontFamily: FontFamily.black,
+    lineHeight: 44,
+    letterSpacing: 0,
+  },
+  statBigNumberAccent: {
+    letterSpacing: -0.5,
+  },
+  statSubtext: {
+    fontSize: FontSize.sm,
+    fontFamily: FontFamily.regular,
+    lineHeight: FontSize.sm * 1.2,
+  },
+  statEmphasis: {
+    fontSize: FontSize.sm,
     fontFamily: FontFamily.bold,
-    lineHeight: FontSize.h2 * 1.2,
-    marginBottom: Spacing.xs,
+    textAlign: 'center',
+    lineHeight: FontSize.sm * 1.2,
   },
-  coachCard: {
+
+  // Week Card
+  weekCard: {
     marginBottom: Spacing.lg,
+    paddingVertical: Spacing.lg,
   },
-  coachContent: {
+  weekDays: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  dayColumn: {
+    alignItems: 'center',
+    gap: Spacing.sm,
+  },
+  dayLabel: {
+    fontSize: FontSize.xs,
+    fontFamily: FontFamily.semibold,
+  },
+  dayLabelToday: {
+    fontFamily: FontFamily.black,
+  },
+  dayCircle: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  dayCircleToday: {
+    borderWidth: 3,
+  },
+  todayDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+  },
+
+  // Coach Card
+  coachCard: {
+    marginBottom: Spacing.md,
+  },
+  coachLayout: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  coachAvatar: {
+  mascotContainer: {
     width: 48,
     height: 48,
     borderRadius: 24,
@@ -445,32 +514,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginRight: Spacing.md,
   },
-  coachEmoji: {
-    fontSize: 24,
-  },
-  coachText: {
+  coachTextContainer: {
     flex: 1,
+    marginRight: Spacing.sm,
   },
   coachNameRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: Spacing.sm,
-    marginBottom: Spacing.xxs,
+    gap: Spacing.xs,
+    marginBottom: 2,
   },
-  aiBadge: {
-    paddingHorizontal: Spacing.sm,
-    paddingVertical: 2,
-    borderRadius: BorderRadius.sm,
-  },
-  aiBadgeText: {
-    fontSize: 10,
+  coachName: {
+    fontSize: FontSize.base,
     fontFamily: FontFamily.bold,
   },
-  coachArrow: {
-    fontSize: 20,
-    marginLeft: Spacing.sm,
+  personalityLabel: {
+    fontSize: FontSize.sm,
+    fontFamily: FontFamily.medium,
   },
-  bottomPadding: {
-    height: Spacing['4xl'],
+  coachMessage: {
+    fontSize: FontSize.sm,
+    fontFamily: FontFamily.regular,
+    fontStyle: 'italic',
+    lineHeight: FontSize.sm * 1.4,
+  },
+
+  // Bottom Spacer
+  bottomSpacer: {
+    height: Spacing['3xl'],
   },
 });

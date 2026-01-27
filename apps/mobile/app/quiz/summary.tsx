@@ -1,10 +1,11 @@
 // apps/mobile/app/quiz/summary.tsx
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import Animated, { FadeInDown } from 'react-native-reanimated';
+import * as Haptics from 'expo-haptics';
 
 import { Text } from '@/components/ui/text';
 import { Button } from '@/components/ui/button';
@@ -12,6 +13,7 @@ import { Card } from '@/components/ui/card';
 import { Colors, Spacing, BorderRadius, FontFamily, FontSize, SectionColors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import type { SectionCode, AnswerRecord } from '@/constants/mock-questions';
+import { calculateSessionXP } from '@/constants/mock-questions';
 import {
   TARGET_TIME_PER_QUESTION,
   DEFAULT_TARGET_TIME,
@@ -20,6 +22,10 @@ import {
   SUMMARY_TITLES,
   PACE_STATUS,
 } from '@/constants/quiz-config';
+import { useProgressStore } from '@/stores/progressStore';
+import { useQuizStore } from '@/stores/quizStore';
+import { useCoachStore, useGamificationStore } from '@/stores';
+import { StreakMilestone } from '@/components/celebrations/StreakMilestone';
 
 /**
  * Format seconds as M:SS
@@ -60,6 +66,23 @@ export default function SummaryScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
 
+  // Get store actions
+  const { addXP, completeSession, updateStreak } = useProgressStore();
+  const { currentQuestions, resetSession } = useQuizStore();
+
+  // Store questions in local state since we'll need them for review even after navigating
+  const [sessionQuestions] = useState(currentQuestions);
+
+  // Track if we've already updated progress (prevent double-updates)
+  const [hasUpdatedProgress, setHasUpdatedProgress] = useState(false);
+
+  // Coach and gamification stores
+  const { getMessage } = useCoachStore();
+  const { currentStreak } = useGamificationStore();
+
+  // Streak celebration state
+  const [showStreakCelebration, setShowStreakCelebration] = useState(false);
+
   // Parse params
   const section = params.section || 'XYZ';
   let answers: AnswerRecord[] = [];
@@ -78,6 +101,10 @@ export default function SummaryScreen() {
   const targetTime = TARGET_TIME_PER_QUESTION[section] || DEFAULT_TARGET_TIME;
   const pacePercentOver = ((avgTimePerQuestion - targetTime) / targetTime) * 100;
 
+  // Calculate XP earned
+  const xpResult = calculateSessionXP(answers);
+  const xpEarned = xpResult.xp;
+
   // Determine title and pace status
   const summaryTitle = getSummaryTitle(percentage);
   const paceStatus = getPaceStatus(pacePercentOver);
@@ -88,14 +115,56 @@ export default function SummaryScreen() {
   // Section colors
   const sectionColor = SectionColors[section as keyof typeof SectionColors];
 
+  // Get coach message based on quiz results
+  const coachMessage = getMessage({
+    type: 'quiz_complete',
+    correct: correctCount,
+    total: totalQuestions,
+  });
+
+  // Update progress store once on mount
+  useEffect(() => {
+    if (!hasUpdatedProgress && answers.length > 0) {
+      addXP(xpEarned);
+      completeSession(correctCount, totalQuestions);
+      updateStreak();
+      setHasUpdatedProgress(true);
+    }
+  }, [hasUpdatedProgress, answers.length, xpEarned, correctCount, totalQuestions, addXP, completeSession, updateStreak]);
+
+  // Celebration haptic on mount
+  useEffect(() => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+  }, []);
+
+  // Check for streak milestone after progress update
+  useEffect(() => {
+    const streakMilestones = [3, 7, 14, 30, 60, 100];
+    if (hasUpdatedProgress && streakMilestones.includes(currentStreak)) {
+      // Small delay to let the UI render first
+      const timer = setTimeout(() => {
+        setShowStreakCelebration(true);
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [hasUpdatedProgress, currentStreak]);
+
   // Handle navigation
   const handleDone = () => {
+    resetSession(); // Clear quizStore
     router.dismissAll(); // Return to trana screen
   };
 
   const handleReviewErrors = () => {
-    // TODO: Navigate to review errors screen
-    console.log('Review errors');
+    const incorrectAnswers = answers.filter(a => !a.correct);
+    router.push({
+      pathname: '/quiz/review',
+      params: {
+        section,
+        incorrectAnswers: JSON.stringify(incorrectAnswers),
+        questions: JSON.stringify(sessionQuestions),
+      },
+    });
   };
 
   return (
@@ -107,7 +176,7 @@ export default function SummaryScreen() {
       >
         {/* Title section with emoji */}
         <Animated.View
-          entering={FadeInDown.duration(500).delay(100)}
+          entering={FadeInDown.duration(400)}
           style={styles.titleSection}
         >
           <Text style={styles.titleIcon}>{summaryTitle.icon}</Text>
@@ -116,8 +185,23 @@ export default function SummaryScreen() {
           </Text>
         </Animated.View>
 
+        {/* XP Card - Duolingo-style celebration */}
+        <Animated.View entering={FadeInDown.duration(400).delay(150)}>
+          <Card style={[styles.xpCard, { backgroundColor: colors.primaryLight }]}>
+            <View style={styles.xpContent}>
+              <Text style={styles.xpIcon}>⚡</Text>
+              <View style={styles.xpTextContainer}>
+                <Text style={[styles.xpAmount, { color: colors.primary }]}>
+                  +{xpEarned}
+                </Text>
+                <Text variant="body" color="secondary">XP tjänat</Text>
+              </View>
+            </View>
+          </Card>
+        </Animated.View>
+
         {/* Score card */}
-        <Animated.View entering={FadeInDown.duration(500).delay(200)}>
+        <Animated.View entering={FadeInDown.duration(400).delay(300)}>
           <Card style={styles.scoreCard}>
             <View style={styles.scoreContent}>
               <View style={styles.scoreMain}>
@@ -174,7 +258,7 @@ export default function SummaryScreen() {
         </Animated.View>
 
         {/* Stats card */}
-        <Animated.View entering={FadeInDown.duration(500).delay(300)}>
+        <Animated.View entering={FadeInDown.duration(400).delay(450)}>
           <Card style={styles.statsCard}>
             {/* Total time */}
             <View style={styles.statRow}>
@@ -220,14 +304,14 @@ export default function SummaryScreen() {
             {/* Average time per question */}
             <View style={styles.statRow}>
               <Text variant="body" color="secondary">
-                Snitt/fråga
+                Snitt/fraga
               </Text>
               <View style={styles.timeInfo}>
                 <Text variant="h4" style={{ color: colors.text }}>
                   {formatTime(avgTimePerQuestion)}
                 </Text>
                 <Text variant="caption" color="tertiary" style={styles.targetText}>
-                  Mål: {formatTime(targetTime)}
+                  Mal: {formatTime(targetTime)}
                 </Text>
               </View>
             </View>
@@ -260,13 +344,35 @@ export default function SummaryScreen() {
           </Card>
         </Animated.View>
 
+        {/* Max Coach Feedback */}
+        <Animated.View entering={FadeInDown.duration(400).delay(600)}>
+          <Card style={styles.coachCard}>
+            <View style={styles.coachContent}>
+              <View style={[styles.coachAvatar, { backgroundColor: colors.backgroundTertiary }]}>
+                <Text style={styles.coachEmoji}>🤖</Text>
+              </View>
+              <View style={styles.coachTextContent}>
+                <View style={styles.coachNameRow}>
+                  <Text variant="h5">Max</Text>
+                  <View style={[styles.aiBadge, { backgroundColor: colors.primary }]}>
+                    <Text style={[styles.aiBadgeText, { color: colors.textOnPrimary }]}>AI</Text>
+                  </View>
+                </View>
+                <Text variant="bodySm" color="secondary">
+                  {coachMessage}
+                </Text>
+              </View>
+            </View>
+          </Card>
+        </Animated.View>
+
         {/* Bottom padding */}
         <View style={styles.bottomPadding} />
       </ScrollView>
 
       {/* Bottom buttons */}
       <Animated.View
-        entering={FadeInDown.duration(500).delay(400)}
+        entering={FadeInDown.duration(400).delay(600)}
         style={[
           styles.bottomBar,
           {
@@ -290,6 +396,13 @@ export default function SummaryScreen() {
           Klar
         </Button>
       </Animated.View>
+
+      {/* Streak Milestone Celebration */}
+      <StreakMilestone
+        visible={showStreakCelebration}
+        days={currentStreak}
+        onDismiss={() => setShowStreakCelebration(false)}
+      />
     </SafeAreaView>
   );
 }
@@ -312,6 +425,24 @@ const styles = StyleSheet.create({
   titleIcon: {
     fontSize: 64,
     marginBottom: Spacing.md,
+  },
+  xpCard: {
+    marginBottom: Spacing.lg,
+  },
+  xpContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  xpIcon: {
+    fontSize: 40,
+    marginRight: Spacing.md,
+  },
+  xpTextContainer: {
+    flex: 1,
+  },
+  xpAmount: {
+    fontSize: FontSize['3xl'],
+    fontFamily: FontFamily.bold,
   },
   scoreCard: {
     marginBottom: Spacing.lg,
@@ -352,6 +483,42 @@ const styles = StyleSheet.create({
   },
   statsCard: {
     marginBottom: Spacing.lg,
+  },
+  coachCard: {
+    marginBottom: Spacing.lg,
+  },
+  coachContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  coachAvatar: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: Spacing.md,
+  },
+  coachEmoji: {
+    fontSize: 24,
+  },
+  coachTextContent: {
+    flex: 1,
+  },
+  coachNameRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+    marginBottom: Spacing.xxs,
+  },
+  aiBadge: {
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: 2,
+    borderRadius: BorderRadius.sm,
+  },
+  aiBadgeText: {
+    fontSize: 10,
+    fontFamily: FontFamily.bold,
   },
   statRow: {
     flexDirection: 'row',

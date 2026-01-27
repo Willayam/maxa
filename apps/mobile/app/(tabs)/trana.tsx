@@ -12,14 +12,15 @@ import Animated, {
   FadeInRight,
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
+  withTiming,
+  Easing,
 } from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
+import { Ionicons } from '@expo/vector-icons';
 
 import { Text } from '@/components/ui/text';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ProgressBar } from '@/components/ui/progress-bar';
 import {
   Colors,
   Spacing,
@@ -27,9 +28,14 @@ import {
   FontFamily,
   FontSize,
   SectionColors,
+  Primitives,
 } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { triggerImpact } from '@/utils/haptics';
+
+// Snappy animation config - no bouncy springs
+const PRESS_IN_CONFIG = { duration: 80, easing: Easing.out(Easing.ease) };
+const PRESS_OUT_CONFIG = { duration: 120, easing: Easing.out(Easing.ease) };
 
 // HP Sections with mock progress data
 const HP_SECTIONS = {
@@ -47,14 +53,59 @@ const HP_SECTIONS = {
   ],
 };
 
+// Mock weakness order - sorted by weakness (lowest progress first)
+// Will be replaced with real tracking in Phase 4
+const WEAKNESS_ORDER = ['NOG', 'KVA', 'MEK', 'ORD'];
+
 type TrainingMode = 'smart' | 'section' | 'simulate';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
+// 5-Dot Strength Indicator - like Duolingo crowns but chunky dots
+interface StrengthDotsProps {
+  progress: number; // 0-100
+  accentColor: string;
+  mutedColor: string;
+}
+
+function StrengthDots({ progress, accentColor, mutedColor }: StrengthDotsProps) {
+  // Map 0-100% to 1-5 filled dots
+  const filledDots = Math.max(1, Math.min(5, Math.ceil(progress / 20)));
+
+  return (
+    <View style={strengthDotsStyles.container}>
+      {[1, 2, 3, 4, 5].map((dot) => (
+        <View
+          key={dot}
+          style={[
+            strengthDotsStyles.dot,
+            {
+              backgroundColor: dot <= filledDots ? accentColor : mutedColor,
+            },
+          ]}
+        />
+      ))}
+    </View>
+  );
+}
+
+const strengthDotsStyles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    gap: 6,
+    justifyContent: 'center',
+  },
+  dot: {
+    width: 14,
+    height: 14,
+    borderRadius: 4, // Slightly rounded squares = chunky/game-like
+  },
+});
+
 interface ModeCardProps {
   title: string;
   description: string;
-  icon: string;
+  iconName: keyof typeof Ionicons.glyphMap;
   selected: boolean;
   onPress: () => void;
   isPro?: boolean;
@@ -64,7 +115,7 @@ interface ModeCardProps {
 function ModeCard({
   title,
   description,
-  icon,
+  iconName,
   selected,
   onPress,
   isPro = false,
@@ -80,11 +131,11 @@ function ModeCard({
   }));
 
   const handlePressIn = () => {
-    scale.value = withSpring(0.97, { damping: 15, stiffness: 400 });
+    scale.value = withTiming(0.98, PRESS_IN_CONFIG);
   };
 
   const handlePressOut = () => {
-    scale.value = withSpring(1, { damping: 15, stiffness: 400 });
+    scale.value = withTiming(1, PRESS_OUT_CONFIG);
   };
 
   const handlePress = () => {
@@ -104,15 +155,26 @@ function ModeCard({
           style={[
             styles.modeCard,
             {
-              backgroundColor: colors.cardBackground,
+              backgroundColor: selected ? colors.primaryLight : colors.cardBackground,
               borderColor: selected ? colors.primary : colors.cardBorder,
               borderWidth: selected ? 3 : 2,
             },
           ]}
         >
           {/* Icon */}
-          <View style={[styles.modeIconContainer, { backgroundColor: selected ? colors.primaryLight : colors.backgroundTertiary }]}>
-            <Text style={styles.modeIcon}>{icon}</Text>
+          <View
+            style={[
+              styles.modeIconContainer,
+              {
+                backgroundColor: selected ? colors.primary : colors.backgroundTertiary,
+              }
+            ]}
+          >
+            <Ionicons
+              name={iconName}
+              size={26}
+              color={selected ? colors.textOnPrimary : colors.textSecondary}
+            />
           </View>
 
           {/* Content */}
@@ -122,8 +184,9 @@ function ModeCard({
                 {title}
               </Text>
               {isPro && (
-                <View style={[styles.proBadge, { backgroundColor: colors.primary }]}>
-                  <Text style={[styles.proText, { color: colors.textOnPrimary }]}>PRO</Text>
+                <View style={[styles.proBadge]}>
+                  <Ionicons name="star" size={10} color={Primitives.yellow[600]} />
+                  <Text style={styles.proText}>PRO</Text>
                 </View>
               )}
             </View>
@@ -143,7 +206,7 @@ function ModeCard({
             ]}
           >
             {selected && (
-              <Text style={[styles.checkmark, { color: colors.textOnPrimary }]}>✓</Text>
+              <Ionicons name="checkmark" size={18} color={colors.textOnPrimary} />
             )}
           </View>
         </View>
@@ -154,14 +217,16 @@ function ModeCard({
 
 interface SectionTileProps {
   section: typeof HP_SECTIONS.verbal[0];
+  selected: boolean;
   onPress: () => void;
   delay?: number;
 }
 
-function SectionTile({ section, onPress, delay = 0 }: SectionTileProps) {
+function SectionTile({ section, selected, onPress, delay = 0 }: SectionTileProps) {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
-  const sectionColor = SectionColors[section.code as keyof typeof SectionColors];
+  const colorKey = section.code === 'LÄS' ? 'LÄS' : section.code;
+  const sectionColor = SectionColors[colorKey as keyof typeof SectionColors];
 
   const scale = useSharedValue(1);
 
@@ -170,11 +235,11 @@ function SectionTile({ section, onPress, delay = 0 }: SectionTileProps) {
   }));
 
   const handlePressIn = () => {
-    scale.value = withSpring(0.95, { damping: 15, stiffness: 400 });
+    scale.value = withTiming(0.96, PRESS_IN_CONFIG);
   };
 
   const handlePressOut = () => {
-    scale.value = withSpring(1, { damping: 15, stiffness: 400 });
+    scale.value = withTiming(1, PRESS_OUT_CONFIG);
   };
 
   const handlePress = () => {
@@ -182,15 +247,11 @@ function SectionTile({ section, onPress, delay = 0 }: SectionTileProps) {
     onPress();
   };
 
-  // Progress color based on performance
-  const getProgressColor = () => {
-    if (section.progress < 33) return colors.progressWeak;
-    if (section.progress < 66) return colors.progressMedium;
-    return colors.progressStrong;
-  };
-
   return (
-    <Animated.View entering={FadeInDown.duration(400).delay(delay)}>
+    <Animated.View
+      entering={FadeInDown.duration(300).delay(delay)}
+      style={styles.sectionTileWrapper}
+    >
       <AnimatedPressable
         style={animatedStyle}
         onPressIn={handlePressIn}
@@ -201,42 +262,27 @@ function SectionTile({ section, onPress, delay = 0 }: SectionTileProps) {
           style={[
             styles.sectionTile,
             {
-              backgroundColor: colors.cardBackground,
-              borderColor: colors.cardBorder,
+              backgroundColor: selected ? colors.primaryLight : colors.cardBackground,
+              borderColor: selected ? colors.primary : colors.cardBorder,
             },
           ]}
         >
-          <View style={styles.sectionHeader}>
-            <Text
-              style={[
-                styles.sectionCode,
-                { color: sectionColor?.text || colors.text },
-              ]}
-            >
-              {section.code}
-            </Text>
-            <Text
-              style={[
-                styles.sectionProgress,
-                { color: getProgressColor() },
-              ]}
-            >
-              {section.progress}%
-            </Text>
-          </View>
-          <Text variant="caption" color="secondary" numberOfLines={1}>
-            {section.name}
+          {/* Big section code - the star of the show */}
+          <Text
+            style={[
+              styles.sectionCode,
+              { color: sectionColor?.text || colors.text },
+            ]}
+          >
+            {section.code}
           </Text>
-          <View style={styles.sectionProgressBar}>
-            <ProgressBar
-              progress={section.progress}
-              size="sm"
-              color={sectionColor?.accent || colors.primary}
-            />
-          </View>
-          <Text variant="caption" color="tertiary">
-            {section.questionsAnswered} frågor
-          </Text>
+
+          {/* 5-dot strength indicator */}
+          <StrengthDots
+            progress={section.progress}
+            accentColor={sectionColor?.accent || colors.primary}
+            mutedColor={colorScheme === 'dark' ? colors.backgroundTertiary : colors.border}
+          />
         </View>
       </AnimatedPressable>
     </Animated.View>
@@ -247,35 +293,62 @@ export default function TranaScreen() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
   const [selectedMode, setSelectedMode] = useState<TrainingMode>('smart');
+  // Pre-select weakest section (first in WEAKNESS_ORDER) or first section if new user
+  const [selectedSection, setSelectedSection] = useState<string>(WEAKNESS_ORDER[0] || 'ORD');
   const router = useRouter();
+
+  // Handle mode change - pre-select weakest when entering section mode
+  const handleModeChange = (mode: TrainingMode) => {
+    setSelectedMode(mode);
+    // Always have a section selected - default to weakest
+    if (mode === 'section' && !selectedSection) {
+      setSelectedSection(WEAKNESS_ORDER[0] || 'ORD');
+    }
+  };
 
   const handleStartTraining = () => {
     triggerImpact(Haptics.ImpactFeedbackStyle.Medium);
     if (selectedMode === 'smart') {
-      // For smart mode, pick a weak section (NOG for now as mock)
+      const weakestSections = WEAKNESS_ORDER.slice(0, 2);
       router.push({
         pathname: '/quiz',
-        params: { section: 'NOG' },
+        params: {
+          section: 'SMART',
+          focusSections: weakestSections.join(','),
+        },
       });
     } else if (selectedMode === 'section') {
-      // Section mode requires selecting a section first
-      console.log('Please select a section');
-    } else {
-      // Simulate mode - not implemented yet
-      console.log('Simulate mode coming soon');
+      // Start quiz with selected section (always has a value)
+      router.push({
+        pathname: '/quiz',
+        params: { section: selectedSection },
+      });
+    } else if (selectedMode === 'simulate') {
+      router.push({
+        pathname: '/quiz',
+        params: {
+          section: 'SIMULATE',
+          questionCount: '160',
+          timed: 'true',
+        },
+      });
     }
   };
 
+  // Section tile tap = SELECT
   const handleSectionPress = (sectionCode: string) => {
-    triggerImpact(Haptics.ImpactFeedbackStyle.Light);
-    router.push({
-      pathname: '/quiz',
-      params: { section: sectionCode },
-    });
+    setSelectedSection(sectionCode);
+  };
+
+  // Get button text based on state - NEVER disabled
+  const getButtonText = () => {
+    if (selectedMode === 'smart') return 'STARTA';
+    if (selectedMode === 'section') return `STARTA ${selectedSection}`;
+    return 'STARTA PROV';
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+    <SafeAreaView edges={['top']} style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
@@ -310,25 +383,25 @@ export default function TranaScreen() {
           <ModeCard
             title="Smart träning"
             description="AI väljer frågor baserat på dina svagaste områden"
-            icon="🎯"
+            iconName="sparkles"
             selected={selectedMode === 'smart'}
-            onPress={() => setSelectedMode('smart')}
+            onPress={() => handleModeChange('smart')}
             delay={150}
           />
           <ModeCard
             title="Välj delprov"
             description="Fokusera på ett specifikt delområde av HP"
-            icon="📚"
+            iconName="grid-outline"
             selected={selectedMode === 'section'}
-            onPress={() => setSelectedMode('section')}
+            onPress={() => handleModeChange('section')}
             delay={200}
           />
           <ModeCard
             title="Simulera HP"
             description="Fullt HP-prov under realistiska förhållanden"
-            icon="⏱️"
+            iconName="timer-outline"
             selected={selectedMode === 'simulate'}
-            onPress={() => setSelectedMode('simulate')}
+            onPress={() => handleModeChange('simulate')}
             isPro
             delay={250}
           />
@@ -336,13 +409,13 @@ export default function TranaScreen() {
 
         {/* Section Grid (shown when section mode selected) */}
         {selectedMode === 'section' && (
-          <Animated.View entering={FadeInDown.duration(400)}>
+          <Animated.View entering={FadeInDown.duration(300)}>
             {/* Verbal Sections */}
             <View style={styles.sectionGroup}>
               <View style={styles.sectionGroupHeader}>
                 <Text variant="h4">Verbala</Text>
-                <View style={[styles.sectionBadge, { backgroundColor: colors.primaryLight }]}>
-                  <Text variant="caption" color="primary">4 delprov</Text>
+                <View style={[styles.sectionBadge, { backgroundColor: SectionColors.ORD.light }]}>
+                  <Text style={[styles.sectionBadgeText, { color: SectionColors.ORD.text }]}>4 delprov</Text>
                 </View>
               </View>
               <View style={styles.sectionGrid}>
@@ -350,8 +423,9 @@ export default function TranaScreen() {
                   <SectionTile
                     key={section.code}
                     section={section}
+                    selected={selectedSection === section.code}
                     onPress={() => handleSectionPress(section.code)}
-                    delay={index * 50}
+                    delay={index * 30}
                   />
                 ))}
               </View>
@@ -361,8 +435,8 @@ export default function TranaScreen() {
             <View style={styles.sectionGroup}>
               <View style={styles.sectionGroupHeader}>
                 <Text variant="h4">Kvantitativa</Text>
-                <View style={[styles.sectionBadge, { backgroundColor: colors.successLight }]}>
-                  <Text variant="caption" color="success">4 delprov</Text>
+                <View style={[styles.sectionBadge, { backgroundColor: SectionColors.XYZ.light }]}>
+                  <Text style={[styles.sectionBadgeText, { color: SectionColors.XYZ.text }]}>4 delprov</Text>
                 </View>
               </View>
               <View style={styles.sectionGrid}>
@@ -370,8 +444,9 @@ export default function TranaScreen() {
                   <SectionTile
                     key={section.code}
                     section={section}
+                    selected={selectedSection === section.code}
                     onPress={() => handleSectionPress(section.code)}
-                    delay={index * 50 + 200}
+                    delay={index * 30 + 120}
                   />
                 ))}
               </View>
@@ -385,23 +460,21 @@ export default function TranaScreen() {
             entering={FadeInDown.duration(400).delay(300)}
             style={styles.smartModeInfo}
           >
-            <Card>
+            <View style={[styles.smartInfoCard, { backgroundColor: colors.backgroundTertiary }]}>
               <View style={styles.smartInfoContent}>
-                <View style={[styles.smartInfoIcon, { backgroundColor: colors.success + '20' }]}>
-                  <Text style={styles.smartInfoEmoji}>💡</Text>
+                <View style={[styles.smartInfoIcon, { backgroundColor: colors.primary }]}>
+                  <Ionicons name="flash" size={20} color={colors.textOnPrimary} />
                 </View>
                 <View style={styles.smartInfoText}>
                   <Text variant="h5" style={{ marginBottom: Spacing.xxs }}>
-                    Rekommenderat för dig
+                    10 frågor
                   </Text>
                   <Text variant="bodySm" color="secondary">
-                    Baserat på din historik bör du fokusera på{' '}
-                    <Text variant="bodySm" weight="bold" color="error">NOG</Text> och{' '}
-                    <Text variant="bodySm" weight="bold" color="warning">KVA</Text> idag
+                    ~5 min • Fokus på {WEAKNESS_ORDER[0]} och {WEAKNESS_ORDER[1]}
                   </Text>
                 </View>
               </View>
-            </Card>
+            </View>
           </Animated.View>
         )}
 
@@ -413,12 +486,12 @@ export default function TranaScreen() {
           >
             <Card>
               <View style={styles.simulateContent}>
-                <View style={[styles.simulateIconContainer, { backgroundColor: colors.primaryLight }]}>
-                  <Text style={styles.simulateIcon}>🎓</Text>
+                <View style={[styles.simulateIconContainer, { backgroundColor: colors.primary }]}>
+                  <Ionicons name="school" size={32} color={colors.textOnPrimary} />
                 </View>
                 <Text variant="h3" style={styles.simulateTitle}>Simulerat HP</Text>
                 <Text variant="body" color="secondary" style={styles.simulateSubtitle}>
-                  Upplev ett fullständigt högskoleprovet
+                  Upplev ett fullständigt högskoleprov
                 </Text>
 
                 <View style={styles.simulateStats}>
@@ -439,7 +512,7 @@ export default function TranaScreen() {
                 </View>
 
                 <View style={[styles.tipBox, { backgroundColor: colors.backgroundTertiary }]}>
-                  <Text style={styles.tipEmoji}>💡</Text>
+                  <Ionicons name="bulb-outline" size={16} color={colors.textSecondary} style={{ marginRight: Spacing.sm }} />
                   <Text variant="bodySm" color="secondary" style={styles.tipText}>
                     Sätt av ostörd tid och simulera provmiljön för bästa resultat
                   </Text>
@@ -449,19 +522,18 @@ export default function TranaScreen() {
           </Animated.View>
         )}
 
-        {/* Start Button */}
+        {/* Start Button - NEVER disabled */}
         <Animated.View
-          entering={FadeInDown.duration(500).delay(400)}
+          entering={FadeInDown.duration(400).delay(300)}
           style={styles.startButtonContainer}
         >
           <Button
             fullWidth
             size="xl"
             onPress={handleStartTraining}
+            leftIcon={<Ionicons name="play" size={20} color={colors.textOnPrimary} />}
           >
-            {selectedMode === 'smart' && '▶ STARTA SMART TRÄNING'}
-            {selectedMode === 'section' && '📚 VÄLJ DELPROV OVAN'}
-            {selectedMode === 'simulate' && '⏱️ STARTA SIMULERAT PROV'}
+            {getButtonText()}
           </Button>
         </Animated.View>
 
@@ -512,15 +584,12 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   modeIconContainer: {
-    width: 56,
-    height: 56,
+    width: 52,
+    height: 52,
     borderRadius: BorderRadius.xl,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: Spacing.md,
-  },
-  modeIcon: {
-    fontSize: 28,
   },
   modeContent: {
     flex: 1,
@@ -532,14 +601,21 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.xxs,
   },
   proBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 3,
     paddingHorizontal: Spacing.sm,
-    paddingVertical: 2,
-    borderRadius: BorderRadius.sm,
+    paddingVertical: 3,
+    borderRadius: BorderRadius.md,
+    backgroundColor: Primitives.yellow[100],
+    borderWidth: 1,
+    borderColor: Primitives.yellow[400],
   },
   proText: {
     fontSize: FontSize.xxs,
     fontFamily: FontFamily.bold,
     letterSpacing: 0.5,
+    color: Primitives.yellow[700],
   },
   selectionIndicator: {
     width: 28,
@@ -549,10 +625,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: Spacing.md,
-  },
-  checkmark: {
-    fontSize: 14,
-    fontFamily: FontFamily.bold,
   },
   sectionGroup: {
     marginBottom: Spacing.xl,
@@ -568,52 +640,53 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.xs,
     borderRadius: BorderRadius.full,
   },
+  sectionBadgeText: {
+    fontSize: FontSize.xs,
+    fontFamily: FontFamily.semibold,
+  },
   sectionGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'space-between',
     gap: Spacing.md,
   },
+  sectionTileWrapper: {
+    width: '48%',
+  },
   sectionTile: {
-    width: '47%',
-    padding: Spacing.md,
+    width: '100%',
+    paddingVertical: Spacing.xl,
+    paddingHorizontal: Spacing.lg,
     borderRadius: BorderRadius['2xl'],
     borderWidth: 2,
-    overflow: 'hidden',
-  },
-  sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: Spacing.xs,
+    justifyContent: 'center',
+    gap: Spacing.md,
   },
   sectionCode: {
-    fontSize: FontSize.h3,
-    fontFamily: FontFamily.bold,
-  },
-  sectionProgress: {
-    fontSize: FontSize.base,
-    fontFamily: FontFamily.bold,
-  },
-  sectionProgressBar: {
-    marginVertical: Spacing.sm,
+    fontSize: 32, // BIG and prominent
+    fontFamily: FontFamily.black,
+    letterSpacing: -0.5,
+    lineHeight: 44, // Extra line height to prevent diacritic clipping (Ä, Ö)
   },
   smartModeInfo: {
     marginBottom: Spacing.xl,
+  },
+  smartInfoCard: {
+    padding: Spacing.base,
+    borderRadius: BorderRadius['2xl'],
   },
   smartInfoContent: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   smartInfoIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: Spacing.md,
-  },
-  smartInfoEmoji: {
-    fontSize: 24,
   },
   smartInfoText: {
     flex: 1,
@@ -631,9 +704,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: Spacing.md,
-  },
-  simulateIcon: {
-    fontSize: 36,
   },
   simulateTitle: {
     marginBottom: Spacing.xs,
@@ -667,10 +737,6 @@ const styles = StyleSheet.create({
     padding: Spacing.md,
     borderRadius: BorderRadius.xl,
     width: '100%',
-  },
-  tipEmoji: {
-    fontSize: 16,
-    marginRight: Spacing.sm,
   },
   tipText: {
     flex: 1,

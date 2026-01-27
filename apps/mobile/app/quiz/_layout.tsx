@@ -10,6 +10,21 @@ export default function QuizLayout() {
         animation: 'slide_from_right',
         gestureEnabled: false, // Prevent swipe back during quiz
       }}
-    />
+    >
+      {/* Review screen allows swipe back */}
+      <Stack.Screen
+        name="review"
+        options={{
+          gestureEnabled: true,
+        }}
+      />
+      {/* Summary screen allows swipe back */}
+      <Stack.Screen
+        name="summary"
+        options={{
+          gestureEnabled: true,
+        }}
+      />
+    </Stack>
   );
 }

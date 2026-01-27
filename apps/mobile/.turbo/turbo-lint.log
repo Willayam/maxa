@@ -1,3 +1,0 @@
-$ expo lint
-env: load .env.local
-env: export EXPO_PUBLIC_POSTHOG_KEY EXPO_PUBLIC_POSTHOG_HOST

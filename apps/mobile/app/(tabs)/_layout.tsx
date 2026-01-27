@@ -2,10 +2,9 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
 import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol, IconSymbolName } from '@/components/ui/icon-symbol';
-import { Colors, Spacing, BorderRadius, Shadows, ShadowsDark } from '@/constants/theme';
+import { Colors, Spacing, BorderRadius, Shadows, ShadowsDark, FontFamily } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
 interface TabIconProps {
@@ -36,6 +35,20 @@ function TabIcon({ name, color, focused }: TabIconProps) {
   );
 }
 
+function TabBarBackground() {
+  const colorScheme = useColorScheme() ?? 'light';
+  const colors = Colors[colorScheme];
+
+  return (
+    <View
+      style={[
+        StyleSheet.absoluteFill,
+        { backgroundColor: colors.cardBackground },
+      ]}
+    />
+  );
+}
+
 export default function TabLayout() {
   const colorScheme = useColorScheme() ?? 'light';
   const colors = Colors[colorScheme];
@@ -48,11 +61,12 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.tabIconDefault,
+        tabBarInactiveTintColor: colors.textSecondary,
         headerShown: false,
         tabBarButton: HapticTab,
+        tabBarBackground: () => <TabBarBackground />,
         tabBarStyle: {
-          backgroundColor: colors.cardBackground,
+          backgroundColor: 'transparent',
           borderTopWidth: 0,
           height: tabBarHeight,
           paddingTop: Spacing.sm,
@@ -60,9 +74,10 @@ export default function TabLayout() {
           ...shadows.md,
         },
         tabBarLabelStyle: {
-          fontSize: 11,
-          fontWeight: '600',
+          fontSize: 13,
+          fontFamily: FontFamily.bold,
           marginTop: 4,
+          letterSpacing: 0.3,
         },
       }}
     >
